@@ -195,6 +195,10 @@ Rscript R/19_metriche.R                  # cosa succede se si seleziona davvero
 Rscript R/20_sopravvivenza.R             # a che età si passa professionisti
 Rscript R/21_traiettorie.R               # conta il livello o il miglioramento?
 Rscript R/22_qualita_carriera.R          # non solo se si arriva, ma fino a dove
+Rscript R/24_validazione.R               # ottimismo e validazione temporale
+python scripts/10_sensibilita.py         # le scelte di disegno cambiano le conclusioni?
+Rscript R/27_confronto_ml.R              # un modello piu' complicato farebbe meglio?
+Rscript R/17_penalizzato.R               # e se si usassero tutte le categorie insieme?
 python report/assembla.py                # rigenera il documento
 ```
 
@@ -203,7 +207,7 @@ python report/assembla.py                # rigenera il documento
 Pacchetti richiesti:
 
 ```r
-install.packages(c("RSQLite", "jsonlite", "logistf", "pROC", "glmnet", "survival", "MASS"))
+install.packages(c("RSQLite", "jsonlite", "logistf", "pROC", "MASS", "lme4", "randomForest", "glmnet"))
 ```
 
 Se R non è installato, il documento si genera lo stesso: le sezioni modellistiche dichiarano cosa manca e con quale comando ottenerlo, invece di sparire in silenzio.
@@ -217,6 +221,12 @@ I dati riguardano **atleti minorenni**. Nel repository entra **solo cio' che e' 
 `.gitignore` nega tutto sotto `data/` per default e autorizza per eccezione: oggi la sola eccezione e' `data/private/manual/`, che contiene le decisioni di risoluzione manuale come id numerici e motivazioni impersonali. Restano quindi fuori la sorgente ciclismo.info (nomi e cognomi in chiaro), il crosswalk, le liste di verifica e il database di analisi.
 
 Il **salt di anonimizzazione** vive in `data/private/salt.txt`, generato al primo avvio e mai committato. Tenerlo nel sorgente renderebbe l'anonimizzazione solo apparente: gli `id_atleta` sono interi fra 1 e 37.704, quindi con il salt pubblico la tabella `athlete_id → id_atleta` si ricostruisce per forza bruta in pochi secondi, e da li' bastano le classifiche pubbliche per risalire ai nomi. Va trattato come una chiave: perderlo significa che tutti gli `athlete_id` cambiano al ricalcolo successivo.
+
+La checklist TRIPOD in [`docs/tripod.md`](docs/tripod.md) è l'unico documento del progetto che contiene cifre scritte a mano, perché è prosa di controllo e non un file generato. Che non siano diventate false lo verifica:
+
+```bash
+python scripts/11_verifica_tripod.py
+```
 
 Prima di ogni commit:
 
@@ -239,7 +249,7 @@ git config core.hooksPath .githooks
 - [x] Date di nascita dalle schede personali (sblocca il Relative Age Effect)
 - [x] Variabili di contesto in `tab_b` (società, regione, mobilità)
 - [x] Acquisizione ProCyclingStats e conteggio degli eventi (STEP 4)
-- [x] Modelli (STEP 16, 18-23) — i restanti in [`docs/da_fare.md`](docs/da_fare.md) §FASE 3
+- [x] Modelli e validazione — tutti gli STEP della guida — i restanti in [`docs/da_fare.md`](docs/da_fare.md) §FASE 3
 - [x] Matching giovanili ↔ PCS (STEP 6) — resta la verifica manuale, [`docs/da_fare.md`](docs/da_fare.md) §C5
 - [x] Esiti di carriera in `tab_b` (`PRO`, `tier`, qualità della società)
 - [x] Livello di produzione: `report/` con archivio dei risultati e generatore Markdown

@@ -21,6 +21,7 @@ import re
 ACCENTI = {
     "e": "è", "ne": "né", "se": "sé", "cioe": "cioè", "perche": "perché",
     "poiche": "poiché", "benche": "benché", "affinche": "affinché", "finche": "finché",
+    "anziche": "anziché", "onesta": "onestà", "nonche": "nonché",
     "piu": "più", "gia": "già", "cosi": "così", "li": "lì", "cio": "ciò",
     "puo": "può", "pero": "però", "giu": "giù",
     "sara": "sarà", "saranno": "saranno", "potra": "potrà", "dovra": "dovrà",
@@ -46,6 +47,10 @@ ACCENTI = {
     "stabilita": "stabilità", "specialita": "specialità",
     "proprieta": "proprietà", "novita": "novità",
     "confrontabilita": "confrontabilità", "comparabilita": "comparabilità",
+    "distinguibilita": "distinguibilità", "generalizzabilita": "generalizzabilità",
+    "impurita": "impurità", "percio": "perciò", "cio": "ciò",
+    "inutilita": "inutilità", "penalita": "penalità", "scarsita": "scarsità",
+    "utilita": "utilità", "necessita": "necessità",
     "regolarita": "regolarità", "anzianita": "anzianità",
     "gravita": "gravità", "novita": "novità", "eterogeneita": "eterogeneità",
     "diventera": "diventerà", "restera": "resterà", "sapra": "saprà",

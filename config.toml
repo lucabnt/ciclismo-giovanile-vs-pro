@@ -25,6 +25,15 @@ massima = 2025
 [stagioni.anomale]
 2020 = "covid"
 
+[fonte]
+# Da dove vengono i dati di partenza. Sta in configurazione e non nel testo perche' il
+# documento dichiara la propria provenienza, e quella provenienza cambia quando si
+# rigenera il database a monte.
+repository = "https://github.com/lucabnt/risultati-ciclismo-giovanile"
+estrazione = "2026-08-10"   # data dell'estrazione da cui deriva il database in uso
+schema = "2.1"              # schema del database a monte; la 2.2 porta la nascita alla fonte
+portale = "ciclismo.info"
+
 [coorti]
 # Coorti diverse per domande diverse: gli esiti hanno abbondanza molto diversa.
 # 78 eventi PRO contro 8 in top 100 sulle stesse coorti.
@@ -104,6 +113,7 @@ cella_u19_armonizzata = "U19_arm"
 # riorganizzare il documento, o dividerlo in piu' post, non comporta rinominare moduli.
 # Ogni voce e' un modulo in report/moduli/ con una funzione calcola() e una rendi().
 sezioni = [
+  "provenienza",
   "attrito",
   "copertura",
   "passaggi",
@@ -117,6 +127,7 @@ sezioni = [
   "sopravvivenza",
   "traiettorie",
   "qualita",
+  "validazione",
 ]
 
 [etica]

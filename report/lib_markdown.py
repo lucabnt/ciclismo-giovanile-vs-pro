@@ -71,6 +71,9 @@ def conta(n):
 
     Serve una funzione a parte da num() perche' un conteggio non ha decimali e le sue
     migliaia vanno separate.
+
+    NON va usata per gli anni: 1996 non e' un conteggio e non vuole il separatore. Per
+    quelli basta interpolarli cosi' come sono. E' un errore gia' fatto tre volte.
     """
     if n is None:
         return "—"
