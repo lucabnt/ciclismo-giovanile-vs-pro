@@ -1,0 +1,3 @@
+#!/bin/sh
+# I dati riguardano atleti minorenni: nel repository entra solo cio' che e' anonimo.
+python scripts/00_check_privacy.py || exit 1

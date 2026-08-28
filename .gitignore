@@ -1,0 +1,23 @@
+# ---------------------------------------------------------------------------
+# DATI: nel repository non entra nulla che si riferisca a una persona.
+#
+# I dati riguardano atleti minorenni. La sorgente ciclismo.info contiene nomi e
+# cognomi in chiaro, e va trattata come dato personale anche se il sito e'
+# pubblico: e' pubblica per la finalita' della classifica sportiva, non per
+# essere ridistribuita.
+#
+# Nessuna eccezione: anche gli id numerici della sorgente sono riferimenti a
+# persone reali, e restano fuori. Il codice ricostruisce tutto da data/, che
+# resta in locale. Se in futuro serve un'eccezione, autorizzala qui in modo
+# esplicito e solo dopo aver verificato che non permetta di risalire a nessuno.
+# ---------------------------------------------------------------------------
+data/
+
+*.db-wal
+*.db-shm
+
+__pycache__/
+*.pyc
+.Rhistory
+.RData
+.Rproj.user/

@@ -1,0 +1,286 @@
+# Verifica dei dati ciclismo.info
+
+**Data della verifica:** 27 agosto 2026 · aggiornato dopo le risoluzioni manuali
+**Sorgente:** `data/giovanile/ciclismo.db` (schema v2.1), estratta il **10 agosto 2026**
+**Copre:** FASE 0 / STEP 1 e STEP 3 del piano operativo (Sezione 18 della guida)
+
+---
+
+## 0. Sintesi
+
+| | |
+|---|---|
+| Record totali | 140.308 |
+| Atleti | 13.000 |
+| Società | 1.883 |
+| Righe atleta–anno–regione | 33.175 (12.782 atleti, 98,3%) |
+| Record usabili per l'analisi | **30.979** (individuali, annuali, stagioni 2007-2025) |
+| Atleti nel dataset di analisi | **12.357** |
+
+**Verdetto: i dati sono utilizzabili.** Non ci sono lacune di scraping sulle categorie maschili, l'identità degli atleti regge tutti i controlli di coerenza, e l'anno di nascita è ricostruibile per il 95,3% degli atleti — anzi, **osservabile** per tutti, perché la fonte pubblica una scheda per atleta con la data di nascita completa (§9). Ci sono però **quattro vincoli strutturali** che cambiano il disegno dello studio rispetto a quanto ipotizzato nella guida, e vanno recepiti prima di procedere.
+
+---
+
+## 1. Le quattro conseguenze da recepire
+
+### ① Le classifiche Esordienti partono dal 2009, non dal 2007 — le coorti diventano cinque
+
+Questa era la verifica obbligatoria dello STEP 1, ed è andata nel senso sfavorevole.
+
+| Categoria | Prima stagione | Ultima |
+|---|---|---|
+| Esordienti (U15) M | **2009** | 2026 |
+| Allievi (U17) M | 2007 | 2026 |
+| Juniores (U19) M | 2007 | 2026 |
+| Elite-Under23 M | 2007 | 2026 |
+| Tutte le categorie femminili | 2011 | 2026 |
+
+Il primo nato che ha l'U15 primo anno coperto è quello del **1996** (13 anni nel 2009). Con il limite superiore fissato dai 25 anni compiuti entro una stagione chiusa (2025), la finestra è:
+
+| Analisi | Coorti | N |
+|---|---|---|
+| **Principale (parte dall'U15y1)** | **1996-2000** | **5** |
+| Dall'U15y2 | 1995-2000 | 6 |
+| Dall'U17y1 | 1992-2000 | 9 |
+| Dall'U19y1 | 1990-2000 | 11 |
+| Sopravvivenza a tempo discreto (con censura) | tutte | — |
+
+La guida prevedeva sette coorti; ne restano cinque. Conta soprattutto per la Domanda B (qualità della carriera): la stima di 15-25 eventi top-100 va rivista al ribasso di circa un terzo, e va **ricontata sul serio allo STEP 4**, prima di progettare qualunque modello. Se scendesse sotto i 15, la Domanda B va ridimensionata a descrittiva, come già previsto.
+
+Contropartita: i modelli che partono dall'U17 hanno **nove** coorti invece di otto. Vale la pena costruirli sul serio, non solo come estensione.
+
+### ② Il denominatore è "chi ha fatto almeno un punto"
+
+Il punteggio minimo osservato è **1, mai 0**, in tutte le categorie e tutte le stagioni. Non esiste in classifica un solo atleta con zero punti.
+
+Ogni conclusione va quindi formulata come: *«fra gli atleti che hanno ottenuto almeno un punto nel ranking nazionale della loro categoria…»*. Non "fra i giovani ciclisti italiani", e nemmeno "fra i classificati", che è ambiguo. Un ragazzo che ha corso tutta la stagione senza mai entrare a punti è indistinguibile da uno che non ha corso affatto.
+
+### ③ La stagione 2020 è un cratere e la 2026 è incompleta
+
+| | 2019 | 2020 | 2021 |
+|---|---|---|---|
+| U15 M | 531 | **280** (−47%) | 477 |
+| U17 M | 566 | **246** (−54%) | 461 |
+| U19 M | 400 | **195** (−51%) | 355 |
+| U23 M | 161 | **84** (−48%) | 164 |
+
+Il 2020 è l'unico salto brusco di `n_ranked` in tutta la serie: il resto della copertura decresce in modo regolare (calo reale del tesseramento giovanile, circa −40% dal 2007 al 2025), senza gradini da cambio di criterio della fonte. Il percentile assorbe il calo di numerosità, ma **non** il fatto che nel 2020 si sia corso molto meno: chi ha ottenuto punti quell'anno lo ha fatto su molte meno occasioni. Le celle 2020 vanno marcate e trattate in analisi di sensibilità.
+
+La stagione **2026 è in corso** al momento dell'estrazione (10 agosto). Va esclusa da qualunque analisi, non solo troncata.
+
+### ④ L'Under 23 non è usabile senza l'anno di nascita — ma la fonte ce l'ha
+
+Per l'U23 la fonte pubblica una classifica unica sui quattro anni di corso, senza indicare l'età. L'anno di corso è ricostruibile solo dall'anno di nascita, che dalle sole classifiche **manca per i 586 atleti che compaiono solo da U23** (non hanno mai fatto punti da giovanili, o sono stranieri). Sono il 34% della popolazione U23.
+
+Sembrava un problema risolvibile solo con ProCyclingStats. Non è così: ciclismo.info pubblica una **scheda personale per atleta** con la data di nascita completa. Vedi §8.
+
+---
+
+## 2. Struttura delle classifiche: come è fatta davvero la fonte
+
+Questo è il punto in cui il DB si presta a essere letto male, e da cui dipende tutta la costruzione della Tabella A.
+
+Il sito pubblica, per ogni categoria e stagione, **due liste**: una generale e una "primo anno". Il rapporto fra le due **cambia da categoria a categoria**, e in un caso cambia anche nel tempo:
+
+| Categoria | Struttura | Sovrapposizione fra le due liste | Anni |
+|---|---|---|---|
+| Esordienti M | **disgiunte** — la generale è la classifica di 2° anno | 0 su 18 stagioni | 2009-2026 |
+| Donne Esordienti | **annidate** fino al 2021, poi **disgiunte** | 100% → 0% dal 2022 | 2011-2026 |
+| Allievi M, Juniores M, Donne Allieve, Donne Juniores | **annidate** — la generale contiene tutti, la primo anno è il sottoinsieme | 100% in tutte le stagioni | 2007/2011-2026 |
+| Elite-Under23 M | tre liste: `elite-under23` (Elite+U23), `under23` (solo U23), `elite-under23_primo_anno` | `under23` ⊂ `elite-under23` | 2007-2026 |
+
+Due conseguenze operative, entrambe recepite in `scripts/01_build_tabelle.py`:
+
+**Per l'U23 va usata la lista `under23`, non la `promiscua`.** Sulle 1.481 presenze che stanno nella promiscua ma non nella under23, solo **4** hanno un'età da U23: sono Elite over-22. La lista `under23` è quindi completa e la promiscua aggiunge solo rumore.
+
+**Il campo `anno_corso` del DB non va usato così com'è.** Per le Donne Esordienti 2011-2021 la lista generale è etichettata `anno_corso = 2` pur contenendo anche le prime anno, che compaiono quindi due volte con due etichette diverse. È l'unico errore di etichettatura trovato, riguarda solo la categoria femminile, e produce 321 doppioni se lo si prende alla lettera.
+
+> La vista `v_stagionale` del DB sorgente eredita entrambi i problemi: contiene **971 righe duplicate** (650 Elite-Under23, 321 Donne Esordienti) per lo stesso atleta/anno/categoria. Non usarla come base dell'analisi; `tab_a` la sostituisce.
+
+---
+
+## 3. Anno di corso: la regola è esatta
+
+L'anno di corso in U17 e U19 si deduce dall'appartenenza alla lista "primo anno". È una deduzione, quindi andava validata. Il test: prendere i 6.656 atleti il cui anno di nascita è **certo** perché ricavato dalle liste disgiunte degli Esordienti, e verificare se la loro presenza nella lista primo anno Allievi corrisponde davvero all'avere 15 anni.
+
+| | in lista primo anno | non in lista |
+|---|---|---|
+| **15 anni** (1° anno) | 2.213 | **0** |
+| **16 anni** (2° anno) | **0** | 3.107 |
+
+**Concordanza 100% su 5.320 verifiche, in entrambe le direzioni.** La regola è esatta, non approssimata.
+
+Il test chiarisce anche un dato che a prima vista sembra un artefatto: i primi anno classificati sono sistematicamente **meno** dei secondi anno (rapporto 0,71 in U17, stabile in tutte le stagioni dal 2007 al 2026). Non è un difetto della fonte — è il fenomeno reale che i primi anno, correndo contro ragazzi più grandi, entrano a punti meno spesso. Va detto nel blog post: è già di per sé un risultato.
+
+---
+
+## 4. Anno di nascita
+
+Non è un campo della fonte: va ricostruito. La ricostruzione è a due livelli di affidabilità, e il livello va portato dentro l'analisi, non nascosto.
+
+| Livello | Come | Atleti | % |
+|---|---|---|---|
+| **certo** | liste disgiunte (Esordienti) o presenza in una lista "primo anno" | 9.207 | 74,5% |
+| **presunto** | solo lista generale → si assume 2° anno | 2.525 | 20,4% |
+| conflitto | stime incompatibili (probabile problema di identità) | 39 | 0,3% |
+| ignoto | compare solo da U23 | 586 | 4,7% |
+
+L'errore possibile nel livello "presunto" è unidirezionale: se l'atleta era in realtà un primo anno che non compare nella lista primo anno, l'anno di nascita risulta **anticipato di uno**. Per questo, a parità di evidenza, si prende il massimo delle stime e non il minimo.
+
+> **Nota su `v_atleta_nascita`.** La vista del DB sorgente usa `MIN()` sulle stime, che va nella direzione sbagliata proprio rispetto a questo errore. Sui 426 atleti con stime discordanti, `MIN` coincide con la stima affidabile in 63 casi su 385; `MAX` in 305. La stima ricostruita in `anagrafica` corregge il problema e riduce i casi irrisolti da 426 a 39.
+
+**Quanto è affidabile il livello "certo".** I 5.068 atleti che hanno **almeno due segnali di livello 1 indipendenti** — presenza in una lista "primo anno", oppure Esordienti a liste disgiunte — concordano in **5.067 casi su 5.068 (99,98%)**. Nessuna lista sorgente è contaminata, in nessuna stagione. Ne segue la regola usata per gli omonimi (§5): due stime di livello 1 diverse indicano due persone, non un errore di misura.
+
+Coerenza età/categoria dopo la ricostruzione: **99,85%** delle righe. Le 47 righe residue (39 atleti, 0,3%) sono marcate `eta_coerente = 0` in `tab_a` — vedi §5.
+
+---
+
+## 5. Identità degli atleti
+
+Il rischio principale in un dataset di questo tipo è l'omonimia: due persone diverse fuse in un solo `id_atleta`, o una persona spezzata in due.
+
+**Fusioni: nessuna.** La durata massima di una carriera nel dataset è **9 stagioni**, che è esattamente il massimo teorico (Esordienti 1° anno a 13 anni → U23 4° anno a 22). Se due omonimi fossero stati fusi, comparirebbero carriere di 12-18 anni. Non ce ne sono.
+
+> Le carriere apparentemente lunghissime (fino a 18 anni) che si vedono nella vista `v_carriera` vengono tutte dalla lista `elite-under23` promiscua, che include gli Elite di qualunque età: un professionista che corre una gara italiana a 30 anni compare lì. Usando la lista `under23` il problema sparisce.
+
+**Frammentazioni: risolte.** Ci sono 142 gruppi di `id_atleta` distinti con lo stesso nome completo, che generano **33 coppie** con anni di nascita compatibili. Di queste:
+
+| Esito | N | Base della decisione |
+|---|---|---|
+| Persone diverse | 18 | presenti nella **stessa stagione** |
+| Persone diverse | 7 | **regioni diverse** |
+| Persone diverse | 5 | due stime di nascita di **livello 1 discordanti** (§4: concordano nel 99,98% dei casi) |
+| Persone diverse | 1 | deciso a mano: due atleti della stessa regione, nati 1996 e 1995 |
+| **Stessa persona → fuse** | **3** | nascita concorde, stessa regione, carriere che si incastrano senza sovrapporsi |
+
+Le tre fusioni sono registrate in `data/private/manual/fusioni_atleti.csv`, che contiene solo id numerici e motivazioni impersonali ed è quindi la traccia verificabile della decisione senza essere un dato personale. Dopo la fusione le tre carriere risultano continue e coerenti in ogni stagione — una copre senza salti da U17 secondo anno a U23 quarto anno, il che conferma la scelta a posteriori.
+
+Nessuno dei trenta atleti coinvolti è un candidato professionista: uno solo sta sopra il 95° percentile (femminile, quindi fuori dall'analisi principale) e la mediana del gruppo è 46.
+
+**Presenze fuori categoria: 82 righe, legittime.** Un Under 23 al primo anno può correre alcune gare Juniores, e comparire quindi nel ranking Juniores a 19 anni. Non è un errore della fonte:
+
+| Categoria | Età | Righe |
+|---|---|---|
+| U19 | 19 | 65 |
+| U17 | 17-18 | 12 |
+| U23 | 17-18 | 5 |
+
+Quella stagione però **non appartiene alla popolazione in studio** per quella categoria. Le righe restano in `tab_a` con `cat_year_conf = 'fuori_categoria'` e `cat_year` nullo: sono documentate ma non entrano in nessuna cella, né come numeratore né come denominatore. Questa regola risolve da sola anche i dodici casi di atleti presenti in due categorie nella stessa stagione: dopo l'esclusione non ne resta **nessuno**.
+
+**Contraddizioni residue: 39 atleti (0,3%), tutte marcate.** La colonna `eta_coerente` di `tab_a` vale 0 quando l'età implicata dall'anno di nascita non è compatibile con l'anno di corso assegnato. Sono 47 righe su 30.979, e hanno tutte la stessa forma: età da primo anno ma anno di corso letto come secondo, su atleti il cui anno di nascita è `presunto` o in conflitto. È l'incertezza di livello 2 descritta in §4, non un problema nuovo.
+
+Vanno **escluse o controllate a mano, non corrette d'ufficio**: qualunque correzione automatica sceglierebbe arbitrariamente quale delle due evidenze contraddittorie tenere.
+
+---
+
+## 6. Completezza dello scraping
+
+| Esito | N |
+|---|---|
+| ok | 6.062 |
+| vuota | 2.134 |
+| errore di rete | 792 |
+| 404 | 15 |
+
+Tutti i fallimenti su URL **nazionali** riguardano le categorie femminili nelle stagioni **2007-2010**, cioè prima che quelle classifiche esistessero. Le pagine `vuota` sono classifiche regionali di regioni con pochissimi tesserati (Valle d'Aosta, Basilicata, Calabria, Molise).
+
+**Nessuna classifica nazionale maschile risulta mancante o fallita.** La copertura per cella (stagione × categoria × anno di corso) non presenta buchi né gradini oltre al 2020 già discusso.
+
+---
+
+## 7. Il punto più delicato: i pari punti
+
+I punteggi sono piccoli e molto discreti — mediana 7-8 punti, primo quartile 3. Il risultato è che l'ordinamento per soli punti, come prescritto dalla guida, lascia **la quasi totalità degli atleti a pari merito**:
+
+| | % atleti a pari punti | valori distinti di percentile per cella | atleti per cella |
+|---|---|---|---|
+| U15 | 92,2% | 58,6 | 280,8 |
+| U17 | 93,1% | 43,4 | 228,7 |
+| U19 | 87,9% | 43,4 | 161,6 |
+| U23 | 59,6% | 21,0 | 34,5 |
+
+Una cella U17 con 229 atleti produce 43 valori distinti di percentile. Il predittore principale dello studio è, di fatto, una variabile a 43 livelli con enormi ammassi.
+
+**C'è però più informazione nei dati.** La fonte pubblica, oltre ai punti, il numero di vittorie e di piazzamenti dal 2° al 5° posto, e li usa per sciogliere i pari punti: la posizione pubblicata è un ordinamento **totale** 1..n, senza ex aequo. Ricostruendo lo stesso criterio (punti → vittorie → 2i → 3i → 4i → 5i) con `ties.method = "min"`:
+
+| | % a pari merito | valori distinti per cella |
+|---|---|---|
+| U15 | 92,2% → **52,7%** | 58,6 → **160,4** |
+| U17 | 93,1% → **59,4%** | 43,4 → **118,5** |
+| U19 | 87,9% → **51,0%** | 43,4 → **95,6** |
+| U23 | 59,6% → **28,9%** | 21,0 → **28,0** |
+
+La granularità quasi triplica e la correlazione con la versione a soli punti resta **r = 0,996-0,998**: non è una variabile diversa, è la stessa variabile misurata meglio.
+
+> **Non usare invece la posizione pubblicata dalla fonte.** In coda alla classifica ordina in modo arbitrario atleti con record identico: nella cella U15 2015 primo anno, le ultime venti posizioni sono tutte «1 punto, un quinto posto». Prendere quelle posizioni per buone significa inventare un ordinamento dove non ce n'è uno.
+
+**Raccomandazione:** usare `pct_rank_ext` come predittore principale e `pct_rank` (soli punti, versione della guida) come analisi di sensibilità. Entrambi sono in `tab_a`, e in `tab_b` come `pct_*` e `pctpt_*`. Costa zero riportarli tutti e due.
+
+---
+
+## 8. Cosa c'è di più di quanto previsto dalla guida
+
+Tre covariate che la guida dava per "da verificare" e che ci sono:
+
+- **Regione** — 12.782 atleti su 13.000 (98,3%), per stagione. Concentrazione forte: Lombardia 23%, Veneto 19%, Toscana 13%. Utilizzabile come effetto di raggruppamento o come covariata.
+- **Società** — 1.883 società, con storico dei nomi e alias. Utilizzabile come effetto casuale nei modelli misti.
+- **Vittorie e piazzamenti (1°-5°) per stagione** — oltre ai punti. Alimentano il percentile esteso della sezione 7 e permettono predittori alternativi (numero di vittorie da U15, presenza sul podio).
+
+C'è inoltre una serie di **classifiche mensili** (57.000 record) non usata dalla pipeline. Permetterebbe di misurare la progressione *dentro* la stagione. Fuori perimetro per ora, ma è lì.
+
+---
+
+## 9. Le schede personali: la fonte ha la data di nascita
+
+Le classifiche non riportano l'età, ma ciclismo.info pubblica una **scheda per atleta** che contiene la data di nascita completa:
+
+```
+http://<sottodominio>.ciclismo.info/scheda_corridore_risultati_gare_<id>_<x>_<y>_<anno>.htm
+```
+
+Tre cose verificate direttamente:
+
+- **Il segmento con il nome è ignorato dal server**: conta solo l'id. Un URL con `_x_y_` al posto di cognome e nome restituisce la stessa pagina. Sparisce così ogni rischio legato alla normalizzazione di nomi, accenti e cognomi doppi — che sarebbe stato il punto fragile di questa raccolta.
+- **Sottodominio e anno invece contano**: vanno presi da una stagione in cui l'atleta compare davvero, altrimenti la risposta è 200 ma senza dati anagrafici. Si usa la stagione più recente di ciascun atleta.
+- **Ci sono due campi, non uno**: l'intestazione riporta sempre `COGNOME NOME (AAAA)`, e in più compare `Nato il GG Mese AAAA`. Sui casi provati l'anno c'era nel **100%** dei casi, la data completa nell'**82%**.
+
+### La ricostruzione per inferenza, messa alla prova
+
+Confronto fra l'anno ricostruito (§4) e quello letto dalla scheda, su un campione stratificato:
+
+| Livello inferito | Esito |
+|---|---|
+| `certo` | **27/27 concordano** |
+| `presunto` | 26/27 concordano; 1 diverge di −1 |
+| `presunto_conflitto` | **9/9 divergono, sempre di −1** |
+| `ignoto` | risolti dalla scheda |
+
+La ricostruzione regge dove dichiarava di reggere, e questa è la sua validazione esterna. Ma emergono due difetti che senza questa fonte non si sarebbero visti: sul livello `presunto` c'è circa un **4% di errore**, che su 2.505 atleti sono un centinaio di anni di nascita sbagliati; e sui casi `presunto_conflitto` la regola del massimo sbaglia **sistematicamente di un anno** — lì il minimo era la scelta corretta.
+
+Non serve sceglierla meglio: dove la nascita è osservata, l'inferenza non viene usata.
+
+### Cosa si sblocca
+
+**Il Relative Age Effect torna fra le domande di ricerca.** La guida lo esclude perché «la data di nascita completa c'è solo per i professionisti». Con le schede c'è per la grande maggioranza di tutti i classificati, quindi il confronto di Voet — RAE presente fra chi non arriva, assente fra chi arriva — diventa replicabile sulla coorte italiana.
+
+Si sbloccano inoltre l'anno di corso U23 senza dipendere da PCS, e una chiave di matching con PCS molto più forte: data esatta invece di anno presunto.
+
+### Cosa non si sblocca
+
+- **La nazionalità c'è ma è quasi sempre vuota** (circa il 5% delle schede). Troppo rara per identificare gli stranieri: quell'esclusione resta affidata a PCS.
+- **Il numero di gare disputate resta non disponibile.** La scheda elenca i piazzamenti dal 1° al 5° posto con data, regione e nome della gara, non le partenze. Il limite ② della Sezione 3 della guida regge.
+
+### Come è organizzata la raccolta
+
+`scripts/03_scarica_schede.py` scarica una scheda per atleta, con pausa di 1,2 s, ripartibile, e conserva l'HTML compresso in `data/giovanile/schede.db` così da poter cambiare il parsing senza rifare le richieste. Il sito non espone un `robots.txt`.
+
+La pipeline usa le nascite in questo ordine: **colonna della sorgente** se un giorno ci sarà → **scheda** → **inferenza**. Il primo livello oggi è vuoto ma il codice lo cerca già: quando il database di partenza esporrà la nascita, le schede diventeranno superflue senza toccare nient'altro.
+
+---
+
+## 10. Cosa resta da fare prima di modellare
+
+1. ~~Risolvere a mano i candidati frammento~~ — fatto (§5): 3 fusioni applicate, il resto sono omonimi genuini.
+2. **Contare gli eventi** (STEP 4) dopo il matching con PCS: professionisti totali, top-200, top-100 sulle coorti 1996-2000. È il numero che decide se la Domanda B è modellabile.
+3. **Completare le schede personali** (§9) e ricalcolare l'anno di corso U23, e con esso `pct_rank` per le celle U23. Non serve più aspettare PCS.
+4. ~~Decidere il trattamento del 2020~~ — fatto: resta nel dataset con `flag_stagione = 'covid'`, escluso dall'analisi principale e riportato in sensibilità. La stagione 2026 è esclusa alla fonte (`STAGIONE_MAX = 2025`) e si recupera cambiando una costante quando sarà chiusa.
