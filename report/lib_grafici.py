@@ -72,19 +72,50 @@ def figura(titolo=None, larghezza=7.0, altezza=4.2):
         pass
 
 
+def _accenta(fig):
+    """Accenta ogni testo della figura appena prima di scriverla su disco.
+
+    I titoli e le etichette degli assi non passano dal generatore del Markdown, quindi
+    senza questo passaggio uscirebbero in ASCII mentre il testo intorno e' accentato.
+    Farlo qui, e non in ogni modulo, significa che vale per tutte le figure — comprese
+    quelle che verranno scritte in futuro.
+    """
+    try:
+        import accenti
+    except ImportError:
+        return
+    for t in fig.findobj(match=lambda o: hasattr(o, "get_text")):
+        testo = t.get_text()
+        if testo:
+            nuovo = accenti.applica(testo)
+            if nuovo != testo:
+                t.set_text(nuovo)
+
+
 def salva(nome, fig=None):
     """Salva la figura corrente e restituisce il percorso, da passare all'archivio."""
     plt = _plt()
     os.makedirs(CARTELLA, exist_ok=True)
     percorso = os.path.join(CARTELLA, nome + ".png")
-    (fig or plt.gcf()).savefig(percorso)
-    plt.close(fig or plt.gcf())
+    fig = fig or plt.gcf()
+    _accenta(fig)
+    fig.savefig(percorso)
+    plt.close(fig)
     return percorso
 
 
-def linea_riferimento(ax, y=1.0, testo=None):
+def linea_riferimento(ax, y=1.0, testo=None, verticale=False):
     """La linea dell'atteso. Va sempre disegnata dove un rapporto ha un valore neutro:
-    senza, il lettore non sa da dove si misura lo scostamento."""
+    senza, il lettore non sa da dove si misura lo scostamento.
+
+    `verticale` serve ai grafici a intervalli, dove la grandezza sta sull'asse x e la
+    linea del "nessun effetto" e' quindi verticale."""
+    if verticale:
+        ax.axvline(y, color=RIFERIMENTO, linestyle="--", linewidth=1, zorder=0)
+        if testo:
+            ax.annotate(testo, xy=(y, 0.99), xycoords=("data", "axes fraction"),
+                        ha="left", va="top", fontsize=8, color=GRIGIO)
+        return
     ax.axhline(y, color=RIFERIMENTO, linestyle="--", linewidth=1, zorder=0)
     if testo:
         ax.annotate(testo, xy=(0.995, y), xycoords=("axes fraction", "data"),

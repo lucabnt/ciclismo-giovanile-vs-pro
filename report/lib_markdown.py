@@ -58,6 +58,25 @@ def num(v, decimali=1):
     return (("%%.%df" % decimali) % float(v)).replace(".", ",")
 
 
+# Spazio stretto insecabile: separa le migliaia senza che il numero possa andare a capo.
+# Non si usa il punto perche' _virgola_decimale lo scambierebbe per un separatore
+# decimale e "2.817" diventerebbe "2,817". Lo spazio stretto e' anche la raccomandazione
+# tipografica per i grandi numeri, quindi la soluzione al problema e' anche la forma
+# corretta.
+SPAZIO_MIGLIAIA = " "
+
+
+def conta(n):
+    """Un conteggio dentro una frase: 2817 -> 2 817.
+
+    Serve una funzione a parte da num() perche' un conteggio non ha decimali e le sue
+    migliaia vanno separate.
+    """
+    if n is None:
+        return "—"
+    return f"{int(n):,}".replace(",", SPAZIO_MIGLIAIA)
+
+
 def tabella(colonne, righe, n=None, nota=None, colonne_conteggio=(), decimali=1):
     """Tabella Markdown.
 
@@ -80,7 +99,7 @@ def tabella(colonne, righe, n=None, nota=None, colonne_conteggio=(), decimali=1)
 
     coda = []
     if n is not None:
-        coda.append("n = %s" % (f"{n:,}".replace(",", ".") if isinstance(n, int) else n))
+        coda.append("n = %s" % (conta(n) if isinstance(n, int) else n))
     if mascherate:
         coda.append("%d cella/e con meno di %d atleti sono mascherate" % (mascherate, MIN_CELLA))
     if nota:
@@ -169,3 +188,61 @@ def paragrafo(*parti):
     valori da scartare: in Markdown la riga vuota e' significativa."""
     return _virgola_decimale(
         "\n".join(str(p) for p in parti if p is not None)) + "\n"
+
+
+# ---------------------------------------------------------------------------
+# Le affermazioni interpretative e le loro premesse
+# ---------------------------------------------------------------------------
+#
+# I numeri del documento vengono tutti da una query, ma le frasi che li commentano no:
+# «il gradiente sparisce», «una differenza che non si distingue dal caso», «meta' dei
+# classificati non c'era l'anno prima» sono affermazioni scritte da un essere umano
+# guardando i numeri di oggi.
+#
+# Il documento pero' si rigenera, e fra un anno i numeri saranno altri. Una frase di
+# commento puo' quindi diventare falsa senza che nessuno se ne accorga: e' il modo piu'
+# probabile in cui questo progetto puo' pubblicare una cosa sbagliata.
+#
+# `afferma()` chiede di dichiarare, accanto alla frase, la condizione numerica che la
+# sostiene. Finche' la condizione regge, la frase esce normalmente. Quando smette di
+# reggere, la frase esce con un avviso visibile e l'assemblatore lo segnala, invece di
+# lasciar passare un commento che i dati non sostengono piu'.
+
+_PREMESSE_FALLITE = []
+
+
+def azzera_premesse():
+    """Da chiamare all'inizio di una generazione."""
+    del _PREMESSE_FALLITE[:]
+
+
+def premesse_fallite():
+    return list(_PREMESSE_FALLITE)
+
+
+def afferma(condizione, premessa, testo):
+    """Un'affermazione interpretativa e la condizione che la rende vera.
+
+    `premessa` va scritta come una cosa vera oggi: "il gradiente si annulla a parita' di
+    durata". E' quella che verra' mostrata a chi rigenera il documento fra un anno e si
+    trovera' la condizione caduta.
+    """
+    if condizione:
+        return testo
+    _PREMESSE_FALLITE.append(premessa)
+    return ("> ⚠️ **Commento da riscrivere.** La frase qui sotto e' stata scritta quando "
+            "valeva questa premessa: *%s*. Con i dati di oggi non vale piu'.\n\n%s"
+            % (premessa, testo))
+
+
+def avviso_premesse(premesse):
+    """Il riquadro in testa al documento quando qualche premessa e' caduta."""
+    righe = ["> ⚠️ **Attenzione: %d osservazione/i del testo non sono piu' sostenute dai "
+             "dati.**" % len(premesse), ">",
+             "> Il documento si rigenera dai dati, ma i commenti che li interpretano "
+             "sono scritti a mano. Queste premesse valevano quando i commenti sono stati "
+             "scritti e oggi non valgono piu': i paragrafi corrispondenti, segnalati nel "
+             "testo, vanno riscritti.", ">"]
+    for p in premesse:
+        righe.append("> - %s" % p)
+    return "\n".join(righe)

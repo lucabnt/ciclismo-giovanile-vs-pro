@@ -92,6 +92,7 @@ def main():
                 mod.calcola()
 
     lt = Lettura()
+    md.azzera_premesse()
     parti = [intestazione(lt, list(caricati))]
     for nome, mod in caricati.items():
         if not hasattr(mod, "rendi"):
@@ -116,6 +117,18 @@ def main():
     # scritta a mano: un titolo cambiato dentro un modulo si riflette da solo.
     corpo = "\n\n".join(parti[1:]).rstrip()
     documento = parti[0] + "\n\n## Indice\n\n" + md.indice(corpo) + "\n\n---\n\n" + corpo
+
+    # Le premesse cadute vanno dette in testa al documento, non solo sul terminale: chi
+    # rigenera puo' non essere chi legge, e un avviso solo a schermo si perde.
+    cadute = md.premesse_fallite()
+    if cadute:
+        documento = documento.replace("\n\n## Indice\n\n",
+                                      "\n\n" + md.avviso_premesse(cadute) +
+                                      "\n\n## Indice\n\n", 1)
+        dice("\n   ATTENZIONE: %d osservazione/i non sono piu' sostenute dai dati:"
+             % len(cadute))
+        for c in cadute:
+            dice("     - %s" % c)
 
     with open(USCITA, "w", encoding="utf-8") as f:
         f.write(documento + "\n")

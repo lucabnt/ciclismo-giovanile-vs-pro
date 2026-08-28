@@ -71,8 +71,9 @@ CREATE TABLE IF NOT EXISTS esecuzione (
 class Archivio:
     """Scrittura dei risultati di un modulo. Da usare come context manager."""
 
-    def __init__(self, modulo, percorso=DB_RISULTATI):
+    def __init__(self, modulo, percorso=DB_RISULTATI, pulisci=True):
         self.modulo = modulo
+        self.pulisci = pulisci
         os.makedirs(os.path.dirname(percorso), exist_ok=True)
         self.db = sqlite3.connect(percorso)
         self.db.executescript(DDL)
@@ -81,8 +82,13 @@ class Archivio:
         # Si riparte puliti: un modulo rieseguito non deve lasciare in giro i propri
         # risultati vecchi, che altrimenti finirebbero nel report senza che nessuno
         # se ne accorga.
-        for t in ("valore", "tabella", "figura"):
-            self.db.execute("DELETE FROM %s WHERE modulo = ?" % t, (self.modulo,))
+        #
+        # `pulisci=False` serve nel solo caso in cui due linguaggi scrivono nello stesso
+        # modulo: i modelli in R producono i numeri, Python vi aggiunge la figura. Li'
+        # cancellare significherebbe buttare via il lavoro di R.
+        if self.pulisci:
+            for t in ("valore", "tabella", "figura"):
+                self.db.execute("DELETE FROM %s WHERE modulo = ?" % t, (self.modulo,))
         return self
 
     def __exit__(self, *exc):
