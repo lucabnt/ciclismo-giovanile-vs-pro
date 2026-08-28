@@ -54,23 +54,38 @@ import sys
 import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from lib_giovanile import chiave_match
+from lib_giovanile import cfg, chiave_match
 
 DB_PCS = "data/pcs/pcs.db"
-PAUSA = 2.5
+PAUSA = cfg("scaricamento", "pausa_pcs")
 
 # Prima stagione utile: il nato nel 1996 (coorte piu' vecchia dell'analisi principale)
 # poteva firmare da neoprofessionista nel 2015. Si parte dal 2011 per coprire con
 # margine le estensioni dall'U17, che arrivano alla coorte 1992.
-STAGIONI_PRO = range(2011, 2027)
-STAGIONI_RANK = range(2007, 2026)
+STAGIONI_PRO = range(cfg("scaricamento", "stagioni_pro")[0],
+                     cfg("scaricamento", "stagioni_pro")[1] + 1)
+STAGIONI_RANK = range(cfg("scaricamento", "stagioni_ranking")[0],
+                      cfg("scaricamento", "stagioni_ranking")[1] + 1)
 LIVELLI = {"worldtour": "WT", "proteams": "PRT"}
 # Le Continental servono a distinguere chi ha smesso da chi corre a un livello piu'
 # basso. Sono ~200 squadre per stagione in tutto il mondo, quindi l'enumerazione
 # completa costa ore: si abilita con --continental. Per i soli atleti gia' candidati
 # non serve, perche' Rider.teams_history() restituisce gia' tutte le classi.
 LIVELLI_EXTRA = {"continental": "CT"}
-TOP_N = 500                     # profondita' della classifica globale (5 pagine)
+TOP_N = cfg("scaricamento", "profondita_ranking")  # profondita' della classifica globale (5 pagine)
+
+# Le classi che contano come "professionista", cioe' prima e seconda divisione UCI.
+# I nomi sono cambiati nel tempo e PCS usa quello vigente in quella stagione:
+#   WT   WorldTeam, prima divisione dal 2011
+#   PT   ProTeam dell'era UCI ProTour, prima divisione: visto 2005-2008
+#   PCT  Professional Continental, seconda divisione: visto 2005-2019
+#   PRT  UCI ProTeam, e' il PCT rinominato nel 2020: visto dal 2020
+# Usare solo ('WT','PRT') escluderebbe tutta la seconda divisione prima del 2020, cioe'
+# gran parte delle carriere delle coorti piu' vecchie. Verificato sui dati: PCT sparisce
+# esattamente nel 2020, nella stessa stagione in cui compare PRT.
+CLASSI_PRO = tuple(cfg("esiti", "classi_pro"))
+CLASSI_TERZE = ("CT",)          # Continental
+
 
 DDL = """
 CREATE TABLE IF NOT EXISTS pcs_team (
@@ -228,8 +243,16 @@ def strato_a(f, db, con_continental=False):
                     nome, riders = t.name(), t.riders()
                 except Exception:
                     nome, riders = None, []
+                try:
+                    # La classe va letta dalla pagina della squadra: il filtro s= della
+                    # pagina indice non restringe l'elenco (verificato: s=worldtour e
+                    # s=proteams restituiscono le stesse squadre), quindi `sigla` dice
+                    # solo da quale passata siamo arrivati, non che classe sia.
+                    classe = t.status() or sigla
+                except Exception:
+                    classe = sigla
                 db.execute("INSERT OR REPLACE INTO pcs_team VALUES (?,?,?,?)",
-                           (season, ts, nome, sigla))
+                           (season, ts, nome, classe))
                 for r in riders:
                     db.execute("INSERT OR REPLACE INTO pcs_roster VALUES (?,?,?,?,?)",
                                (season, ts, slug(r.get("rider_url")),
@@ -394,17 +417,22 @@ def stato(db):
     # --- scala di uscita: distingue chi ha smesso da chi corre a un livello piu' basso ---
     if n("SELECT COUNT(*) FROM pcs_rider_team"):
         dice("")
-        dice("SCALA DI USCITA (italiani profilati, per classe massima raggiunta)")
-        for classe, etichetta in (("WT", "WorldTeam"), ("PRT", "ProTeam"),
-                                  ("CT", "Continental")):
-            dice("   %-12s %4d" % (etichetta, n("""
+        dice("CLASSI DI SQUADRA (italiani profilati; le voci si sovrappongono,")
+        dice("un atleta che ha corso sia CT sia WT compare in entrambe)")
+        for classe, etichetta in (("WT", "WorldTeam (1a div.)"),
+                                  ("PT", "ProTour (1a div., -2008)"),
+                                  ("PCT", "Pro Continental (2a div., -2019)"),
+                                  ("PRT", "UCI ProTeam (2a div., 2020-)"),
+                                  ("CT", "Continental (3a div.)"),
+                                  ("CLUB", "Club")):
+            dice("   %-28s %4d" % (etichetta, n("""
                 SELECT COUNT(DISTINCT r.pcs_id) FROM pcs_rider r
                 JOIN pcs_rider_team t ON t.pcs_id = r.pcs_id
                 WHERE r.nazionalita='IT' AND t.team_class = ?""", classe)))
-        dice("   altre classi %4d" % n("""
+        dice("   %-28s %4d" % ("almeno una fra 1a e 2a div.", n("""
             SELECT COUNT(DISTINCT r.pcs_id) FROM pcs_rider r
             JOIN pcs_rider_team t ON t.pcs_id = r.pcs_id
-            WHERE r.nazionalita='IT' AND t.team_class NOT IN ('WT','PRT','CT')"""))
+            WHERE r.nazionalita='IT' AND t.team_class IN %s""" % (CLASSI_PRO,))))
         dice("")
         dice("Chi non compare affatto qui non ha necessariamente smesso: la continuita'")
         dice("   agonistica in Italia si legge da tab_b.elite_seasons e racing_after_u23,")
@@ -426,7 +454,7 @@ def stato(db):
             pro = n("""SELECT COUNT(DISTINCT r.pcs_id) FROM pcs_rider r
                        JOIN pcs_rider_team t ON t.pcs_id=r.pcs_id
                        WHERE r.nazionalita='IT' AND r.birth_year=?
-                         AND t.team_class IN ('WT','PRT') AND t.season <= r.birth_year+25""",
+                         AND t.team_class IN %s AND t.season <= r.birth_year+25""" % (CLASSI_PRO,),
                     anno)
             t500 = n("""SELECT COUNT(DISTINCT r.pcs_id) FROM pcs_rider r
                         JOIN pcs_rider_points p ON p.pcs_id=r.pcs_id
@@ -436,7 +464,7 @@ def stato(db):
                         JOIN pcs_rider_points p ON p.pcs_id=r.pcs_id
                         WHERE r.nazionalita='IT' AND r.birth_year=?
                           AND p.rank_pos <= 100 AND p.season <= r.birth_year+26""", anno)
-            if anno >= 1996:
+            if 1996 <= anno <= 2000:
                 tot = [tot[0] + pro, tot[1] + t500, tot[2] + t100]
             dice("   %-12d %6d %8d %9d" % (anno, pro, t500, t100))
         dice("   %-12s %6d %8d %9d   <- coorti dell'analisi principale"

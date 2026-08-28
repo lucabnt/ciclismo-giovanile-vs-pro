@@ -25,6 +25,21 @@ from lib_giovanile import CATEGORIE, DB_ANALISI, DB_GIOVANILE, connect
 import sqlite3
 
 
+def scrivi_csv(percorso, righe):
+    """Scrive un CSV, oppure lo rimuove se non ci sono piu' casi da verificare.
+
+    Un file vuoto lasciato sul disco farebbe pensare che ci sia ancora lavoro da fare.
+    """
+    if not righe:
+        if os.path.exists(percorso):
+            os.remove(percorso)
+        return
+    with open(percorso, "w", newline="", encoding="utf-8-sig") as f:
+        w = csv.DictWriter(f, list(righe[0].keys()), delimiter=";")
+        w.writeheader()
+        w.writerows(righe)
+
+
 def carriera(src, id_atleta):
     """Righe della carriera, con societa' e regione, per la disambiguazione manuale."""
     rows = src.execute("""
@@ -106,9 +121,12 @@ def main():
             cross[int(r["id_atleta_src"])] = r
 
     # ---- 1. omonimi con anni di nascita compatibili -----------------------
+    # Si raggruppa sulla chiave normalizzata, non sul nome grezzo: due grafie che
+    # differiscono per uno spazio doppio o un accento sono lo stesso nome, e sul nome
+    # grezzo sfuggirebbero.
     per_nome = defaultdict(list)
     for i, r in cross.items():
-        per_nome[r["nome_completo"].upper()].append(i)
+        per_nome[r["chiave_match"] or r["nome_completo"].upper()].append(i)
 
     righe = []
     for nome, ids in sorted(per_nome.items()):
@@ -138,11 +156,7 @@ def main():
                     "verdetto": "", "nota": "",
                 })
 
-    campi = list(righe[0].keys()) if righe else []
-    with open("data/private/casi_omonimia.csv", "w", newline="", encoding="utf-8-sig") as f:
-        w = csv.DictWriter(f, campi, delimiter=";")
-        w.writeheader()
-        w.writerows(righe)
+    scrivi_csv("data/private/casi_omonimia.csv", righe)
 
     # ---- 1b. quasi omonimi: refusi che possono aver spezzato un atleta -----
     per_primo_nome = defaultdict(list)
@@ -184,12 +198,7 @@ def main():
                     "verdetto": "", "nota": "",
                 })
 
-    with open("data/private/casi_quasi_omonimia.csv", "w", newline="",
-              encoding="utf-8-sig") as f:
-        if righe_q:
-            w = csv.DictWriter(f, list(righe_q[0].keys()), delimiter=";")
-            w.writeheader()
-            w.writerows(righe_q)
+    scrivi_csv("data/private/casi_quasi_omonimia.csv", righe_q)
 
     # ---- 2. atleti con presenze contraddittorie ---------------------------
     inc = an.execute("""
@@ -221,10 +230,7 @@ def main():
             "verdetto": "", "nota": "",
         })
     righe2.sort(key=lambda r: (-r["omonimi"], r["nome"]))
-    with open("data/private/casi_eta_incoerente.csv", "w", newline="", encoding="utf-8-sig") as f:
-        w = csv.DictWriter(f, list(righe2[0].keys()), delimiter=";")
-        w.writeheader()
-        w.writerows(righe2)
+    scrivi_csv("data/private/casi_eta_incoerente.csv", righe2)
 
     # ---- 3. file delle decisioni, se non esistono -------------------------
     for nome, intestazione in (("fusioni_atleti.csv", ["id_atleta_src", "id_canonico", "nota"]),

@@ -54,11 +54,11 @@ import urllib.request
 import zlib
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from lib_giovanile import DB_GIOVANILE, connect
+from lib_giovanile import DB_GIOVANILE, cfg, connect
 
 DB_SCHEDE = "data/giovanile/schede.db"
 CROSSWALK = "data/private/crosswalk_atleti.csv"
-PAUSA = 1.2
+PAUSA = cfg("scaricamento", "pausa_schede")
 OGNI = 25          # righe fra un salvataggio e l'altro
 UA = "Mozilla/5.0 (compatibile; ricerca statistica non commerciale su ciclismo giovanile)"
 

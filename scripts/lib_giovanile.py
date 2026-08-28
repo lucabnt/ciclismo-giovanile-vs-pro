@@ -6,6 +6,45 @@ import secrets
 import sqlite3
 import unicodedata
 
+# --------------------------------------------------------------------------
+# Configurazione: tutte le scelte stanno in config.toml, non nel codice.
+# --------------------------------------------------------------------------
+FILE_CONFIG = "config.toml"
+_cfg = None
+
+
+def config():
+    """Legge config.toml una volta sola. Fallisce subito e chiaramente se manca."""
+    global _cfg
+    if _cfg is None:
+        try:
+            import tomllib
+        except ImportError:                      # Python < 3.11
+            try:
+                import tomli as tomllib
+            except ImportError:
+                raise SystemExit("Serve tomllib (Python 3.11+) oppure il pacchetto "
+                                 "tomli: pip install tomli")
+        if not os.path.exists(FILE_CONFIG):
+            raise SystemExit("Manca %s: e' li' che stanno tutte le scelte dello studio."
+                             % FILE_CONFIG)
+        with open(FILE_CONFIG, "rb") as f:
+            _cfg = tomllib.load(f)
+    return _cfg
+
+
+def cfg(*chiavi, default=None):
+    """cfg("coorti", "domanda_a_c") -> [1996, 2000]"""
+    v = config()
+    for k in chiavi:
+        if not isinstance(v, dict) or k not in v:
+            if default is not None:
+                return default
+            raise SystemExit("Manca la voce %s in %s" % (" -> ".join(chiavi), FILE_CONFIG))
+        v = v[k]
+    return v
+
+
 DB_GIOVANILE = "data/giovanile/ciclismo.db"
 DB_ANALISI = "data/analisi/analisi.db"
 DB_SCHEDE = "data/giovanile/schede.db"

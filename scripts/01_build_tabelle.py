@@ -22,17 +22,11 @@ from math import log1p
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lib_giovanile import (CATEGORIE, DB_ANALISI, DB_GIOVANILE, DB_SCHEDE, LISTE_DISGIUNTE,
-                           anonimizza, chiave_match, connect)
+                           anonimizza, cfg, chiave_match, connect)
 
-# Ultima stagione conclusa al momento dell'estrazione (10 agosto 2026): la 2026 e' in
-# corso e va lasciata fuori. Portare a 2026 quando la stagione sara' chiusa e i dati
-# riscaricati: l'analisi si replica senza altre modifiche.
-STAGIONE_MAX = 2025
-
-# Stagioni con copertura anomala. Non vengono escluse: ricevono un flag in tab_a, e la
-# decisione se tenerle resta all'analisi. Il 2020 ha meta' dei classificati abituali in
-# tutte le categorie, e chi ha fatto punti li ha fatti su molte meno occasioni.
-STAGIONI_ANOMALE = {2020: "covid"}
+# Tutte le scelte stanno in config.toml. Qui si leggono, non si decidono.
+STAGIONE_MAX = cfg("stagioni", "massima")
+STAGIONI_ANOMALE = {int(k): v for k, v in cfg("stagioni", "anomale").items()}
 
 # Per ordinare le stagioni di un atleta quando ne ha due nello stesso anno
 # (una presenza fuori categoria e una regolare).
@@ -340,11 +334,15 @@ def crea_tab_b(dst):
             team_quality_n INTEGER,   -- SOLO sulle coorti precedenti: da popolare dopo PCS
             -- Continuita' agonistica dopo l'eta' giovanile, dalla classifica Elite italiana.
             -- Serve a distinguere chi ha smesso da chi corre a un livello piu' basso.
-            elite_seasons INTEGER,    -- stagioni in classifica Elite a 23 anni o piu'
+            elite_seasons_a_punti INTEGER,  -- stagioni in cui l'atleta e' andato A PUNTI nella
+                                -- classifica Elite a 23 anni o piu'. Chi ha continuato
+                                -- a correre senza mai fare punti e' indistinguibile
+                                -- da chi ha smesso: e' un limite inferiore.
             last_racing_age INTEGER,  -- eta' dell'ultima presenza in una qualunque classifica
-            racing_after_u23 INTEGER  -- 1 se compare in una classifica dopo i 22 anni
+            punti_dopo_u23 INTEGER,   -- 1 se e' andato a punti in una classifica dopo i 22 anni
             -- esiti: da popolare dopo il matching con ProCyclingStats
-            pcs_id TEXT, pcs_matched INTEGER DEFAULT 0,
+            pcs_id TEXT, pcs_matched INTEGER,
+            pcs_u19 INTEGER, pcs_u23 INTEGER,
             PRO INTEGER, tier INTEGER,
             year_turned_pro INTEGER, age_turned_pro INTEGER, pro_seasons INTEGER,
             best_pcs_rank INTEGER, censored INTEGER
@@ -418,11 +416,15 @@ def eta_relativa(birth_date):
 def nascite_osservate(src):
     """Date di nascita osservate, non inferite, in ordine di preferenza.
 
-    1. La sorgente stessa, se un giorno esporra' la nascita: si cerca una colonna
+    1. Le correzioni decise a mano, che vincono su tutto: nascono dal confronto fra
+       ciclismo.info e ProCyclingStats, dove le due fonti divergono e si e' stabilito
+       quale abbia ragione. Serve perche' nessuna delle due e' sistematicamente giusta:
+       sul campione confrontato PCS ha ragione 5 volte su 7 e ciclismo.info 2.
+    2. La sorgente stessa, se un giorno esporra' la nascita: si cerca una colonna
        plausibile in `atleti` e la si usa senza altre domande. E' la via giusta, e
        questa funzione esiste perche' il giorno in cui ci sara' il resto del codice
        non debba cambiare.
-    2. Le schede personali scaricate da 03_scarica_schede.py.
+    3. Le schede personali scaricate da 03_scarica_schede.py.
 
     Restituisce {id_atleta: (birth_date | None, birth_year, fonte)}.
     """
@@ -447,6 +449,15 @@ def nascite_osservate(src):
                                        FROM scheda_atleta WHERE birth_year IS NOT NULL"""):
             if i not in out:                       # la sorgente ha la precedenza
                 out[i] = (bd, by, "scheda")
+
+    # Le correzioni manuali sovrascrivono qualunque fonte automatica.
+    p = "data/private/manual/date_corrette.csv"
+    if os.path.exists(p):
+        with open(p, encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                d = (r.get("data_corretta") or "").strip()
+                if re.match(r"^\d{4}-\d{2}-\d{2}$", d):
+                    out[int(r["id_atleta_src"])] = (d, int(d[:4]), "corretta_a_mano")
     return out
 
 
@@ -609,7 +620,7 @@ def main():
     for c in CAMPI_B_PCT:
         b_cols += ["pct_%s" % c, "pctpt_%s" % c, "present_%s" % c]
     b_cols += ["best_pct_youth", "best_pct_cat", "n_seasons_youth", "n_wins_youth", "slope_pct",
-               "elite_seasons", "last_racing_age", "racing_after_u23"]
+               "elite_seasons_a_punti", "last_racing_age", "punti_dopo_u23"]
     b_rows = []
     for a, rs in per_atleta.items():
         aid = anonimizza(a)
@@ -690,7 +701,7 @@ def main():
     qd.append(("nascita_con_data_completa", sum(1 for v in date_nascita.values() if v)))
     qd.append(("nascita_inferenza_smentita", len(smentite)))
     qd.append(("nascita_data_non_valida", len(date_non_valide)))
-    for conf in ("sorgente", "scheda", "certo", "presunto",
+    for conf in ("sorgente", "scheda", "corretta_a_mano", "certo", "presunto",
                  "conflitto_tier1", "presunto_conflitto"):
         qd.append(("nascita__%s" % conf, sum(1 for v in ana.values() if v[1] == conf)))
     qd.append(("nascita__ignoto", sum(1 for a in per_atleta if a not in ana)))
