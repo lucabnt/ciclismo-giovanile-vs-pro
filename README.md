@@ -194,6 +194,7 @@ Rscript R/18_annidati.R                  # quanto aggiunge ogni categoria alla p
 Rscript R/19_metriche.R                  # cosa succede se si seleziona davvero
 Rscript R/20_sopravvivenza.R             # a che età si passa professionisti
 Rscript R/21_traiettorie.R               # conta il livello o il miglioramento?
+Rscript R/22_qualita_carriera.R          # non solo se si arriva, ma fino a dove
 python report/assembla.py                # rigenera il documento
 ```
 
@@ -238,7 +239,7 @@ git config core.hooksPath .githooks
 - [x] Date di nascita dalle schede personali (sblocca il Relative Age Effect)
 - [x] Variabili di contesto in `tab_b` (società, regione, mobilità)
 - [x] Acquisizione ProCyclingStats e conteggio degli eventi (STEP 4)
-- [x] Modelli (STEP 16, 18, 19, 20, 21) — i restanti in [`docs/da_fare.md`](docs/da_fare.md) §FASE 3
+- [x] Modelli (STEP 16, 18-23) — i restanti in [`docs/da_fare.md`](docs/da_fare.md) §FASE 3
 - [x] Matching giovanili ↔ PCS (STEP 6) — resta la verifica manuale, [`docs/da_fare.md`](docs/da_fare.md) §C5
 - [x] Esiti di carriera in `tab_b` (`PRO`, `tier`, qualità della società)
 - [x] Livello di produzione: `report/` con archivio dei risultati e generatore Markdown

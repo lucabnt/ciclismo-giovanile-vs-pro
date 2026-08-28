@@ -116,6 +116,7 @@ sezioni = [
   "metriche",
   "sopravvivenza",
   "traiettorie",
+  "qualita",
 ]
 
 [etica]

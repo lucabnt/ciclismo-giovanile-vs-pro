@@ -26,6 +26,7 @@ stata fatta, che è metà del valore di questo file.
 | 28 ago | accenti nel testo generato | `report/accenti.py`: gli accenti si applicano alla generazione, non a mano sul file |
 | 28 ago | **FASE 3** confine verso R | `scripts/08_prepara_modelli.py` costruisce `modelli.db`; `R/lib_risultati.R` scrive nello stesso archivio |
 | 28 ago | **STEP 16** modelli univariati | `R/16_univariati.R`: OR da 1,40 a 2,28 per 10 punti; AUC coincidenti con la descrittiva entro 0,0005 |
+| 28 ago | **STEP 22-23** qualità della carriera | `R/22_qualita_carriera.R`: il rendimento Under 19 predice l'ingresso (OR 2,47) ma non il livello raggiunto una volta dentro (OR 1,20 e 1,28, intervalli che comprendono l'uno) |
 | 28 ago | **STEP 21** traiettorie | `R/21_traiettorie.R`: livello e miglioramento contano entrambi, AUC 0,848 → 0,919. Il livello è una condizione, il miglioramento un moltiplicatore |
 | 28 ago | **R2** la discontinuità del passaggio di categoria | misurata: il crollo delle presenze è in gran parte l'accorciarsi della lista, non una rottura. Al cambio di fascia la lista di arrivo è fatta per l'88% da chi c'era già, contro il 61% dei passaggi interni |
 | 28 ago | **STEP 20** sopravvivenza a tempo discreto | `R/20_sopravvivenza.R`: 121 eventi contro 77, rischio massimo a 23 anni, HR 1,78 per 10 punti di percentile |
@@ -297,7 +298,7 @@ Modulo `report/moduli/passaggi.py`. Il risultato ribalta la lettura di partenza:
 | 19 metriche pratiche | fatto (manca la decision curve) | `R/19_metriche.R` |
 | 20 sopravvivenza a tempo discreto | fatto | `R/20_sopravvivenza.R`, tabella `persona_anno` |
 | 21 traiettorie | fatto | `R/21_traiettorie.R` |
-| 22-23 Domanda B, ordinale | da fare — usa `campione_b` | — |
+| 22-23 Domanda B, ordinale | fatto | `R/22_qualita_carriera.R` |
 | 24-28 validazione | da fare | — |
 
 **Lo STEP 17 è rimandato in coda, deciso il 28 agosto 2026.** Il VIF massimo è 2,89 (§C6): la penalizzazione non è obbligata e i modelli non penalizzati sono stimabili, quindi l'elastic net non aggiungerebbe una stima che manca — aggiungerebbe un confronto. Va fatto dopo la validazione (STEP 24-28), dove il suo posto naturale è fra i controlli di robustezza, non prima.

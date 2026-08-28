@@ -27,6 +27,7 @@ ACCENTI = {
     "andra": "andrà", "verra": "verrà", "restera": "resterà", "arrivera": "arriverà",
     "ridurra": "ridurrà", "crescera": "crescerà", "cambiera": "cambierà",
     "passera": "passerà", "restera": "resterà", "arrivera": "arriverà",
+    "entrera": "entrerà", "uscira": "uscirà", "andra": "andrà",
     "portera": "porterà", "servira": "servirà", "dira": "dirà", "avra": "avrà",
     "vorra": "vorrà", "bastera": "basterà", "ci": "ci",
     "meta": "metà", "eta": "età", "citta": "città", "societa": "società",
