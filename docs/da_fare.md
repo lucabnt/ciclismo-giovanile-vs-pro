@@ -23,6 +23,22 @@ stata fatta, che è metà del valore di questo file.
 | 28 ago | **STEP 10** punteggi per gruppo | modulo `punteggi`: delta di Cliff da 0,47 a 0,78; già «grande» a tredici anni |
 | 28 ago | **STEP 13-14** contesto e mobilità | modulo `contesto`: il gradiente della mobilità è un artefatto della durata della carriera |
 | 28 ago | indice e riquadri metodologici | indice generato dai titoli; nove riquadri «Come si misura» con rimandi verificati |
+| 28 ago | accenti nel testo generato | `report/accenti.py`: gli accenti si applicano alla generazione, non a mano sul file |
+| 28 ago | **FASE 3** confine verso R | `scripts/08_prepara_modelli.py` costruisce `modelli.db`; `R/lib_risultati.R` scrive nello stesso archivio |
+| 28 ago | **STEP 16** modelli univariati | `R/16_univariati.R`: OR da 1,40 a 2,28 per 10 punti; AUC coincidenti con la descrittiva entro 0,0005 |
+| 28 ago | **STEP 21** traiettorie | `R/21_traiettorie.R`: livello e miglioramento contano entrambi, AUC 0,848 → 0,919. Il livello è una condizione, il miglioramento un moltiplicatore |
+| 28 ago | **R2** la discontinuità del passaggio di categoria | misurata: il crollo delle presenze è in gran parte l'accorciarsi della lista, non una rottura. Al cambio di fascia la lista di arrivo è fatta per l'88% da chi c'era già, contro il 61% dei passaggi interni |
+| 28 ago | **STEP 20** sopravvivenza a tempo discreto | `R/20_sopravvivenza.R`: 121 eventi contro 77, rischio massimo a 23 anni, HR 1,78 per 10 punti di percentile |
+| 28 ago | corretta l'età delle celle | `eta_tipica` sbagliava di un anno (U15y1 dava 14, il dato dice 13). Ora l'età si legge da `tab_a` invece che da una formula sulle sigle |
+| 28 ago | estrapolare i tesserati all'indietro | **verificato che non si può**: il back-test sbaglia del 27% a due anni, e a dieci anni due modelli difendibili differiscono di 1,6 volte |
+| 28 ago | il denominatore esterno | tesserati FCI 2018-2025 in `riferimenti/`: in classifica compare **un tesserato su sette**, stabile fra categorie e anni |
+| 28 ago | **C3** STEP 3(b) | risolto: la fonte include già le gare internazionali (15 punti contro 5), il predittore armonizzato non serve |
+| 28 ago | cosa significa «essere in classifica» | verificato: tutte le 28.041 righe hanno almeno un piazzamento nei primi 5. Ogni percentuale ha un denominatore già selezionato |
+| 28 ago | primo contro secondo anno di categoria | a parità di atleti il **secondo** anno discrimina meglio in tutte le categorie; il tasso pro più alto nelle celle y1 è un effetto dell'ampiezza della lista |
+| 28 ago | i cambi di società sono strutturali | 96,3% cambia dai Juniores all'Under 23 contro ~20% dentro una categoria: `n_team_changes` conta transizioni imposte |
+| 28 ago | premesse delle affermazioni | `md.afferma()`: ogni commento interpretativo dichiara la condizione numerica che lo sostiene, e se cade il documento lo segnala |
+| 28 ago | **STEP 18** modelli annidati | `R/18_annidati.R`: 102 atleti, stesso sottocampione; il salto maggiore è l'Under 19 (ΔAUC +0,151, DeLong p = 0,011) |
+| 28 ago | **STEP 19** metriche pratiche | `R/19_metriche.R`: il migliore 10% in U19y2 intercetta il 59% dei futuri pro, e il 52% dei selezionati non lo diventa |
 | 28 ago | il ricambio misurato | l'assenza dalla classifica non è abbandono: 30,6% rientra, 50,8% di ricambio in U17 |
 
 ---
@@ -250,6 +266,56 @@ L'alternativa tutto-Python è praticabile e riduce le dipendenze a una sola, ma 
 
 ---
 
+## Domande aperte, da qui in avanti
+
+### R1. Le regioni, oltre la descrittiva — ancora aperta, ma si sa cosa manca
+
+La tabella regionale usa nove coorti (4.827 atleti), ma i tassi restano illeggibili: poche decine di professionisti su venti regioni.
+
+**Cosa i dati FCI hanno risolto e cosa no.** Il documento federale pubblica i tesserati *per categoria* (nazionali) e le società affiliate *per regione*, ma **mai i due incrociati**: il numero di tesserati per regione non c'è. Il denominatore regionale resta quindi mancante, ed è la ragione per cui questa voce non si chiude.
+
+Le società per regione sono in `riferimenti/societa_fci.csv` e sono l'unica base regionale disponibile. Non sono un denominatore accettabile — una società può avere tre tesserati o duecento, copre tutte le categorie dai Giovanissimi ai Master e tutte le specialità — quindi non sono state usate per normalizzare nessun tasso. Restano in repository perché servirebbero subito se arrivasse il dato mancante.
+
+**Cosa chiedere, con precisione.** Alla FCI (o al comitato regionale) serve una sola tabella: *tesserati per anno, regione e categoria*. Con quella, la domanda «a parità di corridori, la regione aggiunge qualcosa?» diventa rispondibile. Senza, no. Il calendario gare per regione sarebbe un secondo passo, non il primo.
+
+### R2. ~~La discontinuità del passaggio di categoria~~ — misurata il 28 agosto 2026
+
+Modulo `report/moduli/passaggi.py`. Il risultato ribalta la lettura di partenza: al cambio di categoria resta in classifica il 32% degli atleti contro il 80% dei passaggi interni, ma **la lista di arrivo è composta per l'88% da chi c'era già**, contro il 61% dei passaggi interni. Il crollo è nel numero di posti, non nelle persone che li occupano — le classifiche del primo anno di categoria sono circa la metà di quelle del secondo. Fra chi resta, la correlazione dei percentili scende da 0,591 a 0,471: un rimescolamento reale ma modesto.
+
+**Cosa resterebbe da fare.** La misura è condizionata alla presenza in entrambe le liste, quindi dice poco su chi esce. Per andare oltre servirebbe sapere se chi esce ha continuato a correre, che è di nuovo il dato dei tesserati per anno e atleta — non pubblico.
+
+---
+
+## FASE 3. I modelli in R: cosa c'è e cosa manca
+
+| STEP | Stato | File |
+|---|---|---|
+| 16 univariati per cella | fatto | `R/16_univariati.R` |
+| 17 multivariato penalizzato | **rimandato in coda**, vedi sotto | — |
+| 18 incremento annidato, versione grezza | fatto | `R/18_annidati.R` |
+| 18 incremento annidato, versione armonizzata | **non serve** — §C3 chiuso | la fonte include già i risultati internazionali |
+| 19 metriche pratiche | fatto (manca la decision curve) | `R/19_metriche.R` |
+| 20 sopravvivenza a tempo discreto | fatto | `R/20_sopravvivenza.R`, tabella `persona_anno` |
+| 21 traiettorie | fatto | `R/21_traiettorie.R` |
+| 22-23 Domanda B, ordinale | da fare — usa `campione_b` | — |
+| 24-28 validazione | da fare | — |
+
+**Lo STEP 17 è rimandato in coda, deciso il 28 agosto 2026.** Il VIF massimo è 2,89 (§C6): la penalizzazione non è obbligata e i modelli non penalizzati sono stimabili, quindi l'elastic net non aggiungerebbe una stima che manca — aggiungerebbe un confronto. Va fatto dopo la validazione (STEP 24-28), dove il suo posto naturale è fra i controlli di robustezza, non prima.
+
+**Come si esegue la catena dei modelli.**
+
+```bash
+python scripts/08_prepara_modelli.py
+Rscript R/16_univariati.R
+Rscript R/18_annidati.R
+Rscript R/19_metriche.R
+python report/assembla.py
+```
+
+Se R non c'è, `assembla.py` produce lo stesso il documento: le sezioni modellistiche dichiarano cosa manca e con quale comando ottenerlo.
+
+---
+
 ## C. Analisi ancora da impostare
 
 ### C1. ~~Relative Age Effect~~ — modulo scritto il 28 agosto 2026
@@ -303,6 +369,8 @@ Il delta di Cliff si traduce in AUC con `AUC = (delta + 1) / 2`, quindi i modell
 
 Se i modelli daranno numeri sensibilmente diversi, il posto in cui cercare l'errore è il modello, non la descrittiva: qui non ci sono covariate né assunzioni, solo il conteggio di quante volte un professionista sta sopra un non professionista.
 
+**Esito, 28 agosto 2026.** Lo STEP 16 ha ritrovato esattamente questi valori: scarto massimo 0,0005, che è arrotondamento. Il controllo non è stato lasciato alla lettura di una tabella — `R/16_univariati.R` rilegge l'AUC descrittiva dall'archivio e segnala da solo se le due strade divergono di più di 0,01. Resta valido per le rigenerazioni future.
+
 **L'anomalia dell'U23 va spiegata, non nascosta.** L'AUC di 0,70 in U23y1 è la più bassa di tutte, ma in quella cella i professionisti sono il 37% contro il 3,5% dell'U15: si confrontano fra loro atleti già selezionati. È l'effetto della selezione descritto nel Problema 5 della guida, e va tenuto presente quando lo STEP 18 confronterà i modelli annidati — che girano proprio su quel sottocampione.
 
 ---
@@ -328,9 +396,15 @@ Il modulo `contesto` documenta un risultato negativo che vale la pena non perder
 
 **Stratificando per durata della carriera il gradiente sparisce**, e a sei e sette stagioni si inverte. Lo STEP 14 della guida propone di leggere `n_team_changes` come reclutamento (coefficiente positivo) o instabilità (negativo): con questi dati non si legge in nessuno dei due modi, perché il segnale grezzo è confondimento. Se lo si stima comunque in un modello, la durata della carriera va inclusa.
 
-### C3. `pct_U19_arm` e STEP 3(b)
+### C3. ~~`pct_U19_arm` e STEP 3(b)~~ — chiuso il 28 agosto 2026
 
-Il predittore U19 armonizzato e la verifica se il ranking Juniores incorpori i risultati internazionali. Entrambi richiedono PCS.
+**La domanda era**: il ranking Juniores incorpora i risultati internazionali? Se non lo facesse, l'U19 misurerebbe una cosa diversa dall'U23 e parte del gradiente della Domanda C sarebbe un artefatto dello strumento.
+
+**La risposta è sì.** Le classifiche di ciclismo.info includono le gare internazionali in tutte le categorie, con una scala punti più alta: 15 punti per la vittoria in una gara internazionale contro 5 in una nazionale. Lo strumento di misura è quindi lo stesso lungo tutto il percorso, e **il predittore armonizzato non serve**.
+
+**Cosa resta, e non è la stessa cosa.** Chi corre stabilmente all'estero senza disputare gare in Italia non compare affatto nel ranking: è un problema di *copertura della popolazione*, non di armonizzazione della misura, e riguarda pochi atleti in Juniores. Non si corregge con un predittore alternativo, si dichiara.
+
+La macchinaria in `R/18_annidati.R` che eseguirebbe la seconda passata resta al suo posto e costa nulla: se un giorno servisse una variante del predittore U19, basta creare la colonna.
 
 ### C4. ~~La decisione sul sottocampione~~ — decisa il 28 agosto 2026
 
