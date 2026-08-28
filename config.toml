@@ -30,7 +30,12 @@ massima = 2025
 # 78 eventi PRO contro 8 in top 100 sulle stesse coorti.
 domanda_a_c = [1996, 2000]   # diventare professionista, e da che età il risultato informa
 domanda_b   = [1992, 2000]   # qualità della carriera
-# La sopravvivenza a tempo discreto usa tutte le coorti, con censura.
+# La sopravvivenza a tempo discreto usa coorti piu' ampie, con censura: chi non ha
+# ancora finito la finestra dei 25 anni contribuisce comunque gli anni gia' osservati.
+# Il limite inferiore non e' negoziabile: la classifica Under 15 esiste dal 2009, quindi
+# prima della coorte 1996 le prime stagioni non sono assenze ma dati mancanti, e le due
+# cose in un modello di sopravvivenza non si possono confondere.
+domanda_sopravvivenza = [1996, 2008]
 
 [esiti]
 # Classi di squadra che contano come professionista: prima e seconda divisione UCI.
@@ -41,6 +46,12 @@ domanda_b   = [1992, 2000]   # qualità della carriera
 #   PRT UCI ProTeam, è il PCT rinominato nel 2020
 classi_pro = ["WT", "PT", "PCT", "PRT"]
 
+eta_minima_pro = 19        # nessuno puo' correre da professionista prima: e' una regola
+                           # UCI, non un dato osservato, e infatti nei dati il primo
+                           # passaggio avviene esattamente a 19 anni. Il modello di
+                           # sopravvivenza parte da qui: includere eta' in cui l'evento
+                           # e' impossibile non aggiunge informazione e destabilizza la
+                           # stima dell'andamento per eta'.
 eta_massima_pro = 25       # finestra per l'esito PRO
 eta_massima_qualita = 26   # finestra per il tier: la più ampia osservabile per la coorte 2000
 
@@ -76,16 +87,35 @@ celle_correlazione = ["U15y1", "U15y2", "U17y1", "U17y2", "U19y1", "U19y2", "U23
 # sempre il proprio n accanto.
 celle_vif = ["U15y1", "U15y2", "U17y1", "U17y2", "U19y1", "U19y2"]
 
+# Celle della sequenza annidata (STEP 18): una per categoria, non due. Il sottocampione
+# di chi e' osservato in TUTTE le celle e' di poco piu' di cento atleti: con una regola
+# prudente di dieci eventi per variabile, quattro predittori sono il massimo che quel
+# campione sostiene. Si prende l'ultimo anno di ciascuna categoria, che e' l'osservazione
+# piu' vicina al passaggio successivo.
+celle_annidate = ["U15y2", "U17y2", "U19y2", "U23y1"]
+
+# Variante armonizzata del predittore U19 (Problema 4 della guida): stessa sequenza, ma
+# con l'U19 misurato includendo i risultati internazionali da PCS. Finche' la colonna non
+# esiste in tab_b, lo STEP 18 gira solo nella versione grezza e lo dichiara.
+cella_u19_armonizzata = "U19_arm"
+
 [report]
 # Ordine delle sezioni nel documento generato. L'ordine sta qui e non nei nomi dei file:
 # riorganizzare il documento, o dividerlo in piu' post, non comporta rinominare moduli.
 # Ogni voce e' un modulo in report/moduli/ con una funzione calcola() e una rendi().
 sezioni = [
   "attrito",
+  "copertura",
+  "passaggi",
   "punteggi",
   "rae",
   "correlazioni",
   "contesto",
+  "univariati",
+  "annidati",
+  "metriche",
+  "sopravvivenza",
+  "traiettorie",
 ]
 
 [etica]
