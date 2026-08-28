@@ -13,6 +13,11 @@
 # ---------------------------------------------------------------------------
 data/
 
+# Prodotti rigenerabili. Il documento finale e le figure derivano da dati personali:
+# sono aggregati e mascherati, quindi pubblicabili, ma si rigenerano con un comando e
+# non c'e' ragione di versionarli.
+output/
+
 *.db-wal
 *.db-shm
 
