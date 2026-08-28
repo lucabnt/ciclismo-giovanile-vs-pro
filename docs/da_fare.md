@@ -1,6 +1,29 @@
 # Cose da fare
 
 Elenco di lavoro. Ogni voce dice **cosa**, **perché** e **come verificare di averla chiusa**.
+Le voci chiuse restano, barrate e con la data: servono a ricostruire perché una scelta è
+stata fatta, che è metà del valore di questo file.
+
+## Concluso
+
+| Data | Voce | Esito |
+|---|---|---|
+| 28 ago | **A1** configurazione esterna | `config.toml` letto da tutti gli script tramite `lib_giovanile.cfg()` |
+| 28 ago | **B1** `elite_seasons` → `elite_seasons_a_punti` | rinominata anche `racing_after_u23` → `punti_dopo_u23` |
+| 28 ago | **C4** coorti dei modelli annidati | coorti diverse per domande diverse; il sottocampione da 94 atleti contiene 43 eventi |
+| 28 ago | **C5** verifica manuale del matching | 24 casi annotati, 18 correzioni di data, 0 ambigui residui |
+| 28 ago | esiti in `tab_b` | nuovo `06_esiti.py`: `PRO`, `tier`, `team_quality_first` |
+| 28 ago | fusioni da refuso | 6 quasi omonimi con data identica, più 1 spezzato da un doppio spazio |
+| 28 ago | **D3** R o Python | R per i modelli, Python per preparazione e report, SQLite come confine |
+| 28 ago | **D1-D2** livello di produzione | `report/` con archivio dei risultati, libreria grafica, generatore Markdown; primo modulo (`rae`) completo |
+| 28 ago | **C1** attesi demografici | `07_riferimenti.py` scarica Eurostat `demo_fmonth` e lo mette in cache |
+| 28 ago | **STEP 9** attrito | modulo `attrito`: imbuto, età di uscita, esiti; due figure |
+| 28 ago | **STEP 15** effetto dell'età relativa | modulo `rae`: composizione, successo, gradiente per categoria |
+| 28 ago | **STEP 11** correlazioni e VIF | modulo `correlazioni`: VIF massimo 2,89, la penalizzazione **non** è obbligatoria |
+| 28 ago | **STEP 10** punteggi per gruppo | modulo `punteggi`: delta di Cliff da 0,47 a 0,78; già «grande» a tredici anni |
+| 28 ago | **STEP 13-14** contesto e mobilità | modulo `contesto`: il gradiente della mobilità è un artefatto della durata della carriera |
+| 28 ago | indice e riquadri metodologici | indice generato dai titoli; nove riquadri «Come si misura» con rimandi verificati |
+| 28 ago | il ricambio misurato | l'assenza dalla classifica non è abbandono: 30,6% rientra, 50,8% di ricambio in U17 |
 
 ---
 
@@ -8,9 +31,13 @@ Elenco di lavoro. Ogni voce dice **cosa**, **perché** e **come verificare di av
 
 L'obiettivo è che chiunque, con il repository e i due database di partenza, possa rieseguire l'intera analisi leggendo solo la documentazione. Oggi gli script funzionano ma incorporano scelte nel codice.
 
-### A1. Togliere i valori cablati e portarli in un file di configurazione
+### A1. ~~Togliere i valori cablati~~ — fatto il 28 agosto 2026
 
-**Cosa.** Un unico `config.toml` (o `config.yaml`) alla radice, letto da tutti gli script. Cablati oggi:
+`config.toml` alla radice, letto da tutti gli script tramite `lib_giovanile.cfg()`. Contiene sesso in studio, stagione massima e stagioni anomale, coorti per domanda, classi di squadra che contano come professionista, finestre d'età, soglie del tier, pause di scaricamento e la numerosità minima delle celle pubblicabili.
+
+Il criterio dichiarato in testa al file: *se cambiando questo file e rieseguendo la catena si ottiene un'analisi diversa e coerente, senza aprire un solo `.py`, il file sta facendo il suo lavoro.*
+
+Valori che erano cablati e ora non lo sono più:
 
 | Dove | Valore | Significato |
 |---|---|---|
@@ -24,13 +51,21 @@ L'obiettivo è che chiunque, con il repository e i due database di partenza, pos
 | `04_scarica_pcs.py` | `TOP_N = 500` | profondità della classifica globale |
 | `04_scarica_pcs.py` | `LIVELLI`, `LIVELLI_EXTRA` | classi di squadra da enumerare |
 
-**Perché.** Gli intervalli di stagione vanno spostati ogni anno, e `TOP_N` dipende dalla soglia di qualità scelta in `definizioni.md`: se un giorno la soglia cambia, oggi bisogna sapere che c'è una costante da toccare in un file Python. Con la configurazione esterna la scelta metodologica sta in un posto solo e si vede.
+**Perché contava.** Gli intervalli di stagione vanno spostati ogni anno, e la profondità del ranking dipende dalla soglia di qualità scelta in `definizioni.md`: prima bisognava sapere che c'era una costante da toccare dentro un file Python. Ora la scelta metodologica sta in un posto solo e si vede.
 
-**Verifica.** Cambiare `stagione_max` da 2025 a 2026 nel file di configurazione e rieseguire tutta la catena senza aprire un solo `.py`.
+**Resta da fare**: `CATEGORIE` e `LISTE_DISGIUNTE` in `lib_giovanile.py` sono ancora nel codice. Sono struttura della fonte più che scelte metodologiche, quindi hanno meno urgenza, ma per un cambio di copertura del portale andrebbero anche loro nella configurazione.
 
 ### A2. Un comando unico che esegue la catena
 
-**Cosa.** Un `Makefile` o `run.py` che esegue in ordine: `00_check_privacy` → `01_build_tabelle` → `02_casi_da_verificare`, saltando i passi già fatti e dicendo quali richiedono decisioni manuali o download.
+**Cosa.** Un `Makefile` o `run.py` che esegue nell'ordine corretto, saltando i passi già fatti e dicendo quali richiedono decisioni manuali o download.
+
+**L'ordine conta, ed è una trappola.** `01_build_tabelle.py` ricostruisce `analisi.db` **da zero**, quindi svuota anche `match_pcs`. La sequenza corretta è:
+
+```
+01_build_tabelle  →  05_match_pcs  →  06_esiti
+```
+
+Saltare il 05 dopo un 01 lascia `match_pcs` vuota e `06` si ferma con un messaggio esplicito. Ma è il tipo di dipendenza che va resa automatica invece che ricordata.
 
 **Verifica.** Da repository appena clonato e con i database al loro posto, un solo comando produce `data/analisi/analisi.db`.
 
@@ -45,6 +80,37 @@ L'obiettivo è che chiunque, con il repository e i due database di partenza, pos
 Va scritto nel README e in `docs/verifica_dati_giovanile.md`, con la versione dello schema attesa (`schema_meta.schema_version = 2.1`) e la data di estrazione, perché i numeri riportati nella verifica valgono per quella estrazione e non per un'altra.
 
 **Perché.** Senza, chi legge il repository non sa da dove venga il file più importante, e non può rigenerarlo.
+
+### A4bis. Il sesso come parametro, non come assunzione
+
+**La decisione.** L'analisi è **sui maschi**. Il progetto deve però poter girare anche sul femminile cambiando un parametro, non riscrivendo codice.
+
+**Cosa c'è già.** Il livello dati è già consapevole del sesso: `sesso` è una colonna di `anagrafica`, `tab_a` e `tab_b`, e soprattutto **la cella del percentile include già il sesso** (`stagione × categoria × anno di categoria × sesso`). I percentili femminili sono quindi calcolati fra atlete, non contro i maschi, e sono corretti fin d'ora. Non c'è nulla da rifare in `01_build_tabelle.py`.
+
+**Cosa manca.** Il filtro `sesso='M'` oggi è sparso nelle query ad hoc dell'analisi, mai dichiarato in un posto solo. Va portato nella configurazione (§A1) insieme alle coorti, che per il femminile sono diverse.
+
+**Il femminile non è "gli stessi script con un filtro".** Quattro differenze sostanziali:
+
+**① Non esiste la categoria U23.** La fonte pubblica `donne_esordienti`, `donne_allieve`, `donne_juniores` e basta: nessuna classifica Under 23 femminile. Il predittore che Gallo indica come il più informativo — il primo anno da U23 — semplicemente non c'è. La sequenza dei modelli annidati si ferma all'U19, e la Domanda C perde il suo estremo superiore.
+
+**② La copertura parte dal 2011**, non dal 2009 come gli Esordienti maschili né dal 2007 come le altre. Le coorti slittano:
+
+| Analisi | Coorti femminili | N | Atlete |
+|---|---|---|---|
+| Dall'U15y1 | 1998-2000 | 3 | ~90 |
+| Dall'U15y2 | 1997-2000 | 4 | ~185 |
+| Dall'U17y1 | 1996-2000 | 5 | ~165 |
+| Dall'U19y1 | 1994-2000 | 7 | ~145 |
+
+**③ La numerosità è di un ordine di grandezza inferiore**: 1.252 atlete contro 11.105 atleti, con celle di 20-50 persone contro 150-600. Con questi numeri la Domanda A è al limite e la Domanda B quasi certamente non è modellabile: il femminile va impostato come **descrittivo**, e va detto prima di cominciare, non dopo aver visto che i modelli non convergono.
+
+**④ Su PCS cambia tutto l'indirizzamento.** Le classifiche sono `p=we` invece di `p=me`, e i livelli di squadra sono Women's WorldTeam e UCI Women's Continental, non WorldTeam e ProTeam. Nello script 04 questo tocca `LIVELLI` e la costruzione degli URL delle classifiche: due parametri, ma vanno previsti.
+
+**Quello che invece regge senza modifiche**: la copertura della data di nascita è **1.195 atlete su 1.252 (95,4%)**, in linea con il maschile, quindi il Relative Age Effect è analizzabile anche sul femminile. Ed è l'analisi in cui la numerosità pesa meno, perché confronta distribuzioni e non stima modelli. Sul femminile potrebbe essere l'unica domanda a cui si può rispondere sul serio — e non l'ha mai fatto nessuno.
+
+**Verifica.** Cambiare `sesso = "F"` nella configurazione e ottenere l'attrito, le descrittive e il RAE femminili senza toccare un `.py`.
+
+---
 
 ### A5. Passare allo schema v2.2 del repository a monte — la nascita è alla fonte
 
@@ -73,7 +139,11 @@ Va scritto nel README e in `docs/verifica_dati_giovanile.md`, con la versione de
 
 ## B. Correzioni note, da fare
 
-### B1. `elite_seasons` misura i punti, non la carriera
+### B1. ~~`elite_seasons` misura i punti, non la carriera~~ — fatto il 28 agosto 2026
+
+Rinominata in **`elite_seasons_a_punti`**, e `racing_after_u23` in **`punti_dopo_u23`**. Il commento nello schema ora dice esplicitamente che chi ha continuato a correre senza mai fare punti è indistinguibile da chi ha smesso, e che la variabile è un limite inferiore della continuità agonistica.
+
+Il problema originale, per memoria:
 
 **Il problema.** `tab_b.elite_seasons` e `tab_b.racing_after_u23` derivano dalla presenza nella classifica Elite di ciclismo.info. Ma quella classifica include **solo chi ha ottenuto almeno un punto**: un atleta che ha continuato a correre senza mai andare a punti è indistinguibile da uno che ha smesso.
 
@@ -86,15 +156,109 @@ Va scritto nel README e in `docs/verifica_dati_giovanile.md`, con la versione de
 
 **Conseguenza analitica.** La variabile è un limite inferiore della continuità agonistica. Va bene come indicatore di *livello* raggiunto dopo l'età giovanile, non come misura di abbandono. Per l'abbandono vero non abbiamo una fonte, e va dichiarato.
 
+### B2bis. Lo strato C è sotto-raccolto
+
+**Il sintomo.** Lo script ha contato 19.400 righe scaricate ma ne ha salvate **3.974**, circa 200 per stagione, mentre la guida ne attende 400-900. Le righe salvate sono tutte distinte e con `pcs_id` valorizzato, quindi non è un problema di scrittura: le pagine successive restituiscono in larga parte gli **stessi** atleti, e `INSERT OR REPLACE` li sovrascrive.
+
+**L'ipotesi.** Con `nation=it` il parametro `offset` sembra paginare la classifica **globale** e non quella filtrata, per cui offset diversi ricadono su sottoinsiemi sovrapposti di italiani. Il rango massimo osservato è ~2.660, coerente con il tetto `offset < 2000` dello script.
+
+**Cosa fare.** Verificare il comportamento reale del filtro con due richieste a mano (`offset=0` e `offset=100` con `nation=it`) e confrontare i `rider_url` restituiti. Se si sovrappongono, la paginazione va fatta diversamente: o si scarica la classifica globale completa e si filtra a valle, o si usa `Ranking(...).pages_select()` per leggere gli offset validi invece di costruirli.
+
+**Quanto è grave.** Lo strato C serve al predittore internazionale U19/U23 (STEP 12) e ad allargare l'insieme dei candidati dello strato D. **Non** tocca gli esiti: `PRO` viene dalle rose e dai profili, e il rango annuale viene da `points_per_season_history()`. Il conteggio dello STEP 4 è quindi solido anche con lo strato C incompleto.
+
+### B3. Quattro richieste fallite per Cloudflare
+
+`cloudscraper` non era installato: sono cadute la classifica globale 2015 e 2016 e due pagine italiane 2008-2009. Installarlo e rilanciare `--strati BC` recupera tutto, perché lo script salta ciò che è già a posto.
+
+**Quanto è grave: poco.** Verificato che il rango annuale dei profili coincide esattamente con la classifica globale dello strato B (59/59 confronti nel 2019, 61/61 nel 2024), quindi lo strato B è di conferma e il buco 2015-2016 non tocca il `tier`.
+
+### B4. `--continental` funziona solo per la stagione in corso
+
+La pagina indice delle Continental ha restituito 200 squadre per il 2026 e nulla per tutte le altre stagioni: **ignora il parametro `year`**. Da capire se esista un indirizzo diverso per lo storico, altrimenti l'opzione va tolta e documentata come non praticabile.
+
+**Quanto è grave: poco.** Per gli atleti già profilati la classe Continental si legge da `teams_history()`, che infatti riporta 1.482 stagioni `CT`. L'enumerazione serviva solo a chiudere il caso di chi ha corso Continental senza mai fare punti PCS.
+
 ### B2. Le 218 presenze fuori categoria: 87 casi indecidibili
 
 Di 218 atleti con una presenza fuori dalla fascia d'età, 131 hanno altre stagioni tutte coerenti con la data di nascita — quindi la data è corroborata e la collocazione in classifica è errata, tipicamente nell'ultima stagione. Gli **87 che hanno solo quella riga** restano indecidibili: potrebbe essere sbagliata la data o la categoria. Sono già marcati ed esclusi dalle celle; va solo dichiarato nei limiti.
 
 ---
 
+## D. Il livello di produzione: dai dati ai blog post
+
+**L'obiettivo finale del progetto è una serie di blog post.** In produzione, uno script deve poter generare un `.md` completo con testo, tabelle e grafici in PNG, e deve essere aggiornabile senza assistenza. Oggi questo livello **non esiste**: abbiamo la preparazione dei dati (script 01-05) e nulla che produca output.
+
+### D1. ~~Struttura~~ — fatta il 28 agosto 2026
+
+Realizzata come descritto sotto, con una differenza: `calcola()` e `rendi()` stanno **nello stesso file** invece che in moduli separati. La separazione fra calcolo e presentazione è garantita dalla regola che `rendi()` riceve solo un oggetto `Lettura` e non ha accesso ai database, non dal fatto di stare in file diversi. Un file per analisi invece di due tiene insieme ciò che si legge insieme.
+
+Resta da fare: gli altri moduli (`attrito`, `descrittive`, `contesto`, e i moduli R per i modelli).
+
+Struttura originariamente proposta:
+
+```
+report/
+  lib_grafici.py        stile comune: palette, dimensioni, salvataggio PNG
+  lib_tabelle.py        da risultato SQL a tabella Markdown
+  post_1_attrito.py     un modulo per post: produce il .md e i propri PNG
+  post_2_rae.py
+  post_3_predittivita.py
+  ...
+  assembla.py           esegue i moduli richiesti e scrive in output/
+
+output/
+  post_1_attrito.md
+  post_1_attrito/       i PNG del post, riferiti dal .md con percorsi relativi
+```
+
+Un modulo per post e non un unico script monolitico, perché i post si scrivono e si correggono uno alla volta, e rigenerare tutto per cambiare una figura è uno spreco.
+
+### D2. I requisiti che rendono il progetto autonomo
+
+| Requisito | Perché |
+|---|---|
+| Ogni numero nel `.md` viene da una query, mai scritto a mano | Rigenerando dopo un aggiornamento dei dati, il testo resta vero |
+| I PNG si rigenerano da zero a ogni esecuzione | Nessuna figura orfana che non corrisponde più ai dati |
+| Le soglie e le coorti vengono dalla configurazione (§A1) | Cambiare `stagione_max` aggiorna testo, tabelle e grafici insieme |
+| Ogni tabella dichiara la propria numerosità | Il lettore deve poter vedere quando una cella è sottile |
+| Nessuna cella con meno di 5 atleti | Vincolo etico già in `definizioni.md`: va imposto dal codice, non ricordato |
+| Un `requirements.txt` e un comando solo | Il criterio di «funziona senza assistenza» |
+
+### D3. ~~R o Python per i modelli~~ — deciso il 28 agosto 2026
+
+**R per i modelli, Python per preparazione e report**, SQLite come confine. Gli script R scriveranno in `output/risultati.db` con lo stesso schema che usa `lib_risultati.py`.
+
+Il ragionamento che ha portato lì:
+
+La guida è scritta **in R**, con pacchetti specifici: `logistf` per la regressione di Firth, `pROC` per l'AUC e il test di DeLong, `glmnet` per l'elastic net, `ordinal` per la logistica ordinale, `rms` per la validazione con bootstrap.
+
+| | R | Python |
+|---|---|---|
+| Firth | `logistf`, maturo | `firthlogist`, meno usato |
+| Test di DeLong | `pROC::roc.test` | va scritto a mano |
+| Elastic net con CV | `glmnet` | `scikit-learn`, equivalente |
+| Logistica ordinale | `ordinal::clm` | `mord`, meno completo |
+| Sopravvivenza a tempo discreto | `glm` binomiale su dati espansi | uguale |
+| Lettura di SQLite | `RSQLite` | nativo |
+| Grafici | `ggplot2` | `matplotlib` |
+
+**Raccomandazione: R per i modelli, Python per la preparazione dei dati e l'assemblaggio del report.** Il confine è netto — SQLite in mezzo — e ogni linguaggio fa ciò in cui è più forte. Il costo è avere due ambienti da installare.
+
+L'alternativa tutto-Python è praticabile e riduce le dipendenze a una sola, ma su Firth e DeLong si finisce a scrivere codice statistico proprio, che è esattamente ciò che non si vuole dover mantenere senza assistenza.
+
+**È una decisione da prendere prima di scrivere la FASE 3**, non dopo.
+
+---
+
 ## C. Analisi ancora da impostare
 
-### C1. Relative Age Effect (STEP 15) — la distribuzione attesa c'è
+### C1. ~~Relative Age Effect~~ — modulo scritto il 28 agosto 2026
+
+Il modulo `report/moduli/rae.py` calcola composizione e successo e produce la figura del gradiente. Gli attesi vengono da Eurostat via `scripts/07_riferimenti.py`.
+
+**Resta aperta una scelta di interpretazione**: la parte «successo» ha 8 eventi in top 100, tutti in celle mascherate. Il rapporto Q1/Q4 fra i professionisti è 1,5, cioè non molto sotto l'1,7 di tutti i classificati — ma con 77 eventi l'intervallo di confidenza è largo e non si può concludere granché. Quando ci saranno i modelli in R, l'età relativa come covariata dirà qualcosa di più solido di questo confronto fra proporzioni.
+
+Il ragionamento originale:
 
 **La fonte.** Non ISTAT: le serie mensili di ISTAT partono dal 2003 e le nostre coorti sono 1996-2000. Usare **Eurostat `demo_fmonth`**, «Live births (total) by month», che copre l'Italia dal **1960 al 2025** con tutti i dodici mesi.
 
@@ -123,14 +287,89 @@ Il primo trimestre è demograficamente il **più scarso**, non il 25%: usare l'u
 
 **Test che non dipende da nessun dato esterno.** Il decadimento del rapporto Q1/Q4 fra categorie sulle **stesse coorti** — 2,08 in U15, 1,71 in U17, 1,32 in U19, 1,07 in U23 — non ha bisogno della distribuzione attesa, perché la stagionalità demografica è identica ai due estremi e si cancella. È l'argomento più solido, e va riportato accanto al chi-quadro.
 
-### C2. `team_quality_first`
+### C7. Cosa la descrittiva ha già anticipato dei modelli
 
-La colonna esiste in `tab_b` ma è vuota: richiede il tasso di professionisti prodotti da ciascuna società, calcolabile solo dopo PCS e **solo sulle coorti precedenti** a quella dell'atleta. Senza quel vincolo l'esito entrerebbe nel proprio predittore.
+Il delta di Cliff si traduce in AUC con `AUC = (delta + 1) / 2`, quindi i modelli univariati dello STEP 16 dovranno ritrovare **circa questi valori**:
+
+| cella | AUC attesa |
+|---|---|
+| U15y1 | 0,74 |
+| U15y2 | 0,79 |
+| U17y1 | 0,81 |
+| U17y2 | 0,86 |
+| U19y1 | 0,81 |
+| U19y2 | 0,89 |
+| U23y1 | 0,70 |
+
+Se i modelli daranno numeri sensibilmente diversi, il posto in cui cercare l'errore è il modello, non la descrittiva: qui non ci sono covariate né assunzioni, solo il conteggio di quante volte un professionista sta sopra un non professionista.
+
+**L'anomalia dell'U23 va spiegata, non nascosta.** L'AUC di 0,70 in U23y1 è la più bassa di tutte, ma in quella cella i professionisti sono il 37% contro il 3,5% dell'U15: si confrontano fra loro atleti già selezionati. È l'effetto della selezione descritto nel Problema 5 della guida, e va tenuto presente quando lo STEP 18 confronterà i modelli annidati — che girano proprio su quel sottocampione.
+
+---
+
+### C6. Il verdetto sulla penalizzazione, da tenere presente nella FASE 3
+
+Il VIF massimo sulle sei celle giovanili è **2,89**, sotto la soglia di 5. La regressione penalizzata dello STEP 17 **non è obbligata**: resta utile come confronto, ma i modelli non penalizzati sono stimabili.
+
+Due cautele:
+
+- il VIF è calcolato sui **291 atleti** presenti in tutte e sei le celle, che è un campione selezionato. Su un campione diverso i valori cambierebbero;
+- non copre l'U23: aggiungendo `U23y1` gli atleti scendono a poche decine, e il VIF non sarebbe calcolabile. Se un modello userà anche l'U23, la collinearità di quel blocco va valutata a parte.
+
+---
+
+### C2. ~~`team_quality_first`~~ — calcolata il 28 agosto 2026
+
+Popolata da `06_esiti.py` per 6.783 atleti, solo dove la società ha almeno cinque atleti in coorti precedenti. **Porta pochissima informazione**: il tasso di professionismo va dal 2,90% fra chi parte da una società che non ne aveva mai prodotti al 3,79% fra chi parte dalle migliori, e il 67% degli atleti ricade nella prima fascia. Come predittore non promette nulla.
+
+### C8. La mobilità non predice: è la durata della carriera
+
+Il modulo `contesto` documenta un risultato negativo che vale la pena non perdere. Il tasso di professionismo passa dallo 0,68% fra chi non ha mai cambiato società al 7,32% fra chi ha cambiato tre volte — un fattore dieci. Ma chi non ha mai cambiato ha corso 1,8 stagioni in media, chi ha cambiato tre volte ne ha corse 6,0.
+
+**Stratificando per durata della carriera il gradiente sparisce**, e a sei e sette stagioni si inverte. Lo STEP 14 della guida propone di leggere `n_team_changes` come reclutamento (coefficiente positivo) o instabilità (negativo): con questi dati non si legge in nessuno dei due modi, perché il segnale grezzo è confondimento. Se lo si stima comunque in un modello, la durata della carriera va inclusa.
 
 ### C3. `pct_U19_arm` e STEP 3(b)
 
 Il predittore U19 armonizzato e la verifica se il ranking Juniores incorpori i risultati internazionali. Entrambi richiedono PCS.
 
-### C4. La decisione sul sottocampione dei modelli annidati
+### C4. ~~La decisione sul sottocampione~~ — decisa il 28 agosto 2026
 
-Rimandata. Il sottocampione complete case per la sequenza U17 → U19 → U23y1 è di 94 atleti sulle coorti 1996-2000 e 165 su 1992-2000. Le tre opzioni — fermarsi all'U19, spostarsi sulle coorti dall'U17, appoggiarsi alla sopravvivenza a tempo discreto — vanno valutate dopo il conteggio degli eventi dello STEP 4.
+**Coorti diverse per domande diverse**: A e C su 1996-2000, B su 1992-2000. Motivazione e numeri in `definizioni.md`.
+
+Il timore che il sottocampione di 94 atleti fosse troppo piccolo era infondato: contiene **43 professionisti**, perche' e' fatto di sopravvissuti — il 46% di loro e' arrivato al professionismo, contro il 2,7% della coorte intera. La sequenza annidata e' stimabile con quattro predittori.
+
+**Cosa resta da fare qui**: riportare in parallelo il modello sulla coorte intera e quello sul sottocampione, senza presentarli come la stessa stima. Il secondo risponde a «*fra chi e' ancora classificato al primo anno da Under 23*, il rendimento giovanile predice il professionismo?», che e' una domanda condizionata.
+
+---
+
+### C5. Verifica manuale del matching
+
+Il matching ha abbinato **727 profili PCS su 1.022**, di cui 703 esatti su nome piu' data di nascita completa. I non abbinati sono quasi tutti fuori copertura: **279 su 295 sono nati prima del 1988**, quando ciclismo.info non pubblicava ancora.
+
+Tasso di abbinamento dei professionisti, coorte per coorte dal 1990 al 2002: fra il **90% e il 100%**. E' la validazione che lo STEP 6 chiede.
+
+Restano tre cose da guardare a mano, tutte in `data/private/match_da_verificare.csv`:
+
+1. **I 392 candidati professionisti**, come chiede lo STEP 6. Stanno in testa al file. Con 703 abbinamenti esatti su nome piu' data completa la verifica dovrebbe essere rapida.
+2. **Tre professionisti delle coorti in studio senza riscontro** nei giovanili, nati 1995, 1999 e 1999. Da capire se abbiano corso in un'altra federazione, siano arrivati da un'altra disciplina, o se il nome differisca troppo.
+3. **Un ambiguo e cinque fuzzy**, i soli abbinamenti non fondati su una corrispondenza esatta.
+
+Le decisioni si registrano come per le omonimie, e vanno riportate nel blog post: tasso di match, casi risolti a mano e criterio usato.
+
+**Primo giro di verifica fatto il 28 agosto 2026**, dieci casi annotati:
+
+- tre erano differenze di grafia del nome (un secondo nome che PCS omette, `Cristian`/`Christian`, `Nicolo`/`Niccolò`): abbinamenti confermati, nessuna azione;
+- sette erano divergenze di data, risolte una per una e registrate in `data/private/manual/date_corrette.csv`, che ha la precedenza su ogni fonte automatica.
+
+Dopo le correzioni gli abbinamenti esatti su nome più data passano da 703 a 708.
+
+**Verifica sostanzialmente chiusa il 28 agosto 2026.** Ventiquattro casi annotati, diciotto correzioni di data applicate. Il bilancio finale: **ciclismo.info aveva ragione 11 volte, PCS 7** — nessuna regola automatica è possibile.
+
+Su 727 abbinamenti, **707 sono esatti su nome più data di nascita completa** e non richiedono verifica: due persone diverse con lo stesso nome normalizzato e la stessa data al giorno sono un'eventualità trascurabile. I 20 non esatti o ambigui sono stati guardati tutti.
+
+L'unico ambiguo, due profili con la stessa data e la stessa regione e stagioni consecutive, era **un atleta spezzato in due da un doppio spazio nel nome**. Ha rivelato un difetto del controllo omonimie, che raggruppava sul nome grezzo invece che sulla chiave normalizzata: corretto in `02_casi_da_verificare.py`.
+
+**Restano da decidere**, emersi dal controllo corretto:
+
+- **6 coppie di quasi omonimi con data di nascita identica** — stesso nome, cognome a una lettera di distanza, stessa regione, stagioni non sovrapposte. Sono quasi certamente refusi che hanno spezzato un atleta in due. In `data/private/casi_quasi_omonimia.csv`.
+- **6 coppie di omonimi** senza verdetto suggerito, in `data/private/casi_omonimia.csv`.

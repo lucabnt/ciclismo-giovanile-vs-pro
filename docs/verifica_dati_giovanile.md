@@ -278,7 +278,49 @@ La pipeline usa le nascite in questo ordine: **colonna della sorgente** se un gi
 
 ---
 
-## 10. Cosa resta da fare prima di modellare
+## 10. Le date di nascita, validate contro ProCyclingStats
+
+Il matching con PCS produce, gratis, la validazione incrociata delle date di nascita: 727 atleti hanno la data completa su entrambi i lati, raccolta da due fonti indipendenti con due parser diversi.
+
+| | |
+|---|---|
+| Date identiche | **709 (97,52%)** |
+| Date diverse | 18 (2,48%) |
+
+Le 18 divergenze, per tipo:
+
+| Tipo | N |
+|---|---|
+| Giorno e mese scambiati | **7** |
+| Stesso mese, giorno diverso | 5 |
+| Anno diverso | 3 |
+| Altro | 2 |
+| Stesso giorno, mese diverso | 1 |
+
+**Solo 6 divergenze su 727 (0,83%) cambiano il trimestre di nascita**, che è la quota che tocca il Relative Age Effect. L'impatto sull'analisi è quindi trascurabile, ma il fatto che sia misurato conta più del suo essere piccolo.
+
+### Nessuna delle due fonti è sistematicamente giusta
+
+Sette casi sono stati verificati a mano uno per uno. Il risultato:
+
+| Chi aveva ragione | N |
+|---|---|
+| ProCyclingStats | 5 |
+| ciclismo.info | 2 |
+
+Non esiste quindi una regola automatica del tipo «in caso di conflitto vince PCS». I casi vanno decisi singolarmente, e le decisioni si registrano in `data/private/manual/date_corrette.csv`, che ha la precedenza su ogni fonte automatica.
+
+Il pattern dominante — sette casi di giorno e mese scambiati — riguarda tutti date con giorno ≤ 12, quindi ambigue fra i due ordinamenti. Non può essere un errore del nostro parser, che legge il mese per esteso dal testo italiano della scheda («Nato il 06 Febbraio 2010»): l'inversione è già nel dato di una delle due fonti.
+
+### Un'insidia pratica del file di verifica
+
+Il file `match_da_verificare.csv` viene scritto con date in formato `AAAA-MM-GG`, ma **aprendolo in Excel le date vengono riformattate** nel formato locale e salvate così. Dopo un giro in Excel il file non è più attendibile come dato.
+
+Per questo `05_match_pcs.py` rilegge dal file **solo le colonne `verdetto` e `nota`**, e riscrive tutte le altre dai database. Le annotazioni scritte a mano sopravvivono a ogni riesecuzione; i dati non vengono mai riletti da lì.
+
+---
+
+## 11. Cosa resta da fare prima di modellare
 
 1. ~~Risolvere a mano i candidati frammento~~ — fatto (§5): 3 fusioni applicate, il resto sono omonimi genuini.
 2. **Contare gli eventi** (STEP 4) dopo il matching con PCS: professionisti totali, top-200, top-100 sulle coorti 1996-2000. È il numero che decide se la Domanda B è modellabile.

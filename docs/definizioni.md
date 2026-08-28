@@ -26,15 +26,36 @@ Gli anni di categoria **non si aggregano mai**.
 
 **Popolazione di riferimento:** atleti che compaiono con **almeno un punto** in almeno una classifica nazionale annuale di ciclismo.info. Non "i tesserati", non "chi ha corso". Verificato: il punteggio minimo in classifica è 1, mai 0.
 
-**Analisi principale ristretta al maschile.** Il femminile ha copertura dal 2011 e numerosità 5-8 volte inferiore; va trattato separatamente e in forma descrittiva.
+**L'analisi è sui maschi.** Il femminile va trattato separatamente e in forma descrittiva, per quattro ragioni che non sono di comodo:
 
-| Analisi | Coorti di nascita | N coorti | Vincolo |
-|---|---|---|---|
-| **Principale (dall'U15y1)** | **1996-2000** | 5 | Esordienti coperti dal 2009 |
-| Dall'U15y2 | 1995-2000 | 6 | |
-| Dall'U17y1 | 1992-2000 | 9 | Allievi coperti dal 2007 |
-| Dall'U19y1 | 1990-2000 | 11 | Juniores coperti dal 2007 |
-| Sopravvivenza a tempo discreto | tutte, con censura | — | recupera 2001+ |
+- la fonte **non pubblica alcuna classifica Under 23 femminile**, quindi il predittore più informativo secondo la letteratura non esiste e la sequenza dei modelli si ferma all'U19;
+- la copertura parte dal **2011**, quindi le coorti con l'U15 primo anno completo e la finestra dell'esito chiusa sono solo **1998-2000**, circa 90 atlete;
+- la numerosità complessiva è di un ordine di grandezza inferiore: **1.252 atlete contro 11.105 atleti**, con celle di 20-50 persone contro 150-600;
+- su ProCyclingStats cambiano indirizzamento e livelli di squadra (`p=we`, Women's WorldTeam e Women's Continental).
+
+Il **Relative Age Effect** fa eccezione: la data di nascita c'è per il 95,4% delle atlete, e il test confronta distribuzioni invece di stimare modelli, quindi regge la numerosità. Sul femminile è probabilmente l'unica domanda a cui si può rispondere sul serio, e nessuno l'ha mai fatto.
+
+Il progetto deve poter girare sul femminile cambiando un parametro di configurazione. Il livello dati è già pronto: la cella del percentile include il sesso, quindi le atlete sono già confrontate fra loro. Vedi [`da_fare.md`](da_fare.md) §A4bis.
+
+**Coorti diverse per domande diverse.** Non è una comodità: le due domande usano esiti con abbondanza molto diversa, e imporre le stesse coorti a entrambe costringerebbe a sacrificare l'una o l'altra senza guadagno.
+
+| Domanda | Esito | Coorti | Eventi | Perché |
+|---|---|---|---|---|
+| **A** — diventare professionista | `PRO` | **1996-2000** | 78 | Con 78 eventi la regola dei dieci per variabile consente fino a sette predittori: non c'è ragione di rinunciare all'U15, che è la parte più originale |
+| **C** — da che età il risultato informa | `PRO` | **1996-2000** | 78 | La sequenza annidata parte dall'U15, quindi è confinata a queste coorti comunque |
+| **B** — qualità della carriera | `tier` | **1992-2000** | 15 in top 100 | Sulle 1996-2000 gli eventi sono 8, sotto la soglia: la Domanda B non sarebbe modellabile affatto |
+| Sopravvivenza a tempo discreto | — | tutte, con censura | — | Recupera le coorti 2001+ |
+
+**L'U15 non si perde allargando le coorti.** Le classifiche Esordienti partono dal 2009, quindi l'U15 esiste solo per le coorti 1996+: dichiarare coorti 1992-2000 non aggiunge un solo atleta ai modelli che usano l'U15 (1.281 in entrambi i casi). Allargare le coorti sposta tutto il resto, non l'U15.
+
+Vincoli di copertura, per riferimento:
+
+| Cella | Prima coorte utilizzabile | Motivo |
+|---|---|---|
+| U15y1 | 1996 | Esordienti dal 2009 |
+| U15y2 | 1995 | |
+| U17y1 | 1992 | Allievi dal 2007 |
+| U19y1 | 1990 | Juniores dal 2007 |
 
 Limite superiore: nato nel 2000 → compie 25 anni nel 2025, ultima stagione conclusa.
 
@@ -42,9 +63,20 @@ Limite superiore: nato nel 2000 → compie 25 anni nel 2025, ultima stagione con
 
 ## Esiti
 
-**PRO** = almeno una stagione con contratto in squadra **UCI WorldTeam o UCI ProTeam**, entro l'anno solare in cui l'atleta compie 25 anni.
+**PRO** = almeno una stagione con contratto in una squadra di **prima o seconda divisione UCI**, entro l'anno solare in cui l'atleta compie 25 anni.
 
-Le squadre Continental sono **escluse** dalla definizione principale e tenute come analisi di sensibilità.
+I nomi delle due divisioni sono cambiati nel tempo e ProCyclingStats usa quello vigente in ciascuna stagione. Verificato sui dati:
+
+| Sigla PCS | Divisione | Stagioni osservate |
+|---|---|---|
+| `WT` | prima (WorldTeam) | 2011- |
+| `PT` | prima (era UCI ProTour) | 2005-2008 |
+| `PCT` | seconda (Professional Continental) | 2005-2019 |
+| `PRT` | seconda (UCI ProTeam) | 2020- |
+
+`PCT` sparisce **esattamente** nella stagione in cui compare `PRT`: è la stessa divisione rinominata nel 2020, non due cose diverse. Usare solo `('WT','PRT')` escluderebbe l'intera seconda divisione prima del 2020, cioè gran parte delle carriere delle coorti più vecchie — sulle coorti 1992-2000 farebbe passare i professionisti da 146 a 109.
+
+Le squadre **Continental** (`CT`) e i club (`CLUB`) sono **esclusi** dalla definizione principale e tenuti come analisi di sensibilità.
 
 **QUALITÀ** = livello massimo raggiunto nel **ranking annuale di fine stagione** di ProCyclingStats (non il rolling), **entro l'anno in cui l'atleta compie 26 anni**.
 
@@ -61,9 +93,51 @@ Le posizioni sono quelle del ranking **globale**, non della classifica filtrata 
 
 **Perché top 500 e non top 200.** La banda fra top 200 e top 100 conterrebbe 5-8 atleti, troppo pochi per stabilizzare un livello del modello ordinale. Inoltre il top 500 è una **fascia ufficiale di PCS**, che usa gli scaglioni 10/25/50/100/200/500/1000: non è una soglia scelta da noi.
 
-**Perché la finestra ai 26 anni.** «Almeno una volta» premia chi ha avuto più stagioni a disposizione, e l'esposizione si confonde con l'effetto coorte. La finestra fissa rende le coorti confrontabili. Costo dichiarato: taglia fuori le maturazioni tardive, e sappiamo da Kholkine et al. che il picco arriva verso i 27 anni. Come sensibilità si riporta anche la versione «mai» con `pro_seasons` come covariata.
+**Perché la finestra ai 26 anni.** «Almeno una volta» premia chi ha avuto più stagioni a disposizione, e l'esposizione si confonde con l'effetto coorte. La finestra fissa rende le coorti confrontabili.
 
-Le numerosità attese sono quelle della guida ridotte di circa un terzo, perché le coorti sono cinque e non sette. **Vanno ricontate allo STEP 4 prima di progettare qualunque modello**: sotto i 10 eventi in top 100 la Domanda B va ridimensionata a descrittiva.
+**Quanto costa, misurato.** Distribuzione dell'età al primo ingresso in top 100 fra gli italiani profilati:
+
+| Età | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30+ |
+|---|---|---|---|---|---|---|---|---|---|
+| Atleti | 7 | 15 | 19 | 12 | 15 | 9 | 10 | 9 | 13 |
+
+Il picco è a 24 anni, ma **circa il 30% entra in top 100 a 27 anni o dopo**. La finestra ai 26 taglia quella coda: sulle coorti 1992-2000 gli eventi passano da 21 a 15. Un caso reale nel dataset: un atleta nato nel 1997, 186° a 26 anni, chiude 14° a 28. Con la finestra non è un evento; senza, lo è.
+
+**Perché non una finestra più larga.** Non è una scelta di gusto: **una finestra a 28 anni non è osservabile** per le coorti che arrivano al 2000, perché servirebbe la stagione 2028. I 26 anni sono la finestra più ampia interamente osservabile per la coorte 2000. Una finestra a 28 diventa possibile solo fermando le coorti al 1998.
+
+Come sensibilità si riporta anche la versione «mai» con `pro_seasons` come covariata.
+
+### Il conteggio degli eventi — STEP 4, eseguito il 28 agosto 2026
+
+| Coorti | PRO | top 500 | **top 100** |
+|---|---|---|---|
+| **1996-2000** (analisi principale) | 78 | 39 | **8** |
+| 1992-2000 (dall'U17) | 146 | 77 | **15** |
+
+### Gli eventi dentro il sottocampione — STEP 6 eseguito, 28 agosto 2026
+
+Il conteggio qui sopra è sul lato PCS. Quello che conta per i modelli è quanti eventi cadano **dentro il sottocampione** su cui il modello gira, perché i modelli annidati richiedono lo stesso sottocampione per tutti i livelli. Dopo il matching:
+
+| Coorti | Celle richieste | n | Eventi `PRO` | Predittori (10 EPV) |
+|---|---|---|---|---|
+| 1996-2000 | nessuna | 2.818 | 77 | 7 |
+| 1996-2000 | U15y1+y2 | 1.281 | 56 | 5 |
+| 1996-2000 | U15+U17 | 587 | 53 | 5 |
+| 1996-2000 | U17+U19 | 364 | 58 | 5 |
+| **1996-2000** | **U17+U19+U23y1** | **94** | **43** | **4** |
+| 1992-2000 | U17+U19+U23y1 | 165 | 77 | 7 |
+
+**La sequenza annidata è stimabile anche sul sottocampione più stretto.** I 94 atleti che compaiono in tutte le celle da U17 a U23y1 contengono 43 professionisti: sono i sopravvissuti, quindi fortemente arricchiti — il 46% di loro è diventato professionista, contro il 2,7% della coorte intera.
+
+**Ma è un campione selezionato, e va detto.** Il modello su quel sottocampione risponde a «*fra chi è ancora classificato al primo anno da Under 23*, il rendimento giovanile predice il professionismo?», che non è la stessa domanda del modello sulla coorte intera. Vanno riportati entrambi.
+
+Nel sottocampione di 94 atleti gli eventi in top 100 sono **6**: visibili, non modellabili. Conferma che la Domanda B va tenuta separata e su coorti più larghe.
+
+**Conseguenza: sulle coorti 1996-2000 la Domanda B non è modellabile** e va ridimensionata a descrittiva. Otto eventi sono sotto la soglia dei dieci fissata dalla guida, e con la regola dei dieci eventi per variabile non reggerebbero nemmeno un predittore.
+
+Sulle coorti **1992-2000** i quindici eventi in top 100 la rendono marginalmente modellabile, con **un solo predittore** più eventualmente l'anno di nascita. È la ragione più forte emersa finora per spostare l'analisi principale sulle coorti dall'U17, e va valutata insieme all'altra — il sottocampione complete case che passa da 94 a 165 atleti.
+
+I professionisti osservati (78 su cinque coorti) sono in linea con l'attesa della guida riportata alle cinque coorti; è la coda di qualità a essere più sottile del previsto.
 
 ---
 
@@ -122,7 +196,14 @@ pct_rank  = valore se present == 1, NA se present == 0
 
 **Non si imputa nulla.** In particolare non si riporta l'ultimo valore disponibile (scelta di Filipas et al.): è un dato inventato che gonfia la continuità delle traiettorie.
 
-Un'assenza dalla cella può voler dire quattro cose — ha smesso, ha corso senza fare punti, non era tesserato, la fonte ha una lacuna — e **con questi dati sono indistinguibili**. Si riportano in parallelo:
+Un'assenza dalla cella può voler dire quattro cose — ha smesso, ha corso senza fare punti, non era tesserato, la fonte ha una lacuna — e **con questi dati sono indistinguibili**.
+
+**La seconda non è un caso di scuola: è la più frequente.** Passando di categoria si corre contro avversari di uno o due anni più grandi, ed è normale smettere di andare a punti pur continuando a correre. Quello che le classifiche mostrano è quindi in larga parte un **ricambio fra chi sta ai livelli alti**, non un abbandono. Due misure lo confermano sulle coorti 1996-2000:
+
+- il **30,6%** degli atleti salta almeno una stagione e poi ricompare, il 6,7% dopo due stagioni o più. Se l'assenza fosse abbandono, non ci sarebbero rientri;
+- il **50,8%** dei classificati al secondo anno di Allievi non era nella classifica del primo anno — stessa categoria, un anno dopo.
+
+Ne segue una regola di formulazione: si dice sempre «uscito dalla classifica», mai «ha smesso». E i numeri dell'attrito vanno presentati come **mobilità dell'insieme di chi va a punti**, non come tasso di abbandono dello sport. Si riportano in parallelo:
 
 1. **Complete case** sugli atleti presenti nelle celle richieste dal modello;
 2. **`present` come predittore a sé stante**, che è l'unica forma in cui la continuità di carriera è misurabile qui.
@@ -199,6 +280,9 @@ I dati riguardano **minorenni**. Valgono, indipendentemente dal fatto che siano 
 | 2026-08-27 | Congelato il trattamento di **2020 e 2026** | 2026 esclusa alla fonte; 2020 tenuta con flag ed esclusa dall'analisi principale. |
 | 2026-08-27 | Salt di anonimizzazione spostato **fuori dal sorgente** | Nel codice committato era reversibile per forza bruta. Gli `athlete_id` sono cambiati: nessun risultato pubblicato vi faceva ancora riferimento. |
 | 2026-08-27 | **Il Relative Age Effect rientra fra le domande di ricerca** | La guida lo escludeva perché la data di nascita completa era disponibile solo per i professionisti. Le schede personali di ciclismo.info la riportano per circa l'82% di tutti i classificati. Aggiunte `birth_date` e `birth_quarter`. |
+| 2026-08-28 | Tutte le scelte spostate in **`config.toml`** | Coorti, soglie, classi di squadra e finestre d'età non sono più cablate nel codice: la scelta metodologica sta in un posto solo. |
+| 2026-08-28 | **Coorti diverse per domande diverse**: A e C su 1996-2000, B su 1992-2000 | Gli esiti hanno abbondanza molto diversa (78 eventi `PRO` contro 8 in top 100 sulle stesse coorti). Decisa dopo il conteggio dello STEP 4 e **confermata dal matching**: il sottocampione più stretto della sequenza annidata contiene 43 eventi, quindi la Domanda C è stimabile su 1996-2000 senza rinunciare all'U15. |
+| 2026-08-28 | Definizione di **PRO** estesa a `PCT` e `PT` | Sono i nomi storici di prima e seconda divisione: usare solo `WT`/`PRT` escludeva l'intera seconda divisione prima del 2020. Sulle coorti 1992-2000 i professionisti passano da 109 a 146. |
 | 2026-08-28 | Recepita la **v5** della guida: soglia di qualità **top 500** invece di top 200, esito misurato **entro i 26 anni**, età relativa fra le covariate, variabili di contesto come mediatori | Le numerosità attese sono ridotte di un terzo rispetto alla guida, perché le coorti sono cinque e non sette. |
 | 2026-08-28 | Guida v5 allineata ai dati | Coorti 1994-2000 → 1996-2000 in Sezione 4, STEP 1 e STEP 4; registrati gli esiti verificati di STEP 1 e STEP 3(a); aggiunta la sezione sui pari punti in Sezione 5. |
 | 2026-08-27 | Anno di nascita: **osservato prima che inferito** | Precedenza sorgente → scheda → inferenza. Il confronto ha mostrato che l'inferenza sbaglia nel 4% dei casi `presunto` e nel 100% dei `presunto_conflitto`. |
