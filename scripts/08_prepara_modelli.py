@@ -59,8 +59,10 @@ ESITI = [
     "censored", "pcs_matched", "elite_seasons_a_punti", "last_racing_age",
     "punti_dopo_u23",
 ]
-TESTUALI = {"regione", "region_first", "team_first", "prima_cella", "birth_year_conf",
-            "tier"}
+# `athlete_id` e' un identificativo anonimizzato, quindi testo: dichiararlo evita che
+# chi legge il database lo scambi per un numero e provi a convertirlo.
+TESTUALI = {"athlete_id", "regione", "region_first", "team_first", "prima_cella",
+            "birth_year_conf", "tier"}
 
 
 def leggi_celle():
@@ -82,14 +84,29 @@ def leggi_celle():
     return celle
 
 
-def eta_tipica(cella):
-    """U15y1 -> 14, U23y1 -> 20.
+def eta_osservate(db):
+    """L'eta' di ciascuna cella, letta dai dati invece che calcolata.
 
     Non e' un dettaglio decorativo: i modelli di sopravvivenza a tempo discreto hanno
-    bisogno di un asse temporale, e l'eta' della cella e' quell'asse.
+    bisogno di un asse temporale, e l'eta' della cella e' quell'asse. Ricavarla da una
+    formula sulle sigle e' facile da sbagliare di un anno — e' successo — mentre la
+    tabella A contiene l'eta' effettiva di ogni riga, quindi la si chiede a lei.
     """
+    out = {}
+    for cat, anno, eta in db.execute(
+            """SELECT category, cat_year, CAST(AVG(age) AS INTEGER) FROM tab_a
+               WHERE sesso = ? AND age IS NOT NULL AND cat_year IS NOT NULL
+               GROUP BY 1, 2""", (cfg("studio", "sesso"),)):
+        out["%sy%d" % (cat, anno)] = eta
+    return out
+
+
+def eta_tipica(cella, osservate=None):
+    """U15y1 -> 13, U23y1 -> 19. Dai dati se ci sono, altrimenti dalla convenzione."""
+    if osservate and cella in osservate:
+        return osservate[cella]
     categoria, anno = cella.split("y")
-    return ETA_BASE[categoria] + int(anno)
+    return ETA_BASE[categoria] + int(anno) - 1
 
 
 def selezione(db, coorti, celle):
@@ -98,6 +115,14 @@ def selezione(db, coorti, celle):
     colonne = list(ANAGRAFICHE + PERCORSO + ESITI)
     for c in celle:
         colonne += ["pct_" + c, "pctpt_" + c, "present_" + c]
+    # La variante armonizzata dell'U19 non esiste ancora a monte: si porta avanti solo
+    # se c'e', cosi' lo STEP 18 potra' girare in entrambe le versioni senza che questo
+    # script debba essere ritoccato il giorno in cui la colonna comparira'.
+    disponibili = {r[1] for r in db.execute("PRAGMA table_info(tab_b)")}
+    arm = "pct_" + cfg("modelli", "cella_u19_armonizzata")
+    if arm in disponibili:
+        colonne.append(arm)
+
     sql = ("SELECT %s FROM tab_b WHERE sesso = ? AND birth_year BETWEEN ? AND ? "
            "ORDER BY athlete_id" % ", ".join(colonne))
     return colonne, db.execute(sql, (cfg("studio", "sesso"), lo, hi)).fetchall()
@@ -111,7 +136,7 @@ def scrivi(out, nome, colonne, righe):
                     righe)
 
 
-def panello(out, colonne, righe, celle):
+def panello(out, colonne, righe, celle, eta):
     """Forma lunga: una riga per atleta x cella.
 
     Serve ai modelli longitudinali — sopravvivenza a tempo discreto e traiettorie — che
@@ -127,21 +152,111 @@ def panello(out, colonne, righe, celle):
     dati = []
     for r in righe:
         for ordine, c in enumerate(celle):
-            dati.append((r[idx["athlete_id"]], c, ordine, eta_tipica(c),
+            dati.append((r[idx["athlete_id"]], c, ordine, eta.get(c),
                          r[idx["present_" + c]], r[idx["pct_" + c]],
                          r[idx["pctpt_" + c]], r[idx["PRO"]]))
     out.executemany("INSERT INTO panello VALUES (?,?,?,?,?,?,?,?)", dati)
     return len(dati)
 
 
-def scrivi_celle(out, celle):
+def persona_anno(src, out, celle, eta):
+    """Una riga per atleta e per stagione a rischio: la forma che i modelli di
+    sopravvivenza a tempo discreto richiedono.
+
+    LE TRE REGOLE CHE RENDONO VALIDA LA TABELLA
+        Nessuna riga dopo l'evento. Chi diventa professionista a ventidue anni contribuisce
+        le stagioni da tredici a ventidue e poi esce dal rischio: tenerlo dentro
+        significherebbe chiedergli di diventare professionista una seconda volta.
+
+        Nessuna riga oltre l'osservazione. Un atleta nato nel 2005 nel 2025 ha ventun
+        anni: le stagioni successive non sono «senza evento», sono non osservate. E' la
+        censura, ed e' proprio cio' che permette di usare anche le coorti recenti.
+
+        Il predittore e' ritardato. La probabilita' di passare professionista in una
+        stagione si spiega con il rendimento della stagione **precedente**, non di quella
+        in corso: usare la stessa stagione significherebbe spiegare un esito con
+        informazione che al momento della decisione non era ancora disponibile.
+
+    L'ASSENZA DALLA CLASSIFICA E' UN'INFORMAZIONE, NON UN BUCO
+        Chi non era in classifica l'anno prima non ha un percentile. La colonna
+        `presente_prec` distingue questo caso dagli altri, cosi' il modello puo' stimare
+        separatamente l'effetto del rendimento e quello dell'esserci.
+    """
+    sesso = cfg("studio", "sesso")
+    lo, hi = cfg("coorti", "domanda_sopravvivenza")
+    eta_max = cfg("esiti", "eta_massima_pro")
+    ultima = cfg("stagioni", "massima")
+    per_eta = {e: c for c, e in eta.items()}
+    eta_min = min(eta.values())
+
+    colonne = ["athlete_id", "birth_year", "PRO", "age_turned_pro"]
+    for c in celle:
+        colonne += ["pct_" + c, "present_" + c]
+    righe = src.execute(
+        "SELECT %s FROM tab_b WHERE sesso = ? AND birth_year BETWEEN ? AND ? "
+        "ORDER BY athlete_id" % ", ".join(colonne), (sesso, lo, hi)).fetchall()
+    idx = {c: i for i, c in enumerate(colonne)}
+
+    out.execute("DROP TABLE IF EXISTS persona_anno")
+    out.execute("""CREATE TABLE persona_anno (
+        athlete_id INTEGER, birth_year INTEGER, stagione INTEGER, eta INTEGER,
+        evento INTEGER, pct_prec REAL, presente_prec INTEGER, cella_prec TEXT
+    )""")
+
+    dati, eventi, censurati = [], 0, 0
+    for r in righe:
+        nascita = r[idx["birth_year"]]
+        if nascita is None:
+            continue
+        eta_pro = r[idx["age_turned_pro"]]
+        eta_pro = int(eta_pro) if r[idx["PRO"]] == 1 and eta_pro else None
+        # Fino a quando l'atleta e' osservabile: la finestra dello studio, oppure
+        # l'ultima stagione disponibile se la finestra non e' ancora finita.
+        limite = min(eta_max, ultima - nascita)
+        if eta_pro is not None:
+            limite = min(limite, eta_pro)
+        if limite < eta_min:
+            continue
+        for e in range(eta_min, limite + 1):
+            cella = per_eta.get(e - 1)
+            pct = r[idx["pct_" + cella]] if cella else None
+            pres = r[idx["present_" + cella]] if cella else None
+            dati.append((r[idx["athlete_id"]], nascita, nascita + e, e,
+                         1 if eta_pro == e else 0,
+                         pct if pres == 1 else None,
+                         int(pres) if pres is not None else None, cella))
+        if eta_pro is not None and eta_pro <= limite:
+            eventi += 1
+        else:
+            censurati += 1
+
+    out.executemany("INSERT INTO persona_anno VALUES (?,?,?,?,?,?,?,?)", dati)
+    return len(dati), eventi, censurati
+
+
+def scrivi_celle(src, out, celle, eta=None):
+    """L'elenco delle celle, con quanto e' larga la classifica di ciascuna.
+
+    L'ampiezza media della lista non e' un dettaglio: le classifiche del primo anno di
+    categoria sono molto piu' corte di quelle del secondo, quindi esservi dentro e' piu'
+    selettivo. Senza questo numero, il tasso di professionismo piu' alto nelle celle
+    del primo anno sembra un segnale mentre e' un effetto del denominatore.
+    """
+    ampiezza = {}
+    for cat, anno, media in src.execute(
+            """SELECT category, cat_year, AVG(n_ranked) FROM tab_a
+               WHERE sesso = ? AND cat_year IS NOT NULL GROUP BY 1, 2""",
+            (cfg("studio", "sesso"),)):
+        ampiezza["%sy%d" % (cat, anno)] = round(media) if media else None
+
     out.execute("DROP TABLE IF EXISTS celle")
     out.execute("""CREATE TABLE celle (
         cella TEXT PRIMARY KEY, ordine INTEGER, categoria TEXT,
-        anno_categoria INTEGER, eta INTEGER
+        anno_categoria INTEGER, eta INTEGER, ampiezza_lista INTEGER
     )""")
-    out.executemany("INSERT INTO celle VALUES (?,?,?,?,?)",
-                    [(c, i, c.split("y")[0], int(c.split("y")[1]), eta_tipica(c))
+    out.executemany("INSERT INTO celle VALUES (?,?,?,?,?,?)",
+                    [(c, i, c.split("y")[0], int(c.split("y")[1]),
+                      eta_tipica(c, eta), ampiezza.get(c))
                      for i, c in enumerate(celle)])
 
 
@@ -159,6 +274,11 @@ def scrivi_config(out, celle):
         "classi_pro": cfg("esiti", "classi_pro"),
         "celle": celle,
         "celle_modello": cfg("modelli", "celle_correlazione"),
+        "celle_annidate": cfg("modelli", "celle_annidate"),
+        "coorti_sopravvivenza": cfg("coorti", "domanda_sopravvivenza"),
+        "eta_massima_pro": cfg("esiti", "eta_massima_pro"),
+        "eta_minima_pro": cfg("esiti", "eta_minima_pro"),
+        "cella_u19_armonizzata": cfg("modelli", "cella_u19_armonizzata"),
         "min_cella_pubblicabile": cfg("etica", "min_cella_pubblicabile"),
         "predittore": cfg("predittore", "principale"),
     }
@@ -173,7 +293,7 @@ def stato():
         print("modelli.db non esiste: lanciare lo script senza --stato per costruirlo.")
         return
     with sqlite3.connect(USCITA) as db:
-        for t in ("campione", "campione_b", "panello", "celle"):
+        for t in ("campione", "campione_b", "panello", "persona_anno", "celle"):
             n = db.execute("SELECT COUNT(*) FROM %s" % t).fetchone()[0]
             print("%-12s %7d righe" % (t, n))
         tot, pro = db.execute(
@@ -196,12 +316,14 @@ def main():
     with sqlite3.connect(DB_ANALISI) as src, sqlite3.connect(USCITA) as out:
         colonne, righe = selezione(src, cfg("coorti", "domanda_a_c"), celle)
         scrivi(out, "campione", colonne, righe)
-        n_pan = panello(out, colonne, righe, celle)
+        eta = eta_osservate(src)
+        n_pan = panello(out, colonne, righe, celle, eta)
 
         colonne_b, righe_b = selezione(src, cfg("coorti", "domanda_b"), celle)
         scrivi(out, "campione_b", colonne_b, righe_b)
 
-        scrivi_celle(out, celle)
+        n_pa, eventi, censurati = persona_anno(src, out, celle, eta)
+        scrivi_celle(src, out, celle, eta)
         scrivi_config(out, celle)
 
     a_lo, a_hi = cfg("coorti", "domanda_a_c")
@@ -210,6 +332,9 @@ def main():
     print("  campione   %5d atleti (coorti %d-%d)" % (len(righe), a_lo, a_hi))
     print("  campione_b %5d atleti (coorti %d-%d)" % (len(righe_b), b_lo, b_hi))
     print("  panello    %5d righe su %d celle" % (n_pan, len(celle)))
+    s_lo, s_hi = cfg("coorti", "domanda_sopravvivenza")
+    print("  persona_anno %5d righe (coorti %d-%d): %d eventi, %d censurati"
+          % (n_pa, s_lo, s_hi, eventi, censurati))
 
 
 if __name__ == "__main__":
