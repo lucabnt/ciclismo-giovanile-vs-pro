@@ -1,0 +1,94 @@
+# Configurazione dello studio.
+#
+# Tutto ciò che è una scelta — metodologica o operativa — sta qui e non nel codice.
+# Il criterio: se cambiando questo file e rieseguendo la catena si ottiene un'analisi
+# diversa e coerente, senza aprire un solo .py, il file sta facendo il suo lavoro.
+#
+# Le scelte metodologiche che stanno qui sono le stesse congelate in docs/definizioni.md.
+# Se le cambi, aggiorna anche quel file e il suo registro delle modifiche: è lì che si
+# dichiara *quando* una definizione è stata decisa, che è ciò che tiene onesto lo studio.
+
+[studio]
+# Sesso su cui gira l'analisi. Il femminile è costruito ma non studiato: copertura dal
+# 2011, nessuna categoria Under 23, numerosità un ordine di grandezza inferiore.
+# Vedi docs/da_fare.md §A4bis prima di metterlo a "F".
+sesso = "M"
+
+[stagioni]
+# Ultima stagione conclusa. La 2026 era in corso al momento dell'estrazione dei dati.
+# Portandola a 2026, dopo aver riscaricato, l'analisi si replica senza altre modifiche.
+massima = 2025
+
+# Stagioni con copertura anomala. Non vengono escluse: ricevono un flag in tab_a e la
+# decisione se tenerle resta all'analisi. Il 2020 ha metà dei classificati abituali in
+# tutte le categorie, e chi ha fatto punti li ha fatti su molte meno occasioni.
+[stagioni.anomale]
+2020 = "covid"
+
+[coorti]
+# Coorti diverse per domande diverse: gli esiti hanno abbondanza molto diversa.
+# 78 eventi PRO contro 8 in top 100 sulle stesse coorti.
+domanda_a_c = [1996, 2000]   # diventare professionista, e da che età il risultato informa
+domanda_b   = [1992, 2000]   # qualità della carriera
+# La sopravvivenza a tempo discreto usa tutte le coorti, con censura.
+
+[esiti]
+# Classi di squadra che contano come professionista: prima e seconda divisione UCI.
+# I nomi sono cambiati nel tempo e PCS usa quello vigente in quella stagione.
+#   WT  WorldTeam, prima divisione dal 2011
+#   PT  ProTeam dell'era UCI ProTour, prima divisione, visto 2005-2008
+#   PCT Professional Continental, seconda divisione, visto 2005-2019
+#   PRT UCI ProTeam, è il PCT rinominato nel 2020
+classi_pro = ["WT", "PT", "PCT", "PRT"]
+
+eta_massima_pro = 25       # finestra per l'esito PRO
+eta_massima_qualita = 26   # finestra per il tier: la più ampia osservabile per la coorte 2000
+
+# Soglie del tier, dalla più stringente. Il top 500 non è arbitrario: è una fascia
+# ufficiale di PCS, che usa gli scaglioni 10/25/50/100/200/500/1000.
+soglie_tier = [[100, 3], [500, 2]]
+
+[predittore]
+# pct_rank_ext = percentile su punti, poi vittorie, poi piazzamenti dal 2° al 5°.
+# L'ordinamento per soli punti lascerebbe il 92% degli atleti a pari merito.
+principale = "pct_rank_ext"
+sensibilita = ["pct_rank", "z_log_pts", "top10", "top25pct"]
+
+[contesto]
+# Sotto questa numerosità il tasso di professionisti di una società non è una stima.
+min_coorti_precedenti = 5
+
+[scaricamento]
+# Pause fra le richieste. Non scendere sotto il secondo: sono siti piccoli.
+pausa_schede = 1.2
+pausa_pcs = 2.5
+stagioni_pro = [2011, 2026]      # rose WorldTeam e ProTeam
+stagioni_ranking = [2007, 2025]  # classifiche annuali
+profondita_ranking = 500         # deve coprire la soglia più larga di soglie_tier
+
+[modelli]
+# Celle mostrate nella matrice di correlazione: descrittiva, calcolata a coppie.
+celle_correlazione = ["U15y1", "U15y2", "U17y1", "U17y2", "U19y1", "U19y2", "U23y1"]
+
+# Celle su cui si calcola il VIF. Qui serve un campione con TUTTE le celle osservate
+# sullo stesso atleta, e il campione crolla in fretta: su tutte e dieci le celle restano
+# poche decine di atleti. Si dichiara quindi il sottoinsieme, e il risultato riporta
+# sempre il proprio n accanto.
+celle_vif = ["U15y1", "U15y2", "U17y1", "U17y2", "U19y1", "U19y2"]
+
+[report]
+# Ordine delle sezioni nel documento generato. L'ordine sta qui e non nei nomi dei file:
+# riorganizzare il documento, o dividerlo in piu' post, non comporta rinominare moduli.
+# Ogni voce e' un modulo in report/moduli/ con una funzione calcola() e una rendi().
+sezioni = [
+  "attrito",
+  "punteggi",
+  "rae",
+  "correlazioni",
+  "contesto",
+]
+
+[etica]
+# Nessuna cella con meno di questo numero di atleti nelle tabelle pubblicate.
+# I dati riguardano minorenni: il vincolo va imposto dal codice, non ricordato.
+min_cella_pubblicabile = 5
