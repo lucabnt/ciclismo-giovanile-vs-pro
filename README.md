@@ -1,8 +1,19 @@
 # Ranking giovanili italiani e transizione al professionismo
 
-Analisi predittiva sui ranking nazionali giovanili italiani (ciclismo.info, 2007-2026) e sull'esito professionistico (ProCyclingStats).
+Analisi predittiva sui ranking nazionali giovanili italiani (ciclismo.info, 2007-2025) e sull'esito professionistico (ProCyclingStats).
 
-Impianto metodologico: [`guida_metodologica_v2.md`](guida_metodologica_v2.md).
+Impianto metodologico: [`guida_metodologica_v5.md`](guida_metodologica_v5.md).
+
+## Da dove vengono i dati
+
+| Fonte | Provenienza |
+|---|---|
+| Ranking giovanili italiani | `data/giovanile/ciclismo.db`, prodotto da **[lucabnt/risultati-ciclismo-giovanile](https://github.com/lucabnt/risultati-ciclismo-giovanile)** — repository separato con lo scraper di ciclismo.info e il database. Privato per ora, potenzialmente pubblico. Schema **2.1** in uso qui, **2.2** a monte (aggiunge `atleti.data_nascita` e `anno_nascita`); i numeri della verifica valgono per l'estrazione del **10 agosto 2026** |
+| Date di nascita | schede personali di ciclismo.info, da `scripts/03_scarica_schede.py` → `data/giovanile/schede.db`. **Con lo schema 2.2 la nascita è già alla fonte**: rigenerando il database a monte la pipeline la usa da sola, senza modifiche (precedenza sorgente → scheda → inferenza). Vedi [`docs/da_fare.md`](docs/da_fare.md) §A5 |
+| Esiti di carriera | ProCyclingStats, da `scripts/04_scarica_pcs.py` → `data/pcs/pcs.db` |
+| Distribuzione attesa delle nascite | Eurostat `demo_fmonth`, per il test sull'effetto dell'età relativa |
+
+Questo repository **non** contiene dati: `data/` è escluso da git per intero (vedi «Dati personali»).
 
 ## Documenti
 
@@ -11,6 +22,8 @@ Impianto metodologico: [`guida_metodologica_v2.md`](guida_metodologica_v2.md).
 | [`docs/definizioni.md`](docs/definizioni.md) | Definizioni operative congelate — coorti, esiti, predittori, esclusioni |
 | [`docs/verifica_dati_giovanile.md`](docs/verifica_dati_giovanile.md) | Verifica della sorgente ciclismo.info (FASE 0, step 1 e 3) |
 | [`docs/piano_pcs.md`](docs/piano_pcs.md) | Piano di acquisizione ProCyclingStats e procedura di matching |
+| [`docs/da_fare.md`](docs/da_fare.md) | Lavoro aperto: configurazione esterna, correzioni note, analisi da impostare |
+| [`docs/da_fare.md`](docs/da_fare.md) | Lavoro aperto: configurazione esterna, correzioni note, analisi da impostare |
 
 ## Pipeline
 
