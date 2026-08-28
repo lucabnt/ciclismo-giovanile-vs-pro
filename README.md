@@ -50,6 +50,10 @@ Script di supporto:
 | `02_casi_da_verificare.py` | genera le liste di verifica manuale; le decisioni si scrivono in `data/private/manual/` e sono applicate al giro successivo |
 | `03_scarica_schede.py` | scarica le schede personali da ciclismo.info per la data di nascita completa — vedi sotto |
 | `04_scarica_pcs.py` | scarica gli esiti di carriera da ProCyclingStats in quattro strati; `--stato` produce il conteggio degli eventi dello STEP 4 |
+| `05_match_pcs.py` | collega gli atleti giovanili ai profili PCS su nome più data di nascita; popola `match_pcs` |
+| `06_esiti.py` | porta gli esiti di carriera in `tab_b`: `PRO`, `tier`, `team_quality_first` |
+
+**L'ordine conta**: `01` ricostruisce `analisi.db` da zero e svuota `match_pcs`, quindi la sequenza è `01` → `05` → `06`.
 
 L'anno di nascita viene preso dalla prima fonte disponibile: colonna della sorgente → scheda personale → inferenza dall'anno di corso.
 
@@ -131,6 +135,39 @@ Come il 03, è ripartibile e interrompibile con Ctrl+C, con pausa di 2,5 secondi
 
 **Chi ha continuato a correre senza diventare professionista** si legge invece da ciclismo.info, senza alcuna richiesta: `tab_b.elite_seasons` conta le stagioni nella classifica Elite italiana dopo i 23 anni e `tab_b.racing_after_u23` dice se l'atleta compare in una qualunque classifica dopo i 22. È la classifica «promiscua» che era stata esclusa dalle celle U23 perché come denominatore non andava bene, ma come segnale di continuità è esatta.
 
+## Dal dato al testo
+
+L'obiettivo del progetto è una serie di blog post. Il livello di produzione genera un
+documento Markdown unico, con tabelle e figure, da cui i post si ritagliano.
+
+```bash
+pip install -r requirements.txt
+python scripts/07_riferimenti.py     # una volta: scarica gli attesi demografici Eurostat
+python report/assembla.py
+```
+
+Produce `output/analisi.md` — con indice, tabelle, figure e un riquadro «Come si misura» per ogni metodo usato — e `output/figure/*.png`.
+
+**Calcolo e presentazione sono separati.** Ogni modulo in `report/moduli/` ha due funzioni:
+
+| | |
+|---|---|
+| `calcola()` | interroga i database e scrive in `output/risultati.db` |
+| `rendi(lettura)` | legge **solo** dall'archivio e restituisce il testo della sezione |
+
+È la regola che tiene onesto il documento: se un numero non è nell'archivio non può finire nel testo, quindi non può essere scritto a mano. E i modelli, che sono la parte lenta, non si rilanciano ogni volta che si riscrive un paragrafo:
+
+```bash
+python report/assembla.py --solo-testo   # riusa i risultati già calcolati
+python report/assembla.py --moduli rae   # un modulo solo
+```
+
+**L'ordine delle sezioni sta in `config.toml`**, non nei nomi dei file: riorganizzare il documento, o dividerlo in più post, non comporta rinominare moduli.
+
+Due regole sono imposte dal codice invece che ricordate: ogni tabella dichiara la propria numerosità, e **nessuna cella con meno di 5 atleti viene pubblicata** — diventa `<5`. I dati riguardano minorenni, e una cella con due o tre persone li rende identificabili anche in forma aggregata.
+
+I modelli statistici stanno in R (`logistf`, `pROC`, `glmnet`, `ordinal`, `rms`) e scrivono nello stesso `output/risultati.db`: SQLite è il confine fra i due linguaggi.
+
 ## Dati personali
 
 I dati riguardano **atleti minorenni**. Nel repository entra **solo cio' che e' anonimo**.
@@ -159,6 +196,10 @@ git config core.hooksPath .githooks
 - [x] Risoluzione manuale delle omonimie e trattamento delle stagioni anomale
 - [x] Date di nascita dalle schede personali (sblocca il Relative Age Effect)
 - [x] Variabili di contesto in `tab_b` (società, regione, mobilità)
-- [ ] Acquisizione ProCyclingStats — script pronto, piano in [`docs/piano_pcs.md`](docs/piano_pcs.md)
-- [ ] Matching e conteggio degli eventi (STEP 4: decide se la Domanda B è modellabile)
-- [ ] Descrittiva, modelli, validazione
+- [x] Acquisizione ProCyclingStats e conteggio degli eventi (STEP 4)
+- [x] Matching giovanili ↔ PCS (STEP 6) — resta la verifica manuale, [`docs/da_fare.md`](docs/da_fare.md) §C5
+- [x] Esiti di carriera in `tab_b` (`PRO`, `tier`, qualità della società)
+- [x] Livello di produzione: `report/` con archivio dei risultati e generatore Markdown
+- [x] Descrittiva: attrito (9), punteggi per gruppo (10), correlazioni e VIF (11), età relativa (15)
+- [x] Descrittiva: contesto e mobilità (STEP 13-14)
+- [ ] Modelli in R (FASE 3 e 4) e validazione (FASE 5)
