@@ -15,6 +15,19 @@ Impianto metodologico: [`guida_metodologica_v5.md`](guida_metodologica_v5.md).
 
 Questo repository **non** contiene dati: `data/` è escluso da git per intero (vedi «Dati personali»).
 
+## Riferimenti esterni
+
+`riferimenti/` contiene i dati pubblici che servono come denominatore o come atteso, trascritti a mano da fonti che non hanno un'API. Ogni file porta in testa la propria provenienza e i propri limiti, perché un dato trascritto senza provenienza non è utilizzabile.
+
+| file | cosa contiene | fonte |
+|---|---|---|
+| `tesserati_fci.csv` | tesserati per categoria e sesso, 2020-2025 | FCI, «I numeri della Federazione Ciclistica Italiana» |
+| `societa_fci.csv` | società affiliate per regione, 2021-2025 | idem, Parte I |
+
+Stanno qui e non sotto `data/` di proposito: `data/` è negato senza eccezioni perché contiene riferimenti a persone, e quella regola non va indebolita per dei totali nazionali.
+
+Servono a rispondere alla domanda che dà scala a tutto il resto: **in classifica compare circa un tesserato su sette**. Ogni percentuale dello studio ha quel settimo come denominatore.
+
 ## Documenti
 
 | File | Contenuto |
@@ -148,6 +161,8 @@ python report/assembla.py
 
 Produce `output/analisi.md` — con indice, tabelle, figure e un riquadro «Come si misura» per ogni metodo usato — e `output/figure/*.png`.
 
+Il testo dei moduli si scrive in ASCII e **gli accenti si applicano alla generazione** (`report/accenti.py`): il documento si rigenera ogni anno con dati nuovi, quindi una correzione fatta a mano sul file andrebbe rifatta ogni volta. Se compare una parola accentata non prevista, l'assemblatore la segnala invece di lasciarla passare.
+
 **Calcolo e presentazione sono separati.** Ogni modulo in `report/moduli/` ha due funzioni:
 
 | | |
@@ -164,9 +179,35 @@ python report/assembla.py --moduli rae   # un modulo solo
 
 **L'ordine delle sezioni sta in `config.toml`**, non nei nomi dei file: riorganizzare il documento, o dividerlo in più post, non comporta rinominare moduli.
 
+**I commenti dichiarano la propria premessa.** I numeri vengono tutti da una query, ma le frasi che li interpretano — «il gradiente quasi sparisce», «il secondo anno discrimina meglio» — sono scritte a mano guardando i dati di oggi. `md.afferma(condizione, premessa, testo)` chiede di dichiarare accanto alla frase la condizione numerica che la sostiene: quando la condizione cade, la frase esce con un avviso nel testo e l'assemblatore lo segnala. È il modo in cui il documento può essere rigenerato fra anni senza pubblicare in silenzio un commento che i dati non sostengono più.
+
 Due regole sono imposte dal codice invece che ricordate: ogni tabella dichiara la propria numerosità, e **nessuna cella con meno di 5 atleti viene pubblicata** — diventa `<5`. I dati riguardano minorenni, e una cella con due o tre persone li rende identificabili anche in forma aggregata.
 
-I modelli statistici stanno in R (`logistf`, `pROC`, `glmnet`, `ordinal`, `rms`) e scrivono nello stesso `output/risultati.db`: SQLite è il confine fra i due linguaggi.
+### I modelli in R
+
+I modelli statistici stanno in R e scrivono nello stesso `output/risultati.db`: SQLite è il confine fra i due linguaggi. Python non stima nulla e R non formatta nulla.
+
+```bash
+python scripts/08_prepara_modelli.py     # costruisce data/analisi/modelli.db
+Rscript R/16_univariati.R                # un modello per categoria
+Rscript R/18_annidati.R                  # quanto aggiunge ogni categoria alla precedente
+Rscript R/19_metriche.R                  # cosa succede se si seleziona davvero
+Rscript R/20_sopravvivenza.R             # a che età si passa professionisti
+Rscript R/21_traiettorie.R               # conta il livello o il miglioramento?
+python report/assembla.py                # rigenera il documento
+```
+
+`08_prepara_modelli.py` esiste perché le regole dello studio — coorti, sesso, celle, quali classi contano come professionismo — stanno in `config.toml`, che R non legge senza dipendenze aggiuntive. Le regole si applicano una volta sola in Python e R trova un rettangolo già filtrato: cambiare le coorti significa modificare `config.toml` e rilanciare lo script, senza toccare i file R.
+
+Pacchetti richiesti:
+
+```r
+install.packages(c("RSQLite", "jsonlite", "logistf", "pROC", "glmnet", "survival", "MASS"))
+```
+
+Se R non è installato, il documento si genera lo stesso: le sezioni modellistiche dichiarano cosa manca e con quale comando ottenerlo, invece di sparire in silenzio.
+
+**Ogni modello porta con sé un controllo.** Lo STEP 16 rilegge dall'archivio l'AUC che la descrittiva ha ricavato dal delta di Cliff e verifica di ritrovare lo stesso numero: due strade indipendenti per la stessa quantità. Se divergono, lo script lo dice.
 
 ## Dati personali
 
@@ -197,6 +238,7 @@ git config core.hooksPath .githooks
 - [x] Date di nascita dalle schede personali (sblocca il Relative Age Effect)
 - [x] Variabili di contesto in `tab_b` (società, regione, mobilità)
 - [x] Acquisizione ProCyclingStats e conteggio degli eventi (STEP 4)
+- [x] Modelli (STEP 16, 18, 19, 20, 21) — i restanti in [`docs/da_fare.md`](docs/da_fare.md) §FASE 3
 - [x] Matching giovanili ↔ PCS (STEP 6) — resta la verifica manuale, [`docs/da_fare.md`](docs/da_fare.md) §C5
 - [x] Esiti di carriera in `tab_b` (`PRO`, `tier`, qualità della società)
 - [x] Livello di produzione: `report/` con archivio dei risultati e generatore Markdown
