@@ -69,6 +69,20 @@ def calcola():
 
     with Archivio("attrito") as ar:
         ar.valore("coorti", "%d-%d" % (lo, hi))
+        ar.valore("eta_massima_pro", cfg("esiti", "eta_massima_pro"))
+        ar.valore("eta_massima_qualita", cfg("esiti", "eta_massima_qualita"))
+
+        # Cosa serve per comparire in classifica. Non e' un dettaglio di contorno: e'
+        # il denominatore di ogni percentuale del documento, e va misurato invece che
+        # assunto. La scala punti della fonte assegna 5 punti alla vittoria e 1 al
+        # quinto posto, quindi un solo punto richiede gia' un piazzamento nei primi
+        # cinque; qui si verifica che sia davvero cosi' per ogni riga.
+        righe_tot, con_top5, punti_min = db.execute(
+            """SELECT COUNT(*), SUM(CASE WHEN COALESCE(top5,0) >= 1 THEN 1 ELSE 0 END),
+                      MIN(points_raw) FROM tab_a WHERE sesso = ?""", (sesso,)).fetchone()
+        ar.valore("righe_classifica", righe_tot)
+        ar.valore("quota_con_top5", round(100 * con_top5 / righe_tot, 1))
+        ar.valore("punti_minimi", punti_min)
         totale = conta()
         ar.valore("atleti_totali", totale)
 
@@ -254,6 +268,23 @@ def rendi(lt):
         % (f"{v['atleti_totali']:,}".replace(",", "."), v["coorti"],
            v["pro_totali"], v["pro_su_mille_u15"])))
 
+    if v.get("quota_con_top5"):
+        p.append(md.paragrafo(
+            "",
+            "> **Chi e' «in classifica».** La fonte assegna punti solo ai primi cinque "
+            "di ogni gara: cinque alla vittoria, uno al quinto posto. Comparire nel "
+            "ranking con un solo punto significa quindi **essere arrivati almeno una "
+            "volta nei primi cinque** in quella stagione, e infatti il %s%% delle %s "
+            "righe di classifica ha almeno un piazzamento nei primi cinque.",
+            ">",
+            "> Tutte le percentuali di questo documento hanno quindi come denominatore "
+            "un gruppo **gia' selezionato**, non l'insieme dei tesserati: rispetto a "
+            "tutti i ragazzi che corrono, le quote qui riportate sono sovrastime. La "
+            "sezione successiva quantifica di quanto — circa un tesserato su sette "
+            "compare in classifica."))
+        p[-1] = p[-1] % (md.num(v["quota_con_top5"], 0),
+                         md.conta(v.get("righe_classifica")))
+
     p.append(md.metodo(
         "Come si legge l'imbuto",
         "«Presente in una categoria» significa aver ottenuto almeno un punto in almeno "
@@ -287,11 +318,26 @@ def rendi(lt):
     if v.get("quota_uscite_a_fine_categoria"):
         p.append(md.paragrafo(
             "",
-            "Il **%s%%** di chi esce lo fa nell'ultimo anno della propria categoria. "
-            "Non si smette perche' si va male a meta' percorso: si smette al passaggio "
-            "di fascia, quando cambiano distanze, avversari e squadra. E' un fatto "
-            "operativo, non statistico — indica *quando* un intervento di ritenzione "
-            "avrebbe senso." % v["quota_uscite_a_fine_categoria"]))
+            md.afferma(
+                v["quota_uscite_a_fine_categoria"] >= 60,
+                "le uscite si concentrano nell'ultimo anno di categoria, non si "
+                "distribuiscono uniformemente lungo il percorso",
+                "Il **%s%%** di chi esce lo fa nell'ultimo anno della propria "
+                "categoria. Non si smette perche' si va male a meta' percorso: si "
+                "smette al passaggio di fascia, quando cambiano distanze, avversari e "
+                "squadra." % md.num(v["quota_uscite_a_fine_categoria"], 1)),
+            "",
+            "Il passaggio di categoria si comporta quindi come una **discontinuita' e "
+            "non come una tappa**: se la crescita fosse continua e la classifica ne "
+            "fosse una misura fedele, le uscite si distribuirebbero lungo tutto il "
+            "percorso. Cosa esattamente si rompa in quel punto e' un'altra domanda, e "
+            "la sezione «Il passaggio di categoria e' una rottura?» la affronta: "
+            "l'anticipazione e' che a cambiare bruscamente sia soprattutto **quanti "
+            "posti ci sono in classifica**, non il rendimento di chi li occupava.",
+            "",
+            "E' un fatto operativo, non statistico: indica *quando* un intervento di "
+            "ritenzione avrebbe senso, e mette in guardia dal leggere l'uscita come un "
+            "giudizio sull'atleta."))
 
     f = lt.figura("attrito", "uscite")
     if f:
@@ -327,16 +373,31 @@ def rendi(lt):
     if ricambio:
         p.append(md.tabella(ricambio["colonne"], ricambio["righe"],
                             colonne_conteggio={1, 2}, nota=ricambio["nota"]))
+    # Il "meta'" della frase e' un numero: se un anno scendesse, la frase andrebbe
+    # riscritta. La premessa lo dichiara invece di lasciarlo implicito.
+    massimo_ricambio = max((r[3] for r in ricambio["righe"]), default=0) if ricambio else 0
     p.append(md.paragrafo(
         "",
-        "Il ricambio e' cosi' forte che **meta' dei classificati al secondo anno di "
-        "Allievi non c'era al primo**, e non hanno cambiato categoria: e' la stessa "
-        "fascia, un anno dopo. Quello che l'imbuto misura, quindi, non e' quanti "
+        md.afferma(
+            massimo_ricambio >= 45,
+            "in almeno una cella il ricambio fra primo e secondo anno della stessa "
+            "categoria sfiora la meta' dei classificati",
+            "Il ricambio e' cosi' forte che **meta' dei classificati al secondo anno di "
+            "Allievi non c'era al primo**, e non hanno cambiato categoria: e' la stessa "
+            "fascia, un anno dopo. Quello che l'imbuto misura, quindi, non e' quanti "
         "ragazzi lasciano il ciclismo, ma **quanto e' mobile l'insieme di chi va a "
         "punti** — che e' una cosa diversa, e per certi versi piu' interessante: dice "
-        "che essere fuori dalla classifica a sedici anni non e' una condanna."))
+        "che essere fuori dalla classifica a sedici anni non e' una condanna.")))
 
     p.append(md.sezione("Chi arriva in fondo", 3))
+    p.append(md.paragrafo(
+        "I tre esiti hanno una **finestra temporale**, e senza di essa non si leggono. "
+        "«Professionista» significa aver corso in una squadra di primo o secondo livello "
+        "**entro i %s anni**; il top 500 e il top 100 sono la migliore posizione nel "
+        "ranking mondiale annuale **entro i %s**. Chi debutta piu' tardi, o migliora "
+        "dopo, qui non risulta: e' una scelta deliberata, perche' una finestra aperta "
+        "renderebbe le coorti recenti incomparabili con quelle vecchie."
+        % (md.conta(v.get("eta_massima_pro")), md.conta(v.get("eta_massima_qualita")))))
     if esiti:
         p.append(md.tabella(esiti["colonne"], esiti["righe"],
                             colonne_conteggio={1, 3}, decimali=2))
@@ -350,9 +411,11 @@ def rendi(lt):
         "",
         "> **Cosa misura questa sezione.** «Presente» significa «ha ottenuto almeno un "
         "punto». L'attrito che si vede qui e' l'uscita dalla classifica, non l'abbandono "
-        "dello sport, e i due numeri non coincidono: ne' l'elenco dei tesserati ne' il "
-        "numero di gare disputate sono pubblicati, quindi la differenza non e' "
-        "quantificabile in modo diretto."))
+        "dello sport, e i due numeri non coincidono. Quanto non coincidano si vede nella "
+        "sezione successiva, dove i conteggi della classifica vengono confrontati con i "
+        "tesserati della federazione: **l'imbuto individuale e' molto piu' ripido "
+        "dell'abbandono reale**. Il numero di gare disputate da ciascun atleta resta "
+        "invece non pubblicato, e quella parte della differenza non e' misurabile."))
     return (chr(10) * 2).join(x.strip() for x in p if x)
 
 
