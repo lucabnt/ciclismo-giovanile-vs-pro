@@ -1,0 +1,133 @@
+// Societa' affiliate alla FCI per regione. Unico dato regionale pubblico disponibile.
+//
+// COSA E' E COSA NON E'
+//   Sono le societa' affiliate, non gli atleti tesserati. Il numero di tesserati per
+//   regione non e' pubblicato in nessuna delle due fonti: il PDF FCI riporta le
+//   affiliazioni per regione e i tesserati per categoria, ma mai i due incrociati.
+//
+//   Serve quindi a descrivere la struttura regionale, non a normalizzare un tasso di
+//   professionismo. Una societa' puo' avere tre tesserati o duecento, e copre tutte le
+//   categorie e tutte le specialita' — dai Giovanissimi ai Master, dalla strada al
+//   fuoristrada. Il rapporto atleti/societa' calcolato con questi numeri e' un indizio
+//   sulla dimensione media delle societa', non una misura di densita' agonistica.
+//
+// FONTE
+//   Federazione Ciclistica Italiana, "I numeri della Federazione Ciclistica Italiana",
+//   dati statistici aggiornati al 2025, Parte I - Societa', prospetto riassuntivo
+//   generale delle affiliazioni.
+//
+// LIMITE PRINCIPALE
+//   La serie parte dal 2021, mentre le coorti dello studio hanno corso fra il 2005 e il
+//   2023. Il numero di societa' cambia lentamente, ma il disallineamento resta e va
+//   dichiarato ogni volta che questi dati vengono accostati a quelli dello studio.
+//
+//   Trento e Bolzano sono province autonome e la FCI le conta separatamente: chi lavora
+//   per regione deve sommarle per ottenere il Trentino-Alto Adige.
+//
+// Trascritto il 28 agosto 2026.
+regione,anno,societa
+piemonte,2021,211
+piemonte,2022,222
+piemonte,2023,218
+piemonte,2024,206
+piemonte,2025,198
+lombardia,2021,637
+lombardia,2022,640
+lombardia,2023,637
+lombardia,2024,609
+lombardia,2025,595
+veneto,2021,407
+veneto,2022,401
+veneto,2023,395
+veneto,2024,370
+veneto,2025,367
+friuli_venezia_giulia,2021,112
+friuli_venezia_giulia,2022,112
+friuli_venezia_giulia,2023,109
+friuli_venezia_giulia,2024,110
+friuli_venezia_giulia,2025,105
+liguria,2021,87
+liguria,2022,89
+liguria,2023,87
+liguria,2024,83
+liguria,2025,74
+emilia_romagna,2021,194
+emilia_romagna,2022,215
+emilia_romagna,2023,213
+emilia_romagna,2024,211
+emilia_romagna,2025,202
+toscana,2021,268
+toscana,2022,273
+toscana,2023,269
+toscana,2024,269
+toscana,2025,278
+marche,2021,111
+marche,2022,124
+marche,2023,121
+marche,2024,122
+marche,2025,124
+umbria,2021,76
+umbria,2022,83
+umbria,2023,84
+umbria,2024,83
+umbria,2025,75
+lazio,2021,191
+lazio,2022,185
+lazio,2023,181
+lazio,2024,172
+lazio,2025,164
+abruzzo,2021,103
+abruzzo,2022,102
+abruzzo,2023,103
+abruzzo,2024,100
+abruzzo,2025,107
+campania,2021,126
+campania,2022,123
+campania,2023,111
+campania,2024,105
+campania,2025,103
+puglia,2021,127
+puglia,2022,132
+puglia,2023,145
+puglia,2024,152
+puglia,2025,147
+basilicata,2021,25
+basilicata,2022,24
+basilicata,2023,25
+basilicata,2024,26
+basilicata,2025,30
+calabria,2021,32
+calabria,2022,30
+calabria,2023,31
+calabria,2024,30
+calabria,2025,30
+sicilia,2021,154
+sicilia,2022,161
+sicilia,2023,196
+sicilia,2024,209
+sicilia,2025,196
+sardegna,2021,105
+sardegna,2022,109
+sardegna,2023,106
+sardegna,2024,100
+sardegna,2025,99
+molise,2021,18
+molise,2022,15
+molise,2023,14
+molise,2024,12
+molise,2025,14
+trento,2021,84
+trento,2022,87
+trento,2023,79
+trento,2024,71
+trento,2025,73
+bolzano,2021,55
+bolzano,2022,55
+bolzano,2023,54
+bolzano,2024,47
+bolzano,2025,46
+valle_d_aosta,2021,24
+valle_d_aosta,2022,23
+valle_d_aosta,2023,23
+valle_d_aosta,2024,21
+valle_d_aosta,2025,21

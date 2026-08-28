@@ -1,0 +1,122 @@
+// Tesserati FCI per categoria e sesso. Denominatore esterno delle classifiche.
+//
+// PERCHE' QUESTO FILE STA NEL REPOSITORY E NON IN data/
+//   `data/` e' negato senza eccezioni: contiene riferimenti a persone. Questi sono
+//   totali nazionali per categoria, nessuna persona e' identificabile, e non si
+//   riscaricano da nessuna API — sono trascritti a mano da due PDF. Vanno quindi
+//   versionati come sorgente, non come prodotto rigenerabile.
+//
+// FONTI
+//   2021-2025  Federazione Ciclistica Italiana, "I numeri della Federazione Ciclistica
+//              Italiana", dati statistici aggiornati al 2025, Parte II - Tesserati,
+//              prospetto riassuntivo del tesseramento. Documento ufficiale FCI.
+//   2020       bicimtbebike.com, "Societa' FCI 2022: numero dei tesserati per regione"
+//              (3 gennaio 2023), che riporta il confronto 2020/2021/2022. I valori 2021
+//              e 2022 dell'articolo coincidono con quelli ufficiali, il che rende
+//              attendibile anche la colonna 2020, che nel documento FCI non c'e'.
+//   2018-2019  bikeitalia.it, "Ciclismo italiano: senza lo sviluppo del settore
+//              giovanile non c'e' futuro" (26 settembre 2023), che cita il report
+//              ufficiale FCI "I numeri della federazione ciclistica italiana 2018-2022".
+//              Solo Esordienti e Allievi: l'articolo non riporta Juniores e Under 23.
+//              Il suo valore 2020 coincide con quello dell'altra fonte secondaria, il
+//              che le corrobora a vicenda.
+//
+// UNA DISCREPANZA, RISOLTA
+//   Per il 2023 la fonte bikeitalia da' Esordienti 3.081 e Allievi 2.627, il documento
+//   FCI 3.176 e 2.675. L'articolo dichiara che la stagione era in corso al momento della
+//   redazione: sono valori provvisori. Prevale il documento ufficiale, che e' definitivo.
+//   Vale come promemoria generale: dove le fonti si sovrappongono, vince la federazione.
+//
+// LIMITI, DA TENERE PRESENTI OGNI VOLTA CHE SI USA
+//   1. La serie parte dal 2018, e solo per Esordienti e Allievi; dal 2020 per le altre
+//      categorie. Le coorti dello studio (1996-2000) hanno corso nelle categorie
+//      giovanili fra il 2009 e il 2023: per buona parte del periodo studiato il
+//      denominatore non esiste, e non e' pubblico.
+//   1bis. Stimare gli anni mancanti estrapolando la tendenza NON funziona, ed e'
+//      verificato invece che supposto: il modulo `report/moduli/copertura.py` prova a
+//      prevedere il 2018-2019 usando solo il 2021-2025 e sbaglia del 20-27%. A dieci
+//      anni di distanza due scelte di modello entrambe difendibili danno stime che
+//      differiscono di quasi il doppio. Gli anni Covid, oltretutto, hanno gonfiato il
+//      tesseramento: 2021 e 2022 non sono punti su cui appoggiare una tendenza.
+//   2. Il tesseramento e' per categoria, non per specialita': un Esordiente tesserato
+//      puo' correre solo fuoristrada e non comparire mai nella classifica su strada.
+//      La copertura calcolata su questi numeri e' quindi un limite inferiore.
+//   3. Una categoria copre piu' anni di eta' (Esordienti 2, Allievi 2, Juniores 2,
+//      Under 23 4). Per confrontare categorie diverse i conteggi vanno divisi per
+//      l'ampiezza, che sta nella colonna `anni_eta`.
+//
+// Trascritto il 28 agosto 2026. Verificare i valori contro il PDF prima di modificarli.
+anno,categoria,sesso,tesserati,anni_eta,fonte
+2018,U15,M,3226,2,bikeitalia
+2019,U15,M,3259,2,bikeitalia
+2020,U15,M,3062,2,bicimtbebike
+2021,U15,M,3450,2,fci
+2022,U15,M,3487,2,fci
+2023,U15,M,3176,2,fci
+2024,U15,M,3011,2,fci
+2025,U15,M,2887,2,fci
+2018,U17,M,2664,2,bikeitalia
+2019,U17,M,2550,2,bikeitalia
+2020,U17,M,2496,2,bicimtbebike
+2021,U17,M,2828,2,fci
+2022,U17,M,2787,2,fci
+2023,U17,M,2675,2,fci
+2024,U17,M,2657,2,fci
+2025,U17,M,2548,2,fci
+2020,U19,M,1516,2,bicimtbebike
+2021,U19,M,1722,2,fci
+2022,U19,M,1751,2,fci
+2023,U19,M,1688,2,fci
+2024,U19,M,1639,2,fci
+2025,U19,M,1636,2,fci
+2020,U23,M,959,4,bicimtbebike
+2021,U23,M,1086,4,fci
+2022,U23,M,1104,4,fci
+2023,U23,M,1035,4,fci
+2024,U23,M,1036,4,fci
+2025,U23,M,1037,4,fci
+2020,ELITE,M,454,,bicimtbebike
+2021,ELITE,M,552,,fci
+2022,ELITE,M,525,,fci
+2023,ELITE,M,526,,fci
+2024,ELITE,M,518,,fci
+2025,ELITE,M,524,,fci
+2021,PROF,M,98,,fci
+2022,PROF,M,77,,fci
+2023,PROF,M,76,,fci
+2024,PROF,M,65,,fci
+2025,PROF,M,66,,fci
+2018,U15,F,496,2,bikeitalia
+2019,U15,F,485,2,bikeitalia
+2020,U15,F,442,2,bicimtbebike
+2021,U15,F,485,2,fci
+2022,U15,F,482,2,fci
+2023,U15,F,481,2,fci
+2024,U15,F,496,2,fci
+2025,U15,F,468,2,fci
+2018,U17,F,353,2,bikeitalia
+2019,U17,F,329,2,bikeitalia
+2020,U17,F,369,2,bicimtbebike
+2021,U17,F,373,2,fci
+2022,U17,F,351,2,fci
+2023,U17,F,367,2,fci
+2024,U17,F,345,2,fci
+2025,U17,F,382,2,fci
+2020,U19,F,202,2,bicimtbebike
+2021,U19,F,217,2,fci
+2022,U19,F,232,2,fci
+2023,U19,F,219,2,fci
+2024,U19,F,233,2,fci
+2025,U19,F,243,2,fci
+2020,U23,F,145,4,bicimtbebike
+2021,U23,F,176,4,fci
+2022,U23,F,180,4,fci
+2023,U23,F,192,4,fci
+2024,U23,F,187,4,fci
+2025,U23,F,173,4,fci
+2020,ELITE,F,139,,bicimtbebike
+2021,ELITE,F,158,,fci
+2022,ELITE,F,179,,fci
+2023,ELITE,F,175,,fci
+2024,ELITE,F,160,,fci
+2025,ELITE,F,170,,fci
