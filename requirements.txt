@@ -1,0 +1,14 @@
+# Preparazione dei dati (script 01-06): solo libreria standard.
+# Serve tomli solo su Python < 3.11, dove manca tomllib.
+tomli>=2.0 ; python_version < "3.11"
+
+# Scaricamento da ProCyclingStats (script 04)
+procyclingstats>=0.2.8
+cloudscraper>=1.2          # PCS sta dietro Cloudflare
+
+# Riferimenti esterni (script 07): certificati per l'API Eurostat
+certifi>=2024.0
+
+# Livello di produzione (report/)
+matplotlib>=3.8            # solo per le figure
+scipy>=1.11                # test statistici della descrittiva
