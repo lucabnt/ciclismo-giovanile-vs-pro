@@ -461,10 +461,10 @@ Scrivile in un file `definizioni.md` datato, **prima** di guardare i dati. Se de
 | Concetto | Definizione operativa |
 |---|---|
 | Categorie | U15, U17, U19, U23, sempre distinte per anno di categoria |
-| Coorti (analisi principale) | Nati 1996-2000 |
-| Coorti (modelli dall'U17) | Nati 1992-2000 |
+| Coorti — Domande A e C | Nati 1996-2000 (esito PRO: 78 eventi) |
+| Coorti — Domanda B | Nati 1992-2000 (top 100: 15 eventi; su 1996-2000 sarebbero 8) |
 | Coorti (sopravvivenza) | Tutte, con censoring |
-| PRO | ≥1 stagione WT o PRT entro l'anno dei 25 anni |
+| PRO | ≥1 stagione in prima o seconda divisione UCI entro l'anno dei 25 anni: classi PCS `WT`, `PT`, `PCT`, `PRT` |
 | QUALITÀ | livello massimo raggiunto entro i 26 anni: pro / top 500 / top 100 |
 | Esito ordinale | 0 = non pro; 1 = pro senza top 500; 2 = top 500; 3 = top 100 |
 | Predittore | Percentile del ranking entro stagione × categoria × anno di categoria |
