@@ -12,3 +12,15 @@ certifi>=2024.0
 # Livello di produzione (report/)
 matplotlib>=3.8            # solo per le figure
 scipy>=1.11                # test statistici della descrittiva
+
+# --------------------------------------------------------------------------
+# I modelli girano in R, non in Python: pip non li installa. Servono R >= 4.2 e
+#
+#   install.packages(c("RSQLite", "jsonlite", "logistf", "pROC"))
+#
+# RSQLite e jsonlite    leggono e scrivono i database del confine fra i due linguaggi
+# logistf               logistica di Firth, per gli eventi rari
+# pROC                  AUC, intervalli e test di DeLong
+#
+# Servono solo per le sezioni modellistiche: senza R il documento si genera lo stesso
+# e quelle sezioni dichiarano cosa manca. Elenco completo e stato in docs/da_fare.md.
