@@ -36,7 +36,8 @@ Servono a rispondere alla domanda che dà scala a tutto il resto: **in classific
 | [`docs/verifica_dati_giovanile.md`](docs/verifica_dati_giovanile.md) | Verifica della sorgente ciclismo.info (FASE 0, step 1 e 3) |
 | [`docs/piano_pcs.md`](docs/piano_pcs.md) | Piano di acquisizione ProCyclingStats e procedura di matching |
 | [`docs/da_fare.md`](docs/da_fare.md) | Lavoro aperto: configurazione esterna, correzioni note, analisi da impostare |
-| [`docs/da_fare.md`](docs/da_fare.md) | Lavoro aperto: configurazione esterna, correzioni note, analisi da impostare |
+| [`docs/tripod.md`](docs/tripod.md) | Checklist TRIPOD compilata: cosa è coperto, cosa resta un limite |
+| [`docs/piano_post.md`](docs/piano_post.md) | Come le quindici sezioni dell'analisi diventano otto blog post |
 
 ## Pipeline
 
