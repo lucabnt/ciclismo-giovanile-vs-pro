@@ -115,6 +115,7 @@ cella_u19_armonizzata = "U19_arm"
 sezioni = [
   "sintesi",
   "provenienza",
+  "misura",
   "attrito",
   "copertura",
   "passaggi",

@@ -38,7 +38,7 @@ Servono a rispondere alla domanda che dà scala a tutto il resto: **in classific
 | [`docs/da_fare.md`](docs/da_fare.md) | Lavoro aperto: configurazione esterna, correzioni note, analisi da impostare |
 | [`docs/literature_review.md`](docs/literature_review.md) | Rassegna della letteratura, 22 studi, con appendice di revisione |
 | [`docs/tripod.md`](docs/tripod.md) | Checklist TRIPOD compilata: cosa è coperto, cosa resta un limite |
-| [`docs/piano_post.md`](docs/piano_post.md) | Come le sedici sezioni dell'analisi diventano otto blog post |
+| [`docs/piano_post.md`](docs/piano_post.md) | Come le sezioni dell'analisi diventano otto blog post |
 
 ## Pipeline
 
@@ -201,6 +201,7 @@ Rscript R/24_validazione.R               # ottimismo e validazione temporale
 python scripts/10_sensibilita.py         # le scelte di disegno cambiano le conclusioni?
 Rscript R/27_confronto_ml.R              # un modello piu' complicato farebbe meglio?
 Rscript R/17_penalizzato.R               # e se si usassero tutte le categorie insieme?
+Rscript R/30_misura.R                    # lo stesso punteggio e' lo stesso risultato?
 python report/assembla.py                # rigenera il documento
 ```
 

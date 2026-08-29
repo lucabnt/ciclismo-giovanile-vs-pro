@@ -234,6 +234,45 @@ def persona_anno(src, out, celle, eta):
     return len(dati), eventi, censurati
 
 
+def misure(src, out, celle, eta):
+    """Le due misure alternative dello stesso risultato, per ogni atleta e cella.
+
+    PERCHE' SERVE UNA TABELLA A PARTE
+        Il resto del progetto usa un solo predittore, il percentile con ordinamento
+        esteso. Per chiedersi se quella scelta fosse giusta serve anche l'altra: il
+        percentile sui soli punti. Le due stanno una accanto all'altra solo qui, perche'
+        altrove si userebbe per sbaglio quella sbagliata.
+
+    COSA C'E' DENTRO
+        Oltre alle due misure, i punti grezzi e il numero di piazzamenti nei primi
+        cinque. Il loro rapporto dice quanto vale in media un piazzamento, ed e' l'unico
+        modo che questi dati offrono per accorgersi che le categorie internazionali
+        pesano le gare per livello mentre le altre no.
+    """
+    sesso = cfg("studio", "sesso")
+    lo, hi = cfg("coorti", "domanda_a_c")
+    out.execute("DROP TABLE IF EXISTS misure")
+    out.execute("""CREATE TABLE misure (
+        athlete_id TEXT, cella TEXT, eta INTEGER, categoria TEXT,
+        pct_punti REAL, pct_esteso REAL, punti REAL, top5 REAL, PRO INTEGER
+    )""")
+    righe = []
+    for c in celle:
+        cat, anno = c.split("y")
+        for r in src.execute(
+                """SELECT a.athlete_id, a.pct_rank, a.pct_rank_ext, a.points_raw,
+                          a.top5, b.PRO
+                   FROM tab_a a JOIN tab_b b ON b.athlete_id = a.athlete_id
+                   WHERE a.sesso = ? AND a.category = ? AND a.cat_year = ?
+                     AND b.birth_year BETWEEN ? AND ?
+                     AND a.pct_rank IS NOT NULL AND a.pct_rank_ext IS NOT NULL
+                     AND b.PRO IS NOT NULL""",
+                (sesso, cat, int(anno), lo, hi)):
+            righe.append((r[0], c, eta.get(c), cat) + tuple(r[1:]))
+    out.executemany("INSERT INTO misure VALUES (?,?,?,?,?,?,?,?,?)", righe)
+    return len(righe)
+
+
 def scrivi_celle(src, out, celle, eta=None):
     """L'elenco delle celle, con quanto e' larga la classifica di ciascuna.
 
@@ -293,7 +332,8 @@ def stato():
         print("modelli.db non esiste: lanciare lo script senza --stato per costruirlo.")
         return
     with sqlite3.connect(USCITA) as db:
-        for t in ("campione", "campione_b", "panello", "persona_anno", "celle"):
+        for t in ("campione", "campione_b", "panello", "persona_anno", "misure",
+                  "celle"):
             n = db.execute("SELECT COUNT(*) FROM %s" % t).fetchone()[0]
             print("%-12s %7d righe" % (t, n))
         tot, pro = db.execute(
@@ -323,6 +363,7 @@ def main():
         scrivi(out, "campione_b", colonne_b, righe_b)
 
         n_pa, eventi, censurati = persona_anno(src, out, celle, eta)
+        n_mis = misure(src, out, celle, eta)
         scrivi_celle(src, out, celle, eta)
         scrivi_config(out, celle)
 
@@ -335,6 +376,7 @@ def main():
     s_lo, s_hi = cfg("coorti", "domanda_sopravvivenza")
     print("  persona_anno %5d righe (coorti %d-%d): %d eventi, %d censurati"
           % (n_pa, s_lo, s_hi, eventi, censurati))
+    print("  misure     %5d righe (le due versioni dello stesso piazzamento)" % n_mis)
 
 
 if __name__ == "__main__":

@@ -20,7 +20,7 @@ così si controllano i metodi. I post vanno organizzati per **tema**, perché co
 legge: chi legge non vuole sapere cosa dice il modello di sopravvivenza, vuole sapere se
 suo figlio ce la farà.
 
-Questo file traduce le sedici sezioni dell'analisi in otto post, dice qual è il filo
+Questo file traduce le diciassette sezioni dell'analisi in otto post, dice qual è il filo
 che li tiene insieme e da quali moduli dell'archivio ciascuno prende i numeri.
 
 ---
@@ -396,10 +396,11 @@ tabelle, e vale anche per la prosa.
 ## Cosa manca prima di scrivere
 
 1. ~~La rassegna della letteratura va ripresa~~ — fatta: [`literature_review.md`](literature_review.md),
-   22 studi. **Resta una verifica bloccante**: cosa siano esattamente le categorie di
-   Cesanelli et al. (2022). Se il loro «Youth-U16» fossero gli Esordienti, la
-   rivendicazione di originalità del post 1 andrebbe riformulata. Dettagli nell'appendice
-   della rassegna.
+   22 studi. La verifica bloccante è **risolta**: il «Youth-U16» di Cesanelli sono gli
+   Allievi, non gli Esordienti, quindi il buco che il post 1 rivendica esiste davvero.
+   Per prudenza, nel post conviene comunque la formulazione più robusta — «nessuno ha
+   guardato i 13-14 anni **su una popolazione non preselezionata**» — che è vera
+   indipendentemente dalla corrispondenza delle categorie.
 2. ~~Le figure vanno riviste per il web~~ — fatte: `output/figure_web/` contiene la stessa
    figura con testi ingranditi, linee più spesse ed etichette inclinate, a doppia
    risoluzione. **Resta la parte editoriale**: scrivere il messaggio dentro la figura e

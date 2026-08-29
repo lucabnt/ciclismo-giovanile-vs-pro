@@ -154,6 +154,8 @@ Campione piccolo (9 eventi di interesse), su un solo paese con una struttura cic
 > DOI: [10.1007/s10479-021-04280-0](https://doi.org/10.1007/s10479-021-04280-0)
 > Preprint accessibile: [ResearchGate](https://www.researchgate.net/publication/355083722)
 
+*Verificato sul testo integrale.*
+
 ### Contesto
 
 Gli autori osservano che, mentre in molti sport l'analisi dei dati è ormai centrale nello scouting, la letteratura sulla talent identification basata sui risultati nel ciclismo su strada è **notevolmente scarsa**. Il lavoro nasce in ambito di ricerca operativa, non di scienze motorie: approccio diverso, domanda simile.
@@ -183,6 +185,8 @@ Apre il filone quantitativo-computazionale. Il messaggio implicito è importante
 > DOI: [10.23736/S0022-4707.21.13244-X](https://doi.org/10.23736/S0022-4707.21.13244-X)
 > Preprint accessibile: [ResearchGate](https://www.researchgate.net/publication/355984538)
 
+*Verificato sul testo integrale.*
+
 ### Contesto
 
 Descrivere il ruolo della prestazione di inizio carriera nel processo di transizione verso le categorie élite, con un focus sul contesto italiano.
@@ -191,7 +195,21 @@ Descrivere il ruolo della prestazione di inizio carriera nel processo di transiz
 
 Analisi retrospettiva di dati provenienti da database nazionali e internazionali, più i risultati dei Campionati del Mondo. Categorie considerate: **Youth-U16, Junior-U18 e U23 italiane**, più Junior-U18 internazionale e UCI World Tour.
 
-Il criterio è il **top-10 nel ranking** fra il 2007 e il 2013, con l'esito misurato fra il 2012 e il 2018.
+La fonte è la stessa di questo studio: la classificazione nazionale FCI, con `ciclismo.info` citato esplicitamente nei metodi.
+
+Il criterio è il **top-10 nel ranking** fra il 2007 e il 2013, con l'esito misurato fra il 2012 e il 2018. Dei 376 record estratti restano **181 ciclisti italiani** dopo la rimozione dei duplicati, più 150 partecipanti al top-25 del Mondiale Juniores.
+
+### A quali categorie italiane corrispondono — verificato sul testo integrale
+
+**Il paper non specifica mai gli anni di età**: le categorie compaiono solo come etichette, in tutto l'articolo. La corrispondenza va quindi ricostruita, e tre indizi convergono sulla stessa risposta.
+
+*La convenzione di denominazione.* «Junior-U18» è la categoria Juniores italiana, che copre i 17-18 anni: la denominazione usa quindi **l'età raggiunta alla fine della categoria**, non quella della convenzione UCI (che chiama la stessa categoria U19). Applicando la stessa regola, «Youth-U16» è la categoria che si chiude a sedici anni, cioè gli **Allievi** (15-16). Se fossero stati gli Esordienti, sotto la stessa convenzione si sarebbero chiamati U14.
+
+*Le categorie disponibili.* Su ciclismo.info le categorie giovanili maschili sono quattro — Esordienti, Allievi, Juniores, Elite/Under 23. Cesanelli ne usa tre, e quella che non compare è la prima.
+
+*La prova decisiva, dai dati.* Gli autori usano le stagioni **2007-2013 per tutte e tre le categorie**. Nella stessa fonte la classifica Esordienti **esiste solo dal 2009**: se «Youth-U16» fossero gli Esordienti, le stagioni 2007 e 2008 non esisterebbero. Allievi, Juniores e Under 23 sono invece disponibili dal 2007, che è esattamente l'anno di partenza dichiarato.
+
+**Conclusione: Youth-U16 = Allievi, Junior-U18 = Juniores.** Nella notazione di questo studio, le tre categorie di Cesanelli sono U17, U19 e U23 — le stesse di Gallo, e tutte **sopra** la fascia degli Esordienti.
 
 ### Risultati
 
@@ -226,7 +244,9 @@ I tassi si riferiscono ad atleti **già nel top-10**, cioè a un'élite ristrett
 
 ### Rilevanza
 
-Fornisce la migliore serie di **tassi di transizione italiani per categoria d'età**, ed è il dato più direttamente confrontabile con un'analisi FCI. Il gradiente 15% → 38,8% → 60% è la quantificazione più chiara del principio "il segnale cresce con l'età".
+Fornisce la migliore serie di **tassi di transizione italiani per categoria d'età**, ed è il dato più direttamente confrontabile con un'analisi FCI: stessa fonte, stesse categorie, stesso paese. Il gradiente 15% → 38,8% → 60% è la quantificazione più chiara del principio "il segnale cresce con l'età".
+
+E, verificata la corrispondenza delle categorie, conferma il posizionamento di questo studio invece di indebolirlo: anche Cesanelli parte dagli Allievi, e sugli Esordienti non c'è ancora nulla.
 
 ---
 
@@ -565,40 +585,57 @@ Documenta che, anche a livello U23, le differenze fra chi sale e chi no riguarda
 
 ## B5. Valenzuela et al. (2023) — Il test predittivo migliore
 
-> **What does it take to become a professional cyclist? A laboratory-based longitudinal analysis in competitive young riders**
-> *International Journal of Sports Physiology and Performance*, 18(11), 1275-1282
-> DOI: [10.1123/ijspp.2023-0083](https://doi.org/10.1123/ijspp.2023-0083) · PMID: 37611911
-> Testo integrale accessibile: [ruidera.uclm.es](https://ruidera.uclm.es/server/api/core/bitstreams/3c822caa-ef3a-460b-ba2b-67bb67f616b0/content)
+> **What Does It Take to Become a Professional Cyclist? A Laboratory-Based Longitudinal Analysis in Competitive Young Riders**
+> *International Journal of Sports Physiology and Performance*, 2023
+> DOI: [10.1123/ijspp.2023-0083](https://doi.org/10.1123/ijspp.2023-0083)
+
+*Verificato sul testo integrale.*
 
 ### Contesto
 
-Gli autori osservano che gli indicatori di laboratorio sono comunemente usati per valutare i giovani ciclisti, ma le evidenze che ne sostengono l'uso derivano soprattutto da studi trasversali, e la loro validità come predittori della prestazione futura resta poco chiara. Obiettivo: valutare il ruolo delle variabili di laboratorio nel predire il passaggio da U23 a professionista.
+Gli indicatori di laboratorio si usano da decenni per valutare i giovani ciclisti, ma quasi tutte le evidenze vengono da studi trasversali: mostrano che i migliori hanno valori più alti, non che quei valori predicano chi diventerà migliore. Lo studio affronta la domanda in forma longitudinale, e in più cerca **valori soglia utilizzabili in pratica**.
 
 ### Metodo
 
-**65 ciclisti U23 maschi su strada** (19,6 ± 1,5 anni), valutati fra settembre 2019 e dicembre 2021 nei mesi di preparazione, in tre giornate separate da 48 ore.
+**65 ciclisti Under 23 spagnoli maschi**, età 19,6 (1,5) anni, valutati fra settembre 2019 e dicembre 2021 in tre visite di laboratorio: composizione corporea e test incrementale massimale, forza e potenza muscolare, prova a cronometro simulata di **8 minuti**.
 
-Misure:
-- **endurance**: test incrementale massimale e cronometro simulata di 8 minuti;
-- **forza/potenza muscolare**: squat, affondo, hip thrust;
-- **composizione corporea**: DEXA.
+Seguiti poi fino a dicembre 2022 e classificati in base al passaggio o meno alla categoria professionistica. Follow-up mediano **37 mesi**, senza differenza fra i due gruppi.
 
-I partecipanti sono stati poi seguiti e classificati in base al passaggio ("Pro") o meno ("Non-Pro") alla categoria professionistica.
+| Gruppo | n |
+|---|---|
+| Pro | 16 |
+| Non-Pro | 49 |
+
+Per le variabili con differenze significative, i valori soglia sono stati determinati con le curve ROC secondo l'**indice di Youden**, riportando AUC, valore predittivo positivo e negativo. Un modello multivariato stepwise ha poi cercato la combinazione migliore, con controllo della multicollinearità (VIF < 5, tolleranza > 0,1).
 
 ### Risultati
 
-- Il **predittore individuale più accurato** è la prestazione nella **cronometro di 8 minuti**: valore predittivo complessivo del **76%** per un valore soglia di **5,6 W·kg⁻¹**.
-- Alcune variabili non significative nelle analisi univariate contribuivano significativamente al modello multivariato, che raggiungeva **R² = 0,79** e un **valore predittivo complessivo del 94%**.
+**Cosa distingue.** I futuri professionisti avevano valori superiori in tutti i principali indicatori di resistenza — soglia ventilatoria, punto di compenso respiratorio, potenza di picco, VO₂ di picco e prestazione nella cronometro di 8 minuti — con effetti grandi. Avevano inoltre **meno massa grassa** e valori più bassi di contenuto e densità minerale ossea.
 
-**Conclusione degli autori**: diversi indicatori di endurance "classici" da laboratorio possono predire il potenziale di raggiungere la categoria professionistica negli U23, ma un indicatore pratico come la cronometro di 8 minuti mostra la maggiore accuratezza predittiva.
+**Cosa non distingue.** Nessuno degli indicatori di forza e potenza muscolare — squat, affondo, hip thrust, in valore assoluto o relativo — separava i due gruppi.
+
+**Il singolo predittore migliore** è la prestazione nella cronometro di 8 minuti in watt per chilogrammo: **AUC 0,872**, soglia **5,6 W·kg⁻¹**, valore predittivo complessivo 76%.
+
+**I due numeri che quasi nessuno riporta**, e che rendono questo studio prezioso:
+
+| | |
+|---|---|
+| Valore predittivo **negativo** | **97%** |
+| Valore predittivo **positivo** | **54%** |
+
+Cioè: stare sotto la soglia esclude quasi con certezza, stare sopra vale poco più di una moneta. E questo con un tasso di evento del 25% (16 su 65), molto più alto di quello di una popolazione giovanile.
+
+**Il modello multivariato** — cronometro di 8 minuti relativa, massimale nell'affondo, indice di massa corporea e densità minerale ossea — arriva a uno pseudo-R² di Nagelkerke di 0,79 e classifica correttamente l'87,5% dei professionisti e il 95,0% dei non professionisti, 93,8% complessivo. Gli autori notano che alcune variabili non significative da sole contribuiscono in modo determinante nel modello.
 
 ### Limiti e note
 
-Il valore predittivo del 94% del modello multivariato va interpretato con cautela: con 65 atleti e un modello a più variabili, l'ottimismo da sovradattamento è probabile in assenza di validazione esterna o bootstrap. Il campione è inoltre già U23, quindi molto selezionato.
+Il campione è di soli Under 23 già competitivi a livello nazionale o internazionale: è quindi condizionato a una selezione avvenuta prima, e il tasso di evento del 25% non è trasferibile a una popolazione giovanile ampia. Con 16 eventi e quattro predittori nel modello finale, gli eventi per variabile sono quattro, sotto ogni soglia convenzionale, e la percentuale di classificazione corretta è quella **apparente**, non corretta per l'ottimismo.
 
 ### Rilevanza
 
-È l'unico studio che riporta capacità predittive elevate dai test di laboratorio, e va confrontato criticamente con Menaspà 2010. La differenza chiave: Valenzuela misura a **19-20 anni** su un orizzonte breve, Menaspà a **17,5 anni** su un orizzonte lungo. Coerente con il principio generale che la predizione migliora quando si accorcia la distanza temporale dall'esito.
+Duplice. È la dimostrazione più netta che, fra gli indicatori di laboratorio, **la prestazione conta e la forza no** — e la prestazione misurata in una prova che assomiglia a una gara, non in un test isolato.
+
+Ed è, insieme a Hasselaar, l'**unico studio di questa rassegna che riporta il valore predittivo positivo**. Il suo 54% su una popolazione già selezionata è il termine di paragone diretto per qualunque analisi che voglia dire cosa succederebbe usando davvero una soglia per selezionare.
 
 ---
 
@@ -619,13 +656,38 @@ Indagare la presenza del RAE nel ciclismo semi-professionistico e professionisti
 
 ### Metodo
 
-Dati da ProCyclingStats. Inclusi i ciclisti dei **primi 25 paesi** del ranking PCS che avevano fatto parte di una squadra CT fra il **2005 e il 2016**, nati fra gennaio 1986 e dicembre 1997: **n = 2.854**.
+*Verificato sul testo integrale.*
+
+Dati da ProCyclingStats, raccolti con uno script Python. Inclusi i ciclisti dei **primi 25 paesi** del ranking PCS che avevano fatto parte di una squadra CT fra il **2005 e il 2016**, nati fra gennaio 1986 e dicembre 1997: **n = 2.854** che soddisfano i criteri, **2.720 effettivamente analizzati**. La differenza sono i paesi esclusi: l'Ecuador per meno di venti partecipanti, Colombia e Sudafrica perché mancavano i dati di nascita della popolazione di riferimento.
+
+«Professionista» significa aver fatto parte di una squadra PT o WT per almeno un anno; i *trainee* non contano. Chi è arrivato a livello CT dopo quattro anni da Under 23 — cioè a ventitré anni o più — è stato escluso, perché non era stato considerato un talento nella propria categoria.
 
 Analisi con **chi-quadro di bontà di adattamento** delle distribuzioni per trimestre di nascita (Q1-Q4), per anno di inizio a livello CT (U23 anno 1-4) e per raggiungimento o meno del livello professionistico.
 
+**La distribuzione attesa non è uniforme, ed è il punto metodologico più importante.** Gli autori usano i dati delle Nazioni Unite sulle nascite per mese nei paesi interessati, ottenendo un atteso di **24,5% Q1, 25,2% Q2, 26,1% Q3, 24,3% Q4**. È la stessa scelta che questo studio compie con i dati Eurostat, e la differenza rispetto a chi usa il 25% per trimestre non è cosmetica: il terzo trimestre è il più affollato quasi ovunque, quindi l'uniforme sottostima l'effetto invece di sovrastimarlo.
+
+L'ampiezza dell'effetto si misura con il **coefficiente W di Cohen**, cioè la radice di chi-quadro diviso il numero di osservazioni, con soglie ≤ 0,1 piccolo, 0,1-0,3 medio, > 0,3 grande. I residui standardizzati sopra 2 in valore assoluto indicano quali trimestri sono sotto o sovrarappresentati.
+
 ### Risultati
 
-- È stato trovato un **RAE fra i ciclisti che non hanno raggiunto il livello professionistico**, spiegabile con chi inizia a livello CT nel primo e secondo anno da U23 (19 e 20 anni). Per i diciannovenni e ventenni esiste quindi un **bias di selezione a favore dei relativamente più anziani (Q1)**, a scapito dei relativamente più giovani (Q4).
+| Gruppo | χ² | p | W | Lettura |
+|---|---|---|---|---|
+| Tutti (2.720) | 37,92 | < 0,001 | 0,12 | RAE medio; Q1 sovrarappresentato (z = 4,73), Q4 sotto (z = −3,81) |
+| Professionisti | 2,04 | 0,564 | 0,06 | **Nessun RAE** |
+| Non professionisti | 38,97 | < 0,001 | 0,14 | RAE medio |
+
+Scomponendo per anno di inizio a livello Continental, e **solo fra i non professionisti**:
+
+| Anno di inizio | χ² | p | W |
+|---|---|---|---|
+| U23 anno 1 (19 anni) | 34,98 | < 0,001 | **0,20** |
+| U23 anno 2 (20 anni) | 16,53 | < 0,001 | **0,18** |
+| U23 anno 3 (21 anni) | 2,04 | 0,564 | 0,07 |
+| U23 anno 4 (22 anni) | 1,50 | 0,683 | 0,07 |
+
+Fra i professionisti nessuno dei quattro anni di inizio mostra un effetto (p da 0,44 a 0,95).
+
+- Il RAE è quindi concentrato in chi viene selezionato per una squadra Continental **a diciannove e vent'anni** e non arriva al professionismo. Per quelle due età esiste un **bias di selezione a favore dei relativamente più anziani (Q1)**, a scapito dei relativamente più giovani (Q4).
 - Fra i ciclisti che hanno raggiunto il livello professionistico, **nessun RAE**: l'effetto si dissolve al livello professionistico.
 
 **Conclusione degli autori**: lo studio offre indicazioni sui possibili errori di selezione nella scelta dei ciclisti per le squadre Continental di sviluppo.
@@ -633,6 +695,8 @@ Analisi con **chi-quadro di bontà di adattamento** delle distribuzioni per trim
 ### Rilevanza
 
 È la formulazione più chiara del pattern che unifica tutta la letteratura sul RAE nel ciclismo: **il RAE è un fenomeno di selezione, non di prestazione**. Chi seleziona tende a preferire i nati presto nell'anno; ma questi non hanno maggiori probabilità di riuscita. Il che significa, in pratica, che parte della selezione è sistematicamente sbagliata.
+
+È anche il **precedente metodologico** per l'uso di un atteso demografico invece dell'uniforme. Voet lo fa con i dati ONU, questo studio con Eurostat: due fonti diverse per la stessa scelta, e la stessa critica implicita a chi usa il 25% per trimestre.
 
 ### Il quadro complessivo sul RAE
 
@@ -662,60 +726,81 @@ Il pattern è coerente: **presente nelle età più giovani e nelle popolazioni n
 > *Current Issues in Sport Science*, 10(1), Articolo 012
 > DOI: [10.36950/2025.10ciss012](https://doi.org/10.36950/2025.10ciss012)
 > **Open access**: [testo integrale](https://ciss-journal.org/article/download/12343/15922/61645)
+> Sottomesso maggio 2025, accettato ottobre 2025, pubblicato **3 dicembre 2025**
+
+*Verificato sul testo integrale.*
 
 ### Contesto
 
-È il lavoro metodologicamente più importante degli ultimi anni, ed è quello che critica in modo più esplicito tutta la letteratura precedente.
+Tutti gli studi che misurano la prestazione giovanile usano il punteggio di un ranking federale o un tasso di successo normalizzato sul numero di partecipazioni. Gli autori sostengono che **nessuno dei due dà un quadro rappresentativo**, per due ragioni che valgono in qualunque paese.
 
-Gli autori osservano che quantificare la performance ciclistica non è semplice come sembra: il ciclismo su strada comprende competizioni molto diverse — dalle cronometro brevi in solitaria ai criterium e alle corse a tappe in gruppo — su terreni che vanno dal piatto alla montagna. Questo rende molto difficile confrontare la prestazione di un ciclista con quella di un altro.
-
-La critica centrale: fra tutti i metodi esistenti in letteratura (elencano Cesanelli, Gallo, Janssens, Leo, Menaspà, Mostaert, Rodriguez-Gutierrez, Svendsen, Van Bulck), **nessuno fornisce un quadro rappresentativo delle differenze di prestazione che consideri tutti i ciclisti di una fascia d'età**.
-
-Nello specifico:
-- molti studi analizzano ciclisti che già competono a livello internazionale nella categoria U23;
-- altri usano un numero limitato di competizioni, e rischiano quindi di perdere ciclisti che sono andati bene in altre gare;
-- i metodi più utili finora usano il **ranking nazionale federale** (Cesanelli, Gallo, Menaspà) oppure un **success rate** normalizzato per il numero di partecipazioni (Mostaert, Rodriguez-Gutierrez).
-
-Ma questi metodi non tengono conto dell'eterogeneità dei livelli e dei tipi di gara. I ciclisti migliori corrono soprattutto competizioni internazionali e raramente criterium locali; poiché un ranking nazionale in genere non considera i risultati internazionali, questo **favorisce ingiustamente chi va bene in competizioni nazionali di basso livello** rispetto ai coetanei che corrono all'estero. Inoltre i ranking nazionali favoriscono chi eccelle nelle gare più frequenti in calendario: gli autori fanno l'esempio olandese, dove i percorsi ventosi e pianeggianti avvantaggiano i velocisti e penalizzano gli scalatori, che hanno meno occasioni di fare punti.
+La prima: un ranking nazionale di solito **non conta i risultati internazionali**, e quindi penalizza chi corre all'estero rispetto a chi accumula punti in gare locali. La seconda: un ranking premia chi va bene nelle **tipologie di gara più frequenti in calendario** — in Olanda i circuiti piatti e ventosi, adatti ai velocisti, mentre chi va forte in salita ha molte meno occasioni di fare punti.
 
 ### Metodo
 
-Sviluppo di un **Youth Seasonal Cycling Performance Score (YSCPS)**, partendo dal sistema di ranking nazionale olandese (KNWU) per le categorie U17 e U19, in co-creazione con un panel di esperti (allenatori di un programma nazionale di sviluppo del talento).
+Gli autori costruiscono, in co-creazione con un panel di esperti e partendo dal sistema di ranking olandese, un **youth seasonal cycling performance score (YSCPS)**. La procedura è dichiarata come replicabile in altri paesi:
 
-Procedura:
-1. identificare i **tipi di gara** rilevanti — ne individuano sei: gare internazionali di un giorno; corse a tappe; gare nazionali; cronometro; criterium; risultati in discipline diverse dalla strada (ciclocross, pista, MTB, solo per competizioni internazionali o campionati nazionali);
-2. assegnare i **livelli di gara** a ciascun tipo, e a ciascun livello uno dei cinque schemi di punteggio;
-3. per ciascun tipo di gara, calcolare la **media dei due migliori risultati** della stagione (con un minimo di tre partecipazioni per le gare su strada di un giorno, per limitare l'influenza di cadute e forature);
-4. il YSCPS finale è la **media delle medie per tipo di gara** in cui il ciclista ha partecipato.
+1. identificare le tipologie di gara rilevanti nel calendario nazionale e internazionale (gare in linea, a tappe, cronometro, criterium, altre discipline);
+2. assegnare a ciascuna un livello e una scala di punti;
+3. per ogni tipologia, prendere le **due migliori prestazioni** della stagione e farne la media, dopo aver fissato un numero minimo di partecipazioni per limitare il peso di cadute e forature;
+4. mediare le medie delle sole tipologie in cui il ciclista ha effettivamente corso.
 
-### Risultati
+Il metodo include deliberatamente **altre discipline** — ciclocross, mountain bike, pista — perché condividono le caratteristiche prestative sottostanti e perché in età giovanile la pratica multidisciplinare è la norma.
 
-**Esempio dimostrativo.** Due ciclisti fittizi, uno di livello internazionale e uno nazionale, ottengono **identici 414 punti** con il ranking tradizionale, ma **76 contro 21 punti** con il YSCPS: un rapporto di 3,6 a 1 contro 1 a 1. La differenza nasce dal fatto che il ranking tradizionale non considera i risultati internazionali.
+### Il risultato che vale l'articolo
 
-**Verifica di robustezza.** Su **1.138 ciclisti**, il YSCPS correla con la frequenza di piazzamenti nel primo 20% dei partecipanti (misura di costanza di rendimento) con **r di Pearson = 0,66 (p < 0,001)**. Il YSCPS non sovra-rappresenta quindi la prestazione di picco.
+Gli autori mostrano il calcolo su due ciclisti di esempio, uno che corre a livello internazionale e uno che corre soprattutto gare nazionali.
 
-**Analisi retrospettiva predittiva.** Su **48 ciclisti** al secondo anno U19 nella stagione 2022, con esito il livello di squadra due anni dopo (basso = nessuna squadra o squadra club; alto = Continental o superiore). Dei 48, **43 di livello basso e 5 di livello alto**. Due modelli di regressione logistica a confronto:
-
-| Modello | Classificati correttamente | Alti individuati |
+| | Ranking tradizionale | YSCPS |
 |---|---|---|
-| Ranking tradizionale KNWU | 87,5% | 1 su 5 |
-| YSCPS | **91,7%** | **2 su 5** |
+| Ciclista internazionale | **414** | **76** |
+| Ciclista nazionale | **414** | **21** |
 
-Gli autori commentano onestamente il risultato: il modello YSCPS ha individuato correttamente solo due dei cinque ciclisti che hanno raggiunto un livello alto — il doppio del modello tradizionale, quindi un miglioramento importante dato il basso numero di veri talenti, ma **tre su cinque restano classificati erroneamente come di basso livello**. Da qui l'insistenza sulla necessità di un approccio multidimensionale invece di affidarsi ai soli risultati di gara.
+**Lo stesso punteggio nel ranking federale, un fattore quasi quattro nella nuova metrica.** Il ranking tradizionale non conta le gare internazionali, quindi assegna zero punti proprio ai risultati migliori del primo ciclista. È la dimostrazione più efficace che il problema non è teorico.
+
+### Validazione predittiva
+
+Su un campione retrospettivo di **48 ciclisti**, gli autori mostrano che lo YSCPS ha la potenzialità di predire il livello di squadra raggiunto **due anni dopo la categoria Under 19**. Gli stessi autori la presentano come dimostrazione di potenziale, non come validazione: il campione è piccolo e retrospettivo.
 
 ### Limiti e note
 
-Campione di validazione molto piccolo (48 ciclisti, 5 eventi). Manca un gold standard per la validità di criterio. Gli autori segnalano inoltre due effetti collaterali: non esiste calendario internazionale per la categoria U17, quindi i punteggi U19 risultano gonfiati rispetto agli U17 non perché siano migliori ma perché possono correre gare più prestigiose; e partecipare a una gara di un'altra disciplina "per divertimento" può abbassare il punteggio finale.
+Il punteggio è costruito sul calendario olandese e sul suo sistema di ranking: **non è trasferibile come tale**, è un modello di procedura. Gli autori lo dichiarano e forniscono la tabella dei passaggi proprio come template.
+
+Il numero minimo di partecipazioni per tipologia di gara è una scelta discrezionale, come lo è prendere le due migliori prestazioni invece di una o tre.
 
 ### Rilevanza
 
-**È il lavoro più direttamente utile dal punto di vista metodologico.** Fornisce:
-- una critica documentata all'uso del punteggio grezzo di ranking federale, esattamente il predittore usato da Gallo 2022;
-- un template replicabile per costruire una metrica migliore su un altro paese;
-- una dimostrazione quantitativa che la metrica cambia le conclusioni;
-- e un dato di confronto onesto sui limiti della predizione anche con la metrica migliore.
+È l'unico studio della rassegna che tratta la **misura** come problema di ricerca invece che come dato. La sua critica colpisce direttamente il punteggio grezzo usato da Gallo, Cesanelli e Menaspà — e quindi anche la fonte di questo studio.
 
-La frase chiave, per chi lavori su dati FCI: serve una misura di performance che **consideri tutti i ciclisti di una fascia d'età, non solo quelli che già vanno bene**.
+### Cosa vale, e cosa non vale, per la fonte italiana
+
+La critica di Hasselaar si sdoppia, e le due metà hanno destini diversi.
+
+**La prima metà non si applica.** Il ranking olandese non conta i risultati
+internazionali; quello italiano sì, e li pesa: nelle categorie internazionali — Juniores
+e Under 23 — una gara nazionale vale il doppio di una regionale e una internazionale il
+triplo. Nelle categorie senza calendario internazionale, Esordienti e Allievi, una gara
+all'estero vale quanto una regionale, il che è coerente col fatto che a quell'età correre
+fuori confine è raro.
+
+Il dato lo conferma indirettamente: il rapporto fra punti e piazzamenti nei primi cinque
+sale da **2,67 in Esordienti a 4,17 in Under 23**, e il salto avviene esattamente fra
+Allievi e Juniores, dove i moltiplicatori entrano in funzione. La sezione «Lo stesso
+punteggio è lo stesso risultato?» del documento generato lo mostra per esteso.
+
+**La seconda metà resta in piedi, e non è correggibile.** Un ranking premia comunque chi
+eccelle nelle tipologie di gara più frequenti in calendario: chi va forte in salita, dove
+i percorsi veloci abbondano, ha meno occasioni di andare a punti. Servirebbe il dettaglio
+gara per gara, che la fonte non pubblica. È un limite che questo studio eredita e
+dichiara.
+
+**Una terza cosa, che Hasselaar non solleva e che i dati hanno fatto emergere.** Con una
+scala da cinque a un punto i pari merito sono fra il 77% e il 95% dei classificati.
+Questo studio li scioglie guardando vittorie e piazzamenti, ma la verifica mostra che
+quel raffinamento **non migliora la previsione in nessuna categoria**: a parità di punti,
+il modo in cui sono stati ottenuti non dice nulla di più. È una risposta parziale alla
+domanda di Hasselaar, sulla stessa linea ma con esito opposto a quello che ci si
+aspetterebbe.
 
 ---
 
@@ -859,11 +944,15 @@ Convergenza con atletica (Pizzuto; Boccia), nuoto (Brustio), e con l'analisi mul
 
 **Stato attuale.** Il solo studio che copre i 13-14 anni con esiti di carriera è Mostaert 2022 sulla coordinazione motoria, che è uno studio su test, non sui risultati di gara, e con esito a 2-3 anni, non la carriera professionistica. Mostaert 2022 (EJSS) include l'U15 ma solo per il RAE e per atleti con almeno un top-10.
 
+**Verificato il 28 agosto 2026**: Cesanelli et al. (2022) *non* copre questa fascia. Il loro «Youth-U16» sono gli Allievi, non gli Esordienti — la dimostrazione è nella scheda A4, e la prova decisiva è che usano stagioni dal 2007 mentre la classifica Esordienti della loro stessa fonte esiste solo dal 2009.
+
 **Cosa manca.** Nessuno ha mai verificato se il **risultato agonistico** a 13-14 anni predica l'accesso al professionismo, su una popolazione nazionale.
 
 **Perché conta.** È l'età in cui le società italiane fanno le prime scelte di reclutamento e di investimento. Si sta decidendo sulla base di un dato di cui non conosciamo il valore informativo.
 
 **Previsione ragionevole.** Che il valore sia prossimo a zero. Ma un nullo ben quantificato — con intervalli di confidenza stretti attorno a un odds ratio di 1 e un ΔAUC prossimo a zero — è un risultato molto più utile di un "non significativo".
+
+**La previsione si è rivelata sbagliata**, ed è il risultato più sorprendente di questo studio: a tredici anni la separazione fra chi arriverà e chi no è già «grande» secondo le soglie convenzionali. Il gap non era una zona vuota perché non c'era niente da trovare.
 
 ## Gap 2 — Il valore incrementale per età
 
@@ -875,7 +964,11 @@ Convergenza con atletica (Pizzuto; Boccia), nuoto (Brustio), e con l'analisi mul
 
 ## Gap 3 — L'utilità pratica non è mai riportata
 
-**Stato attuale.** Gli studi riportano significatività, odds ratio, talvolta correlazioni. Solo Hasselaar 2025 riporta una matrice di confusione, ed è l'unico che permette di vedere quanto il modello sbagli.
+**Stato attuale.** Gli studi riportano significatività, odds ratio, talvolta correlazioni.
+
+Due eccezioni, entrambe fuori dal filone dei risultati agonistici. Hasselaar 2025 riporta una matrice di confusione. E **Valenzuela 2023 riporta valore predittivo positivo e negativo** — 54% e 97% alla soglia di 5,6 W·kg⁻¹ — ma su un predittore di laboratorio, in un campione di soli 65 Under 23 già selezionati, dove il tasso di evento è del 25%.
+
+**Nessuno studio basato sui risultati di gara ha mai riportato il valore predittivo positivo.** È la formulazione corretta del gap, ed è più stretta di quanto sembrasse: il numero esiste in letteratura, ma non per il predittore che le società usano davvero.
 
 **Cosa manca.** **Valore predittivo positivo, valore predittivo negativo, decision curve analysis.** Con un tasso di evento del 3%, anche un modello eccellente produce una larga maggioranza di falsi positivi fra gli atleti segnalati. Senza questo numero, il lettore sovrastima sistematicamente l'utilità operativa del risultato.
 
@@ -927,16 +1020,16 @@ Tutti gli studi sulla predizione riguardano atleti **maschi**. Tutti riguardano 
 | Svendsen 2018 | Norvegia | 80 | U19 | Livello a 23 anni | Il risultato in gara a 18 anni batte le variabili fisiologiche |
 | Gallo 2021 | Italia | — | U17 | Punti a ranking | Chi fa punti ha potenza superiore a 2 e 4 mmol/L |
 | Van Bulck 2021 | Internaz. | 2.500+ | U23 | Primi 3 anni élite | Machine learning su 25.000 gare; predizione ancora aperta |
-| Cesanelli 2022 | Italia | Top-10 | U16, U18, U23 | Punti World Tour | Tassi 15% / 38,8% / 60%; U16 correlazione bassa |
+| Cesanelli 2022 | Italia | 181 | Allievi, Juniores, U23 | Punti World Tour | Tassi 15% / 38,8% / 60%; le categorie sono le stesse di Gallo, non gli Esordienti |
 | Gallo 2022 | Italia | 1.345 | U17, U19, U23 | Professionismo (43) | Predittivo dall'U17, crescente con l'età; migliore al 1° anno U23 |
 | Mostaert 2022a | Belgio | 307 | U15, U17, U19 | Livello élite | +3-6% per ogni top-10; RAE in U15, non in U19 |
 | Mostaert 2022b | Belgio | 111 + 67 | U15, U17 | Successo a 2-3 anni | A 13-14 anni contano maturità e coordinazione (5% ciascuna); dai 15 anni nulla predice |
 | Voet 2022 | Internaz. | 2.854 | U23 (CT) | Professionismo | RAE fra i non professionisti, assente fra i professionisti |
 | Janssens 2023 | Internaz. | — | Giovanili | Talento pro | Modelli ML con correlazione di rango 0,53-0,58 |
-| Valenzuela 2023 | Spagna | 65 | U23 | Professionismo | Cronometro 8 min: 76% di accuratezza a 5,6 W/kg |
+| Valenzuela 2023 | Spagna | 65 (16 pro) | U23 | Professionismo | Cronometro 8 min a 5,6 W/kg: AUC 0,872, **VPN 97% ma VPP 54%** |
 | Filipas 2024 | Italia | 81 pro | U19, U23 | Top 400 PCS (22) | −50,8% odds per anno in più nelle giovanili; RAE assente |
 | Cesanelli 2024 | Internaz. | — | Pista | Livello élite | Tasso di successo <20%; il ranking UCI non discrimina |
-| Hasselaar 2025 | Olanda | 1.138 / 48 | U17, U19 | Livello squadra | I ranking tradizionali distorcono; nuova metrica, 2 su 5 individuati |
+| Hasselaar 2025 | Olanda | 48 (validazione) | U17, U19 | Livello squadra | Due ciclisti con **414 punti identici** nel ranking tradizionale valgono 76 e 21 nella nuova metrica |
 
 ---
 
@@ -1069,23 +1162,55 @@ trattamento delle discrepanze fra fonti — il 60% contro 65% di Cesanelli — s
 standard superiore a molte rassegne pubblicate. Le note critiche che seguono riguardano
 punti da verificare e integrazioni, non correzioni di errori accertati.
 
-## Un punto da verificare prima di pubblicare qualunque cosa
+## La verifica bloccante — risolta il 28 agosto 2026
 
-**Che cosa sono esattamente le categorie di Cesanelli et al. (2022).** La scheda A4 le
-riporta come «Youth-U16, Junior-U18 e U23». Se «Youth-U16» corrispondesse agli Esordienti
-italiani (13-14 anni), il Gap 1 — «nessuno ha mai verificato se il risultato agonistico a
-13-14 anni predica l'accesso al professionismo» — sarebbe **falso**, e con esso cadrebbe
-la principale rivendicazione di originalità di questo studio.
+**Che cosa sono esattamente le categorie di Cesanelli et al. (2022).** Era l'unica
+verifica in grado di far cadere la principale rivendicazione di originalità dello studio:
+se «Youth-U16» fossero stati gli Esordienti (13-14 anni), il Gap 1 sarebbe stato falso.
 
-Le due letture sono entrambe plausibili: la denominazione «U16» può indicare la categoria
-che si chiude a sedici anni compiuti, cioè gli Allievi, oppure quella che si chiude a
-sedici anni di età sportiva. La rassegna non lo chiarisce e non può chiarirlo senza il
-testo integrale.
+Letto il testo integrale, **le età non sono specificate in nessun punto dell'articolo**.
+La corrispondenza è però ricostruibile, e tre indizi indipendenti convergono: la
+convenzione di denominazione (Junior-U18 sono i Juniores, quindi si conta l'età raggiunta
+alla fine della categoria); le categorie disponibili nella fonte, che sono quattro e di cui
+Cesanelli ne usa tre; e soprattutto **il periodo analizzato**, 2007-2013 per tutte e tre le
+categorie, mentre su ciclismo.info la classifica Esordienti esiste solo dal 2009.
 
-**È l'unica verifica bibliografica davvero bloccante.** Va fatta sul testo integrale, e
-il risultato va scritto qui e nel Gap 1. Nel caso peggiore la formulazione va corretta in
-«nessuno ha mai verificato su una popolazione non preselezionata», che resta vera in ogni
-caso: Cesanelli lavora sui soli top-10.
+**Youth-U16 sono gli Allievi.** Il Gap 1 regge, e con esso il posizionamento dello studio.
+Il ragionamento completo è nella scheda A4.
+
+Resta una raccomandazione di prudenza per la scrittura: la formulazione più robusta non è
+«nessuno ha guardato i 13-14 anni» ma «nessuno ha guardato i 13-14 anni **su una
+popolazione non preselezionata**». La seconda è vera indipendentemente dalla
+corrispondenza delle categorie, perché Cesanelli lavora comunque sui soli top-10.
+
+## Verifiche fatte sui testi integrali disponibili
+
+Cinque testi integrali sono stati letti e le rispettive schede riscritte: **Cesanelli
+(A4), Van Bulck (A3), Voet (C1), Valenzuela (B5) e Hasselaar (D1)**. Portano tutte il
+marcatore *«Verificato sul testo integrale»*.
+
+**Nessuna scheda conteneva errori di fatto.** Titoli, riviste, DOI, campioni e risultati
+principali corrispondono all'originale. L'integrazione ha però aggiunto elementi che
+cambiano il peso di tre studi:
+
+**Voet** usa come atteso i dati ONU sulle nascite per mese, non l'uniforme. È il
+precedente metodologico diretto della scelta compiuta qui con Eurostat, e la scheda non
+lo diceva. La scheda riporta ora anche i chi-quadro, le ampiezze d'effetto e la
+scomposizione per anno di inizio a livello Continental, da cui si vede che il RAE è
+concentrato in chi viene selezionato a diciannove e vent'anni e non arriva.
+
+**Valenzuela** riporta valore predittivo positivo e negativo — 54% e 97% — che è
+esattamente ciò che il Gap 3 lamentava mancasse. Il gap va quindi riformulato, non
+cancellato: nessuno studio **basato sui risultati di gara** ha mai riportato il VPP.
+
+**Hasselaar** contiene l'esempio più efficace dell'intera rassegna: due ciclisti con lo
+stesso identico punteggio nel ranking federale, 414, che nella nuova metrica valgono 76 e
+21. La scheda non lo riportava, ed è il modo più diretto di far capire perché la misura
+sia un problema.
+
+Restano non verificati sui testi integrali: Schumacher (A1), Svendsen (A2), Mostaert
+(A5 e B3), Gallo (A6 e B2), Janssens (A7), Filipas (A8), Menaspà (B1), Leo (B4) e tutta
+la Sezione E.
 
 ## Tre imprecisioni minori
 
