@@ -26,6 +26,9 @@ stata fatta, che è metà del valore di questo file.
 | 28 ago | accenti nel testo generato | `report/accenti.py`: gli accenti si applicano alla generazione, non a mano sul file |
 | 28 ago | **FASE 3** confine verso R | `scripts/08_prepara_modelli.py` costruisce `modelli.db`; `R/lib_risultati.R` scrive nello stesso archivio |
 | 28 ago | **STEP 16** modelli univariati | `R/16_univariati.R`: OR da 1,40 a 2,28 per 10 punti; AUC coincidenti con la descrittiva entro 0,0005 |
+| 28 ago | rassegna della letteratura | importata in `docs/literature_review.md` con appendice di revisione: una verifica bloccante su Cesanelli, tre imprecisioni minori, tre studi da valutare, due gap in più |
+| 28 ago | figure per il web | `output/figure_web/`: stesse figure con testi ingranditi, linee più spesse, etichette inclinate e doppia risoluzione |
+| 28 ago | avvisi sui documenti statici | i file che non si rigenerano lo dichiarano in testa; `scripts/11_verifica_documenti.py` confronta le loro cifre con l'archivio |
 | 28 ago | **voce 2 TRIPOD** la sintesi | `report/moduli/sintesi.py`: abstract generato in testa al documento, ogni cifra riletta dall'archivio del modulo che l'ha prodotta |
 | 28 ago | piano editoriale | `docs/piano_post.md`: otto post per tema, con il filo conduttore e la mappa verso i moduli |
 | 28 ago | **STEP 17** elastic net | `R/17_penalizzato.R`: su 82 atleti con tutte le celle, la penalizzazione trattiene solo U19y2 e U23y1 e guadagna +0,015 di AUC |
