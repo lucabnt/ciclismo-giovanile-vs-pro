@@ -1,5 +1,20 @@
 # Piano della serie di blog post
 
+> ⚠️ **Questo file non si rigenera.** Il resto del progetto si ricostruisce con un
+> comando e ogni numero viene da una query; questo documento no, è scritto a mano. Le
+> cifre che cita sono copiate dall'analisi al momento della stesura e **diventeranno
+> false quando i dati cambieranno**, senza che nulla lo segnali da solo.
+>
+> Prima di fidarsene, o prima di riusarlo per scrivere qualcosa:
+>
+> ```bash
+> python scripts/11_verifica_documenti.py
+> ```
+>
+> Il controllo confronta le cifre citate qui con l'archivio dei risultati. Le
+> affermazioni qualitative restano da rivedere a mano: quelle nessuno script può
+> verificarle.
+
 Il documento generato (`output/analisi.md`) è organizzato per **tipo di studio**, perché
 così si controllano i metodi. I post vanno organizzati per **tema**, perché così si
 legge: chi legge non vuole sapere cosa dice il modello di sopravvivenza, vuole sapere se
@@ -31,6 +46,13 @@ dimenticarlo.
 
 ### 1. Cosa sappiamo già, e cosa nessuno ha ancora guardato
 
+**Sintesi.** La ricerca sul passaggio dal ciclismo giovanile al professionismo dice da
+vent'anni la stessa cosa: il successo da ragazzi non è né necessario né sufficiente per
+arrivare. Ma tutti gli studi partono dai sedici anni in su, si fermano al momento in cui
+si diventa professionisti, e nessuno dichiara quanti ragazzi ci fossero all'inizio. Questa
+serie parte da dove le decisioni si prendono davvero — i tredici anni — e arriva fino a
+dove si finisce.
+
 **La domanda.** Qualcuno l'ha già studiato? Sì, ma partendo sempre da un'età più alta.
 
 **Cosa contiene.** La rassegna della letteratura: Gallo e colleghi partono dall'Under 17
@@ -54,6 +76,12 @@ parlando — e la risposta è meno ovvia di quanto sembri.
 ---
 
 ### 2. Di chi stiamo parlando
+
+**Sintesi.** Prima di dire quanti ce la fanno bisogna sapere quanti sono. Nel ranking
+nazionale entri solo se arrivi almeno una volta nei primi cinque, e ci entra circa un
+tesserato su sette. L'imbuto che segue — da 2 187 classificati in Under 15 a 77
+professionisti — parte quindi da un gruppo già scremato: trentacinque su mille è una
+percentuale calcolata su chi era già bravo.
 
 **La domanda.** Quando diciamo «i giovani ciclisti italiani», chi stiamo contando?
 
@@ -83,6 +111,13 @@ smesso di correre?
 ---
 
 ### 3. Sparire dalla classifica non è smettere
+
+**Sintesi.** Sembra che il ciclismo giovanile perda tre ragazzi su quattro fra i
+tredici e i vent'anni. Guardando meglio, quasi un terzo di chi sparisce ricompare, metà
+dei classificati in una categoria non c'era l'anno prima, e il crollo al cambio di
+categoria è soprattutto la classifica che si accorcia: i posti si dimezzano, e chi resta
+fuori spesso sta ancora correndo. L'imbuto misura il ricambio di una lista, non
+l'abbandono di uno sport.
 
 **La domanda.** L'abbandono nel ciclismo giovanile è davvero così drammatico?
 
@@ -118,6 +153,12 @@ qualcosa sull'anno dopo?
 
 ### 4. A tredici anni si vede già qualcosa
 
+**Sintesi.** Il risultato agonistico a tredici anni separa già in modo marcato chi
+arriverà da chi no, e il segnale cresce fino ai diciotto. Ma non si accumula come ci si
+aspetterebbe: cinque metodi diversi, dai modelli annidati alla foresta casuale, arrivano
+alla stessa conclusione — quasi tutta l'informazione utile sta nell'ultima misura
+disponibile, e le stagioni precedenti aggiungono poco a quella.
+
 **La domanda.** Da che età il risultato comincia a informare?
 
 **Le evidenze, tutte nella stessa direzione.**
@@ -131,7 +172,8 @@ qualcosa sull'anno dopo?
   professionismo, che è più alto nelle celle del primo anno solo perché quelle liste
   sono più corte.
 - Costruendo i modelli per aggiunte successive sugli stessi atleti, il salto più grande
-  è l'**Under 19**: da solo aggiunge più di tutte le categorie precedenti messe insieme.
+  è l'**Under 19** (ΔAUC +0,151): da solo aggiunge più di tutte le categorie precedenti
+  messe insieme.
 - Tre metodi diversi — modelli annidati, foresta casuale, regressione penalizzata —
   arrivano alla stessa conclusione: quasi tutta l'informazione utile sta nell'**ultima
   misura disponibile**.
@@ -151,6 +193,12 @@ decidere» sono due cose diverse, ed è il post successivo.
 ---
 
 ### 5. Il livello o la curva?
+
+**Sintesi.** La domanda che si fanno tutti gli allenatori ha una risposta netta:
+contano entrambi, ma non allo stesso modo. Fra gli atleti di livello alto, chi stava anche
+migliorando è arrivato dieci volte più spesso di chi stava calando; ma fra quelli di
+livello basso il miglioramento non salva quasi nessuno. Il livello è una condizione, il
+miglioramento è un moltiplicatore.
 
 **La domanda.** Conta di più dove sei o dove stai andando?
 
@@ -181,6 +229,13 @@ prendiamo a vuoto?
 ---
 
 ### 6. Predire non è selezionare
+
+**Sintesi.** Selezionando il dieci per cento migliore a diciotto anni si intercetta il
+59% dei futuri professionisti — e il 52% dei selezionati non lo diventerà. Le due metà
+della frase sono entrambe vere, e la seconda è aritmetica: quando l'esito riguarda meno
+del tre per cento della popolazione, anche un criterio accurato produce in maggioranza
+falsi positivi. Lo stesso motivo per cui uno screening medico su una malattia rara riempie
+gli ambulatori di persone sane.
 
 **La domanda.** Se una società usasse davvero la classifica per scegliere, cosa
 otterrebbe?
@@ -219,6 +274,12 @@ scarti per sbaglio, e quanti ne tieni che non arriveranno.
 
 ### 7. I falsi indizi
 
+**Sintesi.** Nascere a gennaio, cambiare società, venire dalla regione giusta: tre cose
+che sembrano contare e che, guardate bene, non contano. Il vantaggio di chi è nato a
+inizio anno è di accesso e non di talento — si spegne salendo di categoria e sparisce fra
+chi arriva. E il gradiente della mobilità, che sembrava enorme, è la durata della carriera
+vista da un'altra angolazione: il 96% cambia società passando all'Under 23, perché deve.
+
 **La domanda.** Le cose che tutti credono contino, contano?
 
 **Le evidenze, tutte negative e tutte nella stessa direzione.**
@@ -249,6 +310,12 @@ qualcuno avrebbe scritto «cambiare squadra aiuta».
 ---
 
 ### 8. Cosa faremmo con questi numeri
+
+**Sintesi.** Il risultato a tredici anni non è rumore, e negarlo sarebbe falso quanto
+sopravvalutarlo. Ma la stessa misura che predice bene seleziona male, e la maggior parte di
+chi esce dalla classifica non ha smesso di correre. La conclusione pratica non riguarda i
+ragazzi ma chi li guarda: la classifica giovanile è uno strumento ragionevole per decidere
+chi seguire, e uno strumento pessimo per decidere chi lasciare andare.
 
 **La domanda.** E adesso?
 
@@ -328,12 +395,16 @@ tabelle, e vale anche per la prosa.
 
 ## Cosa manca prima di scrivere
 
-1. **La rassegna della letteratura va ripresa e ampliata.** La guida cita gli studi ma
-   non li riassume in forma leggibile: il post 1 è l'unico che richiede lavoro
-   bibliografico nuovo.
-2. **Le figure vanno riviste per il web.** Quelle del documento sono pensate per essere
-   lette accanto a una tabella. Per un post servono più grandi, con meno serie e con il
-   messaggio scritto dentro.
+1. ~~La rassegna della letteratura va ripresa~~ — fatta: [`literature_review.md`](literature_review.md),
+   22 studi. **Resta una verifica bloccante**: cosa siano esattamente le categorie di
+   Cesanelli et al. (2022). Se il loro «Youth-U16» fossero gli Esordienti, la
+   rivendicazione di originalità del post 1 andrebbe riformulata. Dettagli nell'appendice
+   della rassegna.
+2. ~~Le figure vanno riviste per il web~~ — fatte: `output/figure_web/` contiene la stessa
+   figura con testi ingranditi, linee più spesse ed etichette inclinate, a doppia
+   risoluzione. **Resta la parte editoriale**: scrivere il messaggio dentro la figura e
+   togliere le serie che il post non commenta. Dipende da cosa dice il testo attorno e va
+   fatto post per post.
 3. **Serve una sintesi per ogni post.** Lo studio nel complesso ora ce l'ha — la
    sezione «In sintesi» che apre il documento, e che chiude la voce 2 della checklist
    TRIPOD. Quella dei singoli post resta lavoro editoriale, da fare mentre si scrive.
