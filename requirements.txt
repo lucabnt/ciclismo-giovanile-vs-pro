@@ -16,11 +16,25 @@ scipy>=1.11                # test statistici della descrittiva
 # --------------------------------------------------------------------------
 # I modelli girano in R, non in Python: pip non li installa. Servono R >= 4.2 e
 #
-#   install.packages(c("RSQLite", "jsonlite", "logistf", "pROC"))
+#   install.packages(c("RSQLite", "jsonlite", "logistf", "pROC",
+#                      "glmnet", "lme4", "randomForest"))
 #
 # RSQLite e jsonlite    leggono e scrivono i database del confine fra i due linguaggi
 # logistf               logistica di Firth, per gli eventi rari
 # pROC                  AUC, intervalli e test di DeLong
+# glmnet                elastic net, STEP 17
+# lme4                  modelli misti, STEP 21 e 24
+# randomForest          confronto con il machine learning, STEP 27
+#
+# Vengono con R e non si installano: MASS (logistica ordinale, STEP 22-23), splines
+# (spline sull'eta', STEP 20), DBI (interfaccia usata da RSQLite).
 #
 # Servono solo per le sezioni modellistiche: senza R il documento si genera lo stesso
 # e quelle sezioni dichiarano cosa manca. Elenco completo e stato in docs/da_fare.md.
+#
+# Verifica che l'elenco sia completo:
+#
+#   grep -rhoE "library\([A-Za-z0-9.]+\)|[A-Za-z0-9.]+::" R/
+#
+# Se compare un pacchetto che non e' in questa lista ne' fra quelli di serie, la lista
+# e' rimasta indietro rispetto al codice.
