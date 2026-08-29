@@ -23,6 +23,12 @@ import contextlib
 import os
 
 CARTELLA = "output/figure"
+CARTELLA_WEB = "output/figure_web"
+
+# Quanto ingrandire i testi nella versione per il web. Le figure del documento si
+# leggono accanto alla tabella che le spiega; quelle di un post si leggono da sole e
+# spesso da telefono, dove un'etichetta a otto punti e' illeggibile.
+INGRANDIMENTO = 1.45
 
 # Palette sobria, leggibile anche in scala di grigi: le tinte hanno luminosita' diverse.
 COLORI = ["#1f4e79", "#c0504d", "#4f81bd", "#9bbb59", "#8064a2", "#f79646"]
@@ -92,14 +98,60 @@ def _accenta(fig):
                 t.set_text(nuovo)
 
 
+def _versione_web(fig, percorso):
+    """La stessa figura, rifinita per essere letta da sola e da telefono.
+
+    Non e' una figura diversa: e' la stessa, con i testi piu' grandi, le linee piu'
+    spesse e piu' risoluzione. Farne una copia invece di sostituire l'originale ha una
+    ragione precisa — nel documento le figure stanno accanto alla tabella che le
+    commenta, e li' un testo grande sarebbe sproporzionato; in un post stanno da sole.
+
+    Resta un lavoro che questa funzione non puo' fare: scrivere il messaggio dentro la
+    figura. Quello dipende da cosa dice il post attorno, e va fatto post per post.
+    """
+    salvati = {}
+    for t in fig.findobj(match=lambda o: hasattr(o, "get_fontsize")):
+        salvati[t] = t.get_fontsize()
+        t.set_fontsize(t.get_fontsize() * INGRANDIMENTO)
+    for ax in fig.get_axes():
+        for linea in ax.get_lines():
+            linea.set_linewidth(linea.get_linewidth() * 1.3)
+            if linea.get_markersize():
+                linea.set_markersize(linea.get_markersize() * 1.2)
+    fig.set_size_inches(fig.get_size_inches() * 1.15)
+
+    # Ingrandire i testi senza rifare la disposizione li fa collidere. Le etichette
+    # lunghe sull'asse orizzontale si inclinano, e la figura si ricompone.
+    for ax in fig.get_axes():
+        etichette = [t.get_text() for t in ax.get_xticklabels()]
+        lunghe = [e for e in etichette if len(e) > 7]
+        if len(etichette) > 3 and lunghe:
+            for t in ax.get_xticklabels():
+                t.set_rotation(25)
+                t.set_horizontalalignment("right")
+    try:
+        fig.tight_layout()
+    except Exception:
+        pass
+
+    os.makedirs(CARTELLA_WEB, exist_ok=True)
+    fig.savefig(os.path.join(CARTELLA_WEB, os.path.basename(percorso)), dpi=200)
+
+
 def salva(nome, fig=None):
-    """Salva la figura corrente e restituisce il percorso, da passare all'archivio."""
+    """Salva la figura corrente e restituisce il percorso, da passare all'archivio.
+
+    Produce due file: quello del documento e, accanto, la versione per il web in
+    `output/figure_web/`. L'archivio registra solo il primo — il secondo si prende dal
+    nome, quando si scrivono i post.
+    """
     plt = _plt()
     os.makedirs(CARTELLA, exist_ok=True)
     percorso = os.path.join(CARTELLA, nome + ".png")
     fig = fig or plt.gcf()
     _accenta(fig)
     fig.savefig(percorso)
+    _versione_web(fig, percorso)
     plt.close(fig)
     return percorso
 
