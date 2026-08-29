@@ -21,7 +21,9 @@ legge: chi legge non vuole sapere cosa dice il modello di sopravvivenza, vuole s
 suo figlio ce la farà.
 
 Questo file traduce le diciassette sezioni dell'analisi in otto post, dice qual è il filo
-che li tiene insieme e da quali moduli dell'archivio ciascuno prende i numeri.
+che li tiene insieme e da quali moduli dell'archivio ciascuno prende i numeri. Le bozze
+scritte stanno in [`docs/post/`](post/), e ciascuna si chiude con le scelte editoriali
+ancora aperte.
 
 ---
 
@@ -405,7 +407,32 @@ tabelle, e vale anche per la prosa.
    figura con testi ingranditi, linee più spesse ed etichette inclinate, a doppia
    risoluzione. **Resta la parte editoriale**: scrivere il messaggio dentro la figura e
    togliere le serie che il post non commenta. Dipende da cosa dice il testo attorno e va
-   fatto post per post.
-3. **Serve una sintesi per ogni post.** Lo studio nel complesso ora ce l'ha — la
-   sezione «In sintesi» che apre il documento, e che chiude la voce 2 della checklist
-   TRIPOD. Quella dei singoli post resta lavoro editoriale, da fare mentre si scrive.
+   fatto post per post — ora è possibile, perché il testo attorno esiste: l'intestazione
+   di ogni bozza in [`docs/post/`](post/) dichiara quali figure usa.
+3. ~~Serve una sintesi per ogni post~~ — fatte: ogni post di questo piano apre con la
+   propria **Sintesi**, e lo studio nel complesso ha la sezione «In sintesi» che apre il
+   documento generato e chiude la voce 2 della checklist TRIPOD.
+
+---
+
+## Le bozze
+
+Le otto bozze stanno in [`docs/post/`](post/), una per file, numerate come qui.
+
+Ogni bozza contiene il testo per esteso e, in fondo, una sezione **«Scelte aperte»**: i
+punti in cui esistono più strade sensate — dove aprire, quanto anticipare, cosa scorporare,
+quale numero chiave usare — con una raccomandazione dove ce n'è una. Vanno decise prima di
+rifinire il testo, perché diverse di quelle scelte si tengono a vicenda fra post diversi.
+
+**Le due scelte che riguardano la serie intera**, e che conviene sciogliere per prime:
+
+| | |
+|---|---|
+| **Otto post o nove?** | La sezione sulla misura — i due ciclisti olandesi con lo stesso punteggio, i moltiplicatori, i pari merito — è nata dopo questo piano e oggi vive dentro il post 2, che diventa il più lungo della serie. Ha materiale e un risultato controintuitivo per stare da sola. Le altre candidate a scorporarsi sono la parte sui tempi del post 6 e l'effetto dell'età relativa dentro il post 7. |
+| **Il post 1 anticipa il finale?** | Se il post 1 chiude dicendo che la previsione ragionevole («a tredici anni non c'è niente») era sbagliata, il post 4 può aprire con l'aspettativa smentita e la serie guadagna un arco esplicito. Se non lo fa, il post 4 va aperto in un altro modo. Le due decisioni sono la stessa decisione. |
+
+**Le cifre delle bozze sono controllate**: `scripts/11_verifica_documenti.py` confronta una
+sessantina di numeri citati nei post con l'archivio dei risultati, oltre a quelli di questo
+file e della checklist TRIPOD. Quello che nessuno script può controllare — se le
+affermazioni qualitative reggano ancora — resta lavoro da fare a mano quando i dati
+cambiano.

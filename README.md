@@ -39,6 +39,7 @@ Servono a rispondere alla domanda che dà scala a tutto il resto: **in classific
 | [`docs/literature_review.md`](docs/literature_review.md) | Rassegna della letteratura, 22 studi, con appendice di revisione |
 | [`docs/tripod.md`](docs/tripod.md) | Checklist TRIPOD compilata: cosa è coperto, cosa resta un limite |
 | [`docs/piano_post.md`](docs/piano_post.md) | Come le sezioni dell'analisi diventano otto blog post |
+| [`docs/post/`](docs/post/) | Le bozze degli otto post, ciascuna con le scelte editoriali ancora aperte |
 
 ## Pipeline
 
@@ -258,4 +259,6 @@ git config core.hooksPath .githooks
 - [x] Livello di produzione: `report/` con archivio dei risultati e generatore Markdown
 - [x] Descrittiva: attrito (9), punteggi per gruppo (10), correlazioni e VIF (11), età relativa (15)
 - [x] Descrittiva: contesto e mobilità (STEP 13-14)
-- [ ] Modelli in R (FASE 3 e 4) e validazione (FASE 5)
+- [x] Modelli in R (FASE 3 e 4) e validazione (FASE 5) — STEP 16-28 chiusi
+- [x] Bozze degli otto blog post ([`docs/post/`](docs/post/)) — restano le scelte editoriali dichiarate in fondo a ciascuna
+- [ ] Stesura definitiva dei post e revisione delle figure post per post

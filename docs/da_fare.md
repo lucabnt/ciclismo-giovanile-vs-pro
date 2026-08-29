@@ -8,6 +8,9 @@ stata fatta, che è metà del valore di questo file.
 
 | Data | Voce | Esito |
 |---|---|---|
+| 30 ago | verifica delle nove schede sui testi integrali | **chiusa senza farla**: i testi non sono pubblicamente accessibili. Le schede restano fondate su abstract, la rassegna lo dichiara e nessuna conclusione dello studio vi poggia sopra |
+| 30 ago | **bozze di tutti gli otto post** | `docs/post/`: testo per esteso, ciascuno con le proprie «scelte aperte» in fondo. Le cifre citate sono controllate da `11_verifica_documenti.py`, che ora copre anche i post |
+| 30 ago | pacchetti R nel `requirements.txt` | mancavano `glmnet`, `lme4` e `randomForest`: chi seguiva il file si fermava a metà catena. Aggiunta anche la riga di `grep` che verifica se la lista è rimasta indietro rispetto al codice |
 | 28 ago | **A1** configurazione esterna | `config.toml` letto da tutti gli script tramite `lib_giovanile.cfg()` |
 | 28 ago | **B1** `elite_seasons` → `elite_seasons_a_punti` | rinominata anche `racing_after_u23` → `punti_dopo_u23` |
 | 28 ago | **C4** coorti dei modelli annidati | coorti diverse per domande diverse; il sottocampione da 94 atleti contiene 43 eventi |

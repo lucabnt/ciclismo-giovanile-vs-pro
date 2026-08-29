@@ -1212,6 +1212,21 @@ Restano non verificati sui testi integrali: Schumacher (A1), Svendsen (A2), Most
 (A5 e B3), Gallo (A6 e B2), Janssens (A7), Filipas (A8), Menaspà (B1), Leo (B4) e tutta
 la Sezione E.
 
+**Decisione del 30 agosto 2026: la verifica si ferma qui.** I testi integrali di quelle
+schede non sono pubblicamente accessibili, e le vie elencate in «Nota finale sull'accesso
+ai testi» — richiesta agli autori, repository istituzionali — hanno tempi che non si
+accordano con quelli del progetto. Le schede restano quindi fondate su abstract e citazioni
+incrociate, ed è dichiarato dove.
+
+**Cosa comporta, in pratica.** Nessuna conclusione di questo studio dipende da una di
+quelle schede: i confronti con la letteratura riguardano l'esistenza di un buco — nessuno
+ha guardato i tredici-quattordicenni sui risultati di gara — e quel buco è stato verificato
+sull'unica scheda che poteva chiuderlo, Cesanelli (A4), sul testo integrale. Il rischio
+residuo è di **attribuire a uno di quegli studi una sfumatura che il suo abstract non
+rende**, tipicamente sui limiti dichiarati dagli autori. Chi riprenderà questa rassegna con
+accesso alle biblioteche parta da Gallo (A6), che è il termine di paragone più diretto, e
+da Mostaert (A5), che è l'unico ad avere guardato l'Under 15.
+
 ## Tre imprecisioni minori
 
 **Filipas et al. (2024), «regressione logistica bivariata».** La scheda A8 la descrive

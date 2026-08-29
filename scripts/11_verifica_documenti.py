@@ -6,11 +6,14 @@ PERCHE' ESISTE
     Tutto il resto del progetto ha una regola: nessun numero si scrive a mano, perche' i
     numeri cambiano quando i dati cambiano e un testo fisso diventa falso in silenzio.
 
-    Due documenti violano quella regola, e non per distrazione. `docs/tripod.md` e' prosa
-    di controllo, `docs/piano_post.md` e' un piano editoriale: rigenerarli a ogni
-    esecuzione non avrebbe senso. Contengono pero' decine di cifre copiate dall'analisi —
-    quanti professionisti, quanti eventi, quale percentuale intercettata — che l'anno
-    prossimo saranno altre.
+    Alcuni documenti violano quella regola, e non per distrazione. `docs/tripod.md` e'
+    prosa di controllo, `docs/piano_post.md` e' un piano editoriale, e le bozze in
+    `docs/post/` sono testo che deve suonare come italiano e non come una query:
+    rigenerarli a ogni esecuzione non avrebbe senso. Contengono pero' decine di cifre
+    copiate dall'analisi — quanti professionisti, quanti eventi, quale percentuale
+    intercettata — che l'anno prossimo saranno altre.
+
+    I post sono il caso piu' serio, perche' sono gli unici destinati a uscire di casa.
 
     Questo script e' il compromesso: i documenti restano scritti a mano, ma le loro cifre
     vengono confrontate con l'archivio dei risultati. Se divergono lo dice, invece di
@@ -36,6 +39,7 @@ import sys
 
 TRIPOD = os.path.join("docs", "tripod.md")
 PIANO = os.path.join("docs", "piano_post.md")
+POST = os.path.join("docs", "post")
 RISULTATI = os.path.join("output", "risultati.db")
 ANALISI = os.path.join("output", "analisi.md")
 
@@ -150,6 +154,262 @@ def attesi_piano(db):
     ]
 
 
+def attesi_post(db):
+    """Le cifre che le bozze dei blog post citano, ricavate dall'archivio.
+
+    I post sono la parte piu' esposta del progetto: sono scritti a mano, sono destinati a
+    uscire di casa, e contengono piu' cifre copiate di tripod.md e piano_post.md messi
+    insieme. Se l'analisi viene rigenerata su dati nuovi, un post pubblicato resta com'e' —
+    quindi le sue cifre vanno controllate qui prima, non scoperte sbagliate dopo.
+
+    Non si controlla ogni numero citato: si controllano quelli su cui poggia
+    un'affermazione. Se cambia uno di questi, non basta correggere la cifra — va riletto
+    il paragrafo che ci sta intorno, perche' probabilmente cambia anche cosa se ne puo'
+    dire.
+
+    Le percentuali derivate da un'AUC (per esempio «mette davanti quello giusto nel 74%
+    dei casi») sono confrontate con l'AUC moltiplicata per cento: e' la stessa quantita'
+    detta in italiano.
+    """
+    def v(modulo, chiave, *strada):
+        x = valore(db, modulo, chiave)
+        for passo in strada:
+            if x is None:
+                return None
+            x = x[passo]
+        return x
+
+    def riga(modulo, chiave, testo, colonna):
+        """Il valore in una colonna della riga la cui prima cella contiene `testo`."""
+        for r in tabella(db, modulo, chiave) or []:
+            if testo in str(r[0]):
+                return r[colonna]
+        return None
+
+    def pct(x):
+        return None if x is None else x * 100
+
+    hazard = tabella(db, "sopravvivenza", "hazard_grezzo") or []
+    eta_max = max(hazard, key=lambda r: r[3])[0] if hazard else None
+    mob = v("contesto", "mobilita_grezza_da_a") or [None, None]
+    grezzo = None if None in mob[:2] else mob[1] - mob[0]
+    chiave = v("metriche", "frase_chiave") or {}
+
+    return {
+        "02_di_chi_parliamo.md": [
+            ("righe di classifica", v("provenienza", "righe_classifica"),
+             r"le (\d[\d ]*\d) righe della"),
+            ("copertura minima", v("copertura", "copertura_min"),
+             r"fra il (\d+,\d)% e il 17,2%"),
+            ("copertura massima", v("copertura", "copertura_max"),
+             r"fra il 12,2% e il (\d+,\d)%"),
+            ("classificati in Under 15", v("attrito", "curva", 0, 1),
+             r"\| Under 15 \| (\d[\d ]*\d) \| 100%"),
+            ("atleti nelle coorti", v("attrito", "atleti_totali"),
+             r"\*\*(\d[\d ]*\d) ragazzi, 77 professionisti\*\*"),
+            ("professionisti", v("attrito", "pro_totali"),
+             r"\*\*2 817 ragazzi, (\d+) professionisti\*\*"),
+            ("punti per piazzamento, U15",
+             v("misura", "rapporto_estremi", "valore_basso"),
+             r"\| Under 15 \| (\d,\d\d) \|"),
+            ("punti per piazzamento, U23",
+             v("misura", "rapporto_estremi", "valore_alto"),
+             r"\| \*\*Under 23\*\* \| \*\*(\d,\d\d)\*\* \|"),
+            ("pari merito massimi", v("misura", "pari_merito_massimo"),
+             r"fino al (\d+)% dei classificati"),
+            ("errore dell'estrapolazione", v("copertura", "backtest_errore"),
+             r"Sbaglia\s+del (\d+)% a due anni"),
+        ],
+        "03_sparire_non_e_smettere.md": [
+            ("rientri dopo un'assenza", v("attrito", "rientri_dopo_assenza"),
+             r"\*\*Il (\d+,\d)% degli atleti salta almeno una stagione"),
+            ("rientri dopo due stagioni", v("attrito", "rientri_dopo_assenza_lunga"),
+             r"Il (\d,\d)% torna dopo"),
+            ("facce nuove in U17y2", riga("attrito", "ricambio", "U17y2", 3),
+             r"\| Under 17, secondo anno \| 1 602 \| \*\*(\d+,\d)%\*\* \|"),
+            ("resta, dentro la categoria", v("passaggi", "resta_dentro"),
+             r"\| dentro la categoria \| \*\*(\d+,\d)%\*\* \|"),
+            ("resta, cambiando categoria", v("passaggi", "resta_fra"),
+             r"\| cambiando categoria \| \*\*(\d+,\d)%\*\* \|"),
+            ("la lista di arrivo che c'era gia'", v("passaggi", "quota_fra"),
+             r"composta per l'\*\*(\d+,\d)%\*\* da persone"),
+            ("correlazione dentro la categoria", v("passaggi", "rho_dentro"),
+             r"è \*\*(\d,\d+)\*\* dentro la categoria"),
+            ("correlazione al cambio di fascia", v("passaggi", "rho_fra"),
+             r"e \*\*(\d,\d+)\*\* al cambio di fascia"),
+            ("uscite nell'ultimo anno di categoria",
+             v("attrito", "quota_uscite_a_fine_categoria"),
+             r"\*\*il (\d+,\d)% di\s+chi esce"),
+            ("tesserati residui in Under 23", v("copertura", "residuo_tesserati"),
+             r"il \*\*(\d+,\d)% dei tesserati\*\*"),
+            ("ancora a punti dopo i 22 senza professionismo",
+             v("attrito", "a_punti_dopo_u23_non_pro"),
+             r"\*\*(\d+) atleti che risultavano ancora a punti"),
+        ],
+        "04_a_tredici_anni.md": [
+            ("quanto separa a tredici anni", pct(v("univariati", "auc_prima", "auc")),
+             r"il \*\*(\d+)% dei\s+casi\*\*"),
+            ("quanto separa a diciotto anni", pct(v("univariati", "auc_massima", "auc")),
+             r"A diciotto, nell'\*\*(\d+)%\*\*"),
+            ("odds ratio a tredici anni", v("univariati", "auc_prima", "or"),
+             r"\| Under 15, primo anno \| 13 \| ×(\d,\d\d) \|"),
+            ("odds ratio a diciotto anni", v("univariati", "auc_massima", "or"),
+             r"\*\*×(\d,\d\d)\*\* \|"),
+            ("secondo anno di Under 15",
+             pct(riga("univariati", "primo_contro_secondo", "U15", 4)),
+             r"\| Under 15 \| 70% \| \*\*(\d+)%\*\* \|"),
+            ("modello con la sola coorte", pct(v("annidati", "auc_base")),
+             r"\| solo l'anno di nascita \| (\d+)%"),
+            ("modello con tutte le categorie", pct(v("annidati", "auc_finale")),
+             r"\| \+ Under 23 \| (\d+)% \|"),
+            ("atleti nella sequenza annidata", v("annidati", "n"),
+             r"sono (\d+), un gruppo piccolo"),
+            ("guadagno della foresta casuale", pct(v("confronto_ml", "differenza")),
+             r"guadagnato \*\*(\d,\d) punti percentuali\*\*"),
+            ("coefficienti trattenuti dall'elastic net",
+             v("penalizzato", "trattenuti"), r"ne ha tenute \*\*(\d) su 8\*\*"),
+            ("lunghezza della lista U17y1",
+             riga("univariati", "ampiezza_liste", "U17y1", 1),
+             r"in Under 17, (\d+)\s+classificati contro 320"),
+        ],
+        "05_livello_o_curva.md": [
+            ("odds ratio del livello",
+             riga("traiettorie", "coefficienti", "livello", 1),
+             r"di livello in più \| \*\*×(\d,\d\d)\*\*"),
+            ("odds ratio della pendenza",
+             riga("traiettorie", "coefficienti", "pendenza", 1),
+             r"di miglioramento annuo \| \*\*×(\d,\d\d)\*\*"),
+            ("previsione con il solo livello", pct(v("traiettorie", "auc", "livello")),
+             r"in circa (\d+) casi su 100"),
+            ("previsione con anche la pendenza",
+             pct(v("traiettorie", "auc", "completo")),
+             r"la pendenza sale a (\d+)"),
+            ("livello alto e in crescita", incrocio(db, "alto", "alto"),
+             r"nel \*\*(\d+,\d)%\*\* dei casi"),
+            ("livello alto e in calo", incrocio(db, "alto", "basso"),
+             r"chi stava calando, nel\s+\*\*(\d,\d)%\*\*"),
+            ("livello medio e in crescita", incrocio(db, "medio", "alto"),
+             r"forte crescita: \*\*(\d,\d)%\*\*"),
+            ("pendenza, controllata per la durata",
+             v("traiettorie", "controllo_durata", "con"),
+             r"Passa da \*\*3,35 a (\d,\d\d)\*\*"),
+            ("atleti con almeno due stagioni", v("traiettorie", "n_atleti"),
+             r"\*\*(\d[\d ]*\d)\s+ragazzi, fra cui 74 professionisti\*\*"),
+            ("atleti con una sola stagione",
+             riga("traiettorie", "stagioni", "1", 1),
+             r"(\d+) dei 2 747 atleti"),
+        ],
+        "06_predire_non_e_selezionare.md": [
+            ("futuri professionisti intercettati",
+             chiave.get("sensibilita"), r"intercettati \| \*\*(\d+)%\*\*"),
+            ("selezionati che non arrivano",
+             None if not chiave else 100 - chiave["vpp"],
+             r"non lo diventeranno \| \*\*(\d+)%\*\*"),
+            ("intercettati a tredici anni",
+             riga_soglia(db, "U15y1", "migliore 10%", 6),
+             r"si intercetta il \*\*(\d+)%\*\* dei futuri"),
+            ("selezionati a tredici anni che arrivano",
+             riga_soglia(db, "U15y1", "migliore 10%", 8),
+             r"ne arriverà \*\*l'(\d+)%\*\*"),
+            ("selezionati in Under 23 che arrivano",
+             riga_soglia(db, "U23y1", "migliore 10%", 8),
+             r"arriva il \*\*(\d+)%\*\* dei selezionati"),
+            ("probabilita' al 90° percentile",
+             riga("qualita", "composte", "90", 1),
+             r"\| 90° percentile \| \*\*(\d+,\d)%\*\*"),
+            ("probabilita' di top 500 al 90° percentile",
+             riga("qualita", "composte", "90", 2),
+             r"\*\*30,0%\*\* \| \*\*(\d+,\d)%\*\*"),
+            ("odds ratio per diventare professionista",
+             riga("qualita", "stadi", "diventare professionista", 3),
+             r"diventare professionista \| \*\*×(\d,\d\d)\*\*"),
+            ("odds ratio per il top 500 fra i professionisti",
+             riga("qualita", "stadi", "top 500, fra i professionisti", 3),
+             r"fra i professionisti\*\* \| ×(\d,\d\d)"),
+            ("probabilita' cumulata, rendimento medio",
+             v("sopravvivenza", "cumulate", "medio"),
+             r"\*\*(\d+,\d)%\*\* di probabilità di\s+arrivare"),
+            ("stagioni a rischio senza classifica",
+             v("sopravvivenza", "quota_assenti"),
+             r"nell'\*\*(\d+,\d)%\*\* delle"),
+            ("eta' di rischio massimo", eta_max,
+             r"il massimo cade a \*\*(\d+) anni\*\*"),
+        ],
+        "07_falsi_indizi.md": [
+            ("rapporto Q1/Q4 in Under 15", v("rae", "q1_su_q4_max"),
+             r"\*\*(\d,\d\d) volte\*\* quelli nati"),
+            ("rapporto Q1/Q4 in Under 23", v("rae", "q1_su_q4_min"),
+             r"il rapporto è \*\*(\d,\d\d)\*\*"),
+            ("rapporto Q1/Q4 fra i professionisti",
+             riga("rae", "successo", "professionisti", 6),
+             r"primo e ultimo trimestre è \*\*(\d,\d)\*\*"),
+            ("professionisti senza cambi di società", mob[0],
+             r"\| nessuno \| \*\*(\d,\d\d)%\*\* \|"),
+            ("professionisti con tre cambi", mob[1],
+             r"\| tre \| \*\*(\d,\d\d)%\*\* \|"),
+            ("stagioni di chi non ha mai cambiato",
+             v("contesto", "stagioni_da_a", 0), r"\*\*(\d,\d) stagioni\*\*"),
+            ("divario grezzo della mobilità", grezzo,
+             r"dei (\d,\d\d) punti percentuali di divario grezzo"),
+            ("divario residuo a parità di carriera",
+             v("contesto", "gradiente_residuo"), r"resta al massimo (\d,\d\d)"),
+            ("cambio di società fra Juniores e Under 23",
+             v("contesto", "cambio_juniores_u23"),
+             r"nel \*\*(\d+,\d)% dei casi\*\*"),
+            ("società di partenza, tasso minimo",
+             v("contesto", "qualita_da_a", 0), r"dal (\d,\d\d)% di professionisti"),
+            ("società di partenza, tasso massimo",
+             v("contesto", "qualita_da_a", 1), r"al (\d,\d\d)% fra chi comincia"),
+            ("quota che parte da società senza professionisti",
+             v("contesto", "quota_societa_senza_pro"),
+             r"il (\d+)%\s+dei ragazzi parte"),
+            ("quota delle prime tre regioni", v("contesto", "quota_prime_tre"),
+             r"circa il (\d+)% dei ragazzi in classifica"),
+            ("atleti nelle coorti allargate", v("contesto", "atleti_regioni"),
+             r"annate e (\d[\d ]*\d) atleti"),
+        ],
+        "08_cosa_faremmo.md": [
+            ("ripetizioni del bootstrap", v("validazione", "ripetizioni"),
+             r"\*\*(\d+) volte\*\* su campioni"),
+            ("ottimismo massimo", v("validazione", "ottimismo_massimo"),
+             r"La risposta è \*\*(\d,\d+)\*\*"),
+            ("eventi nelle coorti di verifica",
+             riga("validazione", "temporale", "percentile Under 19", 4),
+             r"solo (\d+) casi"),
+            ("professionisti con la definizione piu' stretta",
+             riga("sensibilita", "definizione", "solo prima divisione", 1),
+             r"passa da \*\*(\d+) a 151\*\*"),
+            ("professionisti con la definizione piu' larga",
+             riga("sensibilita", "definizione", "anche le Continental", 1),
+             r"passa da \*\*26 a (\d+)\*\*"),
+            ("oscillazione dell'AUC", v("sensibilita", "oscillazione_auc"),
+             r"in tutto di \*\*(\d,\d+)\*\*"),
+            ("pendenza di calibrazione",
+             riga("validazione", "ottimismo", "livello e pendenza", 6),
+             r"vale fra (\d,\d\d) e 1,02"),
+            ("uscite nell'ultimo anno di categoria",
+             v("attrito", "quota_uscite_a_fine_categoria"),
+             r"concentra il (\d+)% delle uscite"),
+        ],
+    }
+
+
+def incrocio(db, livello, pendenza):
+    """La percentuale di professionisti nella casella (livello, pendenza)."""
+    for r in tabella(db, "traiettorie", "incrocio") or []:
+        if r[0] == livello and r[1] == pendenza:
+            return r[4]
+    return None
+
+
+def riga_soglia(db, cella, criterio, colonna):
+    """Una colonna della riga di `metriche.soglie` per quella cella e quel criterio."""
+    for r in tabella(db, "metriche", "soglie") or []:
+        if r[0] == cella and r[1] == criterio:
+            return r[colonna]
+    return None
+
+
 def controlla(testo, voci, problemi):
     for descrizione, atteso, pattern in voci:
         m = re.search(pattern, testo)
@@ -192,12 +452,18 @@ def main():
     db = sqlite3.connect(RISULTATI)
     problemi = []
 
-    for percorso, voci in ((TRIPOD, attesi_tripod), (PIANO, attesi_piano)):
+    documenti = [(TRIPOD, attesi_tripod(db)), (PIANO, attesi_piano(db))]
+    per_post = attesi_post(db)
+    documenti += [(os.path.join(POST, nome), per_post[nome])
+                  for nome in sorted(per_post)]
+
+    for percorso, voci in documenti:
         if not os.path.exists(percorso):
+            print("%s: manca, salto\n" % percorso.replace(os.sep, "/"))
             continue
         print(percorso.replace(os.sep, "/"))
         with open(percorso, encoding="utf-8") as f:
-            controlla(f.read(), voci(db), problemi)
+            controlla(f.read(), voci, problemi)
         print()
 
     db.close()
