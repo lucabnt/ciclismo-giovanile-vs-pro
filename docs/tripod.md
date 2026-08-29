@@ -8,7 +8,7 @@ Questo non è un articolo scientifico e nessuno chiederà la checklist. Serve co
 di controllo privata**: se ogni voce ha una risposta, il progetto è solido; le voci
 senza risposta sono buchi da chiudere o limiti da dichiarare.
 
-Compilata il 28 agosto 2026, sullo stato del documento a 15 sezioni.
+Compilata il 28 agosto 2026, sullo stato del documento a 16 sezioni.
 
 **Come si «esegue».** Non si esegue: è una lettura. Il lavoro di compilazione è già
 fatto, e quello che resta è verificare le voci che non poggiano sui dati ma sul processo
@@ -30,7 +30,7 @@ Legenda: ✅ coperto · ⚠️ coperto con riserva dichiarata · ➖ non applica
 | # | Voce | Stato | Dove |
 |---|---|---|---|
 | 1 | Identificare lo studio come sviluppo di un modello predittivo | ✅ | Il documento dichiara in apertura popolazione, coorti, esito e finestra temporale. |
-| 2 | Sintesi con obiettivi, dati, metodi, risultati, conclusioni | ⚠️ | Il documento non ha un abstract: è pensato per diventare una serie di post. **Buco da chiudere quando si scriveranno i post.** |
+| 2 | Sintesi con obiettivi, dati, metodi, risultati, conclusioni | ✅ | La sezione «In sintesi» apre il documento: contesto, obiettivo, dati, metodi, risultati **positivi e negativi**, solidità, limiti, conclusione. È generata come tutto il resto (`report/moduli/sintesi.py`), rileggendo ogni cifra dall'archivio del modulo che l'ha prodotta: si aggiorna con i dati invece di restare indietro. |
 
 ## Introduzione
 
@@ -113,8 +113,8 @@ specialità e carico di allenamento. È il limite più serio dell'intero studio,
 strutturale: il rendimento in classifica è l'unica cosa che questa fonte misura. Ogni
 conclusione va letta come «a parità di ciò che la classifica registra».
 
-Nessuna delle tre è una svista da correggere: due sono limiti da dichiarare e una è un
-lavoro da fare quando si passerà alla scrittura.
+Nessuna delle due è una svista da correggere: sono limiti da dichiarare, e il documento
+li dichiara dove nascono.
 
 ## Riferimento
 

@@ -113,6 +113,7 @@ cella_u19_armonizzata = "U19_arm"
 # riorganizzare il documento, o dividerlo in piu' post, non comporta rinominare moduli.
 # Ogni voce e' un modulo in report/moduli/ con una funzione calcola() e una rendi().
 sezioni = [
+  "sintesi",
   "provenienza",
   "attrito",
   "copertura",

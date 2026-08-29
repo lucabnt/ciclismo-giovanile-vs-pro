@@ -50,6 +50,7 @@ ACCENTI = {
     "distinguibilita": "distinguibilità", "generalizzabilita": "generalizzabilità",
     "impurita": "impurità", "percio": "perciò", "cio": "ciò",
     "inutilita": "inutilità", "penalita": "penalità", "scarsita": "scarsità",
+    "maturita": "maturità", "profondita": "profondità", "solidita": "solidità",
     "utilita": "utilità", "necessita": "necessità",
     "regolarita": "regolarità", "anzianita": "anzianità",
     "gravita": "gravità", "novita": "novità", "eterogeneita": "eterogeneità",

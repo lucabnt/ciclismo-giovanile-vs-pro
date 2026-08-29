@@ -5,7 +5,7 @@ così si controllano i metodi. I post vanno organizzati per **tema**, perché co
 legge: chi legge non vuole sapere cosa dice il modello di sopravvivenza, vuole sapere se
 suo figlio ce la farà.
 
-Questo file traduce le quindici sezioni dell'analisi in otto post, dice qual è il filo
+Questo file traduce le sedici sezioni dell'analisi in otto post, dice qual è il filo
 che li tiene insieme e da quali moduli dell'archivio ciascuno prende i numeri.
 
 ---
@@ -334,5 +334,6 @@ tabelle, e vale anche per la prosa.
 2. **Le figure vanno riviste per il web.** Quelle del documento sono pensate per essere
    lette accanto a una tabella. Per un post servono più grandi, con meno serie e con il
    messaggio scritto dentro.
-3. **Serve una sintesi per ogni post** — è la voce 2 della checklist TRIPOD, l'unica
-   rimasta scoperta, e si chiude proprio scrivendo i post.
+3. **Serve una sintesi per ogni post.** Lo studio nel complesso ora ce l'ha — la
+   sezione «In sintesi» che apre il documento, e che chiude la voce 2 della checklist
+   TRIPOD. Quella dei singoli post resta lavoro editoriale, da fare mentre si scrive.
