@@ -36,6 +36,7 @@ Servono a rispondere alla domanda che dà scala a tutto il resto: **in classific
 | [`docs/verifica_dati_giovanile.md`](docs/verifica_dati_giovanile.md) | Verifica della sorgente ciclismo.info (FASE 0, step 1 e 3) |
 | [`docs/piano_pcs.md`](docs/piano_pcs.md) | Piano di acquisizione ProCyclingStats e procedura di matching |
 | [`docs/da_fare.md`](docs/da_fare.md) | Lavoro aperto: configurazione esterna, correzioni note, analisi da impostare |
+| [`docs/literature_review.md`](docs/literature_review.md) | Rassegna della letteratura, 22 studi, con appendice di revisione |
 | [`docs/tripod.md`](docs/tripod.md) | Checklist TRIPOD compilata: cosa è coperto, cosa resta un limite |
 | [`docs/piano_post.md`](docs/piano_post.md) | Come le sedici sezioni dell'analisi diventano otto blog post |
 
@@ -160,7 +161,7 @@ python scripts/07_riferimenti.py     # una volta: scarica gli attesi demografici
 python report/assembla.py
 ```
 
-Produce `output/analisi.md` — con indice, tabelle, figure e un riquadro «Come si misura» per ogni metodo usato — e `output/figure/*.png`.
+Produce `output/analisi.md` — con indice, tabelle, figure e un riquadro «Come si misura» per ogni metodo usato — e le figure in due versioni: `output/figure/` per il documento e `output/figure_web/` per i post, con testi più grandi e maggiore risoluzione.
 
 Il testo dei moduli si scrive in ASCII e **gli accenti si applicano alla generazione** (`report/accenti.py`): il documento si rigenera ogni anno con dati nuovi, quindi una correzione fatta a mano sul file andrebbe rifatta ogni volta. Se compare una parola accentata non prevista, l'assemblatore la segnala invece di lasciarla passare.
 
@@ -223,10 +224,10 @@ I dati riguardano **atleti minorenni**. Nel repository entra **solo cio' che e' 
 
 Il **salt di anonimizzazione** vive in `data/private/salt.txt`, generato al primo avvio e mai committato. Tenerlo nel sorgente renderebbe l'anonimizzazione solo apparente: gli `id_atleta` sono interi fra 1 e 37.704, quindi con il salt pubblico la tabella `athlete_id → id_atleta` si ricostruisce per forza bruta in pochi secondi, e da li' bastano le classifiche pubbliche per risalire ai nomi. Va trattato come una chiave: perderlo significa che tutti gli `athlete_id` cambiano al ricalcolo successivo.
 
-La checklist TRIPOD in [`docs/tripod.md`](docs/tripod.md) è l'unico documento del progetto che contiene cifre scritte a mano, perché è prosa di controllo e non un file generato. Che non siano diventate false lo verifica:
+Due documenti del progetto contengono cifre scritte a mano, perché sono prosa di controllo e non file generati: la checklist TRIPOD e il piano editoriale. Entrambi portano in testa l'avviso che non si rigenerano. Che le loro cifre non siano diventate false lo verifica:
 
 ```bash
-python scripts/11_verifica_tripod.py
+python scripts/11_verifica_documenti.py
 ```
 
 Prima di ogni commit:
