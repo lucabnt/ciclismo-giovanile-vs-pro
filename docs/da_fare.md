@@ -8,6 +8,7 @@ stata fatta, che è metà del valore di questo file.
 
 | Data | Voce | Esito |
 |---|---|---|
+| 30 ago | **licenza per la pubblicazione** | MIT per il codice ([`LICENSE`](../LICENSE)), CC BY 4.0 per i contenuti ([`LICENSE-CONTENT.md`](../LICENSE-CONTENT.md)). Dichiarato esplicitamente che i dati di partenza non sono nostri e non vengono ridistribuiti. **Restano due cose da decidere prima di pubblicare**: il nome del titolare del copyright (ora è l'handle `lucabnt`) e la paternità di `guida_metodologica_v5.md` e `docs/literature_review.md`, che sono licenziati come nostri |
 | 30 ago | verifica delle nove schede sui testi integrali | **chiusa senza farla**: i testi non sono pubblicamente accessibili. Le schede restano fondate su abstract, la rassegna lo dichiara e nessuna conclusione dello studio vi poggia sopra |
 | 30 ago | **bozze di tutti gli otto post** | `docs/post/`: testo per esteso, ciascuno con le proprie «scelte aperte» in fondo. Le cifre citate sono controllate da `11_verifica_documenti.py`, che ora copre anche i post |
 | 30 ago | pacchetti R nel `requirements.txt` | mancavano `glmnet`, `lme4` e `randomForest`: chi seguiva il file si fermava a metà catena. Aggiunta anche la riga di `grep` che verifica se la lista è rimasta indietro rispetto al codice |

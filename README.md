@@ -226,7 +226,7 @@ I dati riguardano **atleti minorenni**. Nel repository entra **solo cio' che e' 
 
 Il **salt di anonimizzazione** vive in `data/private/salt.txt`, generato al primo avvio e mai committato. Tenerlo nel sorgente renderebbe l'anonimizzazione solo apparente: gli `id_atleta` sono interi fra 1 e 37.704, quindi con il salt pubblico la tabella `athlete_id → id_atleta` si ricostruisce per forza bruta in pochi secondi, e da li' bastano le classifiche pubbliche per risalire ai nomi. Va trattato come una chiave: perderlo significa che tutti gli `athlete_id` cambiano al ricalcolo successivo.
 
-Due documenti del progetto contengono cifre scritte a mano, perché sono prosa di controllo e non file generati: la checklist TRIPOD e il piano editoriale. Entrambi portano in testa l'avviso che non si rigenerano. Che le loro cifre non siano diventate false lo verifica:
+Dieci documenti del progetto contengono cifre scritte a mano, perché sono prosa e non file generati: la checklist TRIPOD, il piano editoriale e le otto bozze dei post. Tutti portano in testa l'avviso che non si rigenerano. Che le loro cifre non siano diventate false lo verifica:
 
 ```bash
 python scripts/11_verifica_documenti.py
@@ -243,6 +243,27 @@ Verifica che i file sensibili siano esclusi da git e che nessun file destinato a
 ```bash
 git config core.hooksPath .githooks
 ```
+
+## Licenza
+
+Due licenze, perché in questo repository ci sono due cose diverse.
+
+| cosa | licenza | in una riga |
+|---|---|---|
+| **Codice** — `scripts/`, `R/`, `report/`, `config.toml`, `.githooks/` | MIT, [`LICENSE`](LICENSE) | fanne quello che vuoi, tieni la nota di copyright |
+| **Contenuti** — `docs/`, `output/analisi.md`, le figure, questo README, la guida metodologica, le trascrizioni in `riferimenti/` | CC BY 4.0, [`LICENSE-CONTENT.md`](LICENSE-CONTENT.md) | riusali come vuoi, anche commercialmente, **purché tu dica da dove vengono** |
+
+Il confine passa fra *ciò che fa qualcosa* e *ciò che dice qualcosa*, non fra estensioni di
+file: la prosa che i moduli di `report/` producono è contenuto, anche se il file che la
+genera è codice.
+
+**I dati di partenza non sono nostri e non li licenziamo.** Classifiche, esiti di carriera,
+nascite attese e tesserati vengono da fonti terze, ciascuna con le proprie condizioni, e
+nell'Unione Europea una banca dati può essere protetta anche quando i fatti che contiene non
+lo sono. Questo repository non ne distribuisce nessuna: `data/` è escluso da git per intero.
+
+**E resta il vincolo che viene prima di ogni licenza**: i dati riguardano minorenni, qui non
+entra nulla che permetta di risalire a una persona, e nessuna licenza autorizza a provarci.
 
 ## Stato
 
