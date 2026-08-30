@@ -1,64 +1,60 @@
 # 4. A tredici anni si vede già qualcosa
 
 > ⚠️ **Bozza scritta a mano. Non si rigenera.**
-> Ogni cifra è copiata dall'analisi al momento della stesura e diventerà falsa in silenzio
-> se i dati cambiano. Prima di pubblicare: `python scripts/11_verifica_documenti.py`.
-> Le affermazioni qualitative restano da rileggere a mano.
+> Ogni cifra è copiata dall'analisi al momento della stesura e diventerà falsa in silenzio se
+> i dati cambiano. Prima di pubblicare conviene eseguire
+> `python scripts/11_verifica_documenti.py`. Sullo stile: [`STILE.md`](STILE.md).
 >
-> **Numero chiave del post:** 2,28.
+> **Numero chiave del post:** 74%.
 > **Moduli:** `punteggi`, `univariati`, `annidati`, `validazione` (foresta ed elastic net),
 > `correlazioni` (di passaggio).
 > **Figure:** `punteggi_delta`, `univariati_or`, `annidati_auc`.
 
 ---
 
-Quando abbiamo cominciato, la previsione ragionevole era che a tredici anni non ci fosse
-niente da vedere.
+*Quarta puntata. Le prime tre hanno chiarito di chi parliamo e cosa voglia dire uscire da una
+classifica; da qui in avanti provo a rispondere alla domanda per cui è nato tutto lo studio,
+cioè da che età il risultato in gara dica qualcosa sul futuro.*
 
-Lo dice la letteratura: a quell'età quello che si misura è soprattutto **chi si è sviluppato
-prima**. Lo dice il buon senso: un ragazzo di prima media che vince una gara Esordienti sta
-battendo dei coetanei con un anno di pubertà in meno, non sta dimostrando di avere un motore
-da professionista. E lo dice l'esperienza di chiunque abbia allenato: i campioncini di
-quell'età spariscono con una regolarità che fa quasi impressione.
+Quando ho cominciato ero convinto che a tredici anni non ci fosse niente da vedere.
 
-Ci aspettavamo di trovare zero, e di poterlo dire con precisione. Un bello zero ben
-misurato è un risultato utile: autorizza a smettere di selezionare a tredici anni.
+Lo dice la letteratura, perché a quell'età quello che misuri è soprattutto chi si è
+sviluppato prima. Lo dice il buon senso: un ragazzino di prima media che vince una gara
+Esordienti sta battendo dei coetanei con un anno di pubertà in meno, non sta dimostrando di
+avere il motore di un professionista. E lo sa chiunque abbia allenato, visto che i
+campioncini di quell'età spariscono con una regolarità che fa quasi impressione.
 
-Non è andata così.
+Mi aspettavo insomma di trovare zero, e di poterlo dire con precisione. Sarebbe stato un
+risultato utile, perché avrebbe autorizzato a smettere di selezionare a tredici anni. È andata
+diversamente.
 
-## La domanda
+## Guardare, prima di modellare
 
-**Da che età il risultato in gara comincia a dire qualcosa sul futuro?**
+Il modo più semplice di rispondere non richiede statistica: prendi i ragazzi che poi sono
+diventati professionisti, guardi dove stavano in classifica a tredici anni e lo confronti con
+dove stavano tutti gli altri.
 
-## Prima cosa: guardare, senza modelli
-
-Il modo più semplice di rispondere non richiede statistica. Si prendono i ragazzi che poi
-sono diventati professionisti, si guarda dove stavano in classifica a tredici anni, e si
-confronta con dove stavano tutti gli altri.
-
-Il piazzamento è espresso in **percentile**: 100 è il primo della classifica, 50 è a metà, 0
-è ultimo. Serve a rendere confrontabili stagioni e categorie che hanno un numero diverso di
-partecipanti.
+Il piazzamento è in percentile, cioè su una scala in cui 100 è il primo della classifica, 50
+è a metà e 0 è l'ultimo. Serve a rendere confrontabili stagioni e categorie che hanno un
+numero diverso di partecipanti.
 
 | a tredici anni (Under 15, primo anno) | posizione tipica |
 |---|---|
 | chi **non** diventerà professionista | 49° percentile |
 | chi diventerà professionista | **81° percentile** |
 
-A diciotto anni, la distanza si allarga: 47 contro 94.
+A diciotto anni la distanza si allarga ancora: da 47 a 94.
 
-C'è un modo elegante di riassumere quanto due gruppi si separano. Si prendono tutte le
-coppie possibili — un futuro professionista e un futuro non professionista — e si conta
-quante volte il professionista sta davanti. A tredici anni succede in circa il **74% dei
-casi**. A diciotto, nell'**89%**.
+C'è un modo elegante di riassumere quanto due gruppi si separino: prendi tutte le coppie
+possibili formate da un futuro professionista e da un futuro non professionista, e conti
+quante volte il professionista sta davanti. A tredici anni succede nel **74% dei casi**, a
+diciotto nell'89%. Secondo le soglie convenzionali di questa misura la separazione a tredici
+anni è già grande, e ti confesso che non era quello che mi aspettavo di trovare.
 
-Le soglie convenzionali di questa misura dicono una cosa che non ci aspettavamo: la
-separazione a tredici anni è già **grande**. Non trascurabile, non piccola. Grande.
+## Di quanto conta, esattamente
 
-## Poi: di quanto, esattamente
-
-Un modello permette di mettere un numero sul vantaggio. La domanda è: quanto conta salire di
-dieci posizioni percentuali?
+Un modello ti permette di mettere un numero sul vantaggio, rispondendo alla domanda su quanto
+conti salire di dieci posizioni percentuali.
 
 | categoria | età | quanto moltiplica le probabilità |
 |---|---|---|
@@ -70,33 +66,35 @@ dieci posizioni percentuali?
 | **Under 19, secondo anno** | **18** | **×2,28** |
 | Under 23, primo anno | 19 | ×1,32 |
 
-Da leggere così: fra due Esordienti che differiscono di dieci posizioni percentuali, quello
-davanti ha circa il 40% di probabilità in più di arrivare al professionismo; fra due
-Juniores di secondo anno, quello davanti ne ha più del doppio.
+Si legge così: fra due Esordienti che differiscono di dieci posizioni percentuali, quello
+davanti ha circa il 40% di probabilità in più di arrivare al professionismo; fra due Juniores
+di secondo anno, quello davanti ne ha più del doppio.
 
-Il peso del risultato cresce con l'età — 1,40 a tredici anni, 2,28 a diciotto — ma non in
-modo regolare, e le due righe che scendono meritano attenzione. Non sono anomalie della
-prestazione: sono cambi di popolazione. A ogni passaggio di categoria cambia chi è rimasto
-nel gruppo che si sta confrontando, e in Under 23 i professionisti sono già il 37% della
-lista. Confrontare quei numeri fra loro come se misurassero la stessa cosa è il primo modo
-di sbagliare la lettura di questa tabella.
+Il peso del risultato cresce quindi con l'età, da 1,40 a tredici anni fino a 2,28 a diciotto,
+però non in modo regolare, e le due righe che scendono meritano un'occhiata. Non sono anomalie
+della prestazione ma cambi di popolazione, perché a ogni passaggio di categoria cambia chi è
+rimasto nel gruppo che stai confrontando: in Under 23 i professionisti sono già il 37% della
+lista. Confrontare quei numeri fra loro come se misurassero la stessa cosa è il primo modo di
+sbagliare la lettura della tabella.
 
-## Il primo anno o il secondo?
+## Il primo anno sembra migliore del secondo, e non lo è
 
-C'è un dettaglio che a prima vista sembra un risultato e non lo è, e vale la pena mostrarlo
-perché è il tipo di errore che si commette in buona fede.
+C'è un dettaglio che a prima vista sembra un risultato e non lo è. Te lo mostro perché è il
+tipo di errore che si commette in perfetta buona fede.
 
-Nella classifica del **primo** anno di ogni categoria, la percentuale di futuri
-professionisti è più alta che nel secondo: 6,7% contro 4,5% in Under 17, 9,7% contro 8,2% in
-Under 19. Sembra che il primo anno selezioni meglio.
+Nella classifica del primo anno di ogni categoria la percentuale di futuri professionisti è
+più alta che nel secondo: 6,7% contro 4,5% in Under 17, 9,7% contro 8,2% in Under 19.
+Sembrerebbe che il primo anno selezioni meglio.
 
-Non è così. Le classifiche del primo anno sono **molto più corte** — in Under 17, 181
-classificati contro 320 — e in una lista più corta entrare è più difficile. Chi c'è è già
-più selezionato, e un gruppo più selezionato contiene per forza una quota maggiore di futuri
-professionisti. Quel numero misura la selettività della lista, non la bontà della previsione.
+Le cose però stanno diversamente, perché le classifiche del primo anno sono molto più corte,
+in Under 17 **181 classificati contro 320**, e in una lista più corta entrare è più difficile.
+Chi c'è è quindi già più selezionato, e un gruppo più selezionato contiene per forza una quota
+maggiore di futuri professionisti: quel numero misura la selettività della lista, non la bontà
+della previsione.
 
-La domanda giusta si risponde solo confrontando le due misure **sulle stesse persone**: i
-ragazzi presenti in entrambe le classifiche della categoria.
+Alla domanda vera, cioè se il primo anno predica meglio del secondo, puoi rispondere soltanto
+confrontando le due misure sulle stesse persone, cioè sui ragazzi presenti in entrambe le
+classifiche della categoria.
 
 | categoria | primo anno | secondo anno |
 |---|---|---|
@@ -106,140 +104,128 @@ ragazzi presenti in entrambe le classifiche della categoria.
 
 *percentuale di coppie in cui il modello mette davanti quello giusto*
 
-**Il secondo anno discrimina meglio in tutte le categorie**, ed è il contrario
-dell'impressione. Ha anche senso: al secondo anno il ragazzo corre contro i propri pari da
-dodici mesi in più, e la classifica ne misura il rendimento con meno rumore.
+Il secondo anno discrimina meglio del primo in tutte le categorie, cioè esattamente il
+contrario dell'impressione. Ha anche senso: al secondo anno il ragazzo corre contro i propri
+pari da dodici mesi in più, e la classifica ne misura il rendimento con meno rumore.
 
-## La cosa che non ci aspettavamo: non si accumula
+## L'informazione non si accumula come ti aspetteresti
 
-Qui arriva il risultato più utile del post, e per capirlo bisogna cambiare domanda. Non
-«quanto dice l'Under 17?», ma **«quanto dice l'Under 17 che non fosse già nell'Under 15?»**.
+Qui arriva il risultato più utile del post, e per capirlo bisogna cambiare la domanda: non
+quanto dica l'Under 17, ma quanto dica l'Under 17 che non fosse già nell'Under 15.
 
-Si prendono i ragazzi osservati in tutte le categorie — sono 102, un gruppo piccolo e molto
-selezionato, ma è l'unico modo per confrontare mele con mele — e si aggiunge una categoria
-alla volta, guardando quanto migliora la previsione.
+Prendo i ragazzi osservati in tutte le categorie, che sono 102, un gruppo piccolo e molto
+selezionato ma l'unico su cui il confronto sia legittimo, e aggiungo una categoria alla volta
+guardando quanto migliori la previsione.
 
 | il modello conosce… | quanto ci prende |
 |---|---|
 | solo l'anno di nascita | 51% (cioè: nulla) |
-| + Under 15 | 58% |
-| + Under 17 | 66% |
-| **+ Under 19** | **81%** |
-| + Under 23 | 82% |
+| più l'Under 15 | 58% |
+| più l'Under 17 | 66% |
+| **più l'Under 19** | **81%** |
+| più l'Under 23 | 82% |
 
-Il salto è tutto in un punto solo: **l'Under 19 aggiunge da solo più di tutte le categorie
-precedenti messe insieme**. E l'Under 23, che pure è la categoria più vicina al traguardo,
+Il salto è tutto in un punto solo: l'Under 19 da solo aggiunge più di tutte le categorie
+precedenti messe insieme, mentre l'Under 23, che pure è la categoria più vicina al traguardo,
 non aggiunge quasi nulla a chi già conosce l'Under 19.
 
-Poteva essere un caso di questo particolare sottocampione, quindi abbiamo chiesto la stessa
-cosa in altri due modi completamente diversi.
+Poteva essere una stranezza di questo sottocampione, quindi ho fatto la stessa domanda in
+altri due modi completamente diversi. Una foresta casuale, cioè un algoritmo che si arrangia
+da solo a trovare le combinazioni utili, ha ricevuto diciassette variabili invece di una e ha
+guadagnato **1,3 punti percentuali** di capacità predittiva, con in cima alla sua classifica
+di importanza proprio il piazzamento in Under 19. Una regressione penalizzata, cioè un metodo
+che mette tutte le categorie in un modello solo e poi butta via quelle che non si guadagnano
+il posto, ne ha tenute **2 su 8** contando anche l'anno di nascita: l'Under 19 secondo anno e
+l'Under 23.
 
-Una **foresta casuale** — un algoritmo di apprendimento automatico che si arrangia da solo a
-trovare le combinazioni utili — ha ricevuto diciassette variabili invece di una, e ha
-guadagnato **1,3 punti percentuali** di capacità predittiva. Con quindici predittori in più.
-E in cima alla sua classifica di importanza ha messo esattamente il piazzamento in Under 19.
+Tre strade diverse, la stessa conclusione: quasi tutta l'informazione utile sta nell'ultima
+misura che hai. Le stagioni precedenti non si sommano a quella, sono in gran parte la stessa
+cosa vista da più lontano.
 
-Una **regressione penalizzata** — un metodo che mette tutte le categorie in un modello solo e
-poi butta via quelle che non si guadagnano il posto — ne ha tenute **2 su 8** — le sette categorie
-più l'anno di nascita — e sono Under 19 secondo anno e Under 23. Tutte le altre
-azzerate.
+## La lettura sbagliata
 
-Tre strade diverse, la stessa conclusione: **quasi tutta l'informazione utile sta
-nell'ultima misura disponibile**. Le stagioni precedenti non si sommano a quella; sono in
-gran parte la stessa cosa vista da più lontano.
+La conclusione che questo post ti invita a trarre, e che non segue, è che a tredici anni si
+possa già selezionare.
 
-## La trappola
+Il motivo per cui non segue non ha niente a che vedere con la qualità del dato, perché il
+modello a tredici anni è buono e mette davanti quello giusto in tre casi su quattro. È
+l'aritmetica del gruppo su cui lo applichi a rovinare tutto: quando i professionisti sono meno
+del 3%, anche un ordinamento accurato produce in maggioranza segnalazioni sbagliate. È il tema
+della prossima puntata e non te lo anticipo oltre, però tieniti già adesso la distinzione fra
+il predire e il bastare per decidere.
 
-La lettura sbagliata di questo post è: *«allora a tredici anni si può già selezionare»*.
+## Cosa te ne porti a casa
 
-Non segue, e il motivo non ha niente a che vedere con la qualità del dato. Il modello a
-tredici anni è buono: mette davanti quello giusto in tre casi su quattro. È l'aritmetica
-del gruppo su cui lo si applica che rovina tutto — quando i professionisti sono meno del 3%,
-anche un ordinamento accurato produce in maggioranza segnalazioni sbagliate.
+Il risultato a tredici anni non è rumore, e chi lo dice per prudenza ti sta dicendo una cosa
+gentile e falsa: se guardi i piazzamenti dei tuoi Esordienti stai guardando qualcosa che in
+media ha a che fare con il futuro.
 
-È il tema del prossimo post e non lo anticipo oltre, ma vale la pena tenere già adesso la
-distinzione: **«predice» e «basta per decidere» sono due frasi diverse.**
+La parte operativa, però, è l'altra. Se quasi tutta l'informazione utile sta nella misura più
+recente, allora tenersi l'archivio di quello che un ragazzo faceva tre anni fa serve molto
+meno di quanto si creda, perché la stagione in corso ti dice quasi tutto quello che ti direbbe
+quella cartella. E se il salto vero è fra i sedici e i diciotto anni, è lì che vale la pena
+guardare con attenzione: non perché prima non ci sia segnale, ma perché prima il segnale è già
+dentro quello che vedrai dopo.
 
-## Cosa se ne ricava
-
-Il risultato agonistico a tredici anni **non è rumore**. Chi lo dice per prudenza dice una
-cosa gentile e falsa. Chi guarda i piazzamenti dei propri Esordienti sta guardando qualcosa
-che, in media, ha a che fare con il futuro.
-
-Ma la parte operativa è l'altra. Se quasi tutta l'informazione utile sta nella misura più
-recente, allora **tenere un archivio di quello che un ragazzo faceva tre anni fa serve
-molto meno di quanto si creda**. La cartella con i risultati dai tredici anni in poi non è
-una miniera: la stagione in corso dice quasi tutto quello che quella cartella direbbe.
-
-E se il salto vero è fra i sedici e i diciotto anni, è lì che vale la pena guardare con
-attenzione — non perché prima non ci sia segnale, ma perché prima il segnale è già dentro
-quello che si vedrà dopo.
-
-## Il gancio
-
-Fin qui abbiamo parlato di livello: dove sta un ragazzo in classifica. Ma la domanda che in
-società si fa più spesso è un'altra, e riguarda la direzione.
-
-Meglio uno stabile al settantacinquesimo percentile, o uno che in tre anni è passato dal
-quarantesimo al novantesimo?
+Fin qui però abbiamo parlato solo di livello, cioè di dove un ragazzo sta in classifica,
+mentre la domanda che in società ci si fa più spesso riguarda la direzione. Meglio uno stabile
+al settantacinquesimo percentile o uno che in tre anni è passato dal quarantesimo al
+novantesimo? È il tema della prossima puntata.
 
 ---
 
 > **Come lo sappiamo**
 >
 > Il predittore è il percentile dentro la cella `stagione × categoria × anno di categoria`,
-> che rende confrontabili classifiche di lunghezza diversa. L'esito è essere arrivati a
-> correre in una squadra professionistica di primo o secondo livello entro i venticinque
-> anni.
+> che rende confrontabili classifiche di lunghezza diversa. L'esito è essere arrivati a correre
+> in una squadra professionistica di primo o secondo livello entro i venticinque anni.
 >
-> I modelli sono regressioni logistiche con la correzione di Firth, che serve perché l'esito
-> è raro — meno del 3% — e senza di essa le stime sarebbero distorte verso l'alto. Sono
-> aggiustati per anno di nascita: le coorti recenti hanno avuto meno tempo per arrivare.
-> L'aggiustamento sposta i coefficienti di meno di 0,01, quindi il gradiente non è un effetto
-> di coorte.
+> I modelli sono regressioni logistiche con la correzione di Firth, necessaria perché l'esito
+> è raro, meno del 3%, e senza di essa le stime sarebbero distorte verso l'alto. Sono
+> aggiustati per anno di nascita, dato che le coorti recenti hanno avuto meno tempo per
+> arrivare; l'aggiustamento sposta i coefficienti di meno di 0,01, quindi il gradiente non è un
+> effetto di coorte.
 >
-> «Quanto ci prende» è l'area sotto la curva ROC, cioè la probabilità che il modello metta
-> davanti il futuro professionista quando gli si dà una coppia a caso. Il confronto fra due
-> modelli sulle stesse persone usa il test di DeLong, che tiene conto della correlazione fra
-> le due misure.
+> Quello che chiamo «quanto ci prende» è l'area sotto la curva ROC, cioè la probabilità che il
+> modello metta davanti il futuro professionista quando gli si dà una coppia a caso. Il
+> confronto fra due modelli sulle stesse persone usa il test di DeLong, che tiene conto della
+> correlazione fra le due misure.
 >
-> Il limite più serio: il confronto fra categorie gira su **102 atleti**, quelli osservati
-> ovunque. Sono pochi e sono sopravvissuti — fra loro i professionisti sono il 43% — quindi
-> di quella tabella conta la *differenza fra righe*, non il livello.
+> Il limite più serio riguarda il confronto fra categorie, che gira su 102 atleti, cioè quelli
+> osservati ovunque. Sono pochi e sono sopravvissuti, visto che fra loro i professionisti sono
+> il 43%, quindi di quella tabella conta la differenza fra le righe e non il livello.
 
 ---
 
 ## Scelte aperte per questo post
 
-**A. Aprire con l'aspettativa smentita?** Il testo attuale apre dicendo «ci aspettavamo
-zero, non è andata così». È il modo più onesto e più coinvolgente, ma **funziona solo se il
-post 1 ha impostato quell'attesa** (vedi la scelta B del post 1). Le due decisioni vanno
-prese insieme. Se il post 1 non anticipa nulla, questo può aprire con una scena: un
-direttore sportivo che guarda una gara Esordienti.
+**A. Aprire con l'aspettativa smentita.** Il testo attuale apre dicendo che mi aspettavo zero
+e che non è andata così, che è il modo più onesto e più coinvolgente, ma funziona soltanto se
+il post 1 ha impostato quell'attesa (si veda la scelta B del post 1). Le due decisioni vanno
+prese insieme, e se il post 1 non anticipa nulla questo può aprire con una scena, per esempio
+un direttore sportivo che guarda una gara Esordienti.
 
-**B. Quanto mostrare del «non si accumula».** È il risultato metodologicamente più
-interessante della serie e il più difficile da raccontare. Tre livelli possibili:
+**B. Quanto mostrare del fatto che l'informazione non si accumula.** È il risultato
+metodologicamente più interessante della serie e il più difficile da raccontare, e ci sono
+tre livelli possibili. Soltanto la tabella dei modelli annidati, come adesso, con le altre due
+conferme in una riga ciascuna. Tutte e tre le conferme distese, con la foresta casuale
+spiegata per esteso, il che è più solido ma introduce l'apprendimento automatico in un post
+che non ne ha bisogno. Oppure spostare l'intero tema in un post a sé, insieme alla validazione
+del post 8, cosa che sconsiglierei, perché da solo non regge un post e in fondo alla serie
+nessuno lo leggerebbe.
 
-1. **solo la tabella dei modelli annidati** (come ora), con le altre due conferme in una
-   riga ciascuna;
-2. **tutte e tre le conferme distese**, con la foresta casuale spiegata: più solido, ma
-   introduce l'apprendimento automatico in un post che non ne ha bisogno;
-3. **spostare tutto il tema in un post a sé**, insieme alla validazione del post 8.
-   Sconsigliato: da solo non regge un post e in fondo alla serie nessuno lo leggerebbe.
-
-**C. Il numero chiave.** Il piano indica 2,28 (l'odds ratio a diciotto anni). Ma il numero
-più memorabile del post è probabilmente **«grande a tredici anni»**, che non è una cifra.
-Alternativa: usare come numero chiave il **74%** — quante volte su cento, a tredici anni, il
-futuro professionista sta davanti — che è concreto e comprensibile senza spiegazioni.
-**Consiglio questa.**
+**C. Il numero chiave.** Il piano indicava 2,28, cioè l'odds ratio a diciotto anni, ma il
+numero più memorabile del post è il 74%, cioè quante volte su cento a tredici anni il futuro
+professionista sta davanti, che è concreto e comprensibile senza spiegazioni. L'ho messo come
+numero chiave, e la scelta si può ancora ribaltare.
 
 **D. Come chiamare l'AUC.** Il testo la traduce in «quante volte su cento il modello mette
-davanti quello giusto» e non usa mai la sigla. Alternative: introdurre la sigla una volta
-fra parentesi, per i lettori che vorranno cercarla; oppure usare la percentuale nel corpo e
-mettere le AUC vere solo nelle tabelle. La seconda è più pulita ma rende il post non
+davanti quello giusto» e non usa mai la sigla. Le alternative sono introdurre la sigla una
+volta fra parentesi, per i lettori che vorranno cercarla, oppure usare la percentuale nel
+corpo e mettere le AUC vere soltanto nelle tabelle, che è più pulito ma rende il post non
 confrontabile con il documento tecnico.
 
-**E. La conseguenza pratica sull'archivio storico** («tenere i risultati di tre anni fa
-serve meno di quanto si creda») è una mia deduzione, corretta ma non testata direttamente.
-Da tenere, ammorbidire o togliere: è il tipo di frase che un direttore sportivo citerà, e
-va decisa consapevolmente.
+**E. La conseguenza pratica sull'archivio storico**, cioè che tenere i risultati di tre anni
+fa serva meno di quanto si creda, è una mia deduzione, corretta ma non testata direttamente.
+Si può tenere, ammorbidire o togliere: è il tipo di frase che un direttore sportivo citerà, e
+conviene deciderla consapevolmente.

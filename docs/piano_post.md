@@ -419,6 +419,12 @@ tabelle, e vale anche per la prosa.
 
 Le otto bozze stanno in [`docs/post/`](post/), una per file, numerate come qui.
 
+Le regole di scrittura che seguono stanno in [`post/STILE.md`](post/STILE.md), scritte
+dopo che la prima stesura si era rivelata un italiano tradotto dall'inglese: centoventidue
+trattini lunghi in quindicimila parole, paragrafi di una riga usati come colpo di scena, e
+la formula «non è X, è Y» ripetuta quarantasei volte. Le regole nascono dal confronto con
+la prosa italiana e con i post di [lucabontempi.com](https://lucabontempi.com/blog/).
+
 Ogni bozza contiene il testo per esteso e, in fondo, una sezione **«Scelte aperte»**: i
 punti in cui esistono più strade sensate — dove aprire, quanto anticipare, cosa scorporare,
 quale numero chiave usare — con una raccomandazione dove ce n'è una. Vanno decise prima di

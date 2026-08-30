@@ -1,11 +1,10 @@
 # 1. Cosa sappiamo già, e cosa nessuno ha ancora guardato
 
 > ⚠️ **Bozza scritta a mano. Non si rigenera.**
-> Le cifre che vengono dalla letteratura invecchiano con la letteratura, non con i nostri
-> dati: se esce uno studio nuovo, questo testo non se ne accorge. Le poche cifre che
-> vengono dalla nostra analisi sono controllate da
-> `python scripts/11_verifica_documenti.py`. Le affermazioni qualitative no: quelle vanno
-> rilette da una persona.
+> Le cifre di questo post vengono dalla letteratura, quindi invecchiano con la letteratura e
+> non con i nostri dati: se esce uno studio nuovo, il testo non se ne accorge. Le poche cifre
+> che vengono dall'analisi sono controllate da `python scripts/11_verifica_documenti.py`.
+> Sullo stile: [`STILE.md`](STILE.md).
 >
 > **Numero chiave del post:** 30%.
 > **Fonti:** `docs/literature_review.md`. Nessun dato originale.
@@ -13,139 +12,132 @@
 
 ---
 
-Ogni anno, ai Campionati del Mondo su strada juniores, ogni nazione può schierare sei
-corridori. Sei, su tutti i diciassettenni e diciottenni che corrono in quel paese. Chi
-finisce su quella linea di partenza ha già superato tutte le selezioni che esistono: è
-quanto di più vicino a un «predestinato» il ciclismo giovanile sappia produrre.
+*Questa è la prima di otto puntate sui ranking giovanili italiani e sul passaggio al
+professionismo. Prima di tirare fuori i miei numeri mi sembrava giusto raccontare cosa la
+ricerca sa già, perché in vent'anni qualche risposta è arrivata, ed è abbastanza diversa da
+quella che si sente ripetere ai bordi delle strade.*
 
-Nel 2006 un gruppo di ricercatori tedeschi ha fatto una cosa semplice. Ha preso gli elenchi
-dei partecipanti a quei Mondiali juniores e li ha inseguiti negli anni, per vedere quanti
-si fossero ritrovati, da adulti, al Mondiale élite.
+Ai Mondiali juniores su strada ogni nazione porta sei corridori. Sei, su tutti i
+diciassettenni e diciottenni tesserati in quel paese. Se arrivi a quella linea di partenza
+vuol dire che hai superato ogni selezione che il ciclismo giovanile riesca a mettere in
+piedi: più predestinato di così non si può.
 
-**Trenta per cento.**
+Nel 2006 un gruppo di ricercatori tedeschi ha preso gli elenchi dei partecipanti a quei
+Mondiali e si è messo a seguirli negli anni, per contare quanti fossero poi arrivati a
+correre il Mondiale da grandi. Trenta su cento. Poi hanno guardato la stessa cosa al
+contrario, partendo dai corridori del Mondiale élite e chiedendosi quanti fossero passati da
+quello juniores: 29,4 su cento.
 
-Poi ha guardato nella direzione opposta: dei corridori che erano al Mondiale élite, quanti
-erano passati per quello juniores? **Ventinove virgola quattro per cento.**
+Le due percentuali si somigliano per caso, però messe insieme dicono una cosa sola, e non è
+una cosa comoda. Andare forte da ragazzi non è indispensabile per arrivare, e non basta
+neanche lontanamente a garantirtelo. Sette predestinati su dieci non ce la fanno, e sette
+arrivati su dieci non erano predestinati. È il risultato più solido di tutta la ricerca sul
+tema ed è anche il più vecchio, visto che da allora nessuno è riuscito a smentirlo.
 
-Le due percentuali gemelle dicono la stessa cosa da due lati, in modo quasi brutale: il
-successo da ragazzi non è **necessario** per arrivare, e non è **sufficiente**. Sette
-predestinati su dieci non arrivano. Sette arrivati su dieci non erano predestinati.
+## Cosa hanno stabilito vent'anni di ricerca
 
-È da lì che comincia tutto, ed è ancora il risultato più solido del campo.
+Dal 2006 a oggi la domanda è stata ripresa in Norvegia, in Belgio, in Spagna, in Olanda e
+due volte in Italia, con dati sempre più grandi. Le conclusioni si assomigliano parecchio, il
+che nella ricerca è una buona notizia, perché vuol dire che non dipendono da chi ha fatto i
+conti.
 
-## La domanda
+Il punto su cui si discute meno è che i futuri professionisti andassero già meglio degli
+altri da ragazzi. Vale in Italia, in Belgio e in Norvegia, misurato da gruppi diversi con
+metodi diversi, ed è il risultato più replicato del campo.
 
-**Qualcuno l'ha già studiato? E se sì, cosa manca ancora?**
+Il secondo è che il segnale cresce man mano che ci si avvicina al traguardo. Lo studio
+italiano più citato, quello di Gallo e colleghi del 2022 su 1 345 corridori delle classifiche
+federali, trova che i punti fatti in gara dicono qualcosa già dagli Allievi, ma dicono sempre
+di più salendo di categoria, e indica come momento più informativo il primo anno da Under 23.
 
-## Cosa vent'anni di ricerca hanno stabilito
+Sotto i quindici anni, invece, il sospetto è che non ci sia niente da vedere. Uno studio
+belga sui tredici e quattordicenni ha misurato maturazione, coordinazione e capacità
+motorie, e ha scoperto che tutto insieme spiegava poco più di un quinto delle differenze fra
+i ragazzi, con maturità e coordinazione attorno al 5 per cento ciascuna. La lettura che se ne
+è ricavata, e che probabilmente hai già sentito, è che a quell'età si stia misurando
+soprattutto chi si è sviluppato prima.
 
-Dal 2006 a oggi la questione è stata ripresa in Norvegia, in Belgio, in Spagna, in Olanda
-e due volte in Italia, con dati sempre più grandi. Le conclusioni si assomigliano in modo
-sospetto — che nella ricerca è una buona notizia, perché vuol dire che non dipendono da chi
-ha fatto i conti.
+Poi c'è il dato che torna ovunque, cioè che la stragrande maggioranza di chi va forte da
+giovane non arriva comunque: il 30 per cento dello studio tedesco, il 15 per cento degli
+Allievi italiani che poi faranno punti nel World Tour, i cinque su quarantotto dello studio
+olandese. Cambiano i paesi e le definizioni, non l'ordine di grandezza.
 
-**I futuri professionisti andavano già meglio da ragazzi.** Vale in Italia, in Belgio e in
-Norvegia, misurato da gruppi diversi con metodi diversi. È il risultato più replicato che
-esista in questo campo, e nessuno lo ha mai smentito.
+Sui test di laboratorio la letteratura è quasi unanime, e vale la pena dirlo perché suona
+strano: la soglia e i watt per chilo descrivono bene il livello di un ragazzo adesso, ma non
+aggiungono niente su dove arriverà. Uno studio norvegese ha messo a confronto le due famiglie
+di predittori sulle stesse persone, e il piazzamento in gara a diciotto anni ha battuto tutte
+le variabili fisiologiche.
 
-**Il segnale cresce avvicinandosi al traguardo.** Lo studio italiano più citato — Gallo e
-colleghi, 2022, su 1 345 corridori delle classifiche federali — trova che i punti raccolti
-in gara dicono qualcosa già dagli Allievi, ma dicono sempre di più man mano che si sale di
-categoria, e il momento più informativo è il **primo anno da Under 23**.
+L'ultimo punto riguarda il mese di nascita. In tutte le popolazioni giovanili studiate i nati
+nei primi mesi dell'anno sono più di quanti la demografia ne giustifichi, però il vantaggio si
+assottiglia salendo di categoria e fra i professionisti sparisce. Uno studio su quasi tremila
+corridori delle squadre Continental lo dice nel modo più tagliente possibile: l'effetto si
+trova soprattutto fra chi non ce l'ha fatta. Chi seleziona presto premia in modo sistematico
+la maturità anagrafica, e quella maturità in carriera non si converte.
 
-**Sotto i quindici anni, invece, si sospetta che non ci sia niente da vedere.** Uno studio
-belga sui tredici-quattordicenni ha misurato maturazione, coordinazione e capacità motorie,
-e ha trovato che tutto insieme spiegava poco più di un quinto delle differenze fra i
-ragazzi, con maturità e coordinazione attorno al 5% ciascuna. La lettura diffusa è
-diventata: a quell'età si misura soprattutto **chi si è sviluppato prima**.
+## La lettura sbagliata, e quella tecnicamente sbagliata
 
-**Chi va forte da giovane, in maggioranza, non arriva.** Ovunque. Il 30% di Schumacher, il
-15% degli Allievi italiani che poi faranno punti nel World Tour, i cinque su quarantotto
-dello studio olandese. Cambiano i paesi e le definizioni, non l'ordine di grandezza.
+Messe in fila, queste conclusioni portano a una sintesi che sembra saggia e non è vera, cioè
+che il risultato giovanile non conti e che quindi tanto valga non guardarlo.
 
-**I test di laboratorio non fanno meglio dei risultati in gara.** È un punto su cui la
-letteratura è quasi unanime, e vale la pena dirlo perché è controintuitivo: la soglia
-anaerobica e i watt per chilo servono a descrivere il livello attuale di un ragazzo, non a
-prevedere dove arriverà. Uno studio norvegese che le ha messe a confronto sulle stesse
-persone ha trovato che **il piazzamento in gara a diciotto anni batteva tutte le variabili
-fisiologiche**.
+Non è quello che dicono gli studi. Dicono che conta e non basta, che è una posizione molto
+più scomoda, perché non ti autorizza né a selezionare né a ignorare. Fra una misura inutile e
+una misura da usare con cautela c'è tutta la differenza del mondo, e quasi tutti gli usi
+sbagliati di questi dati nascono dal non tenerle distinte.
 
-**Nascere a gennaio aiuta a entrare, non ad arrivare.** In tutte le popolazioni giovanili
-studiate i nati nei primi mesi dell'anno sono troppi rispetto a quanti dovrebbero essere.
-Ma il vantaggio si assottiglia salendo di categoria e, fra i professionisti, sparisce. Uno
-studio su quasi tremila corridori delle squadre Continental lo dice nel modo più tagliente
-possibile: l'effetto si trova **fra chi non ce l'ha fatta**. Chi seleziona presto premia
-sistematicamente la maturità anagrafica, e quella maturità non si converte in carriera.
+C'è poi un problema più tecnico, e riguarda chi viene guardato. Uno studio italiano del 2024
+ha ricostruito le traiettorie di ottantuno professionisti per capire cosa distinguesse i
+migliori, e ha trovato pochissimo. Il motivo è che stava confrontando professionisti con
+altri professionisti: quando guardi soltanto chi ce l'ha fatta, le differenze che contavano
+sono già state consumate per decidere chi entrava nel campione, e quello che ti resta in mano
+è in gran parte rumore. È un errore così comune da avere un nome, cioè condizionare su una
+variabile che dipende dal predittore, ed è facile da dire e costoso da evitare, visto che
+significa andare a cercare anche quelli che non sono arrivati.
 
-## La trappola
+## Il buco che questa serie prova a riempire
 
-Messe in fila, queste conclusioni invitano a una lettura che sembra saggia e non è vera:
-*«il risultato giovanile non conta, quindi tanto vale non guardarlo»*.
+Nessuno ha mai guardato i tredici e quattordici anni partendo dai risultati di gara. Gli
+studi italiani cominciano dagli Allievi; quello belga include gli Under 15, ma soltanto per
+chi aveva già almeno un piazzamento nei primi dieci; e lo studio sui tredicenni misurava test
+motori e non gare, con un esito a due o tre anni invece che la carriera. La casella
+«risultato in gara a tredici anni, su tutti i ragazzi e non su una selezione, con esito il
+professionismo» è vuota, ed è vuota proprio dove si prende la prima decisione, perché è a
+quell'età che le società cominciano a reclutare e a scegliere chi seguire.
 
-Non è quello che dicono gli studi. Dicono che il risultato giovanile **conta e non basta**,
-che è una cosa diversa e molto più scomoda, perché non autorizza né a selezionare né a
-ignorare. La differenza fra «non predice» e «predice, ma la maggior parte dei segnalati non
-arriverà» è tutta la distanza fra una misura inutile e una misura da usare con cautela.
+Nessuno, poi, ha mai chiesto quanto ogni categoria aggiunga a quella prima. Sapere che il
+segnale cresce con l'età non ti dice se l'Under 23 porti informazione nuova oppure se sia lo
+stesso segnale visto più da vicino, e per chi deve decidere quando guardare le due cose hanno
+conseguenze opposte.
 
-C'è poi una trappola più tecnica, e riguarda **chi viene guardato**. Uno studio italiano del
-2024 ha ricostruito le traiettorie di ottantuno professionisti per capire cosa distinguesse
-i migliori, e ha trovato pochissimo. Il motivo è che stava confrontando professionisti con
-altri professionisti: quando si guarda solo chi ce l'ha fatta, le differenze che contavano
-sono già state consumate per decidere chi entrava nel campione, e quello che resta è
-rumore. È un errore così comune da avere un nome — condizionare su una variabile che dipende
-dal predittore — e il rimedio è banale a dirsi e costoso a farsi: **bisogna includere anche
-quelli che non sono arrivati**.
+Manca infine il numero che servirebbe davvero. Gli studi riportano che la differenza è
+significativa, riportano odds ratio, ogni tanto correlazioni, ma nessuno studio basato sui
+risultati di gara ha mai scritto quanti dei ragazzi segnalati poi arrivino. È esattamente il
+numero che useresti per decidere, e in letteratura non c'è.
 
-## Il buco
+Ci sono altre due cose che nessuno dichiara mai, e che ho scoperto soltanto provando a rifare
+i conti da capo. La prima è quanti fossero all'inizio: tutti gli studi calcolano percentuali
+su gruppi già selezionati, chi era al Mondiale, chi aveva un top 10, chi era a ranking, senza
+mai dire quanti fossero i ragazzi da cui quel gruppo è stato tirato fuori. La seconda è che
+tutti trattano l'uscita da una classifica come un abbandono, e le due cose non sono affatto la
+stessa. Sono i temi delle prossime due puntate, e non sono pignolerie contabili: lì dentro c'è
+il denominatore di ogni percentuale che leggerai dopo.
 
-E qui la parte interessante, che è quella che questa serie prova a riempire.
+## Cosa te ne porti a casa
 
-**Nessuno ha mai guardato i tredici-quattordici anni sui risultati di gara.** Gli studi
-italiani partono dagli Allievi; quello belga include gli Under 15, ma solo per chi aveva già
-almeno un piazzamento nei primi dieci; e lo studio sui tredicenni misurava test motori, non
-gare, con un esito a due o tre anni invece che la carriera. La casella «risultato agonistico
-a tredici anni → professionismo, su una popolazione nazionale non preselezionata» è vuota.
+Se alleni, la letteratura ti dà tre affermazioni oneste. Il risultato dei tuoi ragazzi
+qualcosa lo dice davvero. La maggioranza di quelli forti non arriverà comunque, e non sarà
+colpa tua né loro. E i valori di laboratorio, per quanto rassicuranti da misurare,
+aggiungono poco a quello che già vedi in gara.
 
-Ed è vuota proprio dove si prende la prima decisione: a quell'età le società italiane
-cominciano a reclutare, a investire e a scegliere chi seguire.
+Se invece leggi questa serie per capire quanto ti puoi fidare dei numeri, la risposta parte da
+qui: la ricerca esistente ha guardato quasi sempre in alto e tardi, cioè l'élite, le categorie
+maggiori, chi era già stato scelto. Io ho provato a guardare in basso e presto, prendendo
+tutti i ragazzi che entrano in una classifica nazionale dai tredici anni in su e seguendoli
+fino a dove arrivano.
 
-**Nessuno ha mai chiesto quanto ogni categoria aggiunga alla precedente.** Sapere che il
-segnale cresce con l'età non dice se l'Under 23 porti informazione *nuova*, o se sia lo
-stesso segnale visto da più vicino. Per chi deve decidere quando guardare, sono due mondi
-diversi.
-
-**E nessuno, in vent'anni, ha mai scritto il numero che serve davvero.** Gli studi riportano
-che la differenza è significativa, riportano odds ratio, a volte correlazioni. Nessuno
-studio basato sui risultati di gara ha mai riportato **quanti dei segnalati poi arrivano**.
-È il numero che una società userebbe per decidere, e in letteratura non esiste.
-
-Ci sono altre due cose che nessuno dichiara mai, e che si scoprono solo provando a rifare i
-conti da capo. La prima: **quanti erano all'inizio**. Tutti gli studi calcolano percentuali
-su gruppi già selezionati — chi era al Mondiale, chi aveva un top-10, chi era a ranking —
-senza mai dire quanti fossero i ragazzi da cui quel gruppo è stato estratto. La seconda:
-tutti trattano l'uscita da una classifica come un abbandono, e non è la stessa cosa. Sono i
-temi dei prossimi due post, e non sono dettagli contabili: sono il denominatore di ogni
-percentuale che leggerete.
-
-## Cosa se ne ricava
-
-Se allenate, la letteratura vi dice tre cose oneste. Che il risultato dei vostri ragazzi
-qualcosa lo dice. Che la maggioranza di quelli forti non arriverà comunque, e non sarà
-colpa vostra né loro. E che i valori di laboratorio, per quanto rassicuranti da misurare,
-non aggiungono granché a quello che già vedete in gara.
-
-Se invece leggete questa serie per capire fino a che punto ci si possa fidare dei numeri,
-la risposta parte da qui: la ricerca esistente ha guardato quasi sempre **in alto e tardi**
-— élite, categorie maggiori, chi era già stato scelto. Questa serie prova a guardare in
-basso e presto: tutti i ragazzi che entrano in una classifica nazionale, dai tredici anni,
-fino a dove finiscono.
-
-## Il gancio
-
-Prima di poter dire quanti ce la fanno, però, bisogna sapere **quanti sono**. E la risposta
-è meno ovvia di quanto sembri: la classifica da cui parte tutto questo studio non è
-l'elenco dei giovani ciclisti italiani. È qualcos'altro, e conviene guardarla in faccia
-prima di usarla.
+Prima di dirti quanti ce la fanno, però, devo dirti quanti sono. E la risposta è meno ovvia
+di quanto sembri, perché la classifica da cui parte tutto lo studio non è l'elenco dei giovani
+ciclisti italiani ma qualcosa di piuttosto diverso. È il tema della prossima puntata.
 
 ---
 
@@ -155,49 +147,46 @@ prima di usarla.
 > il 2025, raccolti in una rassegna che sta in `docs/literature_review.md` con riferimento
 > completo, DOI e limiti di ciascuno.
 >
-> Cinque di quegli studi sono stati letti per intero e le rispettive schede riscritte; per
-> gli altri si è lavorato su abstract e citazioni incrociate, perché i testi integrali non
-> sono pubblicamente accessibili. Dove una scheda non è stata verificata sul testo
-> integrale, la rassegna lo dichiara.
+> Cinque di quegli studi li ho letti per intero e ho riscritto le rispettive schede; per gli
+> altri ho lavorato su abstract e citazioni incrociate, perché i testi integrali non sono
+> pubblicamente accessibili, e la rassegna dichiara caso per caso quali siano stati verificati
+> e quali no.
 >
-> Il limite più serio di questa sintesi è che riguarda quasi solo **atleti maschi**, e un
+> Il limite più serio di questa sintesi è che riguarda quasi soltanto atleti maschi, e un
 > paese alla volta.
 
 ---
 
 ## Scelte aperte per questo post
 
-Nessuna è un dettaglio di forma: cambiano il taglio del post e vanno decise prima di
-rifinire il testo.
+Nessuna di queste è una questione di forma: cambiano il taglio del post e vanno decise prima
+di rifinire il testo.
 
-**A. Da dove aprire.** Il post apre con Schumacher 2006 e i sei posti al Mondiale juniores,
-che è il classico del campo e regala subito il numero chiave. Due alternative:
+**A. Da dove aprire.** Il post apre con lo studio del 2006 e i sei posti al Mondiale
+juniores, che è il classico del campo e consegna subito il numero chiave. Due alternative
+possibili: aprire con i due ciclisti olandesi che hanno lo stesso identico punteggio, 414, e
+valgono tre volte e mezzo l'uno dell'altro, che è l'immagine più forte di tutta la rassegna
+ma appartiene a un discorso sulla misura e oggi vive nel post 2; oppure aprire con una scena
+italiana, una gara Esordienti e un direttore sportivo a bordo strada, arrivando alla
+letteratura in seconda battuta, che scalda il pezzo e gli toglie autorevolezza.
 
-- aprire con i **due ciclisti olandesi che hanno lo stesso identico punteggio** — 414 — e
-  valgono tre volte e mezzo l'uno dell'altro. È l'immagine più forte di tutta la rassegna,
-  ma è un problema di *misura*, e trascinerebbe il post 1 su un tema che oggi vive nel
-  post 2;
-- aprire con **una scena italiana** — una gara Esordienti, un direttore sportivo a bordo
-  strada — e arrivare alla letteratura in seconda battuta. Più caldo, meno autorevole.
+**B. Quanto anticipare dei nostri risultati.** Il testo dice cosa manca in letteratura ma non
+anticipa cosa ho trovato. Si può lasciarlo così, giocando sull'attesa, oppure chiudere dicendo
+che la previsione ragionevole, cioè che a tredici anni non ci fosse niente da vedere, si è
+rivelata sbagliata. La seconda strada è onesta e costruisce un arco narrativo esplicito lungo
+otto post, e la consiglierei, perché altrimenti il primo post resta l'unico senza un risultato
+proprio.
 
-**B. Quanto anticipare dei nostri risultati.** Il testo dice cosa manca in letteratura ma
-non anticipa cosa abbiamo trovato. Si può:
-
-- lasciarlo così, e giocare tutto sull'attesa;
-- chiudere con un'anticipazione secca — «la previsione ragionevole era che a tredici anni
-  non ci fosse niente da vedere; è sbagliata» — che è onesta e crea un arco narrativo
-  esplicito lungo otto post. **È l'opzione che consiglierei**: altrimenti il post 1 resta
-  l'unico senza un risultato proprio.
-
-**C. Ordine: per temi o cronologico.** Ora le evidenze sono organizzate per tema. In
-alternativa si può raccontare la storia del campo in ordine di tempo (2006 → 2025), che
-mostra *come* si è arrivati alle conclusioni attuali, ma allunga e rischia la carrellata.
+**C. Ordine per temi o cronologico.** Ora le evidenze sono organizzate per tema. In
+alternativa si può raccontare la storia del campo in ordine di tempo, dal 2006 al 2025, il
+che mostra come si sia arrivati alle conclusioni attuali ma allunga il pezzo e rischia la
+carrellata.
 
 **D. Quanti studi nominare.** Nel testo attuale nessuno studio è citato per autore, tranne
-Gallo. Alternative: citare tutti per autore e anno (più solido, meno scorrevole), oppure
-nessuno nel corpo e tutti nel riquadro finale (più scorrevole, meno verificabile mentre si
-legge).
+Gallo. Le alternative sono citarli tutti per autore e anno, con più solidità e meno
+scorrevolezza, oppure non citarne nessuno nel corpo e metterli tutti nel riquadro finale, che
+si legge meglio ma non permette di controllare mentre si legge.
 
 **E. Il titolo.** «Cosa sappiamo già, e cosa nessuno ha ancora guardato» descrive ma non
 attira. Alternative: «Sette predestinati su dieci non arrivano»; «Il buco nella ricerca sta
-esattamente dove si decide»; «Vent'anni di studi, e nessuno ha guardato i tredicenni».
+dove si prendono le decisioni»; «Vent'anni di studi, e nessuno ha guardato i tredicenni».

@@ -8,6 +8,8 @@ stata fatta, che è metà del valore di questo file.
 
 | Data | Voce | Esito |
 |---|---|---|
+| 30 ago | **riscritte le otto bozze in italiano** | la prima stesura era inglese tradotto: 122 trattini lunghi in 15 000 parole, paragrafi di una riga a effetto, «non è X, è Y» 46 volte. Regole in [`post/STILE.md`](post/STILE.md), ricavate dalla prosa italiana dell'autore e dai post del suo blog. Il controllo delle cifre ora normalizza grassetti e a capo, così una riscrittura non lo fa fallire trenta volte |
+| 30 ago | registro colloquiale | secondo passaggio, deciso dopo il primo: «tu» al lettore in tutta la serie, prima persona per le scelte di chi scrive, impersonale quasi eliminato. La sintassi italiana del passaggio precedente resta |
 | 30 ago | **licenza per la pubblicazione** | MIT per il codice ([`LICENSE`](../LICENSE)), CC BY 4.0 per i contenuti ([`LICENSE-CONTENT.md`](../LICENSE-CONTENT.md)). Dichiarato esplicitamente che i dati di partenza non sono nostri e non vengono ridistribuiti. **Restano due cose da decidere prima di pubblicare**: il nome del titolare del copyright (ora è l'handle `lucabnt`) e la paternità di `guida_metodologica_v5.md` e `docs/literature_review.md`, che sono licenziati come nostri |
 | 30 ago | verifica delle nove schede sui testi integrali | **chiusa senza farla**: i testi non sono pubblicamente accessibili. Le schede restano fondate su abstract, la rassegna lo dichiara e nessuna conclusione dello studio vi poggia sopra |
 | 30 ago | **bozze di tutti gli otto post** | `docs/post/`: testo per esteso, ciascuno con le proprie «scelte aperte» in fondo. Le cifre citate sono controllate da `11_verifica_documenti.py`, che ora copre anche i post |

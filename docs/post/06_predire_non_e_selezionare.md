@@ -1,9 +1,9 @@
 # 6. Predire non è selezionare
 
 > ⚠️ **Bozza scritta a mano. Non si rigenera.**
-> Ogni cifra è copiata dall'analisi al momento della stesura e diventerà falsa in silenzio
-> se i dati cambiano. Prima di pubblicare: `python scripts/11_verifica_documenti.py`.
-> Le affermazioni qualitative restano da rileggere a mano.
+> Ogni cifra è copiata dall'analisi al momento della stesura e diventerà falsa in silenzio se
+> i dati cambiano. Prima di pubblicare conviene eseguire
+> `python scripts/11_verifica_documenti.py`. Sullo stile: [`STILE.md`](STILE.md).
 >
 > **Numeri chiave del post:** 59% e 52%.
 > **Moduli:** `metriche`, `qualita`, `sopravvivenza`.
@@ -11,100 +11,87 @@
 
 ---
 
-Immaginate un esame del sangue per una malattia che colpisce tre persone su cento. È un
-buon test: quando una persona è malata, lo trova quasi sempre.
+*Sesta puntata, e quella a cui tutte le precedenti portavano. Fin qui ho misurato quanto il
+rendimento giovanile predica il professionismo; qui provo a usare quella misura per scegliere,
+che è una cosa molto diversa.*
 
-Fate lo screening su mille persone. Trenta sono malate, novecentosettanta no. Il test ne
-segnala un centinaio. Di quei cento segnalati, quanti sono davvero malati?
-
-Molti meno della metà. Non perché il test sia scadente, ma perché i sani erano trentadue
-volte più numerosi dei malati, e anche una piccola percentuale di errori su un gruppo enorme
-produce più falsi allarmi di quanti siano i casi veri.
-
-Questa è, quasi punto per punto, la situazione di chi seleziona giovani ciclisti. Con una
-differenza: nel caso dello screening la persona segnalata fa un secondo esame e la storia
-finisce lì. Nel caso del ciclismo, il ragazzo non segnalato smette di essere seguito.
-
-## La domanda
-
-**Se una società usasse davvero la classifica per scegliere, cosa otterrebbe?**
-
-## Facciamolo
-
-Prendiamo la categoria in cui la previsione funziona meglio — Juniores secondo anno,
-diciotto anni — e applichiamo il criterio più naturale: **seguiamo il 10% migliore**.
-
-Novecentouno ragazzi in classifica. Ne selezioniamo novantuno.
+Prendiamo la categoria in cui la previsione funziona meglio, cioè i Juniores di secondo anno,
+diciotto anni, e applichiamo il criterio più naturale che una società possa adottare: seguo il
+dieci per cento migliore. Su 901 ragazzi in classifica ne seleziono 91.
 
 | | |
 |---|---|
 | futuri professionisti intercettati | **59%** |
 | selezionati che non lo diventeranno | **52%** |
 
-Entrambe le metà della frase sono vere, e sono quasi sempre citate una alla volta.
+Sono vere tutte e due, e quasi sempre te ne citano una alla volta. Chi vuole difendere la
+selezione ti dice la prima, cioè che guardando il dieci per cento migliore prendi quasi sei
+futuri professionisti su dieci. Chi vuole demolirla ti dice la seconda, cioè che più della
+metà dei prescelti non ce la farà.
 
-Chi vuole difendere la selezione dice la prima: *guardando il 10% migliore si prendono quasi
-sei futuri professionisti su dieci*. Vero.
+Il punto è che non esiste una soglia che risolva il problema. Se allarghi al 25% migliore sali
+all'82% dei futuri professionisti intercettati, ma la quota di selezionati che poi arriva
+scende al 27%: prendi quasi tutti quelli giusti insieme a tre volte tanti che non lo sono. Se
+stringi, perdi i professionisti veri. Le due colonne si muovono sempre in direzioni opposte,
+perché descrivono lo stesso compromesso guardato dai due lati.
 
-Chi vuole demolirla dice la seconda: *più della metà dei prescelti non ce la farà*. Vero
-anche questo.
+## A tredici anni va peggio, e conviene vedere quanto
 
-E il punto è che **non c'è una soglia che risolva**. Allargando al 25% migliore si sale
-all'82% dei futuri professionisti intercettati, ma la quota di selezionati che arriva scende
-al 27%: si prende quasi tutti quelli giusti insieme a tre volte tanti che non lo sono.
-Stringendo, si perdono i professionisti veri. Le due colonne si muovono sempre in direzioni
-opposte, perché descrivono lo stesso compromesso visto dai due lati.
+Selezionando il dieci per cento migliore degli Esordienti di primo anno intercetti il **32%**
+dei futuri professionisti, e di quei 169 ragazzi ne arriverà l'**11%**.
 
-## E a tredici anni?
-
-Peggio, com'era prevedibile — ma vale la pena vedere quanto.
-
-Selezionando il 10% migliore degli Esordienti primo anno si intercetta il **32%** dei futuri
-professionisti, e di quei 169 ragazzi ne arriverà **l'11%**.
-
-Tradotto: **nove ragazzi su dieci fra i migliori d'Italia a tredici anni non diventeranno
-professionisti**, e due futuri professionisti su tre in quel momento non sono nel gruppo dei
+Tradotto: nove ragazzi su dieci fra i migliori d'Italia a tredici anni non diventeranno
+professionisti, e due futuri professionisti su tre in quel momento non sono nel gruppo dei
 migliori.
 
-Il post 4 diceva che a tredici anni si vede già qualcosa, e resta vero. Questo post dice
-cosa succede se si prova a usarlo per decidere, e le due cose stanno insieme senza
-contraddirsi. Il segnale c'è; è il rapporto fra i numeri che rende inutilizzabile la
+Il post precedente diceva che a tredici anni si vede già qualcosa, e resta vero; questo ti
+dice cosa succede se provi a usarlo per decidere, e le due affermazioni stanno insieme senza
+contraddirsi. Il segnale c'è, è il rapporto fra i numeri a rendere inutilizzabile la
 decisione.
 
 ## Perché non è colpa del criterio
 
-Qui sta il punto che vale l'intero post, ed è aritmetica, non statistica.
+Il punto che vale l'intero post è di aritmetica e non di statistica, e te lo spiego con un
+esempio che viene da tutt'altro campo.
 
-Quando l'esito riguarda il 3% della popolazione, ogni criterio di selezione pesca in un mare
-di persone che non arriveranno. Anche un ordinamento quasi perfetto — e il nostro, a
-diciotto anni, mette davanti il ragazzo giusto in quasi nove coppie su dieci — produce
-liste in cui i falsi positivi sono la maggioranza.
+Immagina un esame del sangue per una malattia che colpisce tre persone su cento, e che sia un
+buon test, capace di trovare la malattia quasi sempre quando c'è. Fai lo screening su mille
+persone: trenta saranno malate e novecentosettanta no. Se il test ne segnala un centinaio, di
+quei cento segnalati i malati veri saranno molti meno della metà. Non perché il test sia
+scadente, ma perché i sani erano trentadue volte più numerosi dei malati, e anche una piccola
+percentuale di errori su un gruppo enorme produce più falsi allarmi di quanti siano i casi
+veri.
 
-Non c'è modello, algoritmo o osservatore esperto che possa aggirarlo. Non è un difetto della
-misura: è la forma del problema.
+Chi seleziona giovani ciclisti sta nella stessa identica situazione, con una differenza: nello
+screening la persona segnalata fa un secondo esame e la storia finisce lì, mentre nel ciclismo
+il ragazzo non segnalato smette di essere seguito.
 
-La conseguenza pratica è che **il numero da chiedere a chiunque proponga un criterio di
-selezione non è "quanti ne intercetta", ma "quanti dei segnalati arrivano"**. Il primo
-numero è sempre lusinghiero. Il secondo è quello che descrive la lista che vi ritrovate in
-mano.
+Quando l'esito riguarda il 3% della popolazione, quindi, qualunque criterio di selezione pesca
+in un mare di gente che non arriverà, e anche un ordinamento quasi perfetto (il nostro, a
+diciotto anni, mette davanti il ragazzo giusto in quasi nove coppie su dieci) produce liste in
+cui i falsi positivi sono la maggioranza. Non c'è modello, algoritmo od osservatore esperto
+che possa aggirare la cosa, perché non è un difetto della misura ma la forma del problema.
 
-## Un'insidia nei numeri
+Ne segue una conseguenza pratica che ti conviene tenere: il numero da chiedere a chiunque ti
+proponga un criterio di selezione non è quanti ne intercetta, ma quanti dei segnalati
+arrivano. Il primo numero è sempre lusinghiero, il secondo descrive la lista che ti ritrovi
+davvero in mano.
 
-C'è una riga della tabella completa che sembra ottima e non lo è. In Under 23, selezionando
-il 10% migliore, arriva il **93%** dei selezionati.
+## Un numero lusinghiero che non va creduto
 
-Sembra che il criterio funzioni benissimo, a quell'età. In realtà funziona esattamente come
-prima: quello che è cambiato è il gruppo. In Under 23 chi è ancora in classifica ha già
-superato tre selezioni, e i professionisti sono più di un terzo della lista. Applicare un
-criterio a un gruppo già scremato lo fa sembrare più preciso senza che lo sia.
+C'è una riga della tabella completa che sembra ottima e non lo è: in Under 23, selezionando il
+dieci per cento migliore, arriva il **93%** dei selezionati.
 
-È la stessa trappola del denominatore del post 2, in un'altra veste. Ogni volta che una
-percentuale sembra migliorare, conviene chiedersi se sia migliorata la misura o se sia
-cambiato il gruppo.
+Sembrerebbe che a quell'età il criterio funzioni benissimo, e invece funziona esattamente come
+prima. È cambiato il gruppo: in Under 23 chi è ancora in classifica ha già superato tre
+selezioni, e i professionisti sono più di un terzo della lista. Applicare un criterio a un
+gruppo già scremato lo fa sembrare più preciso senza che lo sia, ed è la stessa trappola del
+denominatore del post 2 sotto un'altra veste. Ogni volta che una percentuale sembra
+migliorare, chiediti se sia migliorata la misura o se sia cambiato il gruppo.
 
 ## Quanto vale, in probabilità
 
-Rovesciamo la domanda: invece di scegliere una soglia, chiediamo cosa possiamo dire di un
+Rovesciamo la domanda: invece di scegliere una soglia, chiediamoci cosa si possa dire di un
 singolo ragazzo.
 
 | piazzamento a diciotto anni | professionista | almeno top 500 mondiale | top 100 |
@@ -113,44 +100,42 @@ singolo ragazzo.
 | 75° percentile | 10,0% | 4,6% | 0,73% |
 | 90° percentile | **30,0%** | **15,8%** | 3,4% |
 
-Un ragazzo nel 10% migliore d'Italia a diciotto anni ha **circa il 30% di probabilità di
-diventare professionista**. È tantissimo rispetto alla media e pochissimo rispetto a una
-certezza: sette volte su dieci, non succederà.
-
-Ed è il numero che rende onesta tutta la conversazione. Non «ce la farà», non «non ce la
-farà»: uno su tre.
+Un ragazzo nel dieci per cento migliore d'Italia a diciotto anni ha quindi circa il 30% di
+probabilità di diventare professionista. Che è moltissimo rispetto alla media e pochissimo
+rispetto a una certezza, perché sette volte su dieci non succederà. È il numero che rende
+onesta tutta la conversazione, perché non dice né che ce la farà né che non ce la farà: dice
+uno su tre.
 
 ## Quando succede, e quanto conta esserci
 
-C'è una seconda domanda che una società si pone, e riguarda i tempi: **fino a quando ha
-senso aspettare?**
+C'è una seconda domanda che una società si pone, e riguarda i tempi: fino a quando ha senso
+aspettare?
 
-Prima dei diciannove anni non passa professionista nessuno, e non è un dato ma un
-regolamento: non si può. Poi il rischio cresce e il massimo cade a **23 anni**. Chi non
-è passato entro quell'età, salvo eccezioni, non passerà.
+Prima dei diciannove anni non passa professionista nessuno, e non è un dato ma un regolamento:
+non si può. Poi il rischio cresce e il massimo cade a **23 anni**, dopo di che, salvo
+eccezioni, chi non è passato non passerà.
 
-Nel modello che descrive questo percorso c'è un coefficiente che domina tutti gli altri, e
-non è il rendimento. È **l'esserci**. Un atleta che l'anno prima non era in classifica ha un
-rischio di passare professionista **venti volte più basso** di uno che c'era.
+Nel modello che descrive questo percorso c'è un coefficiente che domina tutti gli altri, e non
+è il rendimento ma l'esserci: un atleta che l'anno prima non era in classifica ha un rischio
+di passare professionista venti volte più basso di uno che c'era. Va letto con la cautela che
+merita, perché il post 3 ha già mostrato che sparire dalla classifica non significa smettere
+di correre, per cui quel coefficiente misura in buona parte quanto sia difficile rientrare una
+volta usciti dal gruppo osservato, e non quanto sia compromessa la carriera di chi esce. E poi
+c'è un dato che ne ridimensiona la drammaticità: nell'**87,5%** delle stagioni a rischio
+l'atleta non era in classifica l'anno prima. In Under 23 l'assenza è la condizione normale,
+non l'eccezione.
 
-Va letto con la cautela che merita, perché il post 3 ha già mostrato che sparire dalla
-classifica non è smettere di correre. Quel coefficiente misura in buona parte **quanto è
-difficile rientrare** una volta usciti dal gruppo osservato, non quanto sia compromessa la
-carriera di chi esce. E c'è un dato che ridimensiona la drammaticità: nell'**87,5%** delle
-stagioni a rischio l'atleta non era in classifica l'anno prima. L'assenza è la
-condizione normale, non l'eccezione.
-
-Per chi invece c'è tutti gli anni, i numeri sono questi: **11,1%** di probabilità di
-arrivare al professionismo con un rendimento nella media della classifica, **30,9%** con
-venti posizioni percentuali in più, **3,7%** con venti in meno.
+Per chi invece c'è tutti gli anni, i numeri sono questi: **11,1%** di probabilità di arrivare
+al professionismo con un rendimento nella media della classifica, 30,9% con venti posizioni
+percentuali in più, 3,7% con venti in meno.
 
 ## Il rendimento predice l'ingresso, e poi si ferma
 
-Ultima domanda, e la risposta è la più netta di tutta la serie.
+Resta un'ultima domanda, e la risposta è la più netta di tutta la serie.
 
-Fin qui il professionismo è stato trattato come una porta: dentro o fuori. Ma fra i
-professionisti c'è chi corre tre stagioni in una squadra di seconda divisione e chi entra
-fra i primi cento al mondo. Il piazzamento a diciotto anni dice qualcosa anche su questo?
+Fin qui il professionismo è stato trattato come una porta, dentro o fuori, mentre fra i
+professionisti c'è chi corre tre stagioni in una squadra di seconda divisione e chi entra fra
+i primi cento al mondo. Il piazzamento a diciotto anni dice qualcosa anche su questo?
 
 | | quanto moltiplica le probabilità |
 |---|---|
@@ -158,99 +143,88 @@ fra i primi cento al mondo. Il piazzamento a diciotto anni dice qualcosa anche s
 | entrare nel top 500, **fra i professionisti** | ×1,20 *(non distinguibile dal caso)* |
 | entrare nel top 100, **fra i top 500** | ×1,28 *(non distinguibile dal caso)* |
 
-**La classifica giovanile italiana predice chi entrerà, e quasi nulla di ciò che succede
-dopo.**
+La classifica giovanile italiana predice chi entrerà, e quasi nulla di quello che succede
+dopo. La formulazione però va scelta con attenzione, perché quella sbagliata è a un passo: non
+significa che fra i professionisti il talento non conti, ma che quella classifica non lo misura
+più. A diciotto anni distingue bene chi diventerà professionista da chi no; una volta varcata
+la soglia, quello che decide se arrivi fra i primi cento al mondo è qualcosa che il ranking
+giovanile italiano non ha registrato. Con un limite da aggiungere: il gradino più alto poggia
+su quindici atleti, quindi su quei numeri si può dire che non si veda un effetto, non che non
+ce ne sia uno.
 
-Attenzione a come si legge, perché la formulazione sbagliata è a un passo. Non significa che
-fra i professionisti il talento non conti. Significa che **quella classifica non lo misura
-più**. A diciotto anni distingue bene chi diventerà professionista da chi no; una volta
-varcata la soglia, quello che decide se si arriva fra i primi cento al mondo è qualcosa che
-il ranking giovanile italiano non ha registrato.
+## Cosa te ne porti a casa
 
-Con un limite da dire: il gradino più alto poggia su quindici atleti. Su quel numero si può
-concludere che **non si vede** un effetto, non che non ci sia.
-
-## Cosa se ne ricava
-
-Il numero da tenere non è quanti ne intercetti. È quanti ne scarti per sbaglio, e quanti ne
+Il numero da tenere non è quanti ne intercetti, ma quanti ne scarti per sbaglio e quanti ne
 tieni che non arriveranno.
 
-Da cui una distinzione che vale più di tutte le tabelle: **la classifica giovanile è uno
-strumento ragionevole per decidere chi seguire, e uno strumento pessimo per decidere chi
-lasciare andare.** Le due decisioni sembrano simmetriche e non lo sono. Seguire un ragazzo
-in più costa poco e il costo dell'errore è basso. Lasciarne andare uno costa quanto vale
-quel ragazzo, e a tredici anni sbagliereste due volte su tre.
+Ne segue una distinzione che vale più di tutte le tabelle: la classifica giovanile è uno
+strumento ragionevole per decidere chi seguire e uno strumento pessimo per decidere chi
+lasciare andare. Le due decisioni sembrano simmetriche e non lo sono, perché seguire un
+ragazzo in più ti costa poco, mentre lasciarne andare uno ti costa quanto valeva quel ragazzo,
+e a tredici anni sbaglieresti due volte su tre.
 
-E per chi ha un figlio in bici: se a diciotto anni è nel 10% migliore d'Italia, ha circa una
-probabilità su tre. Se non c'è, non è finita — ma il tempo utile si chiude attorno ai
-ventitré anni, e questo è un dato, non un'opinione.
+Se hai un figlio che corre, la traduzione è semplice: se a diciotto anni è nel dieci per cento
+migliore d'Italia ha circa una probabilità su tre, e se non c'è non è finita, anche se il tempo
+utile si chiude attorno ai ventitré anni. Quello è un dato, non un'opinione.
 
-## Il gancio
-
-Restano da guardare le cose che tutti pensano contino. Il mese di nascita, la squadra
-giusta, la regione giusta.
-
-Sono tre indizi, e nessuno dei tre è quello che sembra.
+Restano da guardare le cose che tutti pensano contino, cioè il mese di nascita, la squadra
+giusta e la regione giusta. Sono tre indizi, e nessuno dei tre è quello che sembra: è il tema
+della prossima puntata.
 
 ---
 
 > **Come lo sappiamo**
 >
-> Le due colonne che il post mette una accanto all'altra si chiamano **sensibilità** (quota
-> di futuri professionisti dentro la selezione) e **valore predittivo positivo** (quota di
-> selezionati che arriverà). Nessuno studio sul ciclismo giovanile basato sui risultati di
-> gara aveva mai riportato il secondo.
+> Le due colonne che il post mette una accanto all'altra si chiamano sensibilità, cioè la
+> quota di futuri professionisti che finisce dentro la selezione, e valore predittivo positivo,
+> cioè la quota di selezionati che arriverà. Nessuno studio sul ciclismo giovanile basato sui
+> risultati di gara aveva mai riportato il secondo.
 >
-> Le probabilità per percentile sono previsioni di un modello, non frequenze osservate:
-> vanno lette come ordini di grandezza. Quelle della sezione sui tempi valgono per chi resta
-> in classifica **ogni** stagione, che è una minoranza molto selezionata — non sono la
+> Le probabilità per percentile sono previsioni di un modello e non frequenze osservate, per
+> cui vanno lette come ordini di grandezza. Quelle della sezione sui tempi valgono per chi resta
+> in classifica ogni stagione, che è una minoranza molto selezionata, e non sono quindi la
 > probabilità di un ragazzo qualunque che comincia a correre.
 >
-> Il modello sui tempi è di sopravvivenza a tempo discreto, con una riga per ogni stagione
-> in cui un atleta poteva diventare professionista e non lo era ancora; chi non ha ancora
-> completato la finestra contribuisce le stagioni osservate senza essere contato come un
-> no. Gli errori standard sono raggruppati per atleta.
+> Il modello sui tempi è di sopravvivenza a tempo discreto, con una riga per ogni stagione in
+> cui un atleta poteva diventare professionista e non lo era ancora; chi non ha ancora
+> completato la finestra contribuisce le stagioni osservate senza essere contato come un no, e
+> gli errori standard sono raggruppati per atleta.
 >
-> La finestra si ferma a ventitré anni perché lì finisce il predittore: oltre l'Under 23 non
-> esiste più una classifica giovanile nazionale. Dieci passaggi al professionismo avvenuti
-> dopo restano fuori dal modello, ed è dichiarato invece che nascosto.
+> La finestra si ferma a ventitré anni perché lì finisce il predittore, visto che oltre l'Under
+> 23 non esiste più una classifica giovanile nazionale. I dieci passaggi al professionismo
+> avvenuti dopo restano fuori dal modello, ed è dichiarato invece che nascosto.
 
 ---
 
 ## Scelte aperte per questo post
 
-**A. L'esempio dello screening.** Il piano lo indica come il modo migliore per far capire il
-valore predittivo positivo, e il post lo usa in apertura. Due riserve da valutare:
+**A. Dove mettere l'esempio dello screening.** Il piano lo indicava come il modo migliore per
+far capire il valore predittivo positivo. Nella prima stesura apriva il post, mentre adesso
+arriva a metà, dopo i numeri del ciclismo, come spiegazione del perché: è la soluzione che
+preferisco, perché i numeri del ciclismo aprono meglio e l'analogia serve a spiegare, non a
+introdurre. Le alternative restano riportarlo in apertura, con il rischio che un pubblico di
+ciclismo lo trovi freddo, oppure sostituirlo con un esempio più vicino, come i provini di
+calcio o le audizioni.
 
-- il pubblico di un blog di ciclismo potrebbe trovare l'apertura medica fredda o
-  fuori tema;
-- l'analogia va spiegata bene o si ritorce: un lettore può concludere «quindi i test medici
-  non servono», che non è il punto.
+**B. Il post contiene tre analisi diverse**, cioè le soglie di selezione, i tempi del passaggio
+e la profondità della carriera, ed è il più denso della serie. Si può scorporare la parte sui
+tempi, con il coefficiente dell'esserci, in un post a sé, portando la serie a nove: contro
+questa scelta gioca il fatto che da sola quella parte sia più tecnica che utile, a favore il
+fatto che alleggerirebbe il post più importante della serie.
 
-Alternative: (a) tenerla in apertura come ora; (b) spostarla a metà, dopo aver dato i numeri
-del ciclismo, come spiegazione del perché; (c) sostituirla con un esempio più vicino — i
-provini di calcio, le audizioni. **Consiglio (b)**: i numeri del ciclismo aprono meglio, e
-l'analogia arriva quando serve a spiegare, non a introdurre.
-
-**B. Il post contiene tre analisi diverse** — soglie di selezione, tempi del passaggio,
-profondità della carriera — ed è il più denso della serie. Si può scorporare la parte sui
-tempi («quando si diventa professionisti», con il coefficiente dell'esserci) in un post a
-sé, portando la serie a nove. Contro: da sola quella parte è più tecnica che utile. A
-favore: alleggerisce il post più importante della serie.
-
-**C. Quanto insistere su «chi seguire / chi lasciare andare».** È la conclusione operativa
-di tutta la ricerca e per ora sta in tre righe nel «cosa se ne ricava». Si può portarla in
-apertura come tesi dichiarata, oppure lasciarla dov'è e riprenderla nel post 8. **Il piano
-prevede che sia la chiusura del post 8**: se la si anticipa qui con troppa forza, l'ultimo
-post perde il suo finale.
+**C. Quanto insistere sulla distinzione fra chi seguire e chi lasciare andare.** È la
+conclusione operativa di tutta la ricerca e per ora sta in poche righe. La si può portare in
+apertura come tesi dichiarata, oppure lasciarla dov'è e riprenderla nel post 8, che secondo il
+piano dovrebbe chiudersi proprio lì: anticipandola qui con troppa forza, l'ultimo post perde
+il suo finale.
 
 **D. Il 93% dell'Under 23.** È l'unico numero lusinghiero della tabella e viene smontato
-subito. Si può anche ometterlo del tutto: costa un paragrafo e rischia di essere citato
-fuori contesto da chi legge in fretta. Consiglio di tenerlo — è il miglior esempio di come
-un gruppo scremato faccia sembrare bravo un criterio qualsiasi — ma di non metterlo in un
-riquadro evidenziato.
+subito, ma si può anche omettere del tutto, perché costa un paragrafo e rischia di essere
+citato fuori contesto da chi legge in fretta. Consiglierei di tenerlo, essendo il miglior
+esempio di come un gruppo già scremato faccia sembrare bravo un criterio qualsiasi, evitando
+però di metterlo in evidenza tipografica.
 
-**E. La frase sul figlio in bici.** «Se a diciotto anni è nel 10% migliore, ha una
-probabilità su tre» è vera e verificabile, ma è anche la frase che verrà estratta e
-condivisa da sola. Valutare se accompagnarla sempre con il suo complemento («e nove su dieci
-dei migliori a tredici anni non arriveranno»).
+**E. La frase sul figlio in bici.** Dire che nel dieci per cento migliore a diciotto anni hai
+una probabilità su tre è vero e verificabile, ed è anche la frase che verrà estratta e
+condivisa da sola. Conviene decidere se accompagnarla sempre con il suo complemento, cioè che
+nove su dieci dei migliori a tredici anni non arriveranno.
