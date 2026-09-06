@@ -20,8 +20,10 @@ così si controllano i metodi. I post vanno organizzati per **tema**, perché co
 legge: chi legge non vuole sapere cosa dice il modello di sopravvivenza, vuole sapere se
 suo figlio ce la farà.
 
-Questo file traduce le diciotto sezioni dell'analisi in otto post, dice qual è il filo
-che li tiene insieme e da quali moduli dell'archivio ciascuno prende i numeri. Le bozze
+Questo file traduce le venti sezioni dell'analisi in **nove** post, dice qual è il filo che
+li tiene insieme e da quali moduli dell'archivio ciascuno prende i numeri. Il nono è nato in
+corsa: le ragazze avevano abbastanza materiale per una puntata propria, e sta fra i falsi
+indizi e le conclusioni. Le bozze
 scritte stanno in [`docs/post/`](post/), e ciascuna si chiude con le scelte editoriali
 ancora aperte.
 
@@ -311,7 +313,23 @@ qualcuno avrebbe scritto «cambiare squadra aiuta».
 
 ---
 
-### 8. Cosa faremmo con questi numeri
+### 8. E le ragazze?
+
+**Sintesi.** Le sette puntate precedenti riguardano i maschi, e non per scelta: gli esiti di
+carriera femminili non erano stati raccolti. Ma quasi tutte le domande della serie non hanno
+bisogno di sapere chi ce l'ha fatta, e su quelle il femminile si studia. Il movimento è sette
+volte più piccolo e corre otto volte meno gare, non ha una categoria Under 23, e il vantaggio
+di chi è nata a gennaio è più debole che fra i ragazzi, come ci si aspetta da una maturazione
+più precoce. La sorpresa è un cambio di regolamento: quando nel 2022 le Esordienti femminili
+sono passate da una classifica unica a due separate, la quota dei posti del primo anno è
+passata dal 28,5% al 49,6%. Stessa categoria, stesse ragazze: è la prova più pulita del
+meccanismo raccontato nella terza puntata.
+
+*Moduli: `ragazze`, `rae`.*
+
+---
+
+### 9. Cosa faremmo con questi numeri
 
 **Sintesi.** Il risultato a tredici anni non è rumore, e negarlo sarebbe falso quanto
 sopravvalutarlo. Ma la stessa misura che predice bene seleziona male, e la maggior parte di

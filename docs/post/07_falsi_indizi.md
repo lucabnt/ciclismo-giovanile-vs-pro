@@ -63,11 +63,10 @@ più debole, perché le ragazze maturano prima: a tredici anni molte hanno già 
 pubertà, mentre fra i coetanei maschi la differenza di sviluppo fra chi è nato a gennaio e chi
 a dicembre è al suo massimo.
 
-È l'unica analisi di tutta la serie che ho potuto rifare sul femminile, e non per una
-questione di numeri: tutte le altre domande hanno bisogno di sapere chi è arrivato, e per le
-atlete quel dato non l'ho mai raccolto, visto che le rose scaricate da ProCyclingStats sono
-quelle maschili. L'effetto dell'età relativa fa eccezione perché confronta la composizione
-della classifica con la demografia, e gli basta la data di nascita.
+È una delle poche analisi che ho potuto rifare sul femminile, perché non ha bisogno di
+sapere chi è arrivato: confronta la composizione della classifica con la demografia, e le basta
+la data di nascita. Nella prossima puntata c'è il resto di quello che si può dire sulle
+ragazze.
 
 | categoria | maschi | femmine |[^p7rae]
 |---|---|---|
@@ -186,8 +185,8 @@ guardare la data di nascita accanto al piazzamento, non solo il piazzamento. La 
 il cambio di squadra all'arrivo in Under 23 non è il segnale di niente, perché capita a tutti.
 
 A questo punto il quadro c'è: cosa predice, quanto, da che età, e cosa invece è solo
-apparenza. Resta la domanda che conta davvero, che non riguarda i ragazzi ma chi li guarda,
-ed è il tema dell'ultima puntata.
+apparenza. Prima di tirare le somme resta però una domanda che mi hanno fatto ogni volta che
+ho raccontato questo lavoro, e a cui la prossima puntata è dedicata per intero: e le ragazze?
 
 ---
 

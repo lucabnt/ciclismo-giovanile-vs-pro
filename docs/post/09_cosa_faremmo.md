@@ -1,4 +1,4 @@
-# 8. Cosa faremmo con questi numeri
+# 9. Cosa faremmo con questi numeri
 
 > ⚠️ **Bozza scritta a mano. Non si rigenera.**
 > Ogni cifra è copiata dall'analisi al momento della stesura e diventerà falsa in silenzio se
@@ -11,7 +11,7 @@
 
 ---
 
-*Ultima puntata. Le sette precedenti hanno misurato quanto il risultato giovanile predica il
+*Ultima puntata. Le otto precedenti hanno misurato quanto il risultato giovanile predica il
 professionismo; qui provo a dirti cosa farne, e prima ancora quanto puoi fidarti di quello che
 hai letto finora.*
 
@@ -34,7 +34,7 @@ sugli stessi dati con cui l'hai costruito si giudica da solo, e si giudica bene,
 servono tre verifiche. Te le riporto anche se sono noiose, perché sono quello che distingue un
 risultato da un'opinione con dei numeri attaccati.
 
-La prima chiede se il modello si stia illudendo[^p8validazione]. Lo ricostruisco **500 volte** su campioni
+La prima chiede se il modello si stia illudendo[^p9validazione]. Lo ricostruisco **500 volte** su campioni
 estratti a caso e misuro ogni volta di quanto si sopravvaluta: la risposta è **0,001** di
 capacità predittiva, contro una soglia di allarme convenzionale cinquanta volte più grande.
 Non è fortuna, è quello che succede quando usi modelli con due o tre parametri su centinaia di
@@ -47,7 +47,7 @@ capacità predittiva non cala, semmai sale, anche se le annate di verifica conte
 **27 casi** e su quei numeri le stime ballano parecchio. Quello che volevo escludere, cioè un
 crollo, non si vede.
 
-La terza è la più importante[^p8sensibilita], perché diverse decisioni di questo studio erano difendibili ma
+La terza è la più importante[^p9sensibilita], perché diverse decisioni di questo studio erano difendibili ma
 non obbligate: cosa conti come professionismo, entro quale età, dove mettere la soglia del
 top. Le ho cambiate tutte, una alla volta, e il numero di professionisti passa **da 26 a 151**
 a seconda della definizione, mentre la capacità di distinguerli oscilla in tutto di **0,069**,
@@ -99,7 +99,7 @@ servono sono quelli che nessuno riporta mai: quanti dei segnalati arrivano, e qu
 scartando. E poi c'è la cosa che questa serie ha trovato per ultima: «diventare
 professionista» non è un evento solo. Di chi debutta in una squadra a maggioranza italiana
 arriva nel top 500 il 33%, di chi debutta in una straniera il 59%, e il rendimento giovanile
-predice le due porte allo stesso modo.[^p8porta] Se il tuo mestiere è capire dove mandare un ragazzo, il
+predice le due porte allo stesso modo.[^p9porta] Se il tuo mestiere è capire dove mandare un ragazzo, il
 ranking non ti aiuta a scegliere la porta: ti dice solo che è pronto a bussare.
 
 **Per tutti, la stessa avvertenza.** Diffida dei gradienti spettacolari. Prima di credere che
@@ -120,11 +120,10 @@ Di chi va oltre il professionismo non so quasi niente, perché il rendimento gio
 l'ingresso e poi si ferma: sui gradini successivi posso dire che non si vede un effetto, non
 che non ce ne sia uno, e i ragazzi arrivati fra i primi cento al mondo sono otto.
 
-Delle ragazze non so niente, perché tutto questo studio riguarda i maschi. La stessa analisi
-sul femminile richiederebbe di cambiare un parametro, ma non l'ho fatta, e comunque non sarebbe
-la stessa analisi: la categoria Under 23 femminile non esiste e le atlete in classifica sono un
-decimo degli atleti, per cui verrebbe fuori uno studio descrittivo. Che però, sull'effetto
-dell'età relativa, sarebbe il primo al mondo.
+Delle ragazze so molto meno che dei ragazzi, e la puntata precedente racconta esattamente
+fin dove sono arrivato: la composizione del movimento sì, l'effetto dell'età relativa sì, chi
+ce l'ha fatta no, perché le divisioni professionistiche femminili nascono nel 2020 e prima
+esisteva una categoria sola.
 
 E non so se la regione conti. Servirebbe il numero di tesserati per anno, regione e
 categoria, che non è pubblicamente disponibile: con quello si potrebbe finalmente chiedere se
@@ -161,12 +160,12 @@ la stessa classifica, decide di smettere di guardarlo.
 > no, perché sono scritti a mano, ed è la ragione per cui ogni loro cifra viene confrontata con
 > l'archivio dei risultati prima della pubblicazione.
 
-[^p8validazione]: Correzione dell'ottimismo e verifica temporale in `R/24_validazione.R`,
+[^p9validazione]: Correzione dell'ottimismo e verifica temporale in `R/24_validazione.R`,
     rese da `report/moduli/validazione.py`.
 
-[^p8sensibilita]: Analisi di sensibilità in `scripts/10_sensibilita.py`.
+[^p9sensibilita]: Analisi di sensibilità in `scripts/10_sensibilita.py`.
 
-[^p8porta]: Confronto fra le porte d'ingresso in `report/moduli/porta.py`.
+[^p9porta]: Confronto fra le porte d'ingresso in `report/moduli/porta.py`.
 
 ---
 
