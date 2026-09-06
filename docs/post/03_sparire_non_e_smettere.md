@@ -6,8 +6,8 @@
 > `python scripts/11_verifica_documenti.py`. Sullo stile: [`STILE.md`](STILE.md).
 >
 > **Numero chiave del post:** 30,6%.
-> **Moduli:** `attrito` (ricambio), `passaggi`, `copertura` (i due imbuti).
-> **Figure:** `attrito_uscite`, `passaggi_ritenzione`.
+> **Moduli:** `attrito` (ricambio), `passaggi`, `posti`, `copertura` (i due imbuti).
+> **Figure:** `attrito_uscite`, `passaggi_ritenzione`, `posti_quote`.
 
 ---
 
@@ -77,13 +77,31 @@ classifica in cui arrivi è composta per l'**88,2%** da gente che c'era già, me
 passaggio interno la quota è del 60,7%. Al cambio di fascia, cioè, non entra quasi nessuno di
 nuovo.
 
-I due numeri sembrano contraddirsi e non si contraddicono, perché al cambio di categoria la
-classifica si accorcia. Le liste del primo anno di una categoria sono circa la metà di quelle
-del secondo, 181 classificati contro 320 in Under 17 e 141 contro 203 in Under 19, e in Under
-23 diventano poche decine di posti. Ci sono meno posti, quindi resta meno gente, ma quei posti
-se li tengono quasi tutti quelli che c'erano già. Quello che sembrava un trauma è in buona
-parte una proprietà dello strumento di misura: la porta si stringe, i ragazzi restano gli
-stessi.
+I due numeri sembrano contraddirsi e non si contraddicono, e per capire perché ti serve
+sapere una cosa su come sono fatte le classifiche. Negli Esordienti la fonte ne pubblica **due
+separate**, una per annata: primo e secondo anno corrono gare loro e non si fanno concorrenza.
+Dagli Allievi in su la classifica è **una sola**, e le due annate ci convivono correndo le
+stesse identiche gare.
+
+Il confronto fra le due situazioni è la cosa che mi ha divertito di più in tutto lo studio,
+perché una fa da controllo all'altra. Ogni gara mette in palio cinque posti a punti, quindi
+sommando i piazzamenti si conta quanti posti ci sono e chi se li prende.
+
+| categoria | quota dei posti presa dal primo anno |
+|---|---|
+| Esordienti, classifiche separate | **49,7%** |
+| Allievi, classifica unica | **26,7%** |
+| Juniores, classifica unica | 33,3% |
+| Under 23, classifica unica | 11,8% |
+
+Dove nessuno fa concorrenza a nessuno le due annate si dividono i posti a metà, come è ovvio
+che sia. Dove la lista è una sola, e le gare sono esattamente le stesse per tutti, il primo
+anno ne prende poco più di un quarto.
+
+Vuol dire che il crollo **non è una questione di posti che spariscono**: i posti sono gli
+stessi, cambia chi li vince. Un Allievo al primo anno corre contro ragazzi che hanno un anno di
+sviluppo in più, e i piazzamenti se li prendono loro. Quello che sembrava un trauma è in buona
+parte questo: non sei peggiorato, sei diventato il più piccolo della gara.
 
 ## Fra chi il posto ce l'ha, l'ordine tiene
 
@@ -97,6 +115,20 @@ più concreto: chi resta in classifica si sposta in mediana di 14,4 posizioni pe
 dentro la categoria e di 19,7 al cambio di fascia, che su una scala da 0 a 100 sono
 spostamenti dello stesso ordine. Il cambio di categoria, insomma, toglie persone dalla
 classifica molto più di quanto rimescoli quelle che restano.
+
+Una precisazione, per non esagerare nella direzione opposta: le gare, salendo di categoria,
+calano davvero. Da circa 640 classificazioni di gara per stagione in Esordienti si scende a
+146 in Under 23. Il calendario si accorcia, quindi una parte della lettura corrente è giusta;
+quello che non regge è attribuire a quel restringimento il crollo del primo anno, visto che
+succede anche dove le gare sono le stesse.
+
+E già che siamo in argomento, contando le gare è venuta fuori la cosa più inattesa di tutto
+lo studio, che con l'abbandono non c'entra ma merita una riga: **il calendario giovanile si è
+quasi dimezzato in sedici anni**. Fra il 2009 e il 2025 le classificazioni di gara calano del
+40% in Esordienti e del 58% in Under 23, e non è colpa del covid, perché il calo era
+cominciato molto prima e dopo il 2020 non si è tornati ai valori di prima. Nella finestra in
+cui possiamo confrontare, i tesserati Esordienti calano di circa un decimo e le gare di quasi
+un quinto: il movimento si restringe, e il calendario si restringe più in fretta.
 
 ## La conferma che arriva da fuori
 
@@ -136,8 +168,8 @@ professionismo è abbandono.
 ## Cosa te ne porti a casa
 
 Un ragazzo che sparisce dalla classifica al primo anno di una categoria nuova sta molto
-probabilmente ancora correndo, contro avversari di uno o due anni più grandi, in una lista che
-ha la metà dei posti di prima, e nella maggioranza dei casi tornerà a farsi vedere.
+probabilmente ancora correndo, contro avversari di uno o due anni più grandi che gli portano
+via tre posti su quattro, e nella maggioranza dei casi tornerà a farsi vedere.
 
 Se alleni, questo ti sposta il problema. Il momento in cui presidiare la ritenzione non è dopo
 una brutta stagione ma al passaggio di fascia, dove si concentra il 77% delle uscite ed è lì

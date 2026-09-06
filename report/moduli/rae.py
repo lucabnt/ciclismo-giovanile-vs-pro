@@ -194,9 +194,119 @@ def calcola():
                        "ultima": gradiente[-1][0], "ultima_q1_su_q4": round(gradiente[-1][1], 2)},
                       nota="confronto interno alle stesse coorti: non dipende dall'atteso")
 
+        confronto_sessi(db, rif, ar)
+
     print("Modulo 'rae' eseguito.")
     for r in righe:
         print("   %-5s n=%-6s Q1/Q4 = %.2f" % (r[0], r[1], r[6]))
+
+
+def confronto_sessi(db, rif, ar):
+    """Lo stesso effetto misurato su maschi e femmine, sulle stesse coorti.
+
+    PERCHE' SI PUO' FARE SOLO QUESTO, SUL FEMMINILE
+        Ogni altra analisi dello studio ha bisogno di un esito di carriera, e l'esito per
+        le atlete **non e' stato raccolto**: le rose e le classifiche scaricate da
+        ProCyclingStats sono quelle maschili. Non e' un problema di numerosita' ma di dati
+        mancanti, e si risolverebbe scaricando le classifiche femminili.
+
+        L'effetto dell'eta' relativa e' l'eccezione, perche' confronta la composizione del
+        ranking con la demografia e non chiede a nessuno di essere diventato qualcosa.
+        Serve solo la data di nascita, che per le atlete c'e' quasi sempre.
+
+    PERCHE' IL CONFRONTO E' INTERESSANTE
+        Le ragazze maturano prima dei ragazzi, e a tredici anni molte hanno gia'
+        attraversato la puberta'. Se il vantaggio di chi e' nato a gennaio e' un vantaggio
+        di maturazione, dovrebbe essere piu' debole fra le atlete, e spegnersi prima.
+
+    COME SI TIENE ONESTO IL CONFRONTO
+        Le due popolazioni coprono coorti diverse: il ranking femminile comincia nel 2011.
+        Per ogni categoria si prendono quindi le coorti in cui **entrambi** i sessi sono
+        osservati, e l'atteso demografico si calcola su quelle stesse coorti. I due numeri
+        che si confrontano riguardano cosi' gli stessi anni di nascita.
+    """
+    righe, per_sesso = [], {}
+    for cat in CATEGORIE:
+        estremi = db.execute(
+            """SELECT MIN(a.birth_year), MAX(a.birth_year)
+               FROM tab_a a JOIN anagrafica g USING(athlete_id)
+               WHERE a.sesso = 'F' AND a.category = ? AND a.cat_year IS NOT NULL
+                 AND g.birth_quarter IS NOT NULL""", (cat,)).fetchone()
+        if not estremi or estremi[0] is None:
+            continue                      # nessuna atleta: l'Under 23 femminile non esiste
+        lo, hi = estremi
+        attesi = attesi_per_coorti(rif, lo, hi)
+        for sesso in ("M", "F"):
+            oss = [0] * 4
+            for q, n in db.execute(
+                    """SELECT g.birth_quarter, COUNT(DISTINCT a.athlete_id)
+                       FROM tab_a a JOIN anagrafica g USING(athlete_id)
+                       WHERE a.sesso = ? AND a.category = ? AND a.cat_year IS NOT NULL
+                         AND a.birth_year BETWEEN ? AND ? AND g.birth_quarter IS NOT NULL
+                       GROUP BY 1""", (sesso, cat, lo, hi)):
+                oss[q - 1] = n
+            n = sum(oss)
+            if n < 100:
+                continue
+            t = chi_quadro(oss, attesi)
+            oa = [(o / n) / a for o, a in zip(oss, attesi)]
+            rapporto = oa[0] / oa[3] if oa[3] else None
+            righe.append([cat, "maschi" if sesso == "M" else "femmine", n,
+                          "%d-%d" % (lo, hi), round(oa[0], 2), round(oa[3], 2),
+                          round(rapporto, 2) if rapporto else None,
+                          round(t["cramer_v"], 3),
+                          round(t["p"], 4) if t["p"] is not None else None])
+            per_sesso.setdefault(sesso, []).append((cat, round(rapporto, 2), n))
+
+    if not righe:
+        return
+    ar.tabella("sessi", righe,
+               colonne=["categoria", "sesso", "atleti", "coorti", "Q1 oss/att",
+                        "Q4 oss/att", "Q1/Q4", "V di Cramer", "p"],
+               titolo="L'effetto dell'eta' relativa, maschi e femmine a confronto",
+               nota="per ogni categoria si usano le coorti in cui entrambi i sessi sono "
+                    "osservati, e l'atteso demografico e' calcolato su quelle stesse "
+                    "coorti; l'Under 23 femminile non esiste come categoria")
+    ar.valore("confronto_sessi", per_sesso)
+    if per_sesso.get("M") and per_sesso.get("F"):
+        ar.valore("sessi_prima_categoria",
+                  {"categoria": per_sesso["M"][0][0],
+                   "maschi": per_sesso["M"][0][1], "femmine": per_sesso["F"][0][1],
+                   "n_maschi": per_sesso["M"][0][2], "n_femmine": per_sesso["F"][0][2]})
+
+    if os.environ.get("SENZA_FIGURE"):
+        return
+    try:
+        gr.stile()
+        with gr.figura("Nati a gennaio: quanto pesa, per i maschi e per le femmine",
+                       altezza=3.6) as (fig, ax):
+            categorie = [c for c in CATEGORIE if any(r[0] == c for r in righe)]
+            x = list(range(len(categorie)))
+            for i, sesso in enumerate(("maschi", "femmine")):
+                valori = [next((r[6] for r in righe if r[0] == c and r[1] == sesso), None)
+                          for c in categorie]
+                punti = [(j, v) for j, v in zip(x, valori) if v is not None]
+                if not punti:
+                    continue
+                ax.plot([p[0] for p in punti], [p[1] for p in punti], marker="o",
+                        linewidth=2, color=gr.COLORI[i], label=sesso, zorder=3)
+                for j, v in punti:
+                    ax.annotate("%.2f" % v, (j, v), textcoords="offset points",
+                                xytext=(0, 9), ha="center", fontsize=9)
+            gr.linea_riferimento(ax, 1.0, "nessuno squilibrio")
+            ax.set_xticks(x)
+            ax.set_xticklabels(categorie)
+            ax.set_ylabel("nati nel 1o trimestre / nati nel 4o" + chr(10) +
+                          "(rispetto all'atteso demografico)")
+            ax.set_ylim(bottom=0.9)
+            ax.legend(frameon=False, fontsize=9)
+        ar.figura("sessi", gr.salva("rae_sessi"),
+                  didascalia="Fra le atlete lo squilibrio c'e' ma e' piu' contenuto, e in "
+                             "Allieve non si distingue dall'atteso demografico. Le coorti "
+                             "femminili sono pero' molto meno numerose, e il rimbalzo in "
+                             "Juniores va letto con quella cautela.")
+    except SystemExit as e:
+        print("   figura sessi saltata: %s" % e)
 
 
 def rendi(lt):
@@ -269,6 +379,74 @@ def rendi(lt):
         "La distinzione fra le due tabelle e' quella che rende il risultato "
         "interpretabile: un effetto forte nella composizione e assente nel successo "
         "significa che il vantaggio e' di **accesso**, non di talento."))
+
+    sessi = lt.tabella("rae", "sessi")
+    if sessi:
+        p.append(md.sezione("Lo stesso effetto sulle ragazze", 3))
+        p.append(md.paragrafo(
+            "Questa e' la sola analisi dello studio che si puo' fare anche sul femminile, "
+            "e la ragione non e' la numerosita'. Tutte le altre domande hanno bisogno di "
+            "un esito di carriera, e per le atlete quell'esito **non e' stato raccolto**: "
+            "le rose e le classifiche scaricate da ProCyclingStats sono quelle maschili. "
+            "L'effetto dell'eta' relativa fa eccezione perche' confronta la composizione "
+            "del ranking con la demografia, e chiede solo la data di nascita."))
+
+        p.append(md.paragrafo(
+            "",
+            "Il confronto ha un motivo sostanziale, oltre alla disponibilita' dei dati. "
+            "Le ragazze maturano prima: a tredici anni molte hanno gia' attraversato la "
+            "puberta', mentre fra i coetanei maschi la differenza di sviluppo fra gennaio "
+            "e dicembre e' al suo massimo. Se il vantaggio di essere nati a inizio anno e' "
+            "un vantaggio di maturazione, e non di talento, fra le atlete dovrebbe essere "
+            "piu' debole."))
+
+        righe_s = [[r[0], r[1], md.conta(r[2]), r[3], md.num(r[4], 2), md.num(r[5], 2),
+                    md.num(r[6], 2), md.num(r[7], 3),
+                    "< 0,001" if r[8] is not None and r[8] < 0.001 else md.num(r[8], 3)]
+                   for r in sessi["righe"]]
+        p.append(md.tabella(sessi["colonne"], righe_s, nota=sessi["nota"],
+                            colonne_conteggio=(2,)))
+
+        prima = v.get("sessi_prima_categoria") or {}
+        if prima:
+            p.append(md.paragrafo(
+                "",
+                md.afferma(
+                    prima.get("femmine", 9) < prima.get("maschi", 0),
+                    "in %s lo squilibrio fra primo e quarto trimestre e' minore fra le "
+                    "atlete che fra gli atleti" % prima.get("categoria", ""),
+                    "**L'ipotesi regge, e il divario e' netto.** In %s i nati nel primo "
+                    "trimestre sono %s volte quelli dell'ultimo fra i maschi e %s volte "
+                    "fra le femmine, sulle stesse coorti e con lo stesso atteso "
+                    "demografico. In Allievi l'effetto femminile scende ancora, fino a non "
+                    "distinguersi piu' dalla distribuzione attesa."
+                    % (prima.get("categoria"), md.num(prima.get("maschi"), 2),
+                       md.num(prima.get("femmine"), 2)))))
+
+        p.append(md.paragrafo(
+            "",
+            "> **Due cautele, e sono serie.** Le atlete sono %s in Esordienti contro %s "
+            "atleti, quindi gli intervalli attorno ai valori femminili sono molto piu' "
+            "larghi. E il valore femminile in Juniores risale invece di scendere: con "
+            "poche centinaia di atlete un rimbalzo del genere e' esattamente cio' che il "
+            "caso produce, e non va letto come un ritorno dell'effetto. Quello che si puo' "
+            "dire con ragionevole sicurezza riguarda le eta' piu' basse, dove i numeri "
+            "sono maggiori e la differenza fra i sessi e' piu' larga."
+            % (md.conta(prima.get("n_femmine")), md.conta(prima.get("n_maschi")))))
+
+        fig_s = lt.figura("rae", "sessi")
+        if fig_s:
+            p.append(md.figura(fig_s["percorso"], fig_s["didascalia"]))
+
+        p.append(md.paragrafo(
+            "",
+            "> **Cosa servirebbe per andare oltre.** Scaricare da ProCyclingStats le rose "
+            "delle squadre femminili e le classifiche mondiali femminili renderebbe "
+            "possibile sul femminile tutto il resto dello studio. Resterebbero due limiti "
+            "strutturali: le atlete in classifica sono circa un decimo degli atleti, e la "
+            "categoria Under 23 femminile non esiste, quindi il predittore piu' vicino "
+            "all'esito mancherebbe."))
+
     return (chr(10) * 2).join(x.strip() for x in p if x)
 
 

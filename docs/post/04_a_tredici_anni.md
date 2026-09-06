@@ -86,11 +86,12 @@ Nella classifica del primo anno di ogni categoria la percentuale di futuri profe
 più alta che nel secondo: 6,7% contro 4,5% in Under 17, 9,7% contro 8,2% in Under 19.
 Sembrerebbe che il primo anno selezioni meglio.
 
-Le cose però stanno diversamente, perché le classifiche del primo anno sono molto più corte,
-in Under 17 **181 classificati contro 320**, e in una lista più corta entrare è più difficile.
-Chi c'è è quindi già più selezionato, e un gruppo più selezionato contiene per forza una quota
-maggiore di futuri professionisti: quel numero misura la selettività della lista, non la bontà
-della previsione.
+Le cose però stanno diversamente. Dagli Allievi in su la classifica è una sola e le due
+annate ci convivono, correndo le stesse gare, e al primo anno se ne vince una minoranza: poco
+più di un quarto dei posti a punti. Infatti i classificati al primo anno sono **181 contro
+320** in Under 17. Comparirci è quindi molto più difficile, chi c'è è già più selezionato, e un
+gruppo più selezionato contiene per forza una quota maggiore di futuri professionisti: quel
+numero misura la selettività della cella, non la bontà della previsione.
 
 Alla domanda vera, cioè se il primo anno predica meglio del secondo, puoi rispondere soltanto
 confrontando le due misure sulle stesse persone, cioè sui ragazzi presenti in entrambe le

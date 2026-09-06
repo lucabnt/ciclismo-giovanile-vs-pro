@@ -7,8 +7,9 @@
 > dei risultati. Sullo stile: [`STILE.md`](STILE.md).
 >
 > **Numero chiave del post:** 1 su 7.
-> **Moduli:** `provenienza`, `copertura`, `attrito` (l'imbuto), `misura`.
-> **Figure:** `copertura_tesserati`, `attrito_imbuto`, `misura_rapporto`.
+> **Moduli:** `provenienza`, `copertura`, `attrito` (l'imbuto), `misura`, `posti`.
+> **Figure:** `copertura_tesserati`, `attrito_imbuto`, `misura_rapporto`,
+> `posti_concentrazione`.
 
 ---
 
@@ -56,6 +57,25 @@ che fa solo mountain bike è dentro quel conteggio pur non potendo comparire in 
 classifica su strada. Il che vuol dire che uno su sette, semmai, sovrastima la copertura
 vera. Insomma, la classifica non è un censimento del ciclismo giovanile ma la punta che
 emerge, ed è di quella punta che ti sto parlando.
+
+## Due classifiche, o una sola
+
+Un'ultima cosa sulla struttura, che serve più avanti e che quasi nessuno sa. Negli Esordienti
+la fonte pubblica **due classifiche separate**, una per annata: primo e secondo anno corrono
+gare loro e non si fanno concorrenza. Dagli Allievi in su la classifica è **una sola** e le due
+annate ci convivono, correndo le stesse gare.
+
+Sembra un dettaglio da archivio e invece cambia la lettura di parecchie cose, perché nelle
+categorie a lista unica un ragazzo al primo anno gareggia contro chi ha un anno di sviluppo in
+più. I posti a punti se li prendono i più grandi: in Allievi il primo anno ne vince il
+**26,7%**, contro il 49,7% degli Esordienti dove le liste sono separate. Ci torno nella
+prossima puntata, perché è la chiave di un equivoco piuttosto diffuso.
+
+E già che siamo sui numeri della classifica, una risposta alla domanda che si fanno tutti
+guardandola: sì, si piazzano sempre gli stessi. Il dieci per cento migliore si prende fra il
+37% e il 43% dei punti della categoria. La cosa curiosa è che questa quota **non cambia
+salendo di categoria**: è la stessa a tredici anni e a ventidue, per cui la selezione non si
+stringe con l'età, ha già quella forma fin dall'inizio.
 
 ## L'imbuto, e come non leggerlo
 

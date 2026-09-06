@@ -221,12 +221,14 @@ def rendi(lt):
             "esempio di come un denominatore possa produrre un segnale che non c'e'."
             % elenco,
             "",
-            "Le classifiche del primo anno sono **molto piu' corte**: in media %s "
-            "classificati contro %s in Under 17, %s contro %s in Under 19. Entrare in "
-            "una lista piu' corta e' piu' difficile, quindi chi c'e' e' gia' piu' "
-            "selezionato, e un gruppo piu' selezionato contiene per forza una quota "
-            "maggiore di futuri professionisti. Il tasso misura la selettivita' della "
-            "lista, non la qualita' della previsione."
+            "Dagli Allievi in su la classifica e' **una sola per categoria** e le due "
+            "annate ci convivono, correndo le stesse gare. Al primo anno se ne vince una "
+            "minoranza, e infatti i classificati sono in media %s contro %s in Under 17 e "
+            "%s contro %s in Under 19. Comparire in classifica al primo anno e' quindi "
+            "molto piu' difficile: chi c'e' e' gia' piu' selezionato, e un gruppo piu' "
+            "selezionato contiene per forza una quota maggiore di futuri professionisti. "
+            "Il tasso misura la selettivita' della cella, non la qualita' della "
+            "previsione."
             % (md.conta(larghezze.get("U17y1")), md.conta(larghezze.get("U17y2")),
                md.conta(larghezze.get("U19y1")), md.conta(larghezze.get("U19y2")))))
 

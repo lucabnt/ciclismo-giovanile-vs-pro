@@ -7,7 +7,7 @@
 >
 > **Numero chiave del post:** da 2,13 a 1,09.
 > **Moduli:** `rae`, `contesto`.
-> **Figure:** `rae_gradiente`, `contesto_confondente`.
+> **Figure:** `rae_gradiente`, `rae_sessi`, `contesto_confondente`.
 
 ---
 
@@ -54,6 +54,35 @@ sbagliato la distribuzione attesa, il crollo da 2,13 a 1,09 resterebbe lì.
 
 E fra chi arriva? Fra i 77 professionisti il rapporto fra primo e ultimo trimestre è **1,5**,
 e non si distingue dal caso.
+
+### E le ragazze?
+
+Se il vantaggio di gennaio è un vantaggio di maturazione, allora fra le atlete dovrebbe essere
+più debole, perché le ragazze maturano prima: a tredici anni molte hanno già attraversato la
+pubertà, mentre fra i coetanei maschi la differenza di sviluppo fra chi è nato a gennaio e chi
+a dicembre è al suo massimo.
+
+È l'unica analisi di tutta la serie che ho potuto rifare sul femminile, e non per una
+questione di numeri: tutte le altre domande hanno bisogno di sapere chi è arrivato, e per le
+atlete quel dato non l'ho mai raccolto, visto che le rose scaricate da ProCyclingStats sono
+quelle maschili. L'effetto dell'età relativa fa eccezione perché confronta la composizione
+della classifica con la demografia, e gli basta la data di nascita.
+
+| categoria | maschi | femmine |
+|---|---|---|
+| Esordienti | **1,98** | **1,51** |
+| Allievi | 1,73 | 1,20 |
+| Juniores | 1,29 | 1,42 |
+
+*rapporto fra nati nel primo e nell'ultimo trimestre, sulle stesse annate e con lo stesso
+atteso demografico*
+
+L'ipotesi regge, almeno dove i numeri sono solidi. A tredici anni lo squilibrio femminile è
+sensibilmente più basso di quello maschile, e in Allieve arriva a non distinguersi più dalla
+distribuzione attesa. Due cautele però sono d'obbligo: le atlete in Esordienti sono 874 contro
+5 544 atleti, quindi i valori femminili ballano molto di più; e il valore in Juniores risale
+invece di scendere, il che con poche centinaia di atlete è esattamente quello che il caso
+produce, e non va letto come un ritorno dell'effetto.
 
 La conclusione sta in una riga: il vantaggio di essere nati a gennaio è un vantaggio di
 accesso, non di talento. Ti aiuta a entrare in classifica a tredici anni, non ti aiuta ad

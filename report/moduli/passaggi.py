@@ -26,13 +26,19 @@ DUE COSE DIVERSE CHE VENGONO CONFUSE
     ritenzione, la seconda di valutazione.
 
 LA TRAPPOLA DA DISINNESCARE
-    Le classifiche non hanno tutte la stessa lunghezza. Quelle del primo anno di
-    categoria sono molto piu' corte di quelle del secondo, e questo basta a produrre da
-    solo un crollo apparente delle presenze al cambio di fascia: se i posti si dimezzano,
-    meta' delle persone esce anche senza che sia successo nulla.
+    Le classifiche non hanno tutte la stessa lunghezza, e le annate non ci compaiono in
+    parti uguali. Salendo di categoria un atleta si ritrova in una lista condivisa con
+    ragazzi piu' grandi, e al primo anno vince una minoranza dei piazzamenti a punti:
+    poco piu' di un quarto in Allievi. La sua annata risulta quindi molto meno numerosa
+    di quella sopra, e questo basta a produrre da solo un crollo apparente delle presenze
+    al cambio di fascia, senza che sia successo nulla alle persone.
 
-    Il rimedio e' guardare anche **da dove viene la lista di arrivo**: quanta parte e'
-    composta da chi c'era gia'. Quella quota non dipende da quanti posti ci siano.
+    La sezione «Quanti posti ci sono, e chi se li prende» misura il fenomeno e ne
+    identifica la causa, che non e' la scarsita' dei posti ma la concorrenza fra annate.
+
+    Il rimedio, qui, e' guardare anche **da dove viene la lista di arrivo**: quanta parte
+    e' composta da chi c'era gia'. Quella quota non dipende da quanti siano i posti ne'
+    da chi li vinca.
 """
 import os
 import sqlite3
@@ -184,11 +190,13 @@ def rendi(lt):
         "l'ordine** fra chi resta — un problema di valutazione, perche' vorrebbe dire "
         "che il risultato di una stagione dice poco su quella successiva. Le due si "
         "misurano separatamente.\n\n"
-        "C'e' una trappola da disinnescare: le classifiche del primo anno di categoria "
-        "sono molto piu' corte di quelle del secondo. Se i posti si dimezzano, meta' "
-        "delle persone esce anche senza che sia successo nulla. Per questo si guarda "
-        "anche **da dove viene la lista di arrivo**: quanta parte e' composta da chi "
-        "c'era gia'. Quella quota non dipende da quanti posti ci siano.",
+        "C'e' una trappola da disinnescare: al primo anno di una categoria gli atleti "
+        "sono molto meno numerosi che al secondo, perche' corrono nella stessa lista dei "
+        "piu' grandi e vincono una minoranza dei piazzamenti a punti. Se un'annata occupa "
+        "un quarto dei posti invece della meta', gran parte delle persone esce dalla "
+        "classifica anche senza che sia successo nulla. Per questo si guarda anche **da "
+        "dove viene la lista di arrivo**: quanta parte e' composta da chi c'era gia'. "
+        "Quella quota non dipende da quanti siano i posti ne' da chi li vinca.",
         [("Correlazione di Spearman", W + "Spearman%27s_rank_correlation_coefficient")]))
 
     righe = [r[:6] + [md.num(r[6], 3), md.num(r[7], 1)] for r in t["righe"]]
@@ -223,16 +231,18 @@ def rendi(lt):
                 % (md.num(qf, 1), md.num(qd, 1))),
             "",
             "I due numeri sembrano contraddirsi e non si contraddicono: al cambio di "
-            "categoria **la classifica si accorcia**. Ci sono meno posti, quindi meno "
-            "gente resta — ma i posti che restano se li tengono quasi tutti quelli che "
-            "c'erano. Il ricambio vero, l'ingresso di facce nuove, avviene **dentro** la "
-            "categoria, dove le liste si allargano.",
+            "categoria **l'annata che arriva occupa molti meno posti**. Passa da essere "
+            "la piu' anziana della propria lista a essere la piu' giovane, contro ragazzi "
+            "con un anno di sviluppo in piu', e nelle stesse gare vince molto meno. Resta "
+            "quindi meno gente, ma i posti che restano se li tengono quasi tutti quelli "
+            "che c'erano. Il ricambio vero, l'ingresso di facce nuove, avviene **dentro** "
+            "la categoria, dove l'annata cresce di peso.",
             "",
             "Quello che sembrava un trauma del passaggio di fascia e' in buona parte "
-            "**una proprieta' dello strumento di misura**: la fonte pubblica classifiche "
-            "corte per il primo anno di categoria e lunghe per il secondo. Chi esce al "
-            "cambio di fascia in molti casi non ha smesso e non e' peggiorato: non c'e' "
-            "piu' posto per lui nella lista."))
+            "**una conseguenza di come sono fatte le classifiche**: dagli Allievi in su "
+            "la lista e' una sola e le annate convivono, quindi al primo anno si compare "
+            "poco per definizione. Chi esce al cambio di fascia in molti casi non ha "
+            "smesso e non e' peggiorato: ha smesso di battere ragazzi piu' grandi."))
 
     rhod, rhof = v.get("rho_dentro"), v.get("rho_fra")
     if rhod and rhof:

@@ -20,7 +20,7 @@ così si controllano i metodi. I post vanno organizzati per **tema**, perché co
 legge: chi legge non vuole sapere cosa dice il modello di sopravvivenza, vuole sapere se
 suo figlio ce la farà.
 
-Questo file traduce le diciassette sezioni dell'analisi in otto post, dice qual è il filo
+Questo file traduce le diciotto sezioni dell'analisi in otto post, dice qual è il filo
 che li tiene insieme e da quali moduli dell'archivio ciascuno prende i numeri. Le bozze
 scritte stanno in [`docs/post/`](post/), e ciascuna si chiude con le scelte editoriali
 ancora aperte.

@@ -49,6 +49,8 @@ ACCENTI = {
     "confrontabilita": "confrontabilità", "comparabilita": "comparabilità",
     "distinguibilita": "distinguibilità", "generalizzabilita": "generalizzabilità",
     "impurita": "impurità", "percio": "perciò", "cio": "ciò",
+    "disponibilita": "disponibilità", "scarsita": "scarsità", "si": "sì", "da": "dà",
+    "puberta": "pubertà",
     "inutilita": "inutilità", "penalita": "penalità", "scarsita": "scarsità",
     "maturita": "maturità", "profondita": "profondità", "solidita": "solidità",
     "utilita": "utilità", "necessita": "necessità",

@@ -118,6 +118,7 @@ sezioni = [
   "misura",
   "attrito",
   "copertura",
+  "posti",
   "passaggi",
   "punteggi",
   "rae",
