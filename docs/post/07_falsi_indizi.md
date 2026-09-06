@@ -37,7 +37,7 @@ l'effetto invece di gonfiarlo, quindi tanto vale fare il conto per bene.
 
 Fatto per bene, l'effetto c'è ed è grosso.
 
-| categoria | nati in gennaio-marzo, rispetto all'atteso |
+| categoria | nati in gennaio-marzo, rispetto all'atteso |[^p7rae]
 |---|---|
 | Under 15 | +39% |
 | Under 17 | +30% |
@@ -52,8 +52,9 @@ confronto non ha bisogno di nessun dato esterno, perché riguarda le stesse anna
 estremi del percorso e la stagionalità delle nascite si cancella da sola. Anche se avessi
 sbagliato la distribuzione attesa, il crollo da 2,13 a 1,09 resterebbe lì.
 
-E fra chi arriva? Fra i 77 professionisti il rapporto fra primo e ultimo trimestre è **1,5**,
-e non si distingue dal caso.
+E fra chi arriva? Fra i 77 professionisti delle coorti in studio — chi ha corso in una squadra
+di primo o secondo livello entro i venticinque anni — il rapporto fra primo e ultimo trimestre
+è **1,5**, e non si distingue dal caso.
 
 ### E le ragazze?
 
@@ -68,7 +69,7 @@ atlete quel dato non l'ho mai raccolto, visto che le rose scaricate da ProCyclin
 quelle maschili. L'effetto dell'età relativa fa eccezione perché confronta la composizione
 della classifica con la demografia, e gli basta la data di nascita.
 
-| categoria | maschi | femmine |
+| categoria | maschi | femmine |[^p7rae]
 |---|---|---|
 | Esordienti | **1,98** | **1,51** |
 | Allievi | 1,73 | 1,20 |
@@ -95,7 +96,7 @@ risultato in un'età in cui il risultato dipende dallo sviluppo.
 
 Qui il dato grezzo è spettacolare.
 
-| cambi di società | professionisti |
+| cambi di società | professionisti |[^p7contesto]
 |---|---|
 | nessuno | **0,68%** |
 | uno | 4,48% |
@@ -119,7 +120,7 @@ Poi c'è la scoperta che chiude la questione, e che nessuno degli studi preceden
 guardato. Non tutte le società sono attive in tutte le categorie, per cui quando un ragazzo
 cambia fascia spesso deve cambiare squadra semplicemente perché la sua non lo segue più.
 
-| passaggio | ha cambiato società |
+| passaggio | ha cambiato società |[^p7contesto]
 |---|---|
 | dentro gli Esordienti | 15,8% |
 | da Esordienti ad Allievi | 38,4% |
@@ -154,10 +155,10 @@ riordinare la classifica. Quella tabella si legge come una mappa della partecipa
 una graduatoria dei vivai.
 
 Per fare la domanda giusta, cioè se a parità di corridori e di gare disponibili la regione
-aggiunga qualcosa, servirebbe sapere quanti tesserati ci sono in ogni regione. La federazione
-pubblica i tesserati per categoria e le società per regione, mai i due incrociati, e senza quel
-dato la domanda resta aperta. Dichiararlo è più utile che riempire il vuoto con una classifica
-che non significa niente.
+aggiunga qualcosa, servirebbe sapere quanti tesserati ci sono in ogni regione. Quel dato non è
+pubblicamente disponibile: esistono i tesserati per categoria e le società per regione, non i
+due incrociati. Senza, la domanda resta aperta, e dichiararlo è più utile che riempire il
+vuoto con una classifica che non significa niente.[^p7contesto]
 
 ## La lettura sbagliata, e come riconoscerla da solo
 
@@ -211,6 +212,11 @@ ed è il tema dell'ultima puntata.
 > Le percentuali regionali usano nove annate, dal 1992 al 2000, invece delle cinque del resto
 > della serie, perché la regione di partenza non ha bisogno della finestra stretta che serve
 > agli esiti. Le celle con meno di cinque atleti non sono pubblicate.
+
+[^p7rae]: Calcolo in `report/moduli/rae.py`, con l'atteso demografico da Eurostat
+    (`scripts/07_riferimenti.py`).
+
+[^p7contesto]: Calcolo in `report/moduli/contesto.py`.
 
 ---
 

@@ -126,8 +126,12 @@ def calcola():
         ar.valore("soglia_italiana", int(SOGLIA_ITALIANA * 100))
 
         # --- 1. quanto e' grande la porta italiana ---------------------------
+        # La stagione in corso ha rose ancora incomplete e va lasciata fuori: il conteggio
+        # si ferma all'ultima stagione conclusa, la stessa che usa tutto il resto dello studio.
+        ultima = cfg("stagioni", "massima")
         stagioni = [r[0] for r in db.execute(
-            """SELECT DISTINCT season FROM p.pcs_roster WHERE season >= 2015 ORDER BY 1""")]
+            """SELECT DISTINCT season FROM p.pcs_roster
+               WHERE season BETWEEN 2015 AND ? ORDER BY 1""", (ultima,))]
         posti = []
         for st in stagioni:
             n = db.execute(

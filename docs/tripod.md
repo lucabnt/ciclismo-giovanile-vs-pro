@@ -8,7 +8,7 @@ Questo non è un articolo scientifico e nessuno chiederà la checklist. Serve co
 di controllo privata**: se ogni voce ha una risposta, il progetto è solido; le voci
 senza risposta sono buchi da chiudere o limiti da dichiarare.
 
-Compilata il 28 agosto 2026, sullo stato del documento a 18 sezioni.
+Compilata il 28 agosto 2026, sullo stato del documento a 19 sezioni.
 
 **Come si «esegue».** Non si esegue: è una lettura. Il lavoro di compilazione è già
 fatto, e quello che resta è verificare le voci che non poggiano sui dati ma sul processo

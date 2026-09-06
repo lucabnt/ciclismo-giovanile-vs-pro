@@ -195,7 +195,9 @@ def rendi(lt):
                 "",
                 "E' il risultato piu' interessante della sezione, e conviene dirlo con "
                 "le parole giuste. Non significa che fra i professionisti il talento non "
-                "conti: significa che **la classifica giovanile italiana non lo misura "
+                "conti, e nemmeno che la soglia sia una sola: la sezione «Da quale porta "
+                "si entra» mostra che l'ingresso avviene per due vie con esiti molto "
+                "diversi. Significa che **la classifica giovanile italiana non lo misura "
                 "piu'**. A diciotto anni distingue bene chi entrera' nel professionismo "
                 "da chi no; una volta dentro, quello che decide se si arriva fra i primi "
                 "cento al mondo e' qualcosa che quella classifica non ha registrato."))

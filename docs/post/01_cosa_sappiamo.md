@@ -22,8 +22,8 @@ diciassettenni e diciottenni tesserati in quel paese. Se arrivi a quella linea d
 vuol dire che hai superato ogni selezione che il ciclismo giovanile riesca a mettere in
 piedi: più predestinato di così non si può.
 
-Nel 2006 un gruppo di ricercatori tedeschi ha preso gli elenchi dei partecipanti a quei
-Mondiali e si è messo a seguirli negli anni, per contare quanti fossero poi arrivati a
+Nel 2006 un gruppo di ricercatori tedeschi[^schumacher] ha preso gli elenchi dei
+partecipanti a quei Mondiali e si è messo a seguirli negli anni, per contare quanti fossero poi arrivati a
 correre il Mondiale da grandi. Trenta su cento. Poi hanno guardato la stessa cosa al
 contrario, partendo dai corridori del Mondiale élite e chiedendosi quanti fossero passati da
 quello juniores: 29,4 su cento.
@@ -47,11 +47,11 @@ metodi diversi, ed è il risultato più replicato del campo.
 
 Il secondo è che il segnale cresce man mano che ci si avvicina al traguardo. Lo studio
 italiano più citato, quello di Gallo e colleghi del 2022 su 1 345 corridori delle classifiche
-federali, trova che i punti fatti in gara dicono qualcosa già dagli Allievi, ma dicono sempre
+federali[^gallo], trova che i punti fatti in gara dicono qualcosa già dagli Allievi, ma dicono sempre
 di più salendo di categoria, e indica come momento più informativo il primo anno da Under 23.
 
 Sotto i quindici anni, invece, il sospetto è che non ci sia niente da vedere. Uno studio
-belga sui tredici e quattordicenni ha misurato maturazione, coordinazione e capacità
+belga sui tredici e quattordicenni[^mostaert] ha misurato maturazione, coordinazione e capacità
 motorie, e ha scoperto che tutto insieme spiegava poco più di un quinto delle differenze fra
 i ragazzi, con maturità e coordinazione attorno al 5 per cento ciascuna. La lettura che se ne
 è ricavata, e che probabilmente hai già sentito, è che a quell'età si stia misurando
@@ -62,16 +62,16 @@ giovane non arriva comunque: il 30 per cento dello studio tedesco, il 15 per cen
 Allievi italiani che poi faranno punti nel World Tour, i cinque su quarantotto dello studio
 olandese. Cambiano i paesi e le definizioni, non l'ordine di grandezza.
 
-Sui test di laboratorio la letteratura è quasi unanime, e vale la pena dirlo perché suona
-strano: la soglia e i watt per chilo descrivono bene il livello di un ragazzo adesso, ma non
-aggiungono niente su dove arriverà. Uno studio norvegese ha messo a confronto le due famiglie
-di predittori sulle stesse persone, e il piazzamento in gara a diciotto anni ha battuto tutte
-le variabili fisiologiche.
+Sui test di laboratorio la letteratura è quasi unanime[^menaspa], e vale la pena dirlo
+perché suona strano: la soglia e i watt per chilo descrivono bene il livello di un ragazzo adesso, ma non
+aggiungono niente su dove arriverà. Uno studio norvegese[^svendsen] ha messo a confronto le due
+famiglie di predittori sulle stesse persone, e il piazzamento in gara a diciotto anni ha
+battuto tutte le variabili fisiologiche.
 
 L'ultimo punto riguarda il mese di nascita. In tutte le popolazioni giovanili studiate i nati
 nei primi mesi dell'anno sono più di quanti la demografia ne giustifichi, però il vantaggio si
 assottiglia salendo di categoria e fra i professionisti sparisce. Uno studio su quasi tremila
-corridori delle squadre Continental lo dice nel modo più tagliente possibile: l'effetto si
+corridori delle squadre Continental[^voet] lo dice nel modo più tagliente possibile: l'effetto si
 trova soprattutto fra chi non ce l'ha fatta. Chi seleziona presto premia in modo sistematico
 la maturità anagrafica, e quella maturità in carriera non si converte.
 
@@ -85,8 +85,8 @@ più scomoda, perché non ti autorizza né a selezionare né a ignorare. Fra una
 una misura da usare con cautela c'è tutta la differenza del mondo, e quasi tutti gli usi
 sbagliati di questi dati nascono dal non tenerle distinte.
 
-C'è poi un problema più tecnico, e riguarda chi viene guardato. Uno studio italiano del 2024
-ha ricostruito le traiettorie di ottantuno professionisti per capire cosa distinguesse i
+C'è poi un problema più tecnico, e riguarda chi viene guardato. Uno studio italiano del
+2024[^filipas] ha ricostruito le traiettorie di ottantuno professionisti per capire cosa distinguesse i
 migliori, e ha trovato pochissimo. Il motivo è che stava confrontando professionisti con
 altri professionisti: quando guardi soltanto chi ce l'ha fatta, le differenze che contavano
 sono già state consumate per decidere chi entrava nel campione, e quello che ti resta in mano
@@ -154,6 +154,33 @@ ciclisti italiani ma qualcosa di piuttosto diverso. È il tema della prossima pu
 >
 > Il limite più serio di questa sintesi è che riguarda quasi soltanto atleti maschi, e un
 > paese alla volta.
+
+[^schumacher]: Schumacher Y.O. et al. (2006), *Success in elite cycling: a prospective and
+    retrospective analysis of race results*, Journal of Sports Sciences 24(11), 1149-1156.
+    DOI [10.1080/02640410500457299](https://doi.org/10.1080/02640410500457299).
+
+[^gallo]: Gallo G. et al. (2022), *Do race results in youth competitions predict future
+    success as a road cyclist? A retrospective study in the Italian Cycling Federation*,
+    IJSPP 17(4), 621-626. DOI
+    [10.1123/ijspp.2021-0297](https://doi.org/10.1123/ijspp.2021-0297).
+
+[^mostaert]: Mostaert M. et al. (2022), studio sulla coordinazione motoria e la maturazione
+    nelle categorie giovanili belghe. Scheda completa in `docs/literature_review.md` (B3).
+
+[^menaspa]: Menaspà P., Sassi A., Impellizzeri F.M. (2010), *Aerobic fitness variables do
+    not predict the professional career of young cyclists*, Medicine & Science in Sports &
+    Exercise 42(4), 805-812.
+
+[^svendsen]: Svendsen I.S. et al. (2018), *Training, performance, and physiological
+    predictors of a successful elite senior career in junior competitive road cyclists*,
+    IJSPP 13(10), 1287-1292. DOI
+    [10.1123/ijspp.2017-0824](https://doi.org/10.1123/ijspp.2017-0824).
+
+[^voet]: Voet J. et al. (2022), studio sul Relative Age Effect nelle squadre Continental,
+    2.854 corridori. Scheda completa in `docs/literature_review.md` (C1).
+
+[^filipas]: Filipas L. et al. (2024), studio sulle traiettorie di 81 professionisti
+    italiani. Scheda completa in `docs/literature_review.md` (A8).
 
 ---
 

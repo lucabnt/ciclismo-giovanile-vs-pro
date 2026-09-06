@@ -35,18 +35,30 @@ import sqlite3
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from lib_giovanile import DB_ANALISI, cfg
+from lib_giovanile import DB_ANALISI, cfg, sesso_in_studio
 
-DB_PCS = "data/pcs/pcs.db"
+# Le due popolazioni non condividono nulla — ne' corridori, ne' squadre, ne' classifica
+# mondiale — quindi stanno in due archivi separati. Mescolarle corromperebbe la classifica
+# annuale, che e' indicizzata per stagione e non per sesso.
+SESSO = sesso_in_studio()
+DB_PCS = "data/pcs/pcs.db" if SESSO == "M" else "data/pcs/pcs_%s.db" % SESSO
 
-# Prima e seconda divisione UCI, con i nomi che hanno avuto nel tempo.
-CLASSI_PRO = tuple(cfg("esiti", "classi_pro"))
+# Prima e seconda divisione UCI, con i nomi che hanno avuto nel tempo. Nel femminile le
+# sigle sono altre: WTW per le Women's WorldTeam, PRW per le UCI Women's ProTeam.
+CLASSI_PRO = tuple(cfg("esiti", "classi_pro" if SESSO == "M" else "classi_pro_%s" % SESSO))
+
+# Le classi che da sole valgono il livello intermedio, senza passare dalla classifica
+# mondiale. Vuota nel maschile, dove la qualita' si misura sulla profondita' del ranking;
+# nel femminile e' la prima divisione, perche' il gruppo e' troppo piccolo perche' una
+# soglia di classifica distingua qualcosa. Motivazione in definizioni.md.
+CLASSI_LIVELLO_ALTO = tuple(cfg("esiti", "classi_livello_alto_%s" % SESSO, default=[]))
 
 ETA_PRO = cfg("esiti", "eta_massima_pro")        # finestra per l'esito PRO
 ETA_QUALITA = cfg("esiti", "eta_massima_qualita")  # finestra per il tier, piu' ampia di uno: vedi definizioni.md
 STAGIONE_MAX_PCS = cfg("scaricamento", "stagioni_pro")[1]
 
-SOGLIE = tuple(map(tuple, cfg("esiti", "soglie_tier")))  # posizione massima -> livello del tier
+SOGLIE = tuple(map(tuple, cfg("esiti", "soglie_tier" if SESSO == "M"
+                              else "soglie_tier_%s" % SESSO)))  # posizione max -> livello
 
 # Sotto questa numerosita' il tasso della societa' non e' una stima, e' rumore.
 MIN_COORTI_PRECEDENTI = cfg("contesto", "min_coorti_precedenti")
@@ -73,10 +85,12 @@ def main():
                            WHERE b.birth_year IS NOT NULL""").fetchall()
     dice("Atleti abbinati con anno di nascita noto: %d" % len(atleti))
 
-    stagioni_pro, punti = {}, {}
+    stagioni_pro, punti, prima_divisione = {}, {}, {}
     for pid, s, cl in db.execute("SELECT pcs_id, season, team_class FROM p.pcs_rider_team"):
         if cl in CLASSI_PRO:
             stagioni_pro.setdefault(pid, set()).add(s)
+        if cl in CLASSI_LIVELLO_ALTO:
+            prima_divisione.setdefault(pid, set()).add(s)
     for pid, s, rk in db.execute("""SELECT pcs_id, season, rank_pos FROM p.pcs_rider_points
                                     WHERE rank_pos IS NOT NULL"""):
         punti.setdefault(pid, {})[s] = rk
@@ -95,6 +109,10 @@ def main():
                 if best is not None and best <= soglia:
                     tier = livello
                     break
+            # Dove la qualita' si misura sulla divisione e non sulla classifica, aver corso
+            # in prima divisione entro la finestra vale almeno il livello intermedio.
+            if any(x <= by + ETA_QUALITA for x in prima_divisione.get(pid, ())):
+                tier = max(tier, 2)
 
         def miglior(lo, hi):
             v = [r for s, r in pr.items() if lo <= s - by <= hi]

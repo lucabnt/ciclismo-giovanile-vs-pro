@@ -43,20 +43,37 @@ numero diverso di partecipanti.
 | chi **non** diventerà professionista | 49° percentile |
 | chi diventerà professionista | **81° percentile** |
 
+*professionista vuol dire aver corso in una squadra di primo o secondo livello entro i
+venticinque anni*
+
 A diciotto anni la distanza si allarga ancora: da 47 a 94.
 
 C'è un modo elegante di riassumere quanto due gruppi si separino: prendi tutte le coppie
 possibili formate da un futuro professionista e da un futuro non professionista, e conti
 quante volte il professionista sta davanti. A tredici anni succede nel **74% dei casi**, a
 diciotto nell'89%. Secondo le soglie convenzionali di questa misura la separazione a tredici
-anni è già grande, e ti confesso che non era quello che mi aspettavo di trovare.
+anni è già grande, e ti confesso che non era quello che mi aspettavo di
+trovare.[^p4punteggi]
+
+Su questo 74% conviene essere precisi, perché due equivoci sono in agguato. Il primo: il
+confronto è **fra chi era in classifica quell'anno**, non fra tutti i ragazzi. Chi a tredici
+anni non ha mai fatto un punto non entra né fra i professionisti né fra gli altri, quindi la
+cifra dice quanto la classifica separa dentro di sé, e non quanto separi il mondo. Il
+secondo: i «professionisti» del confronto sono i **futuri** professionisti, cioè ragazzi che
+a tredici anni non erano niente di particolare e che sarebbero arrivati sei o sette anni
+dopo. È un confronto costruito guardando indietro, ed è l'unico modo onesto di farlo.
+
+Se invece includi anche chi in classifica non c'era, trattando l'assenza come un rendimento
+peggiore di qualunque presenza, la separazione **sale**, perché non esserci è a sua volta
+un'informazione. Ne parlo nell'ultima puntata, dove metto alla prova proprio questa
+scelta.
 
 ## Di quanto conta, esattamente
 
 Un modello ti permette di mettere un numero sul vantaggio, rispondendo alla domanda su quanto
 conti salire di dieci posizioni percentuali.
 
-| categoria | età | quanto moltiplica le probabilità |
+| categoria | età | quanto moltiplica le probabilità |[^p4univariati]
 |---|---|---|
 | Under 15, primo anno | 13 | ×1,40 |
 | Under 15, secondo anno | 14 | ×1,56 |
@@ -97,7 +114,7 @@ Alla domanda vera, cioè se il primo anno predica meglio del secondo, puoi rispo
 confrontando le due misure sulle stesse persone, cioè sui ragazzi presenti in entrambe le
 classifiche della categoria.
 
-| categoria | primo anno | secondo anno |
+| categoria | primo anno | secondo anno |[^p4univariati]
 |---|---|---|
 | Under 15 | 70% | **81%** |
 | Under 17 | 81% | **85%** |
@@ -118,7 +135,7 @@ Prendo i ragazzi osservati in tutte le categorie, che sono 102, un gruppo piccol
 selezionato ma l'unico su cui il confronto sia legittimo, e aggiungo una categoria alla volta
 guardando quanto migliori la previsione.
 
-| il modello conosce… | quanto ci prende |
+| il modello conosce… | quanto ci prende |[^p4annidati]
 |---|---|
 | solo l'anno di nascita | 51% (cioè: nulla) |
 | più l'Under 15 | 58% |
@@ -137,7 +154,7 @@ guadagnato **1,3 punti percentuali** di capacità predittiva, con in cima alla s
 di importanza proprio il piazzamento in Under 19. Una regressione penalizzata, cioè un metodo
 che mette tutte le categorie in un modello solo e poi butta via quelle che non si guadagnano
 il posto, ne ha tenute **2 su 8** contando anche l'anno di nascita: l'Under 19 secondo anno e
-l'Under 23.
+l'Under 23.[^p4confronti]
 
 Tre strade diverse, la stessa conclusione: quasi tutta l'informazione utile sta nell'ultima
 misura che hai. Le stagioni precedenti non si sommano a quella, sono in gran parte la stessa
@@ -195,6 +212,16 @@ novantesimo? È il tema della prossima puntata.
 > Il limite più serio riguarda il confronto fra categorie, che gira su 102 atleti, cioè quelli
 > osservati ovunque. Sono pochi e sono sopravvissuti, visto che fra loro i professionisti sono
 > il 43%, quindi di quella tabella conta la differenza fra le righe e non il livello.
+
+[^p4punteggi]: Calcolo in `report/moduli/punteggi.py`, delta di Cliff convertito in area
+    sotto la curva.
+
+[^p4univariati]: Modelli in `R/16_univariati.R`, resi da `report/moduli/univariati.py`.
+
+[^p4annidati]: Modelli in `R/18_annidati.R`, resi da `report/moduli/annidati.py`.
+
+[^p4confronti]: Foresta casuale in `R/27_confronto_ml.R`, regressione penalizzata in
+    `R/17_penalizzato.R`.
 
 ---
 

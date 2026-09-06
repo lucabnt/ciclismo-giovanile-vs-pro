@@ -363,8 +363,11 @@ Uno schema riconoscibile aiuta il lettore a orientarsi e chi scrive a non divaga
 | **Il gancio** | l'ultima riga apre il post successivo con una domanda. |
 | **Riquadro «come lo sappiamo»** | in fondo, breve, saltabile. Metodo, numerosità, limite principale. Chi vuole controllare trova il rimando al documento completo. |
 
-**Lunghezza**: 1 200-1 800 parole. Sotto le mille il tema non regge, sopra le duemila si
-perde chi legge dal telefono.
+**Lunghezza**: 1 200-1 800 parole era il target iniziale. Le bozze attuali stanno fra 1 500 e
+2 280, perché nel frattempo sono entrati il riquadro delle definizioni, le note con le fonti e
+alcune risposte aggiunte in revisione. **Da decidere**: alzare il target a 1 500-2 300, oppure
+tagliare i due post più lunghi (il 2 e il 3), che sono anche quelli che portano due temi
+ciascuno e potrebbero scorporarsi.
 
 **Un numero per post.** Ogni post ha una cifra che si ripete nel titolo, nell'apertura e
 nella chiusura: 1 su 7, 30,6%, 88%, 2,28, 20,7%, 59% e 52%, 96,3%. Sono i ganci della

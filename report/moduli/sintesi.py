@@ -192,8 +192,11 @@ def rendi(lt):
             "di gradino (IC 95%% %s-%s). Ma scomponendo il percorso in stadi successivi, "
             "il coefficiente vale %s per diventare professionista e scende a valori il "
             "cui intervallo di confidenza comprende l'uno per entrare nel top 500 fra i "
-            "professionisti e nel top 100 fra i top 500. La classifica giovanile "
-            "italiana non misura piu' nulla, una volta varcata la soglia."
+            "professionisti e nel top 100 fra i top 500. Una parte della spiegazione "
+            "e' che la soglia non sia una sola: il 63%% dei professionisti debutta in "
+            "una squadra a maggioranza italiana, e di questi arriva nel top 500 il 33%% "
+            "contro il 59%% di chi debutta in una squadra straniera, mentre il "
+            "rendimento giovanile predice le due porte allo stesso modo."
             % (md.num(qua["ordinale"]["or"], 2), md.num(qua["ordinale"]["lo"], 2),
                md.num(qua["ordinale"]["hi"], 2), md.num(primo_stadio, 2))))
 

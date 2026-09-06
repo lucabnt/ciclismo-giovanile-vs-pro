@@ -56,6 +56,34 @@ codice.
 
 **Niente frasi senza verbo**, e niente chiuse aforistiche costruite per essere citate.
 
+## Le definizioni e le fonti
+
+**Ogni post si regge da solo.** I termini che tornano ovunque vanno definiti una volta per
+post — cosa vuol dire professionista, cosa vogliono dire top 500 e top 100, cosa vuol dire
+essere in classifica — perché chi arriva dal motore di ricerca al post 6 non deve leggere il 2
+per capirlo.
+
+**La definizione va dentro il testo, alla prima volta che il termine compare**, non in un
+riquadro all'inizio. Un riquadro di definizioni prima ancora di aver detto di cosa si parla è
+un glossario, e i glossari non si leggono: un inciso fra trattini o una riga in corsivo sotto
+la tabella arrivano invece nel momento in cui servono. Dove ripetere per esteso sarebbe
+pesante, si mette la versione corta e si rimanda al post che approfondisce.
+
+**Ogni numero ha una fonte, e la fonte sta a piè di pagina.** Due tipi:
+
+- i risultati di questo studio rimandano al file del repository che li produce, cioè al
+  modulo di `report/moduli/` o allo script in `R/`. Chi vuole controllare apre quel file e
+  ci trova la query;
+- le citazioni della letteratura rimandano allo studio, con autore, anno e DOI.
+
+Il marcatore si mette **una volta per tabella, per figura o per blocco di numeri**, non a
+ogni cifra: una nota ogni tre parole rende il testo illeggibile e non aggiunge niente, dato
+che i numeri di un paragrafo vengono quasi sempre dallo stesso posto.
+
+**Sui dati che mancano non si accusa nessuno.** Non «la federazione non li pubblica», ma
+«non sono pubblicamente disponibili». È più corto, è quello che sappiamo davvero, e non
+attribuisce un'intenzione a nessuno.
+
 ## La struttura di ogni post
 
 Resta quella del piano editoriale, con una differenza: la nota di contesto in testa, come

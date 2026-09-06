@@ -54,9 +54,12 @@ import sys
 import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from lib_giovanile import cfg, chiave_match
+from lib_giovanile import cfg, chiave_match, sesso_in_studio
 
-DB_PCS = "data/pcs/pcs.db"
+# Un archivio per sesso: le due popolazioni non condividono corridori, squadre ne'
+# classifica mondiale, e tenerle insieme corromperebbe la classifica annuale.
+SESSO = sesso_in_studio()
+DB_PCS = "data/pcs/pcs.db" if SESSO == "M" else "data/pcs/pcs_%s.db" % SESSO
 PAUSA = cfg("scaricamento", "pausa_pcs")
 
 # Prima stagione utile: il nato nel 1996 (coorte piu' vecchia dell'analisi principale)
@@ -66,12 +69,17 @@ STAGIONI_PRO = range(cfg("scaricamento", "stagioni_pro")[0],
                      cfg("scaricamento", "stagioni_pro")[1] + 1)
 STAGIONI_RANK = range(cfg("scaricamento", "stagioni_ranking")[0],
                       cfg("scaricamento", "stagioni_ranking")[1] + 1)
-LIVELLI = {"worldtour": "WT", "proteams": "PRT"}
+# Le pagine da enumerare dipendono dal sesso in studio, e stanno in configurazione:
+# `[scaricamento.M]` per il maschile, `[scaricamento.F]` per il femminile. Il femminile
+# non e' ancora stato scaricato — la sezione esiste come preparazione, e i suoi slug vanno
+# verificati sulle pagine di PCS prima del primo uso.
+FONTE = cfg("scaricamento", SESSO)
+LIVELLI = dict(FONTE["livelli"])
 # Le Continental servono a distinguere chi ha smesso da chi corre a un livello piu'
 # basso. Sono ~200 squadre per stagione in tutto il mondo, quindi l'enumerazione
 # completa costa ore: si abilita con --continental. Per i soli atleti gia' candidati
 # non serve, perche' Rider.teams_history() restituisce gia' tutte le classi.
-LIVELLI_EXTRA = {"continental": "CT"}
+LIVELLI_EXTRA = dict(FONTE.get("extra") or {})
 TOP_N = cfg("scaricamento", "profondita_ranking")  # profondita' della classifica globale (5 pagine)
 
 # Le classi che contano come "professionista", cioe' prima e seconda divisione UCI.
@@ -278,7 +286,8 @@ def strato_b(f, db):
         n = 0
         for offset in range(0, TOP_N, 100):
             url = ("rankings.php?date=%d-12-31&nation=&page=smallerorequal&offset=%d"
-                   "&filter=Filter&p=me&s=season-individual" % (season, offset))
+                   "&filter=Filter&p=%s&s=season-individual"
+                   % (season, offset, FONTE["ranking"]))
             rk = f.scraper("Ranking", url)
             if rk is None:
                 break
@@ -312,7 +321,8 @@ def strato_c(f, db):
         n, offset = 0, 0
         while offset < 2000:
             url = ("rankings.php?date=%d-12-31&nation=it&page=smallerorequal&offset=%d"
-                   "&filter=Filter&p=me&s=season-individual" % (season, offset))
+                   "&filter=Filter&p=%s&s=season-individual"
+                   % (season, offset, FONTE["ranking"]))
             rk = f.scraper("Ranking", url)
             if rk is None:
                 break

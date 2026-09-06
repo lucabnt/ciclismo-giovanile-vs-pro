@@ -55,6 +55,18 @@ domanda_sopravvivenza = [1996, 2008]
 #   PRT UCI ProTeam, è il PCT rinominato nel 2020
 classi_pro = ["WT", "PT", "PCT", "PRT"]
 
+# Nel femminile le divisioni hanno sigle proprie: WTW (Women's WorldTeam, prima divisione)
+# e PRW (UCI Women's ProTeam, seconda). L'esito PRO e' l'analogo esatto del maschile.
+classi_pro_F = ["WTW", "PRW"]
+
+# La qualita' della carriera non si misura allo stesso modo nei due sessi. Nel maschile si
+# usa la profondita' della classifica mondiale (top 500, top 100). Nel femminile il gruppo
+# professionistico e' molto piu' piccolo e una soglia larga comprenderebbe quasi tutte le
+# professioniste: il salto di qualita' coincide con il salto di divisione, quindi il livello
+# intermedio si assegna a chi ha corso in prima divisione. Motivazione in definizioni.md.
+soglie_tier_F = [[100, 3]]
+classi_livello_alto_F = ["WTW"]
+
 eta_minima_pro = 19        # nessuno puo' correre da professionista prima: e' una regola
                            # UCI, non un dato osservato, e infatti nei dati il primo
                            # passaggio avviene esattamente a 19 anni. Il modello di
@@ -85,6 +97,29 @@ pausa_pcs = 2.5
 stagioni_pro = [2011, 2026]      # rose WorldTeam e ProTeam
 stagioni_ranking = [2007, 2025]  # classifiche annuali
 profondita_ranking = 500         # deve coprire la soglia più larga di soglie_tier
+
+# Da dove si scarica, a seconda del sesso in studio. Cambiando `studio.sesso` cambiano le
+# rose da enumerare e il parametro della classifica mondiale, senza toccare il codice.
+#   `livelli`   slug delle pagine indice di PCS -> sigla della classe di squadra
+#   `extra`     livello aggiuntivo, enumerato solo con --continental
+#   `ranking`   valore del parametro p= nell'indirizzo della classifica annuale
+[scaricamento.M]
+livelli = { worldtour = "WT", proteams = "PRT" }
+extra = { continental = "CT" }
+ranking = "me"
+
+# Il femminile non è ancora stato scaricato: questa sezione è la preparazione, e i nomi
+# seguono la struttura UCI attuale (Women's WorldTeam, UCI Women's ProTeam, Continental).
+# Prima di usarla va verificato che gli slug corrispondano alle pagine di PCS: i nomi
+# delle divisioni femminili sono cambiati piu' volte dal 2020.
+# Verificato sulle pagine di PCS il 30 agosto 2026: l'indice femminile e' uno solo
+# (`s=women`, 22 squadre nel 2025) e contiene sia la prima sia la seconda divisione. La
+# classe vera arriva comunque dalla pagina della squadra, non dall'indice: PCS restituisce
+# `WTW` per le Women's WorldTeam e `PRW` per le UCI Women's ProTeam.
+[scaricamento.F]
+livelli = { women = "WTW" }
+extra = { }
+ranking = "we"
 
 [modelli]
 # Celle mostrate nella matrice di correlazione: descrittiva, calcolata a coppie.
@@ -130,6 +165,7 @@ sezioni = [
   "sopravvivenza",
   "traiettorie",
   "qualita",
+  "porta",
   "validazione",
 ]
 

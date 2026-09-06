@@ -39,7 +39,7 @@ C'è un modo del tutto diverso di arrivare alla stessa conclusione, che non guar
 individuali ma la composizione delle liste: prendi due classifiche consecutive della stessa
 categoria e conti quante facce nuove ci sono nella seconda.
 
-| classifica | atleti | non c'erano l'anno prima |
+| classifica | atleti | non c'erano l'anno prima |[^p3attrito]
 |---|---|---|
 | Under 15, secondo anno | 1 786 | 28,3% |
 | Under 17, secondo anno | 1 602 | **50,8%** |
@@ -66,7 +66,7 @@ Il modo per farlo è confrontare due tipi di passaggio che durano entrambi una s
 quelli da un anno all'altro dentro la stessa categoria e quelli da un anno all'altro fra
 categorie diverse. L'unica differenza è che ci sia o no il cambio di fascia.
 
-| | resta in classifica | la lista di arrivo è fatta da chi c'era già |
+| | resta in classifica | la lista di arrivo è fatta da chi c'era già |[^p3passaggi]
 |---|---|---|
 | dentro la categoria | **79,9%** | 60,7% |
 | cambiando categoria | **32,4%** | **88,2%** |
@@ -84,10 +84,15 @@ Dagli Allievi in su la classifica è **una sola**, e le due annate ci convivono 
 stesse identiche gare.
 
 Il confronto fra le due situazioni è la cosa che mi ha divertito di più in tutto lo studio,
-perché una fa da controllo all'altra. Ogni gara mette in palio cinque posti a punti, quindi
-sommando i piazzamenti si conta quanti posti ci sono e chi se li prende.
+perché una fa da controllo all'altra. E i posti si possono contare, anche se il calendario non
+è pubblicato: ogni gara assegna cinque piazzamenti a punti, dal primo al quinto, quindi
+sommando tutti i piazzamenti nei primi cinque si ottiene quanti posti sono stati messi in
+palio, e dividendo per cinque quante gare sono state. È una stima indiretta, che assume che
+ogni gara assegni cinque posti e che tutti i piazzamenti finiscano in classifica; in Under 23
+è un limite inferiore, perché in quella lista corrono anche gli Elite, che sono fuori dalla
+finestra d'età di questo studio.
 
-| categoria | quota dei posti presa dal primo anno |
+| categoria | quota dei posti presa dal primo anno |[^p3posti]
 |---|---|
 | Esordienti, classifiche separate | **49,7%** |
 | Allievi, classifica unica | **26,7%** |
@@ -130,6 +135,28 @@ cominciato molto prima e dopo il 2020 non si è tornati ai valori di prima. Nell
 cui possiamo confrontare, i tesserati Esordienti calano di circa un decimo e le gare di quasi
 un quinto: il movimento si restringe, e il calendario si restringe più in fretta.
 
+## Sono più continui, quelli che arrivano?
+
+Una domanda che mi hanno fatto e che merita una risposta secca: i futuri professionisti sono
+più costanti degli altri? Dipende da cosa intendi per costanti, e le due risposte sono
+opposte.
+
+Se intendi **quanto durano**, sì, e in modo clamoroso: nelle coorti che ho studiato i futuri
+professionisti compaiono in classifica per 7,9 stagioni in media, contro le 2,8 di tutti gli
+altri. Il guaio è che il numero non ti serve per decidere, perché è in gran parte una
+conseguenza e non una causa: si resta in classifica se si va bene, quindi la durata racconta
+l'esito invece di prevederlo. È lo stesso travestimento dei cambi di società, di cui parlo
+nella settima puntata.
+
+Se invece intendi **quanto sono stabili nel livello**, la risposta è no. Fra chi ha almeno tre
+stagioni, lo scarto tipico del proprio percentile vale 16,7 posizioni per i futuri
+professionisti e 17,3 per tutti gli altri: praticamente identico. Chi arriverà oscilla quanto
+chiunque altro, solo che oscilla più in alto.[^p3continuita]
+
+Se poi la domanda è cosa dica il *movimento* di un ragazzo, cioè se stia salendo o scendendo
+negli anni, quella è un'altra cosa ancora e ha una risposta molto più interessante: è il tema
+della quinta puntata.
+
 ## La conferma che arriva da fuori
 
 Tutto quello che ti ho detto finora è misurato dentro la classifica, e una verifica interna
@@ -160,8 +187,9 @@ sport. Sono grandezze diverse, e confonderle ha una conseguenza pratica sgradevo
 sembrare un fallimento del movimento quello che è in buona parte il funzionamento normale di
 una classifica a posti limitati.
 
-Tienti anche questo dettaglio: accanto ai 77 professionisti delle coorti che ho studiato ci
-sono **108 atleti che risultavano ancora a punti dopo i ventidue anni** senza essere diventati
+Tienti anche questo dettaglio: accanto ai 77 professionisti delle coorti che ho studiato —
+professionista vuol dire aver corso in una squadra di primo o secondo livello entro i
+venticinque anni — ci sono **108 atleti che risultavano ancora a punti dopo i ventidue anni** senza essere diventati
 professionisti. Sono più numerosi dei professionisti stessi. Non tutto ciò che non è
 professionismo è abbandono.
 
@@ -196,7 +224,18 @@ sviluppato prima? È il tema della prossima puntata.
 >
 > Il limite principale è che tutte queste misure riguardano chi era in classifica: su chi non
 > c'è mai stato, e su chi corre senza andare a punti, questi dati non dicono nulla, e
-> servirebbe l'elenco dei tesserati per anno e per atleta, che non è pubblico.
+> servirebbe
+> l'elenco dei tesserati per anno e per atleta, che non è pubblicamente disponibile.
+
+[^p3attrito]: Calcolo in `report/moduli/attrito.py`.
+
+[^p3passaggi]: Calcolo in `report/moduli/passaggi.py`.
+
+[^p3posti]: Calcolo in `report/moduli/posti.py`, che stima i posti a punti dai piazzamenti
+    nei primi cinque e li divide per annata.
+
+[^p3continuita]: Conteggi su `tab_b` per le stagioni corse e su `tab_a` per lo scarto tipo
+    del percentile, coorti in studio.
 
 ---
 

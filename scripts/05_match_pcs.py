@@ -45,9 +45,12 @@ from collections import defaultdict
 from difflib import SequenceMatcher
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from lib_giovanile import DB_ANALISI, cfg
+from lib_giovanile import DB_ANALISI, cfg, sesso_in_studio
 
-DB_PCS = "data/pcs/pcs.db"
+# Un archivio per sesso: le due popolazioni non condividono corridori, squadre ne'
+# classifica mondiale, e tenerle insieme corromperebbe la classifica annuale.
+SESSO = sesso_in_studio()
+DB_PCS = "data/pcs/pcs.db" if SESSO == "M" else "data/pcs/pcs_%s.db" % SESSO
 CROSSWALK = "data/private/crosswalk_atleti.csv"
 AUDIT = "data/private/match_da_verificare.csv"
 SOGLIA = 0.90
@@ -80,9 +83,15 @@ def carica():
         sys.exit("Serve %s: esegui prima 04_scarica_pcs.py" % DB_PCS)
 
     gio = []
+    # Il crosswalk contiene entrambi i sessi, l'archivio PCS uno solo: si tengono gli
+    # atleti del sesso in studio, altrimenti si cercherebbero i maschi fra le rose
+    # femminili con l'unico effetto di produrre abbinamenti spuri.
+    dell_sesso = {r[0] for r in sqlite3.connect(DB_ANALISI).execute(
+        "SELECT athlete_id FROM tab_b WHERE sesso = ?", (SESSO,))}
+
     with open(CROSSWALK, encoding="utf-8") as f:
         for r in csv.DictReader(f):
-            if not r["chiave_match"]:
+            if not r["chiave_match"] or r["athlete_id"] not in dell_sesso:
                 continue
             gio.append({
                 "athlete_id": r["athlete_id"], "src": r["id_atleta_src"],

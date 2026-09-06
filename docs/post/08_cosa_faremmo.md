@@ -20,7 +20,8 @@ gara. La domanda era cosa si potesse dire del suo futuro, e adesso una risposta 
 darti per intero senza sconti in nessuna delle due direzioni.
 
 Sì, qualcosa si vede già: il suo risultato non è rumore, perché a tredici anni la distanza fra
-chi arriverà e chi no è già netta, e dirti il contrario per prudenza sarebbe gentile e falso.
+chi arriverà e chi no è già netta — arrivare, in tutta la serie, vuol dire aver corso in una
+squadra di primo o secondo livello entro i venticinque anni — e dirti il contrario per prudenza sarebbe gentile e falso.
 No, non basta per decidere: se quel ragazzo è fra i migliori d'Italia della sua età, nove volte
 su dieci non diventerà professionista, e se non lo è la cosa non vuol dire granché, visto che
 due futuri professionisti su tre a tredici anni in quella lista non ci sono. E la cosa più
@@ -33,7 +34,7 @@ sugli stessi dati con cui l'hai costruito si giudica da solo, e si giudica bene,
 servono tre verifiche. Te le riporto anche se sono noiose, perché sono quello che distingue un
 risultato da un'opinione con dei numeri attaccati.
 
-La prima chiede se il modello si stia illudendo. Lo ricostruisco **500 volte** su campioni
+La prima chiede se il modello si stia illudendo[^p8validazione]. Lo ricostruisco **500 volte** su campioni
 estratti a caso e misuro ogni volta di quanto si sopravvaluta: la risposta è **0,001** di
 capacità predittiva, contro una soglia di allarme convenzionale cinquanta volte più grande.
 Non è fortuna, è quello che succede quando usi modelli con due o tre parametri su centinaia di
@@ -46,7 +47,7 @@ capacità predittiva non cala, semmai sale, anche se le annate di verifica conte
 **27 casi** e su quei numeri le stime ballano parecchio. Quello che volevo escludere, cioè un
 crollo, non si vede.
 
-La terza è la più importante, perché diverse decisioni di questo studio erano difendibili ma
+La terza è la più importante[^p8sensibilita], perché diverse decisioni di questo studio erano difendibili ma
 non obbligate: cosa conti come professionismo, entro quale età, dove mettere la soglia del
 top. Le ho cambiate tutte, una alla volta, e il numero di professionisti passa **da 26 a 151**
 a seconda della definizione, mentre la capacità di distinguerli oscilla in tutto di **0,069**,
@@ -55,56 +56,56 @@ praticamente nulla, perché quasi tutti i passaggi avvengono prima. Detto in mod
 cambiando le definizioni cambia moltissimo chi conta come arrivato, e quasi niente quanto il
 rendimento giovanile lo distingua. Le conclusioni della serie non poggiano sulle mie scelte.
 
-## Se alleni
+## Cosa cambia, a seconda di dove stai
 
-Il risultato conta, e conta da subito. Non è una licenza a selezionare, come vedrai fra poco,
-ma è una licenza a guardare: quello che vedi in gara a tredici anni ha a che fare con il
-futuro più di quanto ci abbia a che fare qualunque test di laboratorio, e su questo la
-letteratura internazionale è quasi unanime.
+Le stesse cifre portano consigli diversi a seconda di chi le legge, e vale la pena separarli
+invece di lasciare che ognuno ci trovi quello che gli fa comodo.
 
-Il miglioramento conta quanto il livello, ma solo sopra una certa quota. Un ragazzo di metà
-classifica che sale ha probabilità circa tre volte più alte di un ragazzo forte che sta
-calando, mentre un ragazzo del terzo più basso che sale resta dov'è: il livello è una
-condizione, il miglioramento un moltiplicatore.
+**Se dirigi una società giovanile.** Il tuo problema non è indovinare chi arriverà, è tenere
+in bici i ragazzi abbastanza a lungo perché si veda. Il momento critico è il passaggio di
+fascia, dove si concentra il 77% delle uscite e dove un ragazzo che sta facendo esattamente
+quello che deve smette di ricevere riscontri, perché al primo anno di una categoria a lista
+unica prende poco più di un quarto dei posti a punti. Sapere che il crollo è strutturale ti
+permette di dirlo ai ragazzi prima che succeda, invece di spiegarlo dopo. Vale anche la pena
+sapere che le gare a disposizione si sono quasi dimezzate in sedici anni: se ti sembra che i
+tuoi ragazzi corrano meno di una volta, non è un'impressione.
 
-L'uscita dalla classifica non è un giudizio, perché quasi un terzo di chi sparisce ricompare e
-perché al cambio di categoria la lista si dimezza per ragioni che non riguardano i ragazzi. Se
-usi la presenza in classifica come segnale, tieni presente che al primo anno di ogni categoria
-quel segnale è molto più severo del solito.
+**Se alleni, o fai il direttore sportivo.** Il risultato conta, e conta da subito: quello che
+vedi in gara a tredici anni ha a che fare con il futuro più di quanto ci abbia a che fare
+qualunque test di laboratorio. Ma la parte utile è un'altra, cioè che il miglioramento conta
+quanto il livello, purché il livello ci sia: un ragazzo di metà classifica che sale ha
+probabilità circa tre volte più alte di un ragazzo forte che sta calando. E l'uscita dalla
+classifica non è un giudizio, visto che quasi un terzo di chi sparisce ricompare.
 
-Il momento in cui intervenire sulla ritenzione, infine, è il passaggio di fascia, perché lì si
-concentra il **77%** delle uscite ed è lì che un ragazzo che sta facendo esattamente quello che
-deve smette di ricevere riscontri.
+**Se sei un genitore.** Non c'è fretta: nessuno diventa professionista prima dei diciannove
+anni, e il passaggio avviene in genere fra i ventuno e i ventitré, quindi tutto quello che
+succede prima è preparazione e non verdetto. Sparire dalla classifica a sedici anni non è una
+condanna, dato che metà dei classificati al secondo anno di Allievi non c'era al primo. E se
+tuo figlio è nel dieci per cento migliore d'Italia a diciotto anni ha circa una probabilità su
+tre: moltissimo rispetto alla media, molto meno di una promessa.
 
-## Se selezioni
+**Se selezioni per una rappresentativa**, regionale o nazionale. Qualunque soglia scegli, la
+maggioranza dei selezionati non arriverà: nel caso migliore, a diciotto anni prendendo il
+dieci per cento più forte, poco più della metà dei prescelti non diventerà professionista, e a
+tredici anni sono nove su dieci. Non è un difetto del criterio, è quello che succede a
+qualunque criterio applicato a un esito che riguarda il 3% delle persone. Ne segue che il
+criterio serva a decidere chi guardare e non chi escludere. E c'è una cosa che ti riguarda in
+particolare: selezionando a tredici anni stai in parte selezionando ragazzi nati a gennaio, e
+quel vantaggio si scioglie da solo entro pochi anni. Guardare la data di nascita accanto al
+piazzamento costa nulla.
 
-Qualunque soglia scegli, la maggioranza dei selezionati non arriverà. Nel caso migliore, cioè
-a diciotto anni prendendo il dieci per cento più forte, poco più della metà dei prescelti non
-diventerà professionista, e a tredici anni sono nove su dieci. Non è un difetto del criterio,
-è quello che succede a qualunque criterio applicato a un esito che riguarda il 3% delle
-persone.
+**Se osservi per mestiere**, da procuratore o per conto di una squadra. I due numeri che ti
+servono sono quelli che nessuno riporta mai: quanti dei segnalati arrivano, e quanti ne perdi
+scartando. E poi c'è la cosa che questa serie ha trovato per ultima: «diventare
+professionista» non è un evento solo. Di chi debutta in una squadra a maggioranza italiana
+arriva nel top 500 il 33%, di chi debutta in una straniera il 59%, e il rendimento giovanile
+predice le due porte allo stesso modo.[^p8porta] Se il tuo mestiere è capire dove mandare un ragazzo, il
+ranking non ti aiuta a scegliere la porta: ti dice solo che è pronto a bussare.
 
-Ne segue che il criterio serve a decidere chi guardare e non chi escludere, ed è la conclusione
-pratica di tutta la serie: la classifica giovanile è uno strumento ragionevole per decidere chi
-seguire e uno strumento pessimo per decidere chi lasciare andare. Le due decisioni non sono
-simmetriche, perché seguire un ragazzo in più ti costa poco, mentre lasciarne andare uno ti
-costa quanto valeva quel ragazzo, e sbaglieresti spesso.
-
-E diffida dei gradienti spettacolari: prima di credere che una variabile spieghi qualcosa,
-chiediti cosa servisse per finire nella casella più alta, perché se serviva arrivare lontano
-quella variabile non ti sta spiegando l'esito, te lo sta raccontando due volte.
-
-## Se hai un figlio in bici
-
-Non c'è fretta. Nessuno diventa professionista prima dei diciannove anni, è un regolamento, e
-il passaggio avviene in genere fra i ventuno e i ventitré: tutto quello che succede prima è
-preparazione, non verdetto.
-
-Sparire dalla classifica a sedici anni non è una condanna, visto che metà dei classificati al
-secondo anno di Allievi non c'era al primo.
-
-E se tuo figlio è nel dieci per cento migliore d'Italia a diciotto anni, ha circa una
-probabilità su tre: moltissimo rispetto alla media, e meno di una promessa.
+**Per tutti, la stessa avvertenza.** Diffida dei gradienti spettacolari. Prima di credere che
+una variabile spieghi qualcosa, chiediti cosa servisse per finire nella casella più alta:
+se serviva arrivare lontano, quella variabile non ti sta spiegando l'esito, te lo sta
+raccontando due volte.
 
 ## Cosa non possiamo sapere
 
@@ -125,10 +126,10 @@ la stessa analisi: la categoria Under 23 femminile non esiste e le atlete in cla
 decimo degli atleti, per cui verrebbe fuori uno studio descrittivo. Che però, sull'effetto
 dell'età relativa, sarebbe il primo al mondo.
 
-E non so se la regione conti. La federazione ha il dato che servirebbe, cioè i tesserati per
-anno, regione e categoria, e non lo pubblica: con quello si potrebbe finalmente chiedere se a
-parità di corridori un territorio aggiunga qualcosa. È la richiesta più concreta che questa
-serie possa fare a chi i dati li ha.
+E non so se la regione conti. Servirebbe il numero di tesserati per anno, regione e
+categoria, che non è pubblicamente disponibile: con quello si potrebbe finalmente chiedere se
+a parità di corridori un territorio aggiunga qualcosa. È la cosa più concreta che questa serie
+possa chiedere a chi quei dati li ha.
 
 ## E allora?
 
@@ -159,6 +160,13 @@ la stessa classifica, decide di smettere di guardarlo.
 > con i metodi, gli intervalli di confidenza e i limiti sezione per sezione, è pubblico. I post
 > no, perché sono scritti a mano, ed è la ragione per cui ogni loro cifra viene confrontata con
 > l'archivio dei risultati prima della pubblicazione.
+
+[^p8validazione]: Correzione dell'ottimismo e verifica temporale in `R/24_validazione.R`,
+    rese da `report/moduli/validazione.py`.
+
+[^p8sensibilita]: Analisi di sensibilità in `scripts/10_sensibilita.py`.
+
+[^p8porta]: Confronto fra le porte d'ingresso in `report/moduli/porta.py`.
 
 ---
 

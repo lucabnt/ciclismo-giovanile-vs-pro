@@ -40,7 +40,7 @@ perché è esattamente il tipo di trappola in cui questa serie è già inciampat
 
 ## La risposta, in due coefficienti
 
-| | quanto moltiplica le probabilità |
+| | quanto moltiplica le probabilità |[^p5traiettorie]
 |---|---|
 | dieci posizioni percentuali di livello in più | **×3,02** |
 | una deviazione standard di miglioramento annuo | **×3,35** |
@@ -56,7 +56,7 @@ I coefficienti hanno il difetto di essere astratti, e la stessa cosa si vede mol
 dividendo i ragazzi in tre gruppi per livello e tre per miglioramento, e contando quanti sono
 arrivati in ciascuna delle nove caselle.
 
-| | miglioramento basso | medio | alto |
+| | miglioramento basso | medio | alto |[^p5traiettorie]
 |---|---|---|---|
 | **livello alto** | 2,1% | 13,2% | **20,7%** |
 | **livello medio** | 0,0% | 0,9% | 5,9% |
@@ -65,7 +65,8 @@ arrivati in ciascuna delle nove caselle.
 La tabella si legge in due direzioni, e le due letture insieme sono la risposta del post.
 
 In orizzontale, lungo la riga alta: fra i ragazzi di livello alto, chi stava anche migliorando
-è diventato professionista nel **20,7%** dei casi, mentre chi stava calando si è fermato al
+è diventato professionista nel **20,7%** dei casi — professionista vuol dire aver corso in una
+squadra di primo o secondo livello entro i venticinque anni — mentre chi stava calando si è fermato al
 **2,1%**. Dieci volte meno, a parità di livello. La direzione conta, e conta moltissimo.
 
 In verticale invece si vede che fra i ragazzi in forte crescita si passa dallo 0,7% del
@@ -149,6 +150,9 @@ contare quanti ne prenderesti a vuoto.
 > La tabella a nove caselle usa i terzili delle due dimensioni, e tre caselle contengono meno
 > di cinque atleti, per cui sono riportate come sola percentuale arrotondata senza il
 > conteggio.
+
+[^p5traiettorie]: Modello misto in `R/21_traiettorie.R`, reso da
+    `report/moduli/traiettorie.py`.
 
 ---
 

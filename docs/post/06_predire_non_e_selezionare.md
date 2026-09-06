@@ -19,9 +19,15 @@ Prendiamo la categoria in cui la previsione funziona meglio, cioè i Juniores di
 diciotto anni, e applichiamo il criterio più naturale che una società possa adottare: seguo il
 dieci per cento migliore. Su 901 ragazzi in classifica ne seleziono 91.
 
+Una precisazione prima dei numeri, perché qui contano: *professionista* vuol dire aver corso
+in una squadra di primo o secondo livello entro i venticinque anni, mentre *top 500* e *top
+100* sono la migliore posizione raggiunta nella classifica mondiale annuale entro i ventisei.
+Le finestre d'età servono a rendere confrontabili annate diverse, e chi arriva più tardi in
+questi conti non c'è.
+
 | | |
 |---|---|
-| futuri professionisti intercettati | **59%** |
+| futuri professionisti intercettati | **59%** |[^p6metriche]
 | selezionati che non lo diventeranno | **52%** |
 
 Sono vere tutte e due, e quasi sempre te ne citano una alla volta. Chi vuole difendere la
@@ -94,7 +100,7 @@ migliorare, chiediti se sia migliorata la misura o se sia cambiato il gruppo.
 Rovesciamo la domanda: invece di scegliere una soglia, chiediamoci cosa si possa dire di un
 singolo ragazzo.
 
-| piazzamento a diciotto anni | professionista | almeno top 500 mondiale | top 100 |
+| piazzamento a diciotto anni | professionista | almeno top 500 mondiale | top 100 |[^p6qualita]
 |---|---|---|---|
 | 50° percentile | 1,1% | 0,4% | 0,04% |
 | 75° percentile | 10,0% | 4,6% | 0,73% |
@@ -111,7 +117,7 @@ uno su tre.
 C'è una seconda domanda che una società si pone, e riguarda i tempi: fino a quando ha senso
 aspettare?
 
-Prima dei diciannove anni non passa professionista nessuno, e non è un dato ma un regolamento:
+Prima dei diciannove anni non passa professionista nessuno[^p6sopravvivenza], e non è un dato ma un regolamento:
 non si può. Poi il rischio cresce e il massimo cade a **23 anni**, dopo di che, salvo
 eccezioni, chi non è passato non passerà.
 
@@ -137,7 +143,7 @@ Fin qui il professionismo è stato trattato come una porta, dentro o fuori, ment
 professionisti c'è chi corre tre stagioni in una squadra di seconda divisione e chi entra fra
 i primi cento al mondo. Il piazzamento a diciotto anni dice qualcosa anche su questo?
 
-| | quanto moltiplica le probabilità |
+| | quanto moltiplica le probabilità |[^p6qualita]
 |---|---|
 | diventare professionista | **×2,47** |
 | entrare nel top 500, **fra i professionisti** | ×1,20 *(non distinguibile dal caso)* |
@@ -151,6 +157,18 @@ la soglia, quello che decide se arrivi fra i primi cento al mondo è qualcosa ch
 giovanile italiano non ha registrato. Con un limite da aggiungere: il gradino più alto poggia
 su quindici atleti, quindi su quei numeri si può dire che non si veda un effetto, non che non
 ce ne sia uno.
+
+C'è però una spiegazione alternativa che vale la pena raccontare, perché mi è stata proposta e
+i dati la sostengono a metà. Le squadre professionistiche italiane hanno bisogno di corridori
+italiani, quindi i migliori juniores nazionali sono il bacino da cui pescano: il ranking
+potrebbe predire l'ingresso semplicemente perché ordina bene quel bacino. Ho provato a
+verificarlo separando chi debutta in una squadra a maggioranza italiana da chi debutta in una
+straniera. La versione forte non regge, perché il percentile Under 19 predice le due cose
+praticamente allo stesso modo (0,863 contro 0,867). Ma le due porte non portano allo stesso
+posto: di chi entra da una squadra italiana arriva nel top 500 il **33%**, di chi entra da una
+straniera il **59%**. Quindi «diventare professionista» non è un evento solo, e metterne
+insieme due così diversi spiega una parte di quello che il ranking non riesce a
+predire.[^p6porta]
 
 ## Cosa te ne porti a casa
 
@@ -193,6 +211,17 @@ della prossima puntata.
 > La finestra si ferma a ventitré anni perché lì finisce il predittore, visto che oltre l'Under
 > 23 non esiste più una classifica giovanile nazionale. I dieci passaggi al professionismo
 > avvenuti dopo restano fuori dal modello, ed è dichiarato invece che nascosto.
+
+[^p6metriche]: Calcolo in `R/19_metriche.R`, reso da `report/moduli/metriche.py`.
+
+[^p6qualita]: Modello ordinale e catena degli stadi in `R/22_qualita_carriera.R`, resi da
+    `report/moduli/qualita.py`.
+
+[^p6sopravvivenza]: Modello di sopravvivenza in `R/20_sopravvivenza.R`, reso da
+    `report/moduli/sopravvivenza.py`.
+
+[^p6porta]: Calcolo in `report/moduli/porta.py`, che classifica le squadre dalla
+    composizione delle rose di ProCyclingStats.
 
 ---
 

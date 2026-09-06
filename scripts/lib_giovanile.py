@@ -45,6 +45,21 @@ def cfg(*chiavi, default=None):
     return v
 
 
+def sesso_in_studio():
+    """Il sesso su cui girano gli script, con una scorciatoia per le esecuzioni parallele.
+
+    Normalmente viene da `studio.sesso` in config.toml. La variabile d'ambiente `SESSO` lo
+    sovrascrive, e serve a far girare la catena femminile senza toccare la configurazione,
+    che nel frattempo tiene in piedi quella maschile:
+
+        SESSO=F python scripts/04_scarica_pcs.py --strati AB
+
+    E' una scorciatoia dichiarata, non un secondo posto dove sta la verita': se una
+    esecuzione va ripetuta stabilmente sul femminile, si cambia la configurazione.
+    """
+    return os.environ.get("SESSO") or cfg("studio", "sesso")
+
+
 DB_GIOVANILE = "data/giovanile/ciclismo.db"
 DB_ANALISI = "data/analisi/analisi.db"
 DB_SCHEDE = "data/giovanile/schede.db"

@@ -39,7 +39,7 @@ La Federazione pubblica ogni anno quanti sono i tesserati per categoria, e mette
 conteggi uno accanto all'altro, per le stagioni in cui esistono entrambi, viene fuori la
 risposta.
 
-| categoria | tesserati per stagione | in classifica | quota |
+| categoria | tesserati per stagione | in classifica | quota |[^p2copertura]
 |---|---|---|---|
 | Esordienti | 3 214 | 497 | 15,5% |
 | Allievi | 2 673 | 371 | 13,9% |
@@ -68,7 +68,7 @@ annate ci convivono, correndo le stesse gare.
 Sembra un dettaglio da archivio e invece cambia la lettura di parecchie cose, perché nelle
 categorie a lista unica un ragazzo al primo anno gareggia contro chi ha un anno di sviluppo in
 più. I posti a punti se li prendono i più grandi: in Allievi il primo anno ne vince il
-**26,7%**, contro il 49,7% degli Esordienti dove le liste sono separate. Ci torno nella
+**26,7%**, contro il 49,7% degli Esordienti dove le liste sono separate.[^p2posti] Ci torno nella
 prossima puntata, perché è la chiave di un equivoco piuttosto diffuso.
 
 E già che siamo sui numeri della classifica, una risposta alla domanda che si fanno tutti
@@ -81,9 +81,11 @@ stringe con l'età, ha già quella forma fin dall'inizio.
 
 Adesso che sai di chi si parla, possiamo guardare l'attrito. Le coorti principali sono i nati
 fra il 1996 e il 2000, che hanno avuto tutti il tempo di arrivare o di non arrivare, e sono
-**2 817 ragazzi, 77 professionisti**.
+**2 817 ragazzi, 77 professionisti**. Professionista, in tutta questa serie, vuol dire aver
+corso in una squadra di primo o secondo livello entro i venticinque anni: la finestra d'età
+serve a rendere confrontabili annate diverse, e chi arriva più tardi qui non risulta.
 
-| categoria | atleti | quota di chi era in Under 15 |
+| categoria | atleti | quota di chi era in Under 15 |[^p2attrito]
 |---|---|---|
 | Under 15 | 2 187 | 100% |
 | Under 17 | 1 741 | 59,6% |
@@ -143,7 +145,7 @@ doppio di una regionale e una internazionale il triplo. Il dettaglio delle singo
 l'ho, ma la conseguenza si vede lo stesso, e basta dividere i punti per il numero di
 piazzamenti nei primi cinque.
 
-| categoria | punti per piazzamento |
+| categoria | punti per piazzamento |[^p2misura]
 |---|---|
 | Under 15 | 2,67 |
 | Under 17 | 2,73 |
@@ -167,7 +169,22 @@ altro**. Il problema me lo aspettavo, e avevo deciso di sciogliere i pari merito
 prima le vittorie, poi i secondi posti e così via, decisione presa prima di guardare qualunque
 esito. Messa alla prova, però, quella raffinatezza non migliora la previsione in nessuna
 categoria: a parità di punti, il modo in cui li hai presi non aggiunge niente, e cinque punti
-fatti con una vittoria valgono quanto cinque punti fatti con cinque quinti posti.
+fatti con una vittoria valgono quanto cinque punti fatti con cinque quinti posti.[^p2misura]
+
+Questo apre una domanda che mi hanno fatto più volte, e che vale la pena chiudere qui. Nelle
+categorie piccole le gare sono corte e quasi sempre pianeggianti, quindi a vincere tendono a
+essere i ragazzi esplosivi, quelli con lo spunto veloce. Se fosse un fenotipo che non porta
+lontano, dovremmo vedere che **a parità di punti** chi vince di più arriva di meno. Ho
+guardato: prendendo atleti con esattamente lo stesso punteggio nella stessa stagione e
+confrontando chi ha una quota di vittorie sopra e sotto la mediana, in Esordienti il tasso di
+professionismo è identico (1,7% contro 1,8%), in Allievi va peggio chi vince di più (1,0%
+contro 2,2%) e in Juniores meglio (4,7% contro 2,8%, ma su 43 casi). Nessun andamento
+coerente: né conferma né smentita, e i numeri sono troppo piccoli per pretendere di
+più.[^p2vittorie]
+
+Va detto anche perché la domanda resta aperta sul serio: il profilo delle gare, cioè
+lunghezza e altimetria, non è nei dati. Per rispondere davvero servirebbe sapere che gara era
+quella in cui hai vinto, e quell'informazione non è pubblicamente disponibile.
 
 ## Cosa te ne porti a casa
 
@@ -206,6 +223,19 @@ la parte più sorprendente di tutta questa ricerca. È il tema della prossima pu
 > Il confronto fra le due versioni del percentile e il test sui pari merito stanno in
 > `R/30_misura.R`; l'esperimento di estrapolazione all'indietro è nella sezione «Si possono
 > stimare gli anni che mancano?» del documento completo.
+
+[^p2copertura]: Calcolo in `report/moduli/copertura.py`, dai tesserati raccolti in
+    `riferimenti/tesserati_fci.csv`.
+
+[^p2attrito]: Calcolo in `report/moduli/attrito.py`.
+
+[^p2misura]: Calcolo in `R/30_misura.R`, reso da `report/moduli/misura.py`.
+
+[^p2posti]: Calcolo in `report/moduli/posti.py`.
+
+[^p2vittorie]: Confronto a parità esatta di punteggio dentro la stessa stagione, sui
+    classificati al secondo anno di categoria delle coorti in studio. Non entra nel
+    documento generato: è una verifica fatta apposta per questa domanda.
 
 ---
 
