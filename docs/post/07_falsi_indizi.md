@@ -7,7 +7,7 @@
 >
 > **Numero chiave del post:** da 2,13 a 1,09.
 > **Moduli:** `rae`, `contesto`.
-> **Figure:** `rae_gradiente`, `rae_sessi`, `contesto_confondente`.
+> **Figure:** `rae_gradiente`, `contesto_confondente`.
 
 ---
 

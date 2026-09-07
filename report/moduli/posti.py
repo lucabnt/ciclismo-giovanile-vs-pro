@@ -121,8 +121,9 @@ def calcola():
                      "atleti in classifica per stagione", "posti per atleta"],
             titolo="Quanti posti mette in palio ogni categoria",
             nota="i posti sono stimati dai piazzamenti nei primi cinque, cinque per gara; "
-                 "per l'Under 23 sono un limite inferiore, perche' la lista sorgente "
-                 "contiene anche gli Elite, esclusi dalla finestra d'eta'")
+                 "negli Esordienti, che hanno una classifica per annata, il conteggio somma "
+                 "i due calendari; per l'Under 23 sono un limite inferiore, perche' la "
+                 "lista sorgente contiene anche gli Elite, esclusi dalla finestra d'eta'")
         if gare_cat:
             ar.valore("gare_per_stagione",
                       {c: round(g) for c, g in gare_cat.items()})
@@ -397,6 +398,16 @@ def rendi(lt):
                 "Under 23. Il calendario si accorcia, e con esso la lista, per ragioni che "
                 "non hanno nulla a che vedere con il valore dei ragazzi."
                 % (md.conta(gare.get("U15")), md.conta(gare.get("U23"))))))
+
+    p.append(md.paragrafo(
+        "",
+        "> **Un confronto da fare con una cautela.** Negli Esordienti le due annate hanno "
+        "classifiche distinte e corrono gare distinte, quindi il conteggio somma i due "
+        "calendari; nelle altre categorie la classifica e' una sola e le annate corrono "
+        "insieme. Il numero degli Esordienti e' quindi comparabile agli altri solo "
+        "accettando che a quell'eta' si corra davvero separati, il che e' la prassi ma non "
+        "e' documentato nella fonte. Chi preferisce la lettura prudente puo' dimezzarlo: "
+        "resta un calo anche partendo da meta'."))
 
     p.append(md.sezione("Ma il primo anno non sparisce per mancanza di posti", 3))
 

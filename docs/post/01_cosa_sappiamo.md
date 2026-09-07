@@ -201,7 +201,7 @@ letteratura in seconda battuta, che scalda il pezzo e gli toglie autorevolezza.
 anticipa cosa ho trovato. Si può lasciarlo così, giocando sull'attesa, oppure chiudere dicendo
 che la previsione ragionevole, cioè che a tredici anni non ci fosse niente da vedere, si è
 rivelata sbagliata. La seconda strada è onesta e costruisce un arco narrativo esplicito lungo
-otto post, e la consiglierei, perché altrimenti il primo post resta l'unico senza un risultato
+nove post, e la consiglierei, perché altrimenti il primo post resta l'unico senza un risultato
 proprio.
 
 **C. Ordine per temi o cronologico.** Ora le evidenze sono organizzate per tema. In

@@ -38,8 +38,66 @@ Servono a rispondere alla domanda che dà scala a tutto il resto: **in classific
 | [`docs/da_fare.md`](docs/da_fare.md) | Lavoro aperto: configurazione esterna, correzioni note, analisi da impostare |
 | [`docs/literature_review.md`](docs/literature_review.md) | Rassegna della letteratura, 22 studi, con appendice di revisione |
 | [`docs/tripod.md`](docs/tripod.md) | Checklist TRIPOD compilata: cosa è coperto, cosa resta un limite |
-| [`docs/piano_post.md`](docs/piano_post.md) | Come le sezioni dell'analisi diventano otto blog post |
-| [`docs/post/`](docs/post/) | Le bozze degli otto post, ciascuna con le scelte editoriali ancora aperte |
+| [`docs/piano_post.md`](docs/piano_post.md) | Come le sezioni dell'analisi diventano nove blog post |
+| [`docs/post/`](docs/post/) | Le bozze dei nove post, ciascuna con le scelte editoriali ancora aperte |
+| [`docs/post/STILE.md`](docs/post/STILE.md) | Le regole di scrittura dei post, e perché sono quelle |
+| [`docs/post/TITOLI.md`](docs/post/TITOLI.md) | I titoli pubblici della serie e i tag per il sito |
+
+## Rieseguire tutto da zero
+
+La sequenza completa, dall'archivio vuoto al documento finito. Le sezioni successive
+spiegano ogni passo nel dettaglio; questa serve a non doverle leggere tutte per sapere in
+che ordine vanno e quanto costano.
+
+**Cosa serve prima di cominciare.** Python 3.9 o successivo (`tomllib` è nella libreria
+standard dal 3.11; sotto, `requirements.txt` installa `tomli`), R 4.2 o successivo per i
+soli modelli, e il database di partenza `data/giovanile/ciclismo.db`, che **non è in questo
+repository**: viene da [risultati-ciclismo-giovanile](https://github.com/lucabnt/risultati-ciclismo-giovanile).
+Senza quello non si parte, e non c'è modo di ricostruirlo da qui.
+
+| # | comando | quanto dura | serve a |
+|---|---|---|---|
+| 1 | `pip install -r requirements.txt` | un minuto | dipendenze Python |
+| 2 | `python scripts/03_scarica_schede.py` | ~4 ore e mezza | date di nascita complete, senza le quali l'effetto dell'età relativa non è misurabile |
+| 3 | `python scripts/01_build_tabelle.py` | qualche minuto | costruisce `analisi.db`: `tab_a`, `tab_b`, anagrafica |
+| 4 | `python scripts/02_casi_da_verificare.py` | qualche minuto | genera le liste di verifica manuale; le decisioni già prese sono in `data/private/manual/` e vengono riapplicate da sole |
+| 5 | `python scripts/04_scarica_pcs.py` | ~2 ore | esiti di carriera da ProCyclingStats |
+| 6 | `python scripts/05_match_pcs.py` | qualche minuto | collega i giovanili ai profili PCS |
+| 7 | `python scripts/06_esiti.py` | qualche minuto | porta `PRO` e `tier` in `tab_b` |
+| 8 | `python scripts/07_riferimenti.py` | un minuto | nascite attese da Eurostat |
+| 9 | `python scripts/08_prepara_modelli.py` | qualche minuto | costruisce `modelli.db`, il rettangolo che legge R |
+| 10 | `Rscript R/16_univariati.R` … `R/30_misura.R` | qualche minuto in tutto | i modelli, nell'ordine elencato più avanti |
+| 11 | `python scripts/10_sensibilita.py` | qualche minuto | analisi di sensibilità |
+| 12 | `python report/assembla.py` | un minuto | genera `output/analisi.md` e le figure |
+
+**Due trappole, entrambe già costate tempo.** La prima: `01` ricostruisce `analisi.db` da
+zero e svuota `match_pcs`, quindi dopo ogni `01` vanno rifatti `05` e `06`, in
+quest'ordine. La seconda: i passi 2 e 5 scaricano da siti esterni e sono ripartibili, ma
+se si interrompono lasciano l'archivio incompleto senza dirlo — si controlla con
+`python scripts/04_scarica_pcs.py --stato`.
+
+**Prima di ogni commit**, due controlli che escono con codice diverso da zero se qualcosa
+non va:
+
+```bash
+python scripts/00_check_privacy.py        # nessun dato personale nei file destinati a git
+python scripts/11_verifica_documenti.py   # le cifre scritte a mano coincidono con l'analisi
+```
+
+**La catena femminile** gira sugli stessi script, cambiando un parametro. `SESSO=F`
+sovrascrive `studio.sesso` senza toccare la configurazione, così il maschile resta in
+piedi mentre si lavora sull'altro:
+
+```bash
+SESSO=F python scripts/04_scarica_pcs.py --strati AB   # ~22 min, archivio separato pcs_F.db
+SESSO=F python scripts/05_match_pcs.py
+SESSO=F python scripts/06_esiti.py
+```
+
+Il femminile ha però un limite che nessun comando risolve: le divisioni professionistiche
+femminili nascono nel 2020 (la seconda solo nel 2025), quindi l'esito «professionista» non
+è confrontabile con quello maschile sulle coorti più vecchie. Vedi
+[`docs/definizioni.md`](docs/definizioni.md).
 
 ## Pipeline
 
@@ -226,7 +284,7 @@ I dati riguardano **atleti minorenni**. Nel repository entra **solo cio' che e' 
 
 Il **salt di anonimizzazione** vive in `data/private/salt.txt`, generato al primo avvio e mai committato. Tenerlo nel sorgente renderebbe l'anonimizzazione solo apparente: gli `id_atleta` sono interi fra 1 e 37.704, quindi con il salt pubblico la tabella `athlete_id → id_atleta` si ricostruisce per forza bruta in pochi secondi, e da li' bastano le classifiche pubbliche per risalire ai nomi. Va trattato come una chiave: perderlo significa che tutti gli `athlete_id` cambiano al ricalcolo successivo.
 
-Dieci documenti del progetto contengono cifre scritte a mano, perché sono prosa e non file generati: la checklist TRIPOD, il piano editoriale e le otto bozze dei post. Tutti portano in testa l'avviso che non si rigenerano. Che le loro cifre non siano diventate false lo verifica:
+Undici documenti del progetto contengono cifre scritte a mano, perché sono prosa e non file generati: la checklist TRIPOD, il piano editoriale e le nove bozze dei post. Tutti portano in testa l'avviso che non si rigenerano. Che le loro cifre non siano diventate false lo verifica:
 
 ```bash
 python scripts/11_verifica_documenti.py
@@ -281,5 +339,5 @@ entra nulla che permetta di risalire a una persona, e nessuna licenza autorizza 
 - [x] Descrittiva: attrito (9), punteggi per gruppo (10), correlazioni e VIF (11), età relativa (15)
 - [x] Descrittiva: contesto e mobilità (STEP 13-14)
 - [x] Modelli in R (FASE 3 e 4) e validazione (FASE 5) — STEP 16-28 chiusi
-- [x] Bozze degli otto blog post ([`docs/post/`](docs/post/)) — restano le scelte editoriali dichiarate in fondo a ciascuna
+- [x] Bozze dei nove blog post ([`docs/post/`](docs/post/)) — restano le scelte editoriali dichiarate in fondo a ciascuna
 - [ ] Stesura definitiva dei post e revisione delle figure post per post

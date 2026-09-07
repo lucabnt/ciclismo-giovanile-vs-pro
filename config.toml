@@ -103,6 +103,12 @@ profondita_ranking = 500         # deve coprire la soglia più larga di soglie_t
 #   `livelli`   slug delle pagine indice di PCS -> sigla della classe di squadra
 #   `extra`     livello aggiuntivo, enumerato solo con --continental
 #   `ranking`   valore del parametro p= nell'indirizzo della classifica annuale
+# Classi legittime per sesso: servono a scartare le squadre che l'indice restituisce per
+# sbaglio. Verificato che per la stagione 2026 l'indice femminile risponde con l'elenco
+# maschile, e senza questo filtro diciotto squadre maschili sarebbero finite nell'archivio
+# femminile in silenzio. Per il maschile non serve: quell'indice non ha mai sbagliato.
+classi_attese_F = ["WTW", "PRW", "UCI", "CTW"]
+
 [scaricamento.M]
 livelli = { worldtour = "WT", proteams = "PRT" }
 extra = { continental = "CT" }

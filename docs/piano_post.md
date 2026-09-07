@@ -46,7 +46,7 @@ dimenticarlo.
 
 ---
 
-## Gli otto post
+## I nove post
 
 ### 1. Cosa sappiamo già, e cosa nessuno ha ancora guardato
 
@@ -110,7 +110,7 @@ una stima travestita da misura.
 **Il gancio.** Ma allora quei 1 845 che spariscono fra Under 15 e Under 23 hanno
 smesso di correre?
 
-*Moduli: `provenienza`, `copertura`, `attrito` (l'imbuto).*
+*Moduli: `provenienza`, `copertura`, `attrito` (l'imbuto), `misura`, `posti`.*
 
 ---
 
@@ -151,7 +151,7 @@ una lista che ha metà dei posti. Non è un giudizio su di lui.
 **Il gancio.** Se il ricambio è così forte, il risultato di una stagione dice ancora
 qualcosa sull'anno dopo?
 
-*Moduli: `attrito` (ricambio), `passaggi`, `copertura` (i due imbuti).*
+*Moduli: `attrito` (ricambio), `passaggi`, `posti`, `copertura` (i due imbuti).*
 
 ---
 
@@ -272,7 +272,7 @@ scarti per sbaglio, e quanti ne tieni che non arriveranno.
 
 **Il gancio.** E tutto il resto — il mese di nascita, la squadra, la regione?
 
-*Moduli: `metriche`, `qualita`, `sopravvivenza`.*
+*Moduli: `metriche`, `qualita`, `sopravvivenza`, `porta`.*
 
 ---
 
@@ -363,7 +363,7 @@ chi seguire, e uno strumento pessimo per decidere chi lasciare andare.
 domanda con quello che si è imparato: sì, si vede già qualcosa; no, non abbastanza per
 decidere; e la cosa più utile che i dati dicono non riguarda lui ma chi lo guarda.
 
-*Moduli: `validazione`, più i limiti dichiarati in tutte le sezioni.*
+*Moduli: `validazione`, `porta`, più i limiti dichiarati in tutte le sezioni.*
 
 ---
 
@@ -438,7 +438,9 @@ tabelle, e vale anche per la prosa.
 
 ## Le bozze
 
-Le otto bozze stanno in [`docs/post/`](post/), una per file, numerate come qui.
+Le nove bozze stanno in [`docs/post/`](post/), una per file, numerate come qui. I titoli
+pubblici, che sono diversi da quelli di lavoro, stanno in [`post/TITOLI.md`](post/TITOLI.md)
+insieme alla scelta dei tag per il sito.
 
 Le regole di scrittura che seguono stanno in [`post/STILE.md`](post/STILE.md), scritte
 dopo che la prima stesura si era rivelata un italiano tradotto dall'inglese: centoventidue

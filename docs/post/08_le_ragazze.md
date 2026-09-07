@@ -118,12 +118,13 @@ femminile no.[^p8ragazze]
 La domanda che tutti fanno, cioè quante ce la fanno e se il risultato da ragazze lo predica,
 resta senza risposta. Ma la ragione è cambiata mentre scrivevo, e vale la pena raccontarla.
 
-Gli esiti di carriera adesso li ho scaricati: 432 squadre-stagione, seimila righe di rosa, e
+Gli esiti di carriera adesso li ho scaricati: 414 squadre-stagione, seimila righe di rosa, e
 **51 italiane** nelle squadre di prima e seconda divisione fra il 2020 e il 2025. Il problema
 è un altro, e non si risolve scaricando di più: **le divisioni professionistiche femminili
-sono nate nel 2020**. Prima esisteva una categoria sola, senza distinzione fra prima e seconda
-divisione, quindi «professionista» come lo definisco per i maschi — aver corso in una squadra
-di primo o secondo livello — nel femminile prima del 2020 non è una cosa che si possa dire.
+sono nate ieri**. La prima divisione, le Women's WorldTeam, esiste dal 2020; la seconda, le
+Women's ProTeam, solo dal 2025. Prima del 2020 c'era una categoria unica, quindi
+«professionista» come lo definisco per i maschi — aver corso in una squadra di primo o secondo
+livello — nel femminile non è una cosa che si possa dire allo stesso modo.
 
 Ne segue che le uniche annate su cui l'esito è osservabile siano le più recenti, quelle di chi
 poteva passare professionista dal 2020 in poi, e con finestre d'età parziali per le più

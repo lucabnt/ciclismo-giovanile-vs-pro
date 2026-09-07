@@ -7,7 +7,7 @@
 >
 > **Numero chiave del post:** 30,6%.
 > **Moduli:** `attrito` (ricambio), `passaggi`, `posti`, `copertura` (i due imbuti).
-> **Figure:** `attrito_uscite`, `passaggi_ritenzione`, `posti_quote`.
+> **Figure:** `attrito_uscite`, `passaggi_ritenzione`, `posti_quote`, `posti_andamento`.
 
 ---
 
@@ -123,7 +123,8 @@ classifica molto più di quanto rimescoli quelle che restano.
 
 Una precisazione, per non esagerare nella direzione opposta: le gare, salendo di categoria,
 calano davvero. Da circa 640 classificazioni di gara per stagione in Esordienti si scende a
-146 in Under 23. Il calendario si accorcia, quindi una parte della lettura corrente è giusta;
+146 in Under 23 — negli Esordienti quel conteggio somma i due calendari, visto che le annate
+corrono separate, quindi se preferisci la lettura prudente dimezzalo: il calo resta. Il calendario si accorcia, quindi una parte della lettura corrente è giusta;
 quello che non regge è attribuire a quel restringimento il crollo del primo anno, visto che
 succede anche dove le gare sono le stesse.
 

@@ -206,11 +206,12 @@ def rendi(lt):
             "**Uscire dalla classifica non e' smettere.** Il **%s%%** degli atleti salta "
             "almeno una stagione e poi ricompare, e meta' dei classificati al secondo "
             "anno di Allievi non c'era al primo. Il crollo apparente al cambio di "
-            "categoria — resta il %s%% contro il %s%% dei passaggi interni — e' in gran "
-            "parte l'accorciarsi della lista: la classifica di arrivo e' composta per il "
-            "%s%% da chi c'era gia', contro il %s%% dei passaggi interni. Il confronto "
-            "con i tesserati federali conferma dall'esterno che la classifica non si "
-            "restringe piu' in fretta della popolazione che la genera."
+            "categoria — resta il %s%% contro il %s%% dei passaggi interni — non viene "
+            "dalla scarsita' dei posti ma dalla concorrenza fra annate: la classifica di "
+            "arrivo e' composta per il %s%% da chi c'era gia', contro il %s%% dei "
+            "passaggi interni. Il confronto con i tesserati federali conferma "
+            "dall'esterno che la classifica non si restringe piu' in fretta della "
+            "popolazione che la genera."
             % (md.num(att.get("rientri_dopo_assenza"), 1),
                md.num(pas.get("resta_fra"), 1), md.num(pas.get("resta_dentro"), 1),
                md.num(pas.get("quota_fra"), 1), md.num(pas.get("quota_dentro"), 1))))
@@ -247,6 +248,48 @@ def rendi(lt):
                md.num(con["qualita_da_a"][0], 2), md.num(con["qualita_da_a"][1], 2))))
 
     # --- solidita' ------------------------------------------------------------
+    pos = lt.valori("posti")
+    rag = lt.valori("ragazze")
+    if pos:
+        gare = pos.get("gare_per_stagione") or {}
+        quote = pos.get("quote_per_annata") or {}
+        u15 = (quote.get("U15") or [(1, None)])[0][1]
+        u17 = (quote.get("U17") or [(1, None)])[0][1]
+        if gare and u15 and u17:
+            p.append(md.paragrafo(
+                "",
+                "**Il primo anno di categoria non sparisce per mancanza di posti.** Dove "
+                "ogni annata ha la propria classifica il primo anno ne vince il %s%%, "
+                "dove la lista e' unica e le gare sono le stesse il %s%%: e' concorrenza, "
+                "non scarsita'. I posti pero' calano davvero salendo di categoria, da %s "
+                "classificazioni di gara per stagione in Esordienti a %s in Under 23, e "
+                "calano anche nel tempo, con una perdita del %s%% fra la prima e l'ultima "
+                "stagione osservata. La concentrazione dei punti invece non cambia mai: "
+                "il decile migliore ne prende fra il %s%% e il %s%% a ogni eta'."
+                % (md.num(u15, 1), md.num(u17, 1), md.conta(gare.get("U15")),
+                   md.conta(gare.get("U23")), md.num(abs(pos.get("calo_massimo") or 0), 1),
+                   md.num(pos.get("decile_minimo"), 1),
+                   md.num(pos.get("decile_massimo"), 1))))
+
+    if rag:
+        sep = rag.get("separazione_quote") or {}
+        rap = rag.get("rapporto_gare") or {}
+        sessi = (lt.valori("rae") or {}).get("sessi_prima_categoria") or {}
+        if sep and sessi:
+            p.append(md.paragrafo(
+                "",
+                "**Sul femminile si e' potuto misurare cio' che non richiede un esito.** "
+                "Il movimento corre circa %s volte meno gare di quello maschile e non ha "
+                "una categoria Under 23. L'effetto dell'eta' relativa e' piu' debole che "
+                "fra i maschi, %s contro %s in Esordienti sulle stesse coorti, coerente "
+                "con una maturazione piu' precoce. E un cambio di regolamento della fonte "
+                "fornisce la conferma piu' netta del meccanismo dei posti: separando le "
+                "classifiche delle Esordienti nel %s, la quota del primo anno e' passata "
+                "dal %s%% al %s%% sulla stessa popolazione."
+                % (md.num(rap.get("Esordienti"), 1), md.num(sessi.get("femmine"), 2),
+                   md.num(sessi.get("maschi"), 2), sep.get("anno"),
+                   md.num(sep.get("prima"), 1), md.num(sep.get("dopo"), 1))))
+
     p.append(md.sezione("Quanto sono solidi questi risultati", 3))
     pezzi = []
     if val:
@@ -288,8 +331,10 @@ def rendi(lt):
         "al professionismo si puo' dire che **non si vede** un effetto, non che non ci "
         "sia. Il denominatore dei tesserati esiste solo dal 2018 e non e' disponibile per "
         "regione, il che lascia aperta l'unica domanda geografica che varrebbe la pena "
-        "porre. Lo studio riguarda i **maschi**: la stessa analisi sulle donne richiede "
-        "solo di cambiare un parametro, ma non e' stata fatta."))
+        "porre. La parte predittiva dello studio riguarda i **maschi**: sul femminile si "
+        "e' misurato tutto cio' che non richiede un esito di carriera, ma l'esito stesso "
+        "non e' confrontabile, perche' le divisioni professionistiche femminili nascono "
+        "nel 2020 e prima esisteva una categoria sola."))
 
     # --- conclusione ----------------------------------------------------------
     p.append(md.sezione("Conclusione", 3))

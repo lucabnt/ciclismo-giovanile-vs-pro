@@ -62,6 +62,10 @@ SESSO = sesso_in_studio()
 DB_PCS = "data/pcs/pcs.db" if SESSO == "M" else "data/pcs/pcs_%s.db" % SESSO
 PAUSA = cfg("scaricamento", "pausa_pcs")
 
+# Le classi che una squadra puo' legittimamente avere per il sesso in studio: servono a non
+# far entrare nell'archivio squadre dell'altro sesso quando l'indice della fonte sbaglia.
+CLASSI_ATTESE = tuple(cfg("scaricamento", "classi_attese_%s" % SESSO, default=[]))
+
 # Prima stagione utile: il nato nel 1996 (coorte piu' vecchia dell'analisi principale)
 # poteva firmare da neoprofessionista nel 2015. Si parte dal 2011 per coprire con
 # margine le estensioni dall'U17, che arrivano alla coorte 1992.
@@ -70,9 +74,10 @@ STAGIONI_PRO = range(cfg("scaricamento", "stagioni_pro")[0],
 STAGIONI_RANK = range(cfg("scaricamento", "stagioni_ranking")[0],
                       cfg("scaricamento", "stagioni_ranking")[1] + 1)
 # Le pagine da enumerare dipendono dal sesso in studio, e stanno in configurazione:
-# `[scaricamento.M]` per il maschile, `[scaricamento.F]` per il femminile. Il femminile
-# non e' ancora stato scaricato — la sezione esiste come preparazione, e i suoi slug vanno
-# verificati sulle pagine di PCS prima del primo uso.
+# `[scaricamento.M]` per il maschile, `[scaricamento.F]` per il femminile. Gli slug
+# femminili sono stati verificati sulle pagine di PCS il 30 agosto 2026: l'indice e' uno
+# solo (`s=women`) e contiene entrambe le divisioni, la cui sigla arriva dalla pagina della
+# squadra.
 FONTE = cfg("scaricamento", SESSO)
 LIVELLI = dict(FONTE["livelli"])
 # Le Continental servono a distinguere chi ha smesso da chi corre a un livello piu'
@@ -230,7 +235,7 @@ def strato_a(f, db, con_continental=False):
     fatte = {(r[0], r[1]) for r in db.execute("SELECT season, team_slug FROM pcs_team")}
     dice("STRATO A — rose %s, %d-%d"
          % ("/".join(livelli.values()), STAGIONI_PRO[0], STAGIONI_PRO[-1]))
-    nuove = 0
+    nuove = scartate = 0
     for season in STAGIONI_PRO:
         for liv, sigla in livelli.items():
             url = "teams.php?year=%d&filter=Filter&s=%s" % (season, liv)
@@ -259,6 +264,16 @@ def strato_a(f, db, con_continental=False):
                     classe = t.status() or sigla
                 except Exception:
                     classe = sigla
+                # Per le stagioni future l'indice ignora il filtro e restituisce l'elenco
+                # dell'altro sesso: verificato sul 2026, dove `s=women` ha risposto con le
+                # WorldTeam maschili. Senza questo controllo finirebbero nell'archivio
+                # femminile senza che nulla lo segnali.
+                if CLASSI_ATTESE and classe not in CLASSI_ATTESE:
+                    db.execute("INSERT INTO pcs_log (url, esito, dettaglio) "
+                               "VALUES (?,'scartata',?)",
+                               (u, "classe %s non attesa per il sesso %s" % (classe, SESSO)))
+                    scartate += 1
+                    continue
                 db.execute("INSERT OR REPLACE INTO pcs_team VALUES (?,?,?,?)",
                            (season, ts, nome, classe))
                 for r in riders:
@@ -268,6 +283,8 @@ def strato_a(f, db, con_continental=False):
                 nuove += 1
             db.commit()
             dice("   %d %-10s %2d squadre" % (season, sigla, len(slugs)))
+    if scartate:
+        dice("   squadre scartate perche' di un'altra categoria: %d" % scartate)
     dice("   nuove squadre scaricate: %d\n" % nuove)
 
 

@@ -1009,6 +1009,10 @@ Due eccezioni, entrambe fuori dal filone dei risultati agonistici. Hasselaar 202
 
 Tutti gli studi sulla predizione riguardano atleti **maschi**. Tutti riguardano **un solo paese** alla volta. Come nota Voet, non è noto se i risultati siano generalizzabili.
 
+**Cosa questo studio ci mette, il 30 agosto 2026.** La parte predittiva resta maschile, per la ragione detta sotto, ma la parte descrittiva no: l'effetto dell'età relativa è misurato su entrambi i sessi, sulle stesse annate e con lo stesso atteso demografico, e risulta più debole fra le atlete (1,51 contro 1,98 in Esordienti, e in Allieve non distinguibile dall'atteso). Per quanto ne sappiamo è il primo confronto fra i due sessi su questa misura nel ciclismo giovanile, ed è coerente con la maturazione più precoce delle ragazze.
+
+**Perché la parte predittiva resta maschile, e non è una scelta.** Le divisioni professionistiche femminili nascono nel 2020: prima esisteva una categoria unica, senza distinzione fra prima e seconda divisione, quindi l'esito «professionista» come lo definisce la letteratura maschile non è costruibile per le coorti più vecchie. È un limite della struttura del ciclismo femminile, non dei dati disponibili, e vale per chiunque provi a fare questo confronto.
+
 ---
 
 # 11. Tabella riassuntiva degli studi
