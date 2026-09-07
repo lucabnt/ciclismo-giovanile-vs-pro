@@ -11,7 +11,21 @@
 È il nome della serie, e apre ogni titolo seguito dai due punti. La ripetizione è
 voluta: in una lista di post è il segnale che dice «questi nove vanno letti insieme».
 
-Il prezzo è che trentotto caratteri identici precedono la parte distintiva di ogni titolo,
+**Alternative al nome della serie**, se quello attuale sembra lungo o generico:
+
+| nome | cosa promette | quando funziona meglio |
+|---|---|---|
+| Ciclismo giovanile e professionismo | il tema, per esteso | è la scelta attuale: chiarissima, un po' lunga |
+| Dai tredici anni al professionismo | il percorso, con l'età di partenza | mette in evidenza la cosa nuova dello studio, cioè che parte da prima di tutti gli altri |
+| Chi ce la fa | la domanda del lettore | il più breve e il più letto, ma da solo non dice di cosa si parla |
+| Numeri sul ciclismo giovanile | il metodo | onesto e neutro, promette dati invece che risposte |
+
+Il primo resta la scelta migliore per una serie che vuole essere trovata cercando «ciclismo
+giovanile»: contiene le due parole che qualcuno digiterebbe. «Dai tredici anni al
+professionismo» è il più bello e il meno cercabile.
+
+Il prezzo del nome attuale è che trentotto caratteri identici precedono la parte distintiva
+di ogni titolo,
 e in un elenco l'occhio deve saltarli nove volte. La contromisura non è accorciare il
 prefisso, che perderebbe la metà del suo significato, ma **caricare l'informazione
 all'inizio della seconda metà**: ogni titolo deve reggere anche letto da solo, troncato
@@ -31,14 +45,35 @@ dopo poche parole, come succede nei risultati di ricerca e nelle condivisioni.
 | 8 | Ciclismo giovanile e professionismo: e le ragazze? | `08_le_ragazze.md` |
 | 9 | Ciclismo giovanile e professionismo: cosa faremmo con questi numeri | `09_cosa_faremmo.md` |
 
-**Due titoli sono più deboli degli altri e vale la pena deciderli a parte.**
+## Alternative, post per post
 
-Il secondo, «di chi stiamo parlando», non dice nulla a chi lo incontra fuori dalla serie.
-Alternative che portano il numero chiave nel titolo: «in classifica ci finisce un tesserato
-su sette»; «chi c'è dentro la classifica».
+Ogni riga ha tre versioni della seconda metà del titolo, quella che segue i due punti. La
+**A** è quella attuale, tenuta dove funziona. La **B** mette il numero nel titolo, che è la
+scelta più efficace online: un titolo con una cifra dice al lettore cosa otterrà, e in un
+elenco di risultati di ricerca si distingue da solo. La **C** è più discorsiva, e conviene
+dove il numero da solo non si capisce senza contesto.
 
-Il settimo, «i falsi indizi», è evocativo ma vago. Alternative: «il mese di nascita, la
-squadra, la regione»; «tre indizi che non lo sono».
+| # | A — attuale | B — con il numero | C — discorsiva |
+|---|---|---|---|
+| 1 | cosa sappiamo già, e cosa no | sette predestinati su dieci non arrivano | vent'anni di ricerca in dieci minuti |
+| 2 | di chi stiamo parlando | in classifica ci finisce un tesserato su sette | chi c'è davvero dentro i numeri |
+| 3 | sparire dalla classifica non è smettere | un terzo di quelli che spariscono torna | perché il primo anno di categoria sembra un massacro |
+| 4 | a tredici anni si vede già qualcosa | a tredici anni ci si prende tre volte su quattro | da che età il risultato comincia a dire qualcosa |
+| 5 | il livello o la curva? | chi sale arriva dieci volte più spesso | conta dove sei o dove stai andando? |
+| 6 | predire non è selezionare | il 59% dei futuri professionisti, e il 52% di errori | cosa succede se usi davvero la classifica per scegliere |
+| 7 | i falsi indizi | il vantaggio di gennaio si dimezza in sei anni | il mese di nascita, la squadra, la regione |
+| 8 | e le ragazze? | otto volte meno gare | il ciclismo femminile, per quello che si può dire |
+| 9 | cosa faremmo con questi numeri | chi seguire, non chi lasciare andare | cosa cambierei, se decidessi io |
+
+**Cosa consiglierei, riga per riga.** Per il primo la tua versione va benissimo così com'è.
+Per il secondo e il settimo passerei alla B, che sono i due casi in cui la versione attuale
+non dice niente fuori contesto. Per il quinto e il nono la C è più chiara della A. Gli altri
+li lascerei come sono: hanno già un'immagine dentro, e un numero li appesantirebbe.
+
+**Una regola che vale per tutti.** La parte dopo i due punti deve reggere da sola, perché
+è quella che sopravvive quando il titolo viene troncato — nei risultati di ricerca, nelle
+anteprime dei social, nelle notifiche. «Di chi stiamo parlando» troncato non dice nulla;
+«in classifica ci finisce un tesserato» dice già metà del post.
 
 ## Il tag sul sito
 

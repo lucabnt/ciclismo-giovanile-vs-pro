@@ -292,36 +292,49 @@ def disegna(righe_q, righe_c, separate, ar, ar_serie=None):
                                 va="center", fontsize=9, color="white")
             base = [b + v for b, v in zip(base, valori)]
         ax.set_xticks(x)
-        ax.set_xticklabels([NOMI[c] + ("\n(liste separate)" if c in separate else "")
-                            for c in categorie])
+        ax.set_xticklabels([NOMI[c] for c in categorie])
         ax.set_ylabel("% dei posti a punti")
         ax.set_ylim(0, 100)
-        ax.legend(frameon=False, ncol=4, fontsize=9, loc="lower center",
-                  bbox_to_anchor=(0.5, -0.28))
+        gr.legenda(ax)
+        # Quale categoria abbia le classifiche separate lo dice la didascalia: dentro la
+        # barra il testo sarebbe piu' largo della barra stessa e verrebbe tagliato, e
+        # sotto l'etichetta si accavallerebbe alla vicina.
         ax.grid(axis="x", visible=False)
     ar.figura("quote", gr.salva("posti_quote"),
-              didascalia="Dove ogni annata ha la propria classifica i posti si dividono "
-                         "quasi a meta'. Dove la lista e' unica, e le gare sono le "
-                         "stesse, il primo anno ne prende una minoranza: e' concorrenza, "
-                         "non scarsita' di posti.")
+              didascalia="Gli Esordienti sono l'unica categoria in cui ogni annata ha la "
+                         "propria classifica, e infatti i posti si dividono quasi a meta'. "
+                         "Nelle altre la lista e' una sola e le gare sono le stesse per "
+                         "tutti: li' il primo anno ne prende una minoranza, che e' "
+                         "concorrenza e non scarsita' di posti.")
 
     # --- concentrazione: uguale dappertutto ---------------------------------
-    etichette = ["%s\n%d° anno" % (r[0], r[1]) for r in righe_c]
-    valori = [r[4] for r in righe_c]
-    x = list(range(len(etichette)))
-    with gr.figura("Quanto prende il dieci per cento migliore", altezza=3.6) as (f, ax):
-        colori = [gr.COLORI[0] if inverso.get(r[0]) in separate else gr.COLORI[1]
-                  for r in righe_c]
-        ax.bar(x, valori, 0.6, color=colori)
+    categorie_c = [NOMI[c] for c in ORDINE if any(r[0] == NOMI[c] for r in righe_c)]
+    annate = sorted({r[1] for r in righe_c})
+    x = list(range(len(categorie_c)))
+    larghezza = 0.8 / max(len(annate), 1)
+    with gr.figura("Quanta parte dei punti va al dieci per cento migliore",
+                   altezza=3.6) as (f, ax):
+        # Ogni categoria ha un numero diverso di annate: il gruppo va centrato sulle sue,
+        # altrimenti le categorie con due annate risultano spostate a sinistra rispetto
+        # all'etichetta.
+        etichettate = set()
+        for i, cat in enumerate(categorie_c):
+            sue = [r for r in righe_c if r[0] == cat]
+            for j, r in enumerate(sorted(sue, key=lambda r: r[1])):
+                pos = i + (j - (len(sue) - 1) / 2) * larghezza
+                colore = gr.COLORI[(r[1] - 1) % len(gr.COLORI)]
+                ax.bar(pos, r[4], larghezza * 0.9, color=colore,
+                       label=("%d° anno" % r[1]) if r[1] not in etichettate else None)
+                etichettate.add(r[1])
         ax.axhline(10, color=gr.GRIGIO, linewidth=1.2, linestyle="--")
-        ax.annotate("se i punti fossero distribuiti in parti uguali\nil decile migliore "
-                    "ne prenderebbe il 10%",
-                    xy=(0.02, 0.95), xycoords="axes fraction", va="top", fontsize=9,
-                    color=gr.GRIGIO)
+        ax.annotate("con i punti divisi in parti uguali sarebbe 10%",
+                    xy=(0.02, 0.21), xycoords="axes fraction", ha="left", va="bottom",
+                    fontsize=9, color=gr.GRIGIO)
         ax.set_xticks(x)
-        ax.set_xticklabels(etichette, fontsize=8)
+        ax.set_xticklabels(categorie_c)
         ax.set_ylabel("% dei punti della categoria")
         ax.set_ylim(0, 60)
+        gr.legenda(ax)
         ax.grid(axis="x", visible=False)
     serie = ar_serie or {}
     if serie:

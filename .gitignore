@@ -13,10 +13,16 @@
 # ---------------------------------------------------------------------------
 data/
 
-# Prodotti rigenerabili. Il documento finale e le figure derivano da dati personali:
-# sono aggregati e mascherati, quindi pubblicabili, ma si rigenerano con un comando e
-# non c'e' ragione di versionarli.
-output/
+# Prodotti rigenerabili, ma pubblicati lo stesso, e non per distrazione. Chi clona questo
+# repository non puo' rigenerarli: il database di partenza contiene dati personali e resta
+# fuori da git, quindi senza i file di output i risultati non sarebbero verificabili da
+# nessuno. I post rimandano al documento tecnico dicendo che e' pubblico, e deve esserlo.
+# Sono aggregati e mascherati: il controllo privacy li attraversa come tutti gli altri.
+output/*
+!output/analisi.md
+!output/risultati.db
+!output/figure/
+!output/figure_web/
 
 *.db-wal
 *.db-shm

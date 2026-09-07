@@ -124,7 +124,13 @@ def _versione_web(fig, percorso):
     # lunghe sull'asse orizzontale si inclinano, e la figura si ricompone.
     for ax in fig.get_axes():
         etichette = [t.get_text() for t in ax.get_xticklabels()]
-        lunghe = [e for e in etichette if len(e) > 7]
+        # Sotto i dodici caratteri le etichette stanno in orizzontale senza toccarsi,
+        # e in orizzontale si leggono meglio: si inclina solo quando serve davvero.
+        lunghe = [e for e in etichette if len(e) > 12]
+        # Un'etichetta gia' su due righe, ruotata, si sovrappone alla vicina: e' il caso
+        # in cui la rotazione peggiora invece di risolvere, quindi si lascia stare.
+        if any(chr(10) in e for e in etichette):
+            continue
         if len(etichette) > 3 and lunghe:
             for t in ax.get_xticklabels():
                 t.set_rotation(25)
@@ -135,7 +141,8 @@ def _versione_web(fig, percorso):
         pass
 
     os.makedirs(CARTELLA_WEB, exist_ok=True)
-    fig.savefig(os.path.join(CARTELLA_WEB, os.path.basename(percorso)), dpi=200)
+    fig.savefig(os.path.join(CARTELLA_WEB, os.path.basename(percorso)), dpi=200,
+                bbox_inches="tight")
 
 
 def salva(nome, fig=None):
@@ -154,6 +161,23 @@ def salva(nome, fig=None):
     _versione_web(fig, percorso)
     plt.close(fig)
     return percorso
+
+
+def legenda(ax, colonne=None, **kw):
+    """La legenda sotto il grafico, a distanza sufficiente dalle etichette.
+
+    Va messa qui e non a mano nei moduli perche' la distanza giusta non e' ovvia: la
+    versione web ingrandisce i testi di quasi meta' e allunga le etichette dell'asse, e
+    una legenda posizionata a occhio finisce a sovrapporsi appena i caratteri crescono.
+    Sopra il grafico non si puo' mettere, perche' li' c'e' il titolo.
+
+    Presuppone etichette dell'asse orizzontale su una riga sola: se servono due righe,
+    conviene accorciarle invece di allontanare la legenda.
+    """
+    voci = len(ax.get_legend_handles_labels()[0])
+    ax.legend(frameon=False, fontsize=kw.pop("fontsize", 9),
+              ncol=colonne or min(voci, 4), loc="upper center",
+              bbox_to_anchor=(0.5, -0.16), borderaxespad=0, **kw)
 
 
 def linea_riferimento(ax, y=1.0, testo=None, verticale=False):

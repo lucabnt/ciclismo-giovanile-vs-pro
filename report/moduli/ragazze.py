@@ -192,11 +192,12 @@ def disegna(quote, ar):
             ax.annotate(md.num(v, 1) + "%", xy=(i, v / 2), ha="center", va="center",
                         color="white", fontsize=10)
         ax.set_xticks(x)
-        ax.set_xticklabels(["%s\n%s" % (q[0], q[1]) for q in quote])
+        # Etichette su una riga sola: con due righe la legenda sottostante finirebbe
+        # sopra la seconda, e qui i valori sono due, quindi in orizzontale ci stanno.
+        ax.set_xticklabels(["%s, %s" % (q[0], q[1]) for q in quote])
         ax.set_ylabel("% dei posti a punti")
         ax.set_ylim(0, 100)
-        ax.legend(frameon=False, ncol=2, fontsize=9, loc="lower center",
-                  bbox_to_anchor=(0.5, -0.3))
+        gr.legenda(ax)
         ax.grid(axis="x", visible=False)
     ar.figura("separazione", gr.salva("ragazze_separazione"),
               didascalia="Stessa categoria, stesse eta', stesse ragazze: cambia solo se le "

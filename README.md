@@ -42,6 +42,7 @@ Servono a rispondere alla domanda che dà scala a tutto il resto: **in classific
 | [`docs/post/`](docs/post/) | Le bozze dei nove post, ciascuna con le scelte editoriali ancora aperte |
 | [`docs/post/STILE.md`](docs/post/STILE.md) | Le regole di scrittura dei post, e perché sono quelle |
 | [`docs/post/TITOLI.md`](docs/post/TITOLI.md) | I titoli pubblici della serie e i tag per il sito |
+| [`archive/`](archive/) | Le versioni precedenti della guida metodologica, dalla prima alla quarta. **Sono superate**: la sola versione valida è `guida_metodologica_v5.md`. Stanno qui perché mostrano come il disegno dello studio è cambiato, il che ogni tanto serve a capire perché una scelta è quella che è |
 
 ## Rieseguire tutto da zero
 
@@ -219,6 +220,12 @@ pip install -r requirements.txt
 python scripts/07_riferimenti.py     # una volta: scarica gli attesi demografici Eurostat
 python report/assembla.py
 ```
+
+**Il documento e le figure sono versionati**, a differenza di tutto il resto di ciò che si
+rigenera. La ragione è che chi clona il repository non può rigenerarli: il database di
+partenza contiene dati personali e resta fuori da git, quindi senza i file di output i
+risultati non sarebbero verificabili da nessuno. Sono aggregati e mascherati, e il controllo
+privacy li attraversa come ogni altro file destinato al repository.
 
 Produce `output/analisi.md` — con indice, tabelle, figure e un riquadro «Come si misura» per ogni metodo usato — e le figure in due versioni: `output/figure/` per il documento e `output/figure_web/` per i post, con testi più grandi e maggiore risoluzione.
 

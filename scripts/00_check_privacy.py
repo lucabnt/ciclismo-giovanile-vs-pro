@@ -28,7 +28,8 @@ DEVONO_ESSERE_IGNORATI = [
 ]
 
 # File dove cercare nomi: testo, non binari.
-ESTENSIONI = {".md", ".csv", ".py", ".r", ".R", ".txt", ".json", ".sql", ".yml", ".yaml"}
+ESTENSIONI = {".md", ".csv", ".py", ".r", ".R", ".txt", ".json", ".sql", ".yml", ".yaml",
+              ".db"}   # l'archivio dei risultati e' binario ma contiene testo: va letto
 
 # Nomi generici usati come esempio nella prosa ("ci saranno diversi Marco Rossi
 # del 1997"). Coincidono per caso con atleti reali del dataset, ma non rivelano

@@ -44,6 +44,9 @@ import lib_grafici as gr                           # noqa: E402
 W = "https://en.wikipedia.org/wiki/"
 DB_RIF = "data/riferimento/riferimenti.db"
 CATEGORIE = ("U15", "U17", "U19", "U23")
+# Le sigle internazionali sono quelle dei dati; nelle figure vanno i nomi che si
+# usano in Italia, che il lettore riconosce senza doverli tradurre.
+NOMI = {"U15": "Esordienti", "U17": "Allievi", "U19": "Juniores", "U23": "Under 23"}
 
 
 def chi_quadro(osservati, attesi_frazioni):
@@ -169,9 +172,11 @@ def calcola():
                                     xytext=(0, 9), ha="center", fontsize=9)
                     gr.linea_riferimento(ax, 1.0, "nessuno squilibrio")
                     ax.set_xticks(x)
-                    ax.set_xticklabels(["%s\nn=%d" % (g[0], g[2]) for g in gradiente])
-                    ax.set_ylabel("nati nel 1o trimestre / nati nel 4o\n"
-                                  "(rispetto all'atteso demografico)")
+                    ax.set_xticklabels(
+                        [NOMI.get(g[0], g[0]) + chr(10) + "n=%d" % g[2]
+                         for g in gradiente])
+                    ax.set_ylabel("quanti nati a gennaio-marzo" + chr(10) +
+                                  "per ogni nato a ottobre-dicembre")
                     ax.set_ylim(bottom=0.9)
                     fig.text(0.005, -0.02, "Coorti %d-%d. Atteso da Eurostat, nascite "
                              "in Italia per mese." % (lo, hi), fontsize=8, color=gr.GRIGIO)
@@ -295,9 +300,9 @@ def confronto_sessi(db, rif, ar):
                                 xytext=(0, 9), ha="center", fontsize=9)
             gr.linea_riferimento(ax, 1.0, "nessuno squilibrio")
             ax.set_xticks(x)
-            ax.set_xticklabels(categorie)
-            ax.set_ylabel("nati nel 1o trimestre / nati nel 4o" + chr(10) +
-                          "(rispetto all'atteso demografico)")
+            ax.set_xticklabels([NOMI.get(c, c) for c in categorie])
+            ax.set_ylabel("quanti nati a gennaio-marzo" + chr(10) +
+                          "per ogni nato a ottobre-dicembre")
             ax.set_ylim(bottom=0.9)
             ax.legend(frameon=False, fontsize=9)
         ar.figura("sessi", gr.salva("rae_sessi"),
