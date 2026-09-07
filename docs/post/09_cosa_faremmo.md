@@ -146,7 +146,8 @@ la stessa classifica, decide di smettere di guardarlo.
 
 > **Come lo sappiamo**
 >
-> La correzione dell'ottimismo usa 500 ricampionamenti bootstrap con la procedura di Harrell,
+> La correzione dell'ottimismo usa 500 ricampionamenti bootstrap con la procedura di
+> Harrell[^p9harrell],
 > cioè si ristima il modello su ogni campione estratto e si misura quanto si giudichi meglio di
 > quanto sia. La pendenza di calibrazione, che dice se le probabilità previste siano nella
 > scala giusta, vale fra **1,01** e 1,02, cioè è corretta.
@@ -155,17 +156,23 @@ la stessa classifica, decide di smettere di guardarlo.
 > la verifica di sensibilità rifà l'analisi principale con tre definizioni di professionismo,
 > tre finestre d'età e cinque soglie di top.
 >
-> Tutti i numeri di questa serie si rigenerano con un comando, e il documento tecnico completo,
-> con i metodi, gli intervalli di confidenza e i limiti sezione per sezione, è pubblico. I post
+> Tutti i numeri di questa serie si rigenerano con un comando, e il documento tecnico
+> completo — con i metodi, gli intervalli di confidenza e i limiti sezione per sezione — è
+> pubblico insieme al codice che lo produce: <https://github.com/lucabnt/ciclismo-giovanile-vs-pro>. I post
 > no, perché sono scritti a mano, ed è la ragione per cui ogni loro cifra viene confrontata con
 > l'archivio dei risultati prima della pubblicazione.
 
-[^p9validazione]: Correzione dell'ottimismo e verifica temporale in `R/24_validazione.R`,
-    rese da `report/moduli/validazione.py`.
+[^p9harrell]: Harrell F.E., Lee K.L., Mark D.B. (1996), *Multivariable prognostic models:
+    issues in developing models, evaluating assumptions and adequacy, and measuring and
+    reducing errors*, Statistics in Medicine 15(4), 361-387. DOI
+    [10.1002/(SICI)1097-0258(19960229)15:4<361::AID-SIM168>3.0.CO;2-4](https://doi.org/10.1002/%28SICI%291097-0258%2819960229%2915%3A4%3C361%3A%3AAID-SIM168%3E3.0.CO%3B2-4).
 
-[^p9sensibilita]: Analisi di sensibilità in `scripts/10_sensibilita.py`.
+[^p9validazione]: Correzione dell'ottimismo e verifica temporale in [R/24_validazione.R](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/R/24_validazione.R),
+    rese da [report/moduli/validazione.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/report/moduli/validazione.py).
 
-[^p9porta]: Confronto fra le porte d'ingresso in `report/moduli/porta.py`.
+[^p9sensibilita]: Analisi di sensibilità in [scripts/10_sensibilita.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/scripts/10_sensibilita.py).
+
+[^p9porta]: Confronto fra le porte d'ingresso in [report/moduli/porta.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/report/moduli/porta.py).
 
 ---
 

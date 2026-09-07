@@ -151,8 +151,8 @@ contare quanti ne prenderesti a vuoto.
 > di cinque atleti, per cui sono riportate come sola percentuale arrotondata senza il
 > conteggio.
 
-[^p5traiettorie]: Modello misto in `R/21_traiettorie.R`, reso da
-    `report/moduli/traiettorie.py`.
+[^p5traiettorie]: Modello misto in [R/21_traiettorie.R](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/R/21_traiettorie.R), reso da
+    [report/moduli/traiettorie.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/report/moduli/traiettorie.py).
 
 ---
 

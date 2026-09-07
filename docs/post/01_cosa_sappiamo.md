@@ -18,7 +18,7 @@ ricerca sa già, perché in vent'anni qualche risposta è arrivata, ed è abbast
 quella che si sente ripetere ai bordi delle strade.*
 
 Ai Mondiali juniores su strada ogni nazione porta sei corridori. Sei, su tutti i
-diciassettenni e diciottenni tesserati in quel paese. Se arrivi a quella linea di partenza
+diciassettenni e diciottenni tesserati in quel paese e chi ha corsoo Juniores sicuramente ricorda quanto sia difficile strappare una convocazione. Se arrivi a quella linea di partenza
 vuol dire che hai superato ogni selezione che il ciclismo giovanile riesca a mettere in
 piedi: più predestinato di così non si può.
 
@@ -54,7 +54,7 @@ Sotto i quindici anni, invece, il sospetto è che non ci sia niente da vedere. U
 belga sui tredici e quattordicenni[^mostaert] ha misurato maturazione, coordinazione e capacità
 motorie, e ha scoperto che tutto insieme spiegava poco più di un quinto delle differenze fra
 i ragazzi, con maturità e coordinazione attorno al 5 per cento ciascuna. La lettura che se ne
-è ricavata, e che probabilmente hai già sentito, è che a quell'età si stia misurando
+è ricavata è che a quell'età si stia misurando
 soprattutto chi si è sviluppato prima.
 
 Poi c'è il dato che torna ovunque, cioè che la stragrande maggioranza di chi va forte da
@@ -75,7 +75,7 @@ corridori delle squadre Continental[^voet] lo dice nel modo più tagliente possi
 trova soprattutto fra chi non ce l'ha fatta. Chi seleziona presto premia in modo sistematico
 la maturità anagrafica, e quella maturità in carriera non si converte.
 
-## La lettura sbagliata, e quella tecnicamente sbagliata
+## Alcune letture che potrebbero essere sbagliate [rivedi titolo, meno sentenza]
 
 Messe in fila, queste conclusioni portano a una sintesi che sembra saggia e non è vera, cioè
 che il risultato giovanile non conti e che quindi tanto valga non guardarlo.
@@ -99,13 +99,9 @@ significa andare a cercare anche quelli che non sono arrivati.
 Nessuno ha mai guardato i tredici e quattordici anni partendo dai risultati di gara. Gli
 studi italiani cominciano dagli Allievi; quello belga include gli Under 15, ma soltanto per
 chi aveva già almeno un piazzamento nei primi dieci; e lo studio sui tredicenni misurava test
-motori e non gare, con un esito a due o tre anni invece che la carriera. La casella
-«risultato in gara a tredici anni, su tutti i ragazzi e non su una selezione, con esito il
-professionismo» è vuota, ed è vuota proprio dove si prende la prima decisione, perché è a
-quell'età che le società cominciano a reclutare e a scegliere chi seguire.
+motori e non gare, con un esito a due o tre anni invece che la carriera. 
 
-Nessuno, poi, ha mai chiesto quanto ogni categoria aggiunga a quella prima. Sapere che il
-segnale cresce con l'età non ti dice se l'Under 23 porti informazione nuova oppure se sia lo
+Sapere che il segnale cresce con l'età non ti dice se l'Under 23 porti informazione nuova oppure se sia lo
 stesso segnale visto più da vicino, e per chi deve decidere quando guardare le due cose hanno
 conseguenze opposte.
 
@@ -117,10 +113,8 @@ numero che useresti per decidere, e in letteratura non c'è.
 Ci sono altre due cose che nessuno dichiara mai, e che ho scoperto soltanto provando a rifare
 i conti da capo. La prima è quanti fossero all'inizio: tutti gli studi calcolano percentuali
 su gruppi già selezionati, chi era al Mondiale, chi aveva un top 10, chi era a ranking, senza
-mai dire quanti fossero i ragazzi da cui quel gruppo è stato tirato fuori. La seconda è che
-tutti trattano l'uscita da una classifica come un abbandono, e le due cose non sono affatto la
-stessa. Sono i temi delle prossime due puntate, e non sono pignolerie contabili: lì dentro c'è
-il denominatore di ogni percentuale che leggerai dopo.
+mai dire quanti fossero i ragazzi da cui quel gruppo è stato tirato fuori. Sono i temi delle prossime due puntate, e non sono pignolerie contabili: lì dentro c'è
+il denominatore di ogni percentuale che leggerai dopo. [rivedi il paragrafetto, limitazioni comunque presenti anche nel nostro studio]
 
 ## Cosa te ne porti a casa
 
@@ -144,7 +138,7 @@ ciclisti italiani ma qualcosa di piuttosto diverso. È il tema della prossima pu
 > **Come lo sappiamo**
 >
 > Questo post non contiene dati originali: riassume ventidue studi pubblicati fra il 2006 e
-> il 2025, raccolti in una rassegna che sta in `docs/literature_review.md` con riferimento
+> il 2025, raccolti in una rassegna che sta in [docs/literature_review.md](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/docs/literature_review.md) con riferimento
 > completo, DOI e limiti di ciascuno.
 >
 > Cinque di quegli studi li ho letti per intero e ho riscritto le rispettive schede; per gli
@@ -154,6 +148,10 @@ ciclisti italiani ma qualcosa di piuttosto diverso. È il tema della prossima pu
 >
 > Il limite più serio di questa sintesi è che riguarda quasi soltanto atleti maschi, e un
 > paese alla volta.
+>
+> Il codice, i risultati e il documento tecnico completo di questa serie stanno in un
+> repository pubblico: <https://github.com/lucabnt/ciclismo-giovanile-vs-pro>. Ogni cifra citata nei post rimanda al file che l'ha
+> prodotta.
 
 [^schumacher]: Schumacher Y.O. et al. (2006), *Success in elite cycling: a prospective and
     retrospective analysis of race results*, Journal of Sports Sciences 24(11), 1149-1156.
@@ -164,23 +162,30 @@ ciclisti italiani ma qualcosa di piuttosto diverso. È il tema della prossima pu
     IJSPP 17(4), 621-626. DOI
     [10.1123/ijspp.2021-0297](https://doi.org/10.1123/ijspp.2021-0297).
 
-[^mostaert]: Mostaert M. et al. (2022), studio sulla coordinazione motoria e la maturazione
-    nelle categorie giovanili belghe. Scheda completa in `docs/literature_review.md` (B3).
+[^mostaert]: Mostaert M., Vansteenkiste P., Deconinck F.J.A., Lenoir M. (2022), *Is motor
+    coordination the key to success in youth cycling?*, International Journal of Sports
+    Physiology and Performance 17(10), 1489-1498. DOI
+    [10.1123/ijspp.2021-0539](https://doi.org/10.1123/ijspp.2021-0539).
 
 [^menaspa]: Menaspà P., Sassi A., Impellizzeri F.M. (2010), *Aerobic fitness variables do
-    not predict the professional career of young cyclists*, Medicine & Science in Sports &
-    Exercise 42(4), 805-812.
+    not predict the professional career of young cyclists*, Medicine & Science in Sports
+    & Exercise 42(4), 805-812. DOI
+    [10.1249/MSS.0b013e3181ba99bc](https://doi.org/10.1249/MSS.0b013e3181ba99bc).
 
 [^svendsen]: Svendsen I.S. et al. (2018), *Training, performance, and physiological
     predictors of a successful elite senior career in junior competitive road cyclists*,
     IJSPP 13(10), 1287-1292. DOI
     [10.1123/ijspp.2017-0824](https://doi.org/10.1123/ijspp.2017-0824).
 
-[^voet]: Voet J. et al. (2022), studio sul Relative Age Effect nelle squadre Continental,
-    2.854 corridori. Scheda completa in `docs/literature_review.md` (C1).
+[^voet]: Voet J., Lenoir M., Roelandt M., Bourgois J.G., Vansteenkiste P. (2022), *The
+    role of the relative age effect on talent identification in professional road cycling*,
+    Journal of Sports Sciences 40(19), 2159-2165. DOI
+    [10.1080/02640414.2022.2144877](https://doi.org/10.1080/02640414.2022.2144877).
 
-[^filipas]: Filipas L. et al. (2024), studio sulle traiettorie di 81 professionisti
-    italiani. Scheda completa in `docs/literature_review.md` (A8).
+[^filipas]: Filipas L., Gallo G., Codella R., La Torre A. (2024), *Performance trajectories
+    of Italian professional cyclists: an analysis of the influence of youth performance on
+    professional success*, International Journal of Performance Analysis in Sport. DOI
+    [10.1080/24748668.2024.2398881](https://doi.org/10.1080/24748668.2024.2398881).
 
 ---
 

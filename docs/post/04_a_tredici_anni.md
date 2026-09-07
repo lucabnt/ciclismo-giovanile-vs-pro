@@ -198,7 +198,8 @@ novantesimo? È il tema della prossima puntata.
 > che rende confrontabili classifiche di lunghezza diversa. L'esito è essere arrivati a correre
 > in una squadra professionistica di primo o secondo livello entro i venticinque anni.
 >
-> I modelli sono regressioni logistiche con la correzione di Firth, necessaria perché l'esito
+> I modelli sono regressioni logistiche con la correzione di Firth[^p4firth], necessaria
+> perché l'esito
 > è raro, meno del 3%, e senza di essa le stime sarebbero distorte verso l'alto. Sono
 > aggiustati per anno di nascita, dato che le coorti recenti hanno avuto meno tempo per
 > arrivare; l'aggiustamento sposta i coefficienti di meno di 0,01, quindi il gradiente non è un
@@ -206,22 +207,33 @@ novantesimo? È il tema della prossima puntata.
 >
 > Quello che chiamo «quanto ci prende» è l'area sotto la curva ROC, cioè la probabilità che il
 > modello metta davanti il futuro professionista quando gli si dà una coppia a caso. Il
-> confronto fra due modelli sulle stesse persone usa il test di DeLong, che tiene conto della
+> confronto fra due modelli sulle stesse persone usa il test di DeLong[^p4delong], che tiene
+> conto della
 > correlazione fra le due misure.
 >
 > Il limite più serio riguarda il confronto fra categorie, che gira su 102 atleti, cioè quelli
 > osservati ovunque. Sono pochi e sono sopravvissuti, visto che fra loro i professionisti sono
 > il 43%, quindi di quella tabella conta la differenza fra le righe e non il livello.
 
-[^p4punteggi]: Calcolo in `report/moduli/punteggi.py`, delta di Cliff convertito in area
+[^p4firth]: Firth D. (1993), *Bias reduction of maximum likelihood estimates*, Biometrika
+    80(1), 27-38. DOI [10.1093/biomet/80.1.27](https://doi.org/10.1093/biomet/80.1.27).
+    Implementata dal pacchetto R `logistf`.
+
+[^p4delong]: DeLong E.R., DeLong D.M., Clarke-Pearson D.L. (1988), *Comparing the areas
+    under two or more correlated receiver operating characteristic curves: a nonparametric
+    approach*, Biometrics 44(3), 837-845. DOI
+    [10.2307/2531595](https://doi.org/10.2307/2531595). Implementato dal pacchetto R
+    `pROC`.
+
+[^p4punteggi]: Calcolo in [report/moduli/punteggi.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/report/moduli/punteggi.py), delta di Cliff convertito in area
     sotto la curva.
 
-[^p4univariati]: Modelli in `R/16_univariati.R`, resi da `report/moduli/univariati.py`.
+[^p4univariati]: Modelli in [R/16_univariati.R](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/R/16_univariati.R), resi da [report/moduli/univariati.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/report/moduli/univariati.py).
 
-[^p4annidati]: Modelli in `R/18_annidati.R`, resi da `report/moduli/annidati.py`.
+[^p4annidati]: Modelli in [R/18_annidati.R](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/R/18_annidati.R), resi da [report/moduli/annidati.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/report/moduli/annidati.py).
 
-[^p4confronti]: Foresta casuale in `R/27_confronto_ml.R`, regressione penalizzata in
-    `R/17_penalizzato.R`.
+[^p4confronti]: Foresta casuale in [R/27_confronto_ml.R](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/R/27_confronto_ml.R), regressione penalizzata in
+    [R/17_penalizzato.R](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/R/17_penalizzato.R).
 
 ---
 

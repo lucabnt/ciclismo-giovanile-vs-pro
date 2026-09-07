@@ -212,10 +212,12 @@ ho raccontato questo lavoro, e a cui la prossima puntata è dedicata per intero:
 > della serie, perché la regione di partenza non ha bisogno della finestra stretta che serve
 > agli esiti. Le celle con meno di cinque atleti non sono pubblicate.
 
-[^p7rae]: Calcolo in `report/moduli/rae.py`, con l'atteso demografico da Eurostat
-    (`scripts/07_riferimenti.py`).
+[^p7rae]: Calcolo in [report/moduli/rae.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/report/moduli/rae.py).
+    Le nascite attese vengono da Eurostat, tavola `demo_fmonth` (*Live births by month*),
+    scaricata da [scripts/07_riferimenti.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/scripts/07_riferimenti.py):
+    <https://ec.europa.eu/eurostat/databrowser/view/demo_fmonth/default/table>.
 
-[^p7contesto]: Calcolo in `report/moduli/contesto.py`.
+[^p7contesto]: Calcolo in [report/moduli/contesto.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/report/moduli/contesto.py).
 
 ---
 

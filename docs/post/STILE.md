@@ -51,6 +51,13 @@ funzionare esattamente quando serve.
 **I titoli di sezione sono dichiarativi.** Le domande stanno nel testo, dove hanno una
 risposta accanto.
 
+**Ogni fonte si cita per intero, e il rimando è un link vero.** Gli studi con autori, anno,
+titolo, rivista e DOI: chi legge deve poter arrivare all'originale senza cercarlo. I file
+del progetto con l'indirizzo completo su GitHub, perché un percorso nudo come
+`report/moduli/rae.py` non è cliccabile per chi legge il blog e non gli dice dove andare. Il
+blocco di avviso in testa fa eccezione: parla a chi mantiene il repository, non a chi legge,
+e lì i comandi restano comandi.
+
 **Ogni cifra viaggia con il suo denominatore**, ed è la sola regola che vale anche per il
 codice.
 

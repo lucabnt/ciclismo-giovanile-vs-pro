@@ -162,14 +162,17 @@ Resta l'ultima puntata, quella in cui provo a dire cosa farsene di tutto questo.
 > 2022, la stessa giornata di gara ne produce due, e i posti raddoppiano da soli. Per
 > l'andamento nel tempo guardo quindi solo le categorie che non hanno cambiato struttura.
 >
-> L'archivio degli esiti femminili sta in `data/pcs/pcs_F.db` ed è separato da quello
-> maschile, perché le due classifiche mondiali sono indicizzate per stagione e mescolarle
-> corromperebbe entrambe.
+> L'archivio degli esiti femminili è tenuto separato da quello maschile, perché le due
+> classifiche mondiali sono indicizzate per stagione e mescolarle corromperebbe entrambe.
+> Nessuno dei due è pubblicato: derivano da profili di persone identificabili, e restano
+> fuori dal repository insieme a tutto il resto di `data/`.
 
-[^p8ragazze]: Calcolo in `report/moduli/ragazze.py`.
+[^p8ragazze]: Calcolo in [report/moduli/ragazze.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/report/moduli/ragazze.py).
 
-[^p8rae]: Calcolo in `report/moduli/rae.py`, con l'atteso demografico da Eurostat
-    (`scripts/07_riferimenti.py`).
+[^p8rae]: Calcolo in [report/moduli/rae.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/report/moduli/rae.py).
+    Le nascite attese vengono da Eurostat, tavola `demo_fmonth` (*Live births by month*),
+    scaricata da [scripts/07_riferimenti.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/scripts/07_riferimenti.py):
+    <https://ec.europa.eu/eurostat/databrowser/view/demo_fmonth/default/table>.
 
 ---
 

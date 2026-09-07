@@ -212,15 +212,15 @@ della prossima puntata.
 > 23 non esiste più una classifica giovanile nazionale. I dieci passaggi al professionismo
 > avvenuti dopo restano fuori dal modello, ed è dichiarato invece che nascosto.
 
-[^p6metriche]: Calcolo in `R/19_metriche.R`, reso da `report/moduli/metriche.py`.
+[^p6metriche]: Calcolo in [R/19_metriche.R](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/R/19_metriche.R), reso da [report/moduli/metriche.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/report/moduli/metriche.py).
 
-[^p6qualita]: Modello ordinale e catena degli stadi in `R/22_qualita_carriera.R`, resi da
-    `report/moduli/qualita.py`.
+[^p6qualita]: Modello ordinale e catena degli stadi in [R/22_qualita_carriera.R](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/R/22_qualita_carriera.R), resi da
+    [report/moduli/qualita.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/report/moduli/qualita.py).
 
-[^p6sopravvivenza]: Modello di sopravvivenza in `R/20_sopravvivenza.R`, reso da
-    `report/moduli/sopravvivenza.py`.
+[^p6sopravvivenza]: Modello di sopravvivenza in [R/20_sopravvivenza.R](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/R/20_sopravvivenza.R), reso da
+    [report/moduli/sopravvivenza.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/report/moduli/sopravvivenza.py).
 
-[^p6porta]: Calcolo in `report/moduli/porta.py`, che classifica le squadre dalla
+[^p6porta]: Calcolo in [report/moduli/porta.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/report/moduli/porta.py), che classifica le squadre dalla
     composizione delle rose di ProCyclingStats.
 
 ---

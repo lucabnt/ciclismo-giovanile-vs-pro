@@ -228,11 +228,11 @@ sviluppato prima? È il tema della prossima puntata.
 > servirebbe
 > l'elenco dei tesserati per anno e per atleta, che non è pubblicamente disponibile.
 
-[^p3attrito]: Calcolo in `report/moduli/attrito.py`.
+[^p3attrito]: Calcolo in [report/moduli/attrito.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/report/moduli/attrito.py).
 
-[^p3passaggi]: Calcolo in `report/moduli/passaggi.py`.
+[^p3passaggi]: Calcolo in [report/moduli/passaggi.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/report/moduli/passaggi.py).
 
-[^p3posti]: Calcolo in `report/moduli/posti.py`, che stima i posti a punti dai piazzamenti
+[^p3posti]: Calcolo in [report/moduli/posti.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/report/moduli/posti.py), che stima i posti a punti dai piazzamenti
     nei primi cinque e li divide per annata.
 
 [^p3continuita]: Conteggi su `tab_b` per le stagioni corse e su `tab_a` per lo scarto tipo

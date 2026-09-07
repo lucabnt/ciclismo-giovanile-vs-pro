@@ -80,12 +80,12 @@ modifiche. Una riga basta.
 **Se citi o ripubblichi un testo così com'è:**
 
 > Fonte: *Ranking giovanili italiani e transizione al professionismo*, lucabnt —
-> https://github.com/lucabnt/ciclismo-giovanile-pro — CC BY 4.0
+> https://github.com/lucabnt/ciclismo-giovanile-vs-pro — CC BY 4.0
 
 **Se lo modifichi, tagli o rielabori**, aggiungi che l'hai fatto:
 
 > Adattato da *Ranking giovanili italiani e transizione al professionismo*, lucabnt —
-> https://github.com/lucabnt/ciclismo-giovanile-pro — CC BY 4.0. Testo modificato.
+> https://github.com/lucabnt/ciclismo-giovanile-vs-pro — CC BY 4.0. Testo modificato.
 
 **Se riusi una figura**, la stessa riga nella didascalia.
 

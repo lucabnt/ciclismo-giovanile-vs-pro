@@ -129,7 +129,8 @@ chi era già in classifica. Se lo trovi citato senza l'etichetta, sta dicendo un
 ## Cosa misura, di preciso, quella classifica
 
 Vale un momento in più fermarsi sullo strumento, perché nel 2025 due ricercatori olandesi
-hanno pubblicato la critica più efficace che si potesse muovere a uno studio come il mio.
+hanno pubblicato la critica più efficace che si potesse muovere a uno studio come il
+mio.[^p2hasselaar]
 
 Hanno preso due ciclisti, uno che correva gare internazionali e uno che correva soprattutto
 gare locali, che nel ranking della federazione olandese avevano lo stesso identico punteggio:
@@ -221,17 +222,22 @@ la parte più sorprendente di tutta questa ricerca. È il tema della prossima pu
 > fuoristrada.
 >
 > Il confronto fra le due versioni del percentile e il test sui pari merito stanno in
-> `R/30_misura.R`; l'esperimento di estrapolazione all'indietro è nella sezione «Si possono
+> [R/30_misura.R](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/R/30_misura.R); l'esperimento di estrapolazione all'indietro è nella sezione «Si possono
 > stimare gli anni che mancano?» del documento completo.
 
-[^p2copertura]: Calcolo in `report/moduli/copertura.py`, dai tesserati raccolti in
-    `riferimenti/tesserati_fci.csv`.
+[^p2copertura]: Calcolo in [report/moduli/copertura.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/report/moduli/copertura.py), dai tesserati raccolti in
+    [riferimenti/tesserati_fci.csv](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/riferimenti/tesserati_fci.csv).
 
-[^p2attrito]: Calcolo in `report/moduli/attrito.py`.
+[^p2attrito]: Calcolo in [report/moduli/attrito.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/report/moduli/attrito.py).
 
-[^p2misura]: Calcolo in `R/30_misura.R`, reso da `report/moduli/misura.py`.
+[^p2misura]: Calcolo in [R/30_misura.R](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/R/30_misura.R), reso da [report/moduli/misura.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/report/moduli/misura.py).
 
-[^p2posti]: Calcolo in `report/moduli/posti.py`.
+[^p2posti]: Calcolo in [report/moduli/posti.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/report/moduli/posti.py).
+
+[^p2hasselaar]: Hasselaar M., Elferink-Gemser M.T. (2025), *How to quantify youth cycling
+    performance? Development of a method based on competition results*, Current Issues in
+    Sport Science 10(1), articolo 012. DOI
+    [10.36950/2025.10ciss012](https://doi.org/10.36950/2025.10ciss012). Ad accesso aperto.
 
 [^p2vittorie]: Confronto a parità esatta di punteggio dentro la stessa stagione, sui
     classificati al secondo anno di categoria delle coorti in studio. Non entra nel
