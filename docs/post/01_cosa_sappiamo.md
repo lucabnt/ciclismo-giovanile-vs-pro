@@ -23,7 +23,8 @@ quella che si sente ripetere ai bordi delle strade.*
 > *Didascalia proposta:* Ai Mondiali juniores ogni nazione porta sei corridori: chi arriva a
 >   quella linea di partenza ha superato ogni selezione che il ciclismo giovanile riesca a
 >   mettere in piedi.
-> *Testo alternativo:* Un gruppo di giovani ciclisti schierati alla partenza, visti di spalle.
+> *Testo alternativo:* Un gruppo di giovani ciclisti schierati alla partenza, visti di
+>   spalle.
 
 Ai Mondiali juniores su strada ogni nazione porta sei corridori. Sei, su tutti i
 diciassettenni e diciottenni tesserati in quel paese, e chi ha corso da Juniores ricorda
@@ -43,20 +44,20 @@ neanche lontanamente a garantirtelo. Sette predestinati su dieci non ce la fanno
 arrivati su dieci non erano predestinati. È il risultato più solido di tutta la ricerca sul
 tema ed è anche il più vecchio, visto che da allora nessuno è riuscito a smentirlo.
 
-> 📐 **Grafico da produrre (a corredo dello studio del 2006):** due barre affiancate, una per la
->   lettura in avanti (quanti juniores del Mondiale arrivano al Mondiale élite) e una per quella
->   all'indietro, entrambe riempite per circa un terzo.
-> *Didascalia proposta:* Le due percentuali rispondono a domande opposte e si somigliano: sette
->   predestinati su dieci non arrivano, e sette arrivati su dieci non erano predestinati.
+> 📐 **Grafico da produrre (a corredo dello studio del 2006):** due barre affiancate, una per
+>   la lettura in avanti (quanti juniores del Mondiale arrivano al Mondiale élite) e una per
+>   quella all'indietro, entrambe riempite per circa un terzo.
+> *Didascalia proposta:* Le due percentuali rispondono a domande opposte e si somigliano:
+>   sette predestinati su dieci non arrivano, e sette arrivati su dieci non erano predestinati.
 > *Testo alternativo:* Due barre orizzontali riempite per circa un terzo, una per ciascuna
 >   direzione del confronto.
 
 ## Cosa hanno stabilito vent'anni di ricerca
 
 Dal 2006 a oggi la domanda è stata ripresa in Norvegia, in Belgio, in Spagna, in Olanda e
-due volte in Italia, con dati sempre più grandi. Le conclusioni si assomigliano parecchio,
-il che nella ricerca è una buona notizia, perché vuol dire che non dipendono da chi ha fatto
-i conti.
+due volte in Italia[^paesi], con dati sempre più grandi. Le conclusioni si assomigliano
+parecchio, il che nella ricerca è una buona notizia, perché vuol dire che non dipendono da
+chi ha fatto i conti.
 
 Il punto su cui si discute meno è che i futuri professionisti andassero già meglio degli
 altri da ragazzi. Vale in Italia, in Belgio e in Norvegia, misurato da gruppi diversi con
@@ -76,9 +77,10 @@ lettura che se ne è ricavata è che a quell'età si stia misurando soprattutto 
 sviluppato prima.
 
 Poi c'è il dato che torna ovunque, cioè che la stragrande maggioranza di chi va forte da
-giovane non arriva comunque: il 30 per cento dello studio tedesco, il 15 per cento degli
-Allievi italiani che poi faranno punti nel World Tour, i cinque su quarantotto dello studio
-olandese. Cambiano i paesi e le definizioni, non l'ordine di grandezza.
+giovane non arriva comunque: il 30 per cento dello studio tedesco, il 15 per cento dei
+primi dieci della classifica Allievi italiana che ha poi fatto punti nel World
+Tour[^cesanelli], i cinque su quarantotto dello studio olandese[^hasselaar]. Cambiano i
+paesi e le definizioni, non l'ordine di grandezza.
 
 Sui test di laboratorio la letteratura è quasi unanime[^menaspa], e vale la pena dirlo
 perché suona strano: la soglia e i watt per chilo descrivono bene il livello di un ragazzo
@@ -184,15 +186,45 @@ puntata.
     retrospective analysis of race results*, Journal of Sports Sciences 24(11), 1149-1156.
     DOI [10.1080/02640410500457299](https://doi.org/10.1080/02640410500457299).
 
+[^paesi]: Uno studio per paese, nell'ordine in cui li ho elencati: Svendsen e colleghi
+    2018 per la Norvegia, Mostaert e colleghi 2022 per il Belgio, Valenzuela e colleghi
+    2023 per la Spagna, Hasselaar ed Elferink-Gemser 2025 per l'Olanda, Gallo e colleghi
+    2022 e Cesanelli e colleghi 2022 per l'Italia. Tornano tutti più avanti con la loro
+    cifra e il loro riferimento, tranne due, che qui non portano numeri. Il belga è
+    Mostaert M. et al. (2022), *The importance of performance in youth competitions as an
+    indicator of future success in cycling*, European Journal of Sport Science 22(4),
+    481-490, DOI
+    [10.1080/17461391.2021.1877359](https://doi.org/10.1080/17461391.2021.1877359), e non
+    va confuso con quello sulla coordinazione motoria degli stessi autori, citato più
+    sotto. Lo spagnolo è Valenzuela P.L., Alejo L.B., Lucia A., Barranco-Gil D. (2023),
+    *What does it take to become a professional cyclist? A laboratory-based longitudinal
+    analysis in competitive young riders*, International Journal of Sports Physiology and
+    Performance 18(11), 1275-1282, DOI
+    [10.1123/ijspp.2023-0083](https://doi.org/10.1123/ijspp.2023-0083): è l'unico dei sei
+    a partire dai test di laboratorio invece che dai risultati di gara.
+
 [^gallo]: Gallo G. et al. (2022), *Do race results in youth competitions predict future
     success as a road cyclist? A retrospective study in the Italian Cycling Federation*,
     IJSPP 17(4), 621-626. DOI
     [10.1123/ijspp.2021-0297](https://doi.org/10.1123/ijspp.2021-0297).
 
-[^mostaert]: Mostaert M., Vansteenkiste P., Deconinck F.J.A., Lenoir M. (2022), *Is motor
-    coordination the key to success in youth cycling?*, International Journal of Sports
-    Physiology and Performance 17(10), 1489-1498. DOI
+[^mostaert]: Mostaert M. et al. (2022), *Is motor coordination the key to success in
+    youth cycling?*, International Journal of Sports Physiology and Performance 17(10),
+    1489-1498. DOI
     [10.1123/ijspp.2021-0539](https://doi.org/10.1123/ijspp.2021-0539).
+
+[^cesanelli]: Cesanelli L. et al. (2022), *Transition from youth categories to elite
+    cycling: relationships between early career performance and UCI World Tour success*, The
+    Journal of Sports Medicine and Physical Fitness 62(12), 1577-1583. DOI
+    [10.23736/S0022-4707.21.13244-X](https://doi.org/10.23736/S0022-4707.21.13244-X). Il
+    criterio è il piazzamento nei primi dieci della classifica nazionale fra il 2007 e il
+    2013, con l'esito misurato fra il 2012 e il 2018; la fonte dei dati giovanili è la
+    stessa di questo studio.
+
+[^hasselaar]: Hasselaar J.J., Elferink-Gemser M.T. (2025), *How to quantify youth cycling
+    performance? Development of a method based on competition results*, Current Issues in
+    Sport Science 10(1), articolo 012. DOI
+    [10.36950/2025.10ciss012](https://doi.org/10.36950/2025.10ciss012). Ad accesso aperto.
 
 [^menaspa]: Menaspà P., Sassi A., Impellizzeri F.M. (2010), *Aerobic fitness variables do
     not predict the professional career of young cyclists*, Medicine & Science in Sports

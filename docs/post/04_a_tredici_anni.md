@@ -63,10 +63,10 @@ anni è già grande, e ti confesso che non era quello che mi aspettavo di
 trovare.[^p4punteggi]
 
 > 🖼️ **Figura: `punteggi_delta.png`**
-> *Didascalia proposta:* Le due curve sono i percentili mediani dei due gruppi, e il gruppo si
->   conosce solo guardando indietro: a tredici anni nessuno sapeva chi fosse chi.
-> *Testo alternativo:* Due profili di percentile a confronto, uno per i futuri professionisti e
->   uno per tutti gli altri, che si allontanano con l'età.
+> *Didascalia proposta:* Le due curve sono i percentili mediani dei due gruppi, e il gruppo
+>   si conosce solo guardando indietro: a tredici anni nessuno sapeva chi fosse chi.
+> *Testo alternativo:* Due profili di percentile a confronto, uno per i futuri professionisti
+>   e uno per tutti gli altri, che si allontanano con l'età.
 
 Su questo 74% conviene essere precisi, perché due equivoci sono in agguato. Il primo: il
 confronto è **fra chi era in classifica quell'anno**, non fra tutti i ragazzi. Chi a tredici
@@ -98,8 +98,8 @@ quanto conti salire di dieci posizioni percentuali.
 > 🖼️ **Figura: `univariati_or.png`**
 > *Didascalia proposta:* Ogni riga è un modello a sé, con l'intervallo al 95% e la scala
 >   logaritmica, perché un odds ratio si legge in rapporti e non in differenze.
-> *Testo alternativo:* Grafico a punti con barre di errore, un odds ratio per ogni categoria e
->   anno di categoria.
+> *Testo alternativo:* Grafico a punti con barre di errore, un odds ratio per ogni categoria
+>   e anno di categoria.
 
 Si legge così: fra due Esordienti che differiscono di dieci posizioni percentuali, quello
 davanti ha circa il 40% di probabilità in più di arrivare al professionismo; fra due

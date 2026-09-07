@@ -16,12 +16,12 @@ già a tredici anni; qui provo a rispondere alla domanda che in società ci si f
 cioè se conti di più dove sei o dove stai andando.*
 
 > 📐 **Grafico da produrre (copertina):** due rette su assi età e percentile, una piatta al
->   settantacinquesimo e una che sale dal quarantesimo al novantesimo. È l'illustrazione dei due
->   ragazzi inventati dell'apertura e non un dato: conviene che la didascalia lo dica.
+>   settantacinquesimo e una che sale dal quarantesimo al novantesimo. È l'illustrazione dei
+>   due ragazzi inventati dell'apertura e non un dato: conviene che la didascalia lo dica.
 > *Didascalia proposta:* I due ragazzi dell'esempio non esistono. Se dovessi puntare su uno
 >   solo, quale sceglieresti?
-> *Testo alternativo:* Due linee su un grafico età-percentile, una orizzontale e una in salita,
->   che si incrociano verso i sedici anni.
+> *Testo alternativo:* Due linee su un grafico età-percentile, una orizzontale e una in
+>   salita, che si incrociano verso i sedici anni.
 
 Due ragazzi, sedici anni tutti e due. Il primo è sempre stato lì, da tre stagioni attorno al
 settantacinquesimo percentile della sua categoria: regolare, nessuna sorpresa, nessun

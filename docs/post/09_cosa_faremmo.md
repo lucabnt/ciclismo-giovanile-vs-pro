@@ -17,8 +17,8 @@ che hai letto finora.*
 
 > 📷 **Immagine da procurare (copertina):** un ragazzo che si allena da solo su una strada di
 >   campagna, ripreso da lontano e di spalle.
-> *Didascalia proposta:* La cosa più importante che questi dati hanno da dire non riguarda lui,
->   ma chi decide di smettere di guardarlo.
+> *Didascalia proposta:* La cosa più importante che questi dati hanno da dire non riguarda
+>   lui, ma chi decide di smettere di guardarlo.
 > *Testo alternativo:* Un giovane ciclista solo su una strada di campagna, fotografato da
 >   lontano.
 
@@ -67,10 +67,10 @@ come arrivato, e quasi niente quanto il rendimento giovanile lo distingua. Le co
 della serie non poggiano sulle mie scelte.
 
 > 🖼️ **Figura: `validazione_sensibilita.png`**
-> *Didascalia proposta:* L'asterisco indica la scelta dello studio, che sta in mezzo e non agli
->   estremi: era il minimo da mostrare, visto che quelle definizioni le ho scelte io.
-> *Testo alternativo:* Punti allineati su una scala di capacità predittiva, uno per definizione
->   di professionismo, tutti molto vicini fra loro.
+> *Didascalia proposta:* L'asterisco indica la scelta dello studio, che sta in mezzo e non
+>   agli estremi: era il minimo da mostrare, visto che quelle definizioni le ho scelte io.
+> *Testo alternativo:* Punti allineati su una scala di capacità predittiva, uno per
+>   definizione di professionismo, tutti molto vicini fra loro.
 
 ## Cosa cambia, a seconda di dove stai
 

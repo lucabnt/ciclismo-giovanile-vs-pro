@@ -15,10 +15,11 @@
 professionismo; qui guardo le altre tre cose che tutti danno per scontate, cioè il mese di
 nascita, la società e la regione.*
 
-> 📷 **Immagine da procurare (copertina):** il foglio firma di partenza con la colonna dell'anno
->   di nascita accanto ai numeri di gara, fotografato in modo che i nomi non siano leggibili.
-> *Didascalia proposta:* Tre cose che tutti danno per scontate: il mese di nascita, la squadra
->   e la regione. Due si vedono nei dati, e nessuna significa quello che sembra.
+> 📷 **Immagine da procurare (copertina):** il foglio firma di partenza con la colonna
+>   dell'anno di nascita accanto ai numeri di gara, fotografato in modo che i nomi non siano
+>   leggibili.
+> *Didascalia proposta:* Tre cose che tutti danno per scontate: il mese di nascita, la
+>   squadra e la regione. Due si vedono nei dati, e nessuna significa quello che sembra.
 > *Testo alternativo:* Un foglio firma di gara con le date di nascita, ripreso da vicino.
 
 Se frequenti il ciclismo giovanile sai benissimo che quelle tre cose contano. I ragazzi nati
@@ -129,11 +130,11 @@ con due strati non smentisci niente in modo netto, ma basta e avanza per non scr
 titolo.
 
 > 🖼️ **Figura: `contesto_confondente.png`**
-> *Didascalia proposta:* Le due serie hanno la stessa forma. Il confronto a parità di stagioni
->   corse regge però solo su due durate di carriera: abbastanza per non scrivere quel titolo, non
->   abbastanza per una smentita.
-> *Testo alternativo:* Due serie di barre sovrapponibili, una per il tasso di professionismo e
->   una per le stagioni corse, in funzione del numero di cambi di società.
+> *Didascalia proposta:* Le due serie hanno la stessa forma. Il confronto a parità di
+>   stagioni corse regge però solo su due durate di carriera: abbastanza per non scrivere quel
+>   titolo, non abbastanza per una smentita.
+> *Testo alternativo:* Due serie di barre sovrapponibili, una per il tasso di professionismo
+>   e una per le stagioni corse, in funzione del numero di cambi di società.
 
 Poi c'è la scoperta che chiude la questione, e che nessuno degli studi precedenti aveva
 guardato. Non tutte le società sono attive in tutte le categorie, per cui quando un ragazzo

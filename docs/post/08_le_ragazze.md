@@ -73,8 +73,8 @@ per annata.
 *Esordienti femminili*[^p8ragazze]
 
 > 🖼️ **Figura: `ragazze_separazione.png`**
-> *Didascalia proposta:* È un confronto prima e dopo sulla stessa popolazione, ed è la ragione
->   per cui vale più del confronto fra categorie diverse della terza puntata.
+> *Didascalia proposta:* È un confronto prima e dopo sulla stessa popolazione, ed è la
+>   ragione per cui vale più del confronto fra categorie diverse della terza puntata.
 > *Testo alternativo:* Due barre a confronto, prima e dopo la separazione delle classifiche,
 >   con la seconda quasi doppia della prima.
 
@@ -109,8 +109,8 @@ atteso demografico*[^p8rae]
 > *Didascalia proposta:* Stesse annate e stesso atteso demografico per i due sessi, che è la
 >   condizione perché il confronto significhi qualcosa. Le coorti femminili restano molto meno
 >   numerose.
-> *Testo alternativo:* Due linee a confronto, maschi e femmine, del rapporto fra nati nel primo
->   e nell'ultimo trimestre.
+> *Testo alternativo:* Due linee a confronto, maschi e femmine, del rapporto fra nati nel
+>   primo e nell'ultimo trimestre.
 
 L'ipotesi regge dove i numeri sono solidi. A tredici anni lo squilibrio femminile è
 sensibilmente più basso, e in Allieve arriva a non distinguersi più dalla distribuzione

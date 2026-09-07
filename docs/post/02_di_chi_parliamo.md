@@ -270,7 +270,7 @@ domanda ovvia è se abbiano smesso di correre. La risposta è no, e il modo in c
 
 [^p2posti]: Calcolo in [report/moduli/posti.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/report/moduli/posti.py).
 
-[^p2hasselaar]: Hasselaar M., Elferink-Gemser M.T. (2025), *How to quantify youth cycling
+[^p2hasselaar]: Hasselaar J.J., Elferink-Gemser M.T. (2025), *How to quantify youth cycling
     performance? Development of a method based on competition results*, Current Issues in
     Sport Science 10(1), articolo 012. DOI
     [10.36950/2025.10ciss012](https://doi.org/10.36950/2025.10ciss012). Ad accesso aperto.
