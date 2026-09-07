@@ -48,7 +48,7 @@ dimenticarlo.
 
 ## I nove post
 
-### 1. Cosa sappiamo già, e cosa nessuno ha ancora guardato
+### 1. Cosa sappiamo già, e cosa no
 
 **Sintesi.** La ricerca sul passaggio dal ciclismo giovanile al professionismo dice da
 vent'anni la stessa cosa: il successo da ragazzi non è né necessario né sufficiente per
@@ -72,10 +72,16 @@ tredici-quattordici anni predica l'accesso al professionismo, su una popolazione
 non preselezionata. È la finestra in cui l'effetto belga era più marcato, ed è quella su
 cui si prendono le prime decisioni.
 
+**Il tono, deciso in revisione.** Il post rivendica il buco senza calcare: dice cosa manca
+in letteratura e poi ammette che le due limitazioni più serie — il denominatore taciuto e
+l'uscita dalla classifica scambiata per abbandono — **valgono anche per questo studio**, e
+che l'unica differenza è averle misurate invece di lasciarle implicite. La versione
+precedente le elencava come difetti altrui, il che suonava dall'alto e non era vero.
+
 **Il gancio al post successivo.** Per rispondere serve prima sapere di chi stiamo
 parlando — e la risposta è meno ovvia di quanto sembri.
 
-*Fonti: `guida_metodologica_v5.md`. Nessun dato originale.*
+*Fonti: [`docs/literature_review.md`](literature_review.md). Nessun dato originale.*
 
 ---
 
@@ -114,7 +120,7 @@ smesso di correre?
 
 ---
 
-### 3. Sparire dalla classifica non è smettere
+### 3. Perché il primo anno di categoria sembra un massacro
 
 **Sintesi.** Sembra che il ciclismo giovanile perda tre ragazzi su quattro fra i
 tredici e i vent'anni. Guardando meglio, quasi un terzo di chi sparisce ricompare, metà
@@ -196,7 +202,7 @@ decidere» sono due cose diverse, ed è il post successivo.
 
 ---
 
-### 5. Il livello o la curva?
+### 5. Conta dove sei o dove stai andando?
 
 **Sintesi.** La domanda che si fanno tutti gli allenatori ha una risposta netta:
 contano entrambi, ma non allo stesso modo. Fra gli atleti di livello alto, chi stava anche
@@ -276,7 +282,7 @@ scarti per sbaglio, e quanti ne tieni che non arriveranno.
 
 ---
 
-### 7. I falsi indizi
+### 7. Il mese di nascita, la squadra, la regione
 
 **Sintesi.** Nascere a gennaio, cambiare società, venire dalla regione giusta: tre cose
 che sembrano contare e che, guardate bene, non contano. Il vantaggio di chi è nato a
@@ -313,7 +319,7 @@ qualcuno avrebbe scritto «cambiare squadra aiuta».
 
 ---
 
-### 8. E le ragazze?
+### 8. Il ciclismo femminile
 
 **Sintesi.** Le sette puntate precedenti riguardano i maschi, e non per scelta: gli esiti di
 carriera femminili non erano stati raccolti. Ma quasi tutte le domande della serie non hanno

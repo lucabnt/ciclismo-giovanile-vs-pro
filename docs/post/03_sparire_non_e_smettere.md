@@ -1,9 +1,9 @@
-# 3. Sparire dalla classifica non è smettere
+# 3. Perché il primo anno di categoria sembra un massacro
 
-> ⚠️ **Bozza scritta a mano. Non si rigenera.**
-> Ogni cifra è copiata dall'analisi al momento della stesura e diventerà falsa in silenzio se
-> i dati cambiano. Prima di pubblicare conviene eseguire
-> `python scripts/11_verifica_documenti.py`. Sullo stile: [`STILE.md`](STILE.md).
+> ⚠️ **Bozza scritta a mano. Non si rigenera.** Ogni cifra è copiata dall'analisi al momento
+> della stesura e diventerà falsa in silenzio se i dati cambiano. Prima di pubblicare
+> conviene eseguire `python scripts/11_verifica_documenti.py`. Sullo stile:
+> [`STILE.md`](STILE.md).
 >
 > **Numero chiave del post:** 30,6%.
 > **Moduli:** `attrito` (ricambio), `passaggi`, `posti`, `copertura` (i due imbuti).
@@ -19,9 +19,9 @@ Un ragazzo chiude la stagione da Allievo secondo anno al settantesimo posto dell
 nazionale, l'anno dopo passa Juniores, e a fine stagione il suo nome in classifica non c'è
 più. Se metti a confronto quei due elenchi la conclusione ti viene da sola: ha smesso.
 
-È la conclusione più naturale del mondo ed è quasi sempre sbagliata. Nel resto del post provo
-a spiegarti perché, e soprattutto a mostrarti come lo si dimostra senza dover telefonare a
-nessuno.
+È la conclusione più naturale del mondo ed è quasi sempre sbagliata. Nel resto del post
+provo a spiegarti perché, e soprattutto a mostrarti come lo si dimostra senza dover
+telefonare a nessuno.
 
 ## La prima crepa: i ritorni
 
@@ -35,9 +35,9 @@ in fondo, è la prova che l'assenza dell'anno prima non era un abbandono.
 
 ## La seconda crepa: le liste si rinnovano da dentro
 
-C'è un modo del tutto diverso di arrivare alla stessa conclusione, che non guarda le carriere
-individuali ma la composizione delle liste: prendi due classifiche consecutive della stessa
-categoria e conti quante facce nuove ci sono nella seconda.
+C'è un modo del tutto diverso di arrivare alla stessa conclusione, che non guarda le
+carriere individuali ma la composizione delle liste: prendi due classifiche consecutive
+della stessa categoria e conti quante facce nuove ci sono nella seconda.
 
 | classifica | atleti | non c'erano l'anno prima |[^p3attrito]
 |---|---|---|
@@ -46,8 +46,8 @@ categoria e conti quante facce nuove ci sono nella seconda.
 | Under 19, secondo anno | 901 | 38,8% |
 
 Metà dei classificati al secondo anno di Allievi non c'era al primo. E non avevano cambiato
-categoria, è la stessa fascia d'età dodici mesi dopo: sono ragazzi che l'anno prima correvano
-senza andare a punti e quell'anno ci sono andati.
+categoria, è la stessa fascia d'età dodici mesi dopo: sono ragazzi che l'anno prima
+correvano senza andare a punti e quell'anno ci sono andati.
 
 Le due misure, i rientri e il rinnovo delle liste, sono indipendenti l'una dall'altra e
 portano allo stesso posto. Per questo te le do entrambe.
@@ -71,26 +71,26 @@ categorie diverse. L'unica differenza è che ci sia o no il cambio di fascia.
 | dentro la categoria | **79,9%** | 60,7% |
 | cambiando categoria | **32,4%** | **88,2%** |
 
-La prima colonna conferma il crollo, e di brutto: si passa da quattro su cinque a uno su tre.
-La seconda dice il contrario con la stessa forza, perché dopo un cambio di categoria la
+La prima colonna conferma il crollo, e di brutto: si passa da quattro su cinque a uno su
+tre. La seconda dice il contrario con la stessa forza, perché dopo un cambio di categoria la
 classifica in cui arrivi è composta per l'**88,2%** da gente che c'era già, mentre dopo un
-passaggio interno la quota è del 60,7%. Al cambio di fascia, cioè, non entra quasi nessuno di
-nuovo.
+passaggio interno la quota è del 60,7%. Al cambio di fascia, cioè, non entra quasi nessuno
+di nuovo.
 
 I due numeri sembrano contraddirsi e non si contraddicono, e per capire perché ti serve
-sapere una cosa su come sono fatte le classifiche. Negli Esordienti la fonte ne pubblica **due
-separate**, una per annata: primo e secondo anno corrono gare loro e non si fanno concorrenza.
-Dagli Allievi in su la classifica è **una sola**, e le due annate ci convivono correndo le
-stesse identiche gare.
+sapere una cosa su come sono fatte le classifiche. Negli Esordienti la fonte ne pubblica
+**due separate**, una per annata: primo e secondo anno corrono gare loro e non si fanno
+concorrenza. Dagli Allievi in su la classifica è **una sola**, e le due annate ci convivono
+correndo le stesse identiche gare.
 
 Il confronto fra le due situazioni è la cosa che mi ha divertito di più in tutto lo studio,
-perché una fa da controllo all'altra. E i posti si possono contare, anche se il calendario non
-è pubblicato: ogni gara assegna cinque piazzamenti a punti, dal primo al quinto, quindi
+perché una fa da controllo all'altra. E i posti si possono contare, anche se il calendario
+non è pubblicato: ogni gara assegna cinque piazzamenti a punti, dal primo al quinto, quindi
 sommando tutti i piazzamenti nei primi cinque si ottiene quanti posti sono stati messi in
 palio, e dividendo per cinque quante gare sono state. È una stima indiretta, che assume che
-ogni gara assegni cinque posti e che tutti i piazzamenti finiscano in classifica; in Under 23
-è un limite inferiore, perché in quella lista corrono anche gli Elite, che sono fuori dalla
-finestra d'età di questo studio.
+ogni gara assegni cinque posti e che tutti i piazzamenti finiscano in classifica; in Under
+23 è un limite inferiore, perché in quella lista corrono anche gli Elite, che sono fuori
+dalla finestra d'età di questo studio.
 
 | categoria | quota dei posti presa dal primo anno |[^p3posti]
 |---|---|
@@ -104,37 +104,39 @@ che sia. Dove la lista è una sola, e le gare sono esattamente le stesse per tut
 anno ne prende poco più di un quarto.
 
 Vuol dire che il crollo **non è una questione di posti che spariscono**: i posti sono gli
-stessi, cambia chi li vince. Un Allievo al primo anno corre contro ragazzi che hanno un anno di
-sviluppo in più, e i piazzamenti se li prendono loro. Quello che sembrava un trauma è in buona
-parte questo: non sei peggiorato, sei diventato il più piccolo della gara.
+stessi, cambia chi li vince. Un Allievo al primo anno corre contro ragazzi che hanno un anno
+di sviluppo in più, e i piazzamenti se li prendono loro. Quello che sembrava un trauma è in
+buona parte questo: non sei peggiorato, sei diventato il più piccolo della gara.
 
 ## Fra chi il posto ce l'ha, l'ordine tiene
 
 Una rottura potrebbe però prendere una seconda forma: non far sparire le persone ma
-rimescolarne l'ordine. In quel caso il risultato di una stagione direbbe poco su quella dopo.
+rimescolarne l'ordine. In quel caso il risultato di una stagione direbbe poco su quella
+dopo.
 
 Un rimescolamento c'è, ma è modesto. La correlazione fra il piazzamento di due stagioni
 consecutive vale **0,591** dentro la categoria e **0,471** al cambio di fascia, quindi la
-differenza esiste e va nella direzione che ti aspetti, senza però essere grande. Detta in modo
-più concreto: chi resta in classifica si sposta in mediana di 14,4 posizioni percentuali
-dentro la categoria e di 19,7 al cambio di fascia, che su una scala da 0 a 100 sono
-spostamenti dello stesso ordine. Il cambio di categoria, insomma, toglie persone dalla
+differenza esiste e va nella direzione che ti aspetti, senza però essere grande. Detta in
+modo più concreto: chi resta in classifica si sposta in mediana di 14,4 posizioni
+percentuali dentro la categoria e di 19,7 al cambio di fascia, che su una scala da 0 a 100
+sono spostamenti dello stesso ordine. Il cambio di categoria, insomma, toglie persone dalla
 classifica molto più di quanto rimescoli quelle che restano.
 
 Una precisazione, per non esagerare nella direzione opposta: le gare, salendo di categoria,
 calano davvero. Da circa 640 classificazioni di gara per stagione in Esordienti si scende a
 146 in Under 23 — negli Esordienti quel conteggio somma i due calendari, visto che le annate
-corrono separate, quindi se preferisci la lettura prudente dimezzalo: il calo resta. Il calendario si accorcia, quindi una parte della lettura corrente è giusta;
-quello che non regge è attribuire a quel restringimento il crollo del primo anno, visto che
-succede anche dove le gare sono le stesse.
+corrono separate, quindi se preferisci la lettura prudente dimezzalo: il calo resta. Il
+calendario si accorcia, quindi una parte della lettura corrente è giusta; quello che non
+regge è attribuire a quel restringimento il crollo del primo anno, visto che succede anche
+dove le gare sono le stesse.
 
 E già che siamo in argomento, contando le gare è venuta fuori la cosa più inattesa di tutto
-lo studio, che con l'abbandono non c'entra ma merita una riga: **il calendario giovanile si è
-quasi dimezzato in sedici anni**. Fra il 2009 e il 2025 le classificazioni di gara calano del
-40% in Esordienti e del 58% in Under 23, e non è colpa del covid, perché il calo era
+lo studio, che con l'abbandono non c'entra ma merita una riga: **il calendario giovanile si
+è quasi dimezzato in sedici anni**. Fra il 2009 e il 2025 le classificazioni di gara calano
+del 40% in Esordienti e del 58% in Under 23, e non è colpa del covid, perché il calo era
 cominciato molto prima e dopo il 2020 non si è tornati ai valori di prima. Nella finestra in
-cui possiamo confrontare, i tesserati Esordienti calano di circa un decimo e le gare di quasi
-un quinto: il movimento si restringe, e il calendario si restringe più in fretta.
+cui possiamo confrontare, i tesserati Esordienti calano di circa un decimo e le gare di
+quasi un quinto: il movimento si restringe, e il calendario si restringe più in fretta.
 
 ## Sono più continui, quelli che arrivano?
 
@@ -149,34 +151,35 @@ conseguenza e non una causa: si resta in classifica se si va bene, quindi la dur
 l'esito invece di prevederlo. È lo stesso travestimento dei cambi di società, di cui parlo
 nella settima puntata.
 
-Se invece intendi **quanto sono stabili nel livello**, la risposta è no. Fra chi ha almeno tre
-stagioni, lo scarto tipico del proprio percentile vale 16,7 posizioni per i futuri
-professionisti e 17,3 per tutti gli altri: praticamente identico. Chi arriverà oscilla quanto
-chiunque altro, solo che oscilla più in alto.[^p3continuita]
+Se invece intendi **quanto sono stabili nel livello**, la risposta è no. Fra chi ha almeno
+tre stagioni, lo scarto tipico del proprio percentile vale 16,7 posizioni per i futuri
+professionisti e 17,3 per tutti gli altri: praticamente identico. Chi arriverà oscilla
+quanto chiunque altro, solo che oscilla più in alto.[^p3continuita]
 
 Se poi la domanda è cosa dica il *movimento* di un ragazzo, cioè se stia salendo o scendendo
-negli anni, quella è un'altra cosa ancora e ha una risposta molto più interessante: è il tema
-della quinta puntata.
+negli anni, quella è un'altra cosa ancora e ha una risposta molto più interessante: è il
+tema della quinta puntata.
 
 ## La conferma che arriva da fuori
 
 Tutto quello che ti ho detto finora è misurato dentro la classifica, e una verifica interna
 lascia sempre il dubbio di essere circolare. Per fortuna c'è un controllo esterno, cioè i
-tesserati della federazione: se la classifica si restringesse più in fretta della popolazione
-che la genera vorrebbe dire che sta perdendo gente per ragioni sue, mentre se le due cose
-calano allo stesso ritmo si sta solo limitando a seguire il ciclismo giovanile italiano.
+tesserati della federazione: se la classifica si restringesse più in fretta della
+popolazione che la genera vorrebbe dire che sta perdendo gente per ragioni sue, mentre se le
+due cose calano allo stesso ritmo si sta solo limitando a seguire il ciclismo giovanile
+italiano.
 
 Dall'ingresso in Esordienti all'Under 23 resta il **16,6% dei tesserati** e il 17,2% dei
-classificati, calcolati per anno di età in modo da poterli confrontare. Praticamente lo stesso
-numero.
+classificati, calcolati per anno di età in modo da poterli confrontare. Praticamente lo
+stesso numero.
 
 Il confronto diventa interessante per via di un terzo numero, che invece non combacia:
 seguendo le singole persone anziché i conteggi, solo il 59,6% di chi era in Esordienti si
 ritrova in Allievi. La distanza fra il 73% delle teste contate per stagione e il 59,6% delle
 persone seguite una per una è il ricambio, e dice che la classifica tiene la propria
-dimensione sostituendo gli individui invece di trattenerli. Due fonti indipendenti, la stessa
-conclusione: l'imbuto individuale che vedi nella classifica è molto più ripido dell'abbandono
-vero.
+dimensione sostituendo gli individui invece di trattenerli. Due fonti indipendenti, la
+stessa conclusione: l'imbuto individuale che vedi nella classifica è molto più ripido
+dell'abbandono vero.
 
 ## La lettura sbagliata
 
@@ -190,9 +193,9 @@ una classifica a posti limitati.
 
 Tienti anche questo dettaglio: accanto ai 77 professionisti delle coorti che ho studiato —
 professionista vuol dire aver corso in una squadra di primo o secondo livello entro i
-venticinque anni — ci sono **108 atleti che risultavano ancora a punti dopo i ventidue anni** senza essere diventati
-professionisti. Sono più numerosi dei professionisti stessi. Non tutto ciò che non è
-professionismo è abbandono.
+venticinque anni — ci sono **108 atleti che risultavano ancora a punti dopo i ventidue
+anni** senza essere diventati professionisti. Sono più numerosi dei professionisti stessi.
+Non tutto ciò che non è professionismo è abbandono.
 
 ## Cosa te ne porti a casa
 
@@ -200,16 +203,16 @@ Un ragazzo che sparisce dalla classifica al primo anno di una categoria nuova st
 probabilmente ancora correndo, contro avversari di uno o due anni più grandi che gli portano
 via tre posti su quattro, e nella maggioranza dei casi tornerà a farsi vedere.
 
-Se alleni, questo ti sposta il problema. Il momento in cui presidiare la ritenzione non è dopo
-una brutta stagione ma al passaggio di fascia, dove si concentra il 77% delle uscite ed è lì
-che un ragazzo che sta facendo esattamente quello che deve smette di ricevere riscontri. E se
-leggi una classifica, la regola pratica è una sola: l'assenza di un nome non è un giudizio su
-quel nome.
+Se alleni, questo ti sposta il problema. Il momento in cui presidiare la ritenzione non è
+dopo una brutta stagione ma al passaggio di fascia, dove si concentra il 77% delle uscite ed
+è lì che un ragazzo che sta facendo esattamente quello che deve smette di ricevere
+riscontri. E se leggi una classifica, la regola pratica è una sola: l'assenza di un nome non
+è un giudizio su quel nome.
 
-Se il ricambio è così forte, però, ti viene un dubbio ragionevole: con tutta questa gente che
-entra ed esce, il risultato di una stagione dirà ancora qualcosa sul futuro di un ragazzo? A
-tredici anni, in particolare: si vede già qualcosa, o stiamo solo misurando chi si è
-sviluppato prima? È il tema della prossima puntata.
+Se il ricambio è così forte, però, ti viene un dubbio ragionevole: con tutta questa gente
+che entra ed esce, il risultato di una stagione dirà ancora qualcosa sul futuro di un
+ragazzo? A tredici anni, in particolare: si vede già qualcosa, o stiamo solo misurando chi
+si è sviluppato prima? È il tema della prossima puntata.
 
 ---
 
@@ -223,10 +226,10 @@ sviluppato prima? È il tema della prossima puntata.
 > una stagione, così che l'unica differenza fra i due gruppi sia il cambio di fascia. La
 > correlazione riportata è quella di Spearman, che guarda l'ordine e non i valori.
 >
-> Il limite principale è che tutte queste misure riguardano chi era in classifica: su chi non
-> c'è mai stato, e su chi corre senza andare a punti, questi dati non dicono nulla, e
-> servirebbe
-> l'elenco dei tesserati per anno e per atleta, che non è pubblicamente disponibile.
+> Il limite principale è che tutte queste misure riguardano chi era in classifica: su chi
+> non c'è mai stato, e su chi corre senza andare a punti, questi dati non dicono nulla, e
+> servirebbe l'elenco dei tesserati per anno e per atleta, che non è pubblicamente
+> disponibile.
 
 [^p3attrito]: Calcolo in [report/moduli/attrito.py](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/report/moduli/attrito.py).
 
@@ -265,5 +268,7 @@ sui 108 atleti ancora a punti dopo i ventidue anni, che è emotivamente più for
 mostra come esistano carriere che non finiscono in professionismo e non sono fallimenti, ma
 sposta il tema e sottrae materiale al post 8.
 
-**E. Il titolo.** «Sparire dalla classifica non è smettere» dice già tutto, forse troppo.
-Alternative: «Un terzo di quelli che spariscono torna»; «La porta si stringe, non è il salto».
+**E. Il titolo, scelto in revisione.** «Perché il primo anno di categoria sembra un
+massacro» ha il vantaggio di porre una domanda invece di dare la risposta, che era il difetto
+della versione precedente: «Sparire dalla classifica non è smettere» diceva già tutto e non
+lasciava niente da scoprire. Le altre candidate restano in [`TITOLI.md`](TITOLI.md).

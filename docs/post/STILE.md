@@ -48,8 +48,17 @@ comunicato: *si evince, risulta pertanto, in ottemperanza*.
 conclusione. Il grassetto sparso a metà frase è un tic da newsletter e smette di
 funzionare esattamente quando serve.
 
-**I titoli di sezione sono dichiarativi.** Le domande stanno nel testo, dove hanno una
-risposta accanto.
+**I titoli di sezione sono dichiarativi, e non sentenziano.** Le domande stanno nel testo,
+dove hanno una risposta accanto. E il titolo non dice al lettore cosa pensare prima di
+avergli mostrato qualcosa: «La lettura sbagliata, e quella tecnicamente sbagliata» era una
+sentenza, «Cosa questi studi non dicono» dice cosa c'è nella sezione e lascia a lui la
+conclusione.
+
+**I limiti della letteratura si dichiarano anche quando sono i nostri.** Elencare i difetti
+degli altri studi senza dire che valgono pure per questo suona dall'alto, e per giunta è
+falso: il denominatore già scremato e l'uscita dalla classifica scambiata per abbandono sono
+limiti condivisi, e la sola differenza rivendicabile è averli misurati invece di lasciarli
+impliciti. Prima di scrivere «nessuno lo dichiara», controllare se lo dichiariamo noi.
 
 **Ogni fonte si cita per intero, e il rimando è un link vero.** Gli studi con autori, anno,
 titolo, rivista e DOI: chi legge deve poter arrivare all'originale senza cercarlo. I file

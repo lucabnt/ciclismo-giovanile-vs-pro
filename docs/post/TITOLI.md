@@ -37,12 +37,12 @@ dopo poche parole, come succede nei risultati di ricerca e nelle condivisioni.
 |---|---|---|
 | 1 | Ciclismo giovanile e professionismo: cosa sappiamo già, e cosa no | `01_cosa_sappiamo.md` |
 | 2 | Ciclismo giovanile e professionismo: di chi stiamo parlando | `02_di_chi_parliamo.md` |
-| 3 | Ciclismo giovanile e professionismo: sparire dalla classifica non è smettere | `03_sparire_non_e_smettere.md` |
+| 3 | Ciclismo giovanile e professionismo: perché il primo anno di categoria sembra un massacro | `03_sparire_non_e_smettere.md` |
 | 4 | Ciclismo giovanile e professionismo: a tredici anni si vede già qualcosa | `04_a_tredici_anni.md` |
-| 5 | Ciclismo giovanile e professionismo: il livello o la curva? | `05_livello_o_curva.md` |
+| 5 | Ciclismo giovanile e professionismo: conta dove sei o dove stai andando? | `05_livello_o_curva.md` |
 | 6 | Ciclismo giovanile e professionismo: predire non è selezionare | `06_predire_non_e_selezionare.md` |
-| 7 | Ciclismo giovanile e professionismo: i falsi indizi | `07_falsi_indizi.md` |
-| 8 | Ciclismo giovanile e professionismo: e le ragazze? | `08_le_ragazze.md` |
+| 7 | Ciclismo giovanile e professionismo: il mese di nascita, la squadra, la regione | `07_falsi_indizi.md` |
+| 8 | Ciclismo giovanile e professionismo: il ciclismo femminile | `08_le_ragazze.md` |
 | 9 | Ciclismo giovanile e professionismo: cosa faremmo con questi numeri | `09_cosa_faremmo.md` |
 
 ## Alternative, post per post
@@ -65,10 +65,24 @@ dove il numero da solo non si capisce senza contesto.
 | 8 | e le ragazze? | otto volte meno gare | il ciclismo femminile, per quello che si può dire |
 | 9 | cosa faremmo con questi numeri | chi seguire, non chi lasciare andare | cosa cambierei, se decidessi io |
 
-**Cosa consiglierei, riga per riga.** Per il primo la tua versione va benissimo così com'è.
-Per il secondo e il settimo passerei alla B, che sono i due casi in cui la versione attuale
-non dice niente fuori contesto. Per il quinto e il nono la C è più chiara della A. Gli altri
-li lascerei come sono: hanno già un'immagine dentro, e un numero li appesantirebbe.
+**Cosa è stato scelto.** Il primo resta come l'avevi scritto. Il terzo, il quinto, il
+settimo e l'ottavo passano alla C, la versione discorsiva: quattro titoli che dicono di cosa
+parla il post invece di alludervi. Il secondo, il quarto, il sesto e il nono restano alla A,
+perché hanno già un'immagine dentro e un numero li appesantirebbe.
+
+**Resta un caso da sciogliere, ed è l'ottavo.** «Ciclismo giovanile e professionismo: il
+ciclismo femminile» ripete la parola *ciclismo* a distanza di quattro parole, e il prefisso
+dice già che si parla di giovanile. Tre modi di toglierla, in ordine di quanto conservano la
+tua scelta: **«il femminile, per quello che si può dire»**, che è la stessa cosa senza la
+ripetizione e aggiunge l'onestà del post; «e le ragazze?», che era la versione precedente ed
+è la più cliccata delle tre; «le ragazze, e quello che non sappiamo di loro». Se la
+ripetizione non ti disturba, il titolo attuale funziona lo stesso: nessun lettore si ferma
+lì.
+
+**Un titolo da rivedere se cambia il post.** Il settimo elenca tre indizi, e fra le scelte
+aperte di quel post c'è l'ipotesi di spostare la regione nella puntata finale. Se succede,
+il titolo diventa «il mese di nascita e la squadra», che è più debole: in quel caso conviene
+passare alla B, «il vantaggio di gennaio si dimezza in sei anni».
 
 **Una regola che vale per tutti.** La parte dopo i due punti deve reggere da sola, perché
 è quella che sopravvive quando il titolo viene troncato — nei risultati di ricerca, nelle

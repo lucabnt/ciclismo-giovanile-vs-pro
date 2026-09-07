@@ -1,15 +1,14 @@
 # 2. Di chi stiamo parlando
 
-> ⚠️ **Bozza scritta a mano. Non si rigenera.**
-> Ogni cifra è copiata dall'analisi al momento della stesura, quindi se i dati vengono
-> aggiornati questo testo non se ne accorge. Prima di pubblicare conviene eseguire
-> `python scripts/11_verifica_documenti.py`, che confronta le cifre del post con l'archivio
-> dei risultati. Sullo stile: [`STILE.md`](STILE.md).
+> ⚠️ **Bozza scritta a mano. Non si rigenera.** Ogni cifra è copiata dall'analisi al momento
+> della stesura, quindi se i dati vengono aggiornati questo testo non se ne accorge. Prima
+> di pubblicare conviene eseguire `python scripts/11_verifica_documenti.py`, che confronta
+> le cifre del post con l'archivio dei risultati. Sullo stile: [`STILE.md`](STILE.md).
 >
 > **Numero chiave del post:** 1 su 7.
 > **Moduli:** `provenienza`, `copertura`, `attrito` (l'imbuto), `misura`, `posti`.
 > **Figure:** `copertura_tesserati`, `attrito_imbuto`, `misura_rapporto`,
-> `posti_concentrazione`.
+>   `posti_concentrazione`.
 
 ---
 
@@ -22,16 +21,17 @@ sempre sbagliata: su mille giovani ciclisti italiani, trentacinque diventano pro
 Il numero è giusto. È «giovani ciclisti italiani» a non esserlo per niente.
 
 Lo studio parte da una classifica, quella che ciclismo.info pubblica ogni anno per ogni
-categoria giovanile, e che nel periodo considerato raccoglie 28 041 piazzamenti stagionali di
-11 098 ragazzi, dal 2007 al 2025. È l'archivio più completo che esista sul ciclismo giovanile
-italiano, ma non è l'elenco dei giovani ciclisti italiani, perché per entrarci devi aver fatto
-almeno un punto, e i punti li prendono solo i primi cinque di ogni gara: cinque alla vittoria
-e a scendere fino a uno al quinto posto. Comparire lì dentro anche con un punto solo vuol
-dire quindi essere arrivato almeno una volta nei primi cinque. Non è un tesseramento, è un
-risultato.
+categoria giovanile, e che nel periodo considerato raccoglie 28 041 piazzamenti stagionali
+di 11 098 ragazzi, dal 2007 al 2025. È l'archivio più completo che esista sul ciclismo
+giovanile italiano, ma non è l'elenco dei giovani ciclisti italiani, perché per entrarci
+devi aver fatto almeno un punto, e i punti li prendono solo i primi cinque di ogni gara:
+cinque alla vittoria e a scendere fino a uno al quinto posto. Comparire lì dentro anche con
+un punto solo vuol dire quindi essere arrivato almeno una volta nei primi cinque. Non è un
+tesseramento, è un risultato.
 
-E non è nemmeno una deduzione, perché si può controllare, e l'ho fatto: tutte le 28 041 righe
-della classifica hanno almeno un piazzamento nei primi cinque, senza una sola eccezione.
+E non è nemmeno una deduzione, perché si può controllare, e l'ho fatto: tutte le 28 041
+righe della classifica hanno almeno un piazzamento nei primi cinque, senza una sola
+eccezione.
 
 ## Uno su sette
 
@@ -47,9 +47,9 @@ risposta.
 | Under 23 | 1 060 | 162 | 15,3% |
 
 In classifica ci finisce **circa un tesserato su sette**, e la cosa che colpisce non è il
-valore in sé ma quanto stia fermo: quattro categorie e otto stagioni, sempre lo stesso ordine
-di grandezza, in una forbice fra il 12,2% e il 17,2%. Non è l'effetto di un anno strano o di
-una categoria particolare, è proprio come funziona il sistema.
+valore in sé ma quanto stia fermo: quattro categorie e otto stagioni, sempre lo stesso
+ordine di grandezza, in una forbice fra il 12,2% e il 17,2%. Non è l'effetto di un anno
+strano o di una categoria particolare, è proprio come funziona il sistema.
 
 Gli altri sei su sette corrono senza mai andare a punti, oppure corrono in una specialità
 diversa dalla strada: la tessera è per categoria e non per disciplina, quindi un Esordiente
@@ -60,16 +60,16 @@ emerge, ed è di quella punta che ti sto parlando.
 
 ## Due classifiche, o una sola
 
-Un'ultima cosa sulla struttura, che serve più avanti e che quasi nessuno sa. Negli Esordienti
-la fonte pubblica **due classifiche separate**, una per annata: primo e secondo anno corrono
-gare loro e non si fanno concorrenza. Dagli Allievi in su la classifica è **una sola** e le due
-annate ci convivono, correndo le stesse gare.
+Un'ultima cosa sulla struttura, che serve più avanti e che quasi nessuno sa. Negli
+Esordienti la fonte pubblica **due classifiche separate**, una per annata: primo e secondo
+anno corrono gare loro e non si fanno concorrenza. Dagli Allievi in su la classifica è **una
+sola** e le due annate ci convivono, correndo le stesse gare.
 
 Sembra un dettaglio da archivio e invece cambia la lettura di parecchie cose, perché nelle
-categorie a lista unica un ragazzo al primo anno gareggia contro chi ha un anno di sviluppo in
-più. I posti a punti se li prendono i più grandi: in Allievi il primo anno ne vince il
-**26,7%**, contro il 49,7% degli Esordienti dove le liste sono separate.[^p2posti] Ci torno nella
-prossima puntata, perché è la chiave di un equivoco piuttosto diffuso.
+categorie a lista unica un ragazzo al primo anno gareggia contro chi ha un anno di sviluppo
+in più. I posti a punti se li prendono i più grandi: in Allievi il primo anno ne vince il
+**26,7%**, contro il 49,7% degli Esordienti dove le liste sono separate.[^p2posti] Ci torno
+nella prossima puntata, perché è la chiave di un equivoco piuttosto diffuso.
 
 E già che siamo sui numeri della classifica, una risposta alla domanda che si fanno tutti
 guardandola: sì, si piazzano sempre gli stessi. Il dieci per cento migliore si prende fra il
@@ -79,8 +79,9 @@ stringe con l'età, ha già quella forma fin dall'inizio.
 
 ## L'imbuto, e come non leggerlo
 
-Adesso che sai di chi si parla, possiamo guardare l'attrito. Le coorti principali sono i nati
-fra il 1996 e il 2000, che hanno avuto tutti il tempo di arrivare o di non arrivare, e sono
+Adesso che sai di chi si parla, possiamo guardare l'attrito. Le coorti principali sono i
+nati fra il 1996 e il 2000, che hanno avuto tutti il tempo di arrivare o di non arrivare, e
+sono
 **2 817 ragazzi, 77 professionisti**. Professionista, in tutta questa serie, vuol dire aver
 corso in una squadra di primo o secondo livello entro i venticinque anni: la finestra d'età
 serve a rendere confrontabili annate diverse, e chi arriva più tardi qui non risulta.
@@ -93,8 +94,8 @@ serve a rendere confrontabili annate diverse, e chi arriva più tardi qui non ri
 | Under 23 | 342 | 10,2% |
 | professionisti | 77 | 3,5% |
 
-Da poco più di duemila ragazzi si arriva a settantasette, cioè trentacinque su mille, con tre
-ordini di grandezza fra l'inizio e la fine.
+Da poco più di duemila ragazzi si arriva a settantasette, cioè trentacinque su mille, con
+tre ordini di grandezza fra l'inizio e la fine.
 
 Sembra un imbuto, e in parte lo è, però ha una proprietà che rovina le letture semplici,
 perché non è una catena di sottoinsiemi. Fra un quarto e un terzo degli atleti di ogni
@@ -110,21 +111,22 @@ Quel 3,5% non è la probabilità che un ragazzo che comincia a correre diventi p
 È la probabilità che ci arrivi uno che a tredici anni era già andato almeno una volta nei
 primi cinque in una gara. Il denominatore, cioè, è già stato scremato una volta.
 
-Rispetto a tutti i tesserati la quota sarebbe molto più bassa, grosso modo sette volte, se la
-copertura di oggi valesse anche allora. Quella moltiplicazione però non l'ho fatta, e te lo
-racconto perché è una decisione e non una dimenticanza. I dati sui tesserati esistono solo dal
-2018, mentre le coorti che ho studiato correvano prima, e trasferire il rapporto da un periodo
-all'altro sarebbe una stima travestita da misura.
+Rispetto a tutti i tesserati la quota sarebbe molto più bassa, grosso modo sette volte, se
+la copertura di oggi valesse anche allora. Quella moltiplicazione però non l'ho fatta, e te
+lo racconto perché è una decisione e non una dimenticanza. I dati sui tesserati esistono
+solo dal 2018, mentre le coorti che ho studiato correvano prima, e trasferire il rapporto da
+un periodo all'altro sarebbe una stima travestita da misura.
 
 Non è una preoccupazione teorica, per giunta. Ho provato a stimare all'indietro gli anni che
-mancano e poi a controllare il risultato sugli anni che invece conosco, e il metodo **sbaglia
-del 27% a due anni di distanza**. C'è di peggio: stimando la tendenza in due modi entrambi
-difendibili, cioè includendo o escludendo le stagioni della pandemia, i tesserati Esordienti
-del 2012 vengono 5 554 oppure 3 576. Una differenza di 1,6 volte che non viene dai dati ma da
-una scelta di chi fa il conto.
+mancano e poi a controllare il risultato sugli anni che invece conosco, e il metodo
+**sbaglia del 27% a due anni di distanza**. C'è di peggio: stimando la tendenza in due modi
+entrambi difendibili, cioè includendo o escludendo le stagioni della pandemia, i tesserati
+Esordienti del 2012 vengono 5 554 oppure 3 576. Una differenza di 1,6 volte che non viene
+dai dati ma da una scelta di chi fa il conto.
 
-Il numero quindi resta quello che è, con la sua etichetta attaccata: trentacinque su mille fra
-chi era già in classifica. Se lo trovi citato senza l'etichetta, sta dicendo un'altra cosa.
+Il numero quindi resta quello che è, con la sua etichetta attaccata: trentacinque su mille
+fra chi era già in classifica. Se lo trovi citato senza l'etichetta, sta dicendo un'altra
+cosa.
 
 ## Cosa misura, di preciso, quella classifica
 
@@ -133,17 +135,18 @@ hanno pubblicato la critica più efficace che si potesse muovere a uno studio co
 mio.[^p2hasselaar]
 
 Hanno preso due ciclisti, uno che correva gare internazionali e uno che correva soprattutto
-gare locali, che nel ranking della federazione olandese avevano lo stesso identico punteggio:
-414 punti. In una metrica costruita per tenere conto del livello delle gare quegli stessi due
-valevano 76 e 21, cioè un fattore quasi quattro nascosto dentro un pareggio. Il motivo è che
-il ranking olandese non conta i risultati internazionali, e quindi dà zero punti proprio alle
-gare più difficili. La critica colpisce in pieno chiunque usi un ranking federale come misura,
-me compreso, e meritava una verifica invece di una risposta a parole.
+gare locali, che nel ranking della federazione olandese avevano lo stesso identico
+punteggio: 414 punti. In una metrica costruita per tenere conto del livello delle gare
+quegli stessi due valevano 76 e 21, cioè un fattore quasi quattro nascosto dentro un
+pareggio. Il motivo è che il ranking olandese non conta i risultati internazionali, e quindi
+dà zero punti proprio alle gare più difficili. La critica colpisce in pieno chiunque usi un
+ranking federale come misura, me compreso, e meritava una verifica invece di una risposta a
+parole.
 
 La prima metà non ci riguarda, perché la classifica italiana pesa le gare per livello: nelle
-categorie con calendario internazionale, cioè Juniores e Under 23, una gara nazionale vale il
-doppio di una regionale e una internazionale il triplo. Il dettaglio delle singole gare non ce
-l'ho, ma la conseguenza si vede lo stesso, e basta dividere i punti per il numero di
+categorie con calendario internazionale, cioè Juniores e Under 23, una gara nazionale vale
+il doppio di una regionale e una internazionale il triplo. Il dettaglio delle singole gare
+non ce l'ho, ma la conseguenza si vede lo stesso, e basta dividere i punti per il numero di
 piazzamenti nei primi cinque.
 
 | categoria | punti per piazzamento |[^p2misura]
@@ -164,28 +167,29 @@ porto dietro dalla fonte, e conviene che tu lo tenga presente ogni volta che leg
 piazzamento come se fosse una misura del valore di un atleta.
 
 Nel verificare tutto questo è saltato fuori un terzo problema, che gli olandesi non
-sollevano. Con una scala che va da cinque a un punto i totali possibili sono pochi e i ragazzi
-tanti, al punto che **fino al 95% dei classificati condivide il proprio punteggio con qualcun
-altro**. Il problema me lo aspettavo, e avevo deciso di sciogliere i pari merito guardando
-prima le vittorie, poi i secondi posti e così via, decisione presa prima di guardare qualunque
-esito. Messa alla prova, però, quella raffinatezza non migliora la previsione in nessuna
-categoria: a parità di punti, il modo in cui li hai presi non aggiunge niente, e cinque punti
-fatti con una vittoria valgono quanto cinque punti fatti con cinque quinti posti.[^p2misura]
+sollevano. Con una scala che va da cinque a un punto i totali possibili sono pochi e i
+ragazzi tanti, al punto che **fino al 95% dei classificati condivide il proprio punteggio
+con qualcun altro**. Il problema me lo aspettavo, e avevo deciso di sciogliere i pari merito
+guardando prima le vittorie, poi i secondi posti e così via, decisione presa prima di
+guardare qualunque esito. Messa alla prova, però, quella raffinatezza non migliora la
+previsione in nessuna categoria: a parità di punti, il modo in cui li hai presi non aggiunge
+niente, e cinque punti fatti con una vittoria valgono quanto cinque punti fatti con cinque
+quinti posti.[^p2misura]
 
 Questo apre una domanda che mi hanno fatto più volte, e che vale la pena chiudere qui. Nelle
 categorie piccole le gare sono corte e quasi sempre pianeggianti, quindi a vincere tendono a
 essere i ragazzi esplosivi, quelli con lo spunto veloce. Se fosse un fenotipo che non porta
 lontano, dovremmo vedere che **a parità di punti** chi vince di più arriva di meno. Ho
 guardato: prendendo atleti con esattamente lo stesso punteggio nella stessa stagione e
-confrontando chi ha una quota di vittorie sopra e sotto la mediana, in Esordienti il tasso di
-professionismo è identico (1,7% contro 1,8%), in Allievi va peggio chi vince di più (1,0%
+confrontando chi ha una quota di vittorie sopra e sotto la mediana, in Esordienti il tasso
+di professionismo è identico (1,7% contro 1,8%), in Allievi va peggio chi vince di più (1,0%
 contro 2,2%) e in Juniores meglio (4,7% contro 2,8%, ma su 43 casi). Nessun andamento
 coerente: né conferma né smentita, e i numeri sono troppo piccoli per pretendere di
 più.[^p2vittorie]
 
 Va detto anche perché la domanda resta aperta sul serio: il profilo delle gare, cioè
-lunghezza e altimetria, non è nei dati. Per rispondere davvero servirebbe sapere che gara era
-quella in cui hai vinto, e quell'informazione non è pubblicamente disponibile.
+lunghezza e altimetria, non è nei dati. Per rispondere davvero servirebbe sapere che gara
+era quella in cui hai vinto, e quell'informazione non è pubblicamente disponibile.
 
 ## Cosa te ne porti a casa
 
@@ -195,16 +199,16 @@ Ogni percentuale che leggerai ha come denominatore un settimo dei ragazzi tesser
 loro totalità, per cui le quote vere sono più basse di quelle che trovi scritte. Di quanto
 esattamente non lo so, e chi ti dice di saperlo sta estrapolando.
 
-L'imbuto non è una catena: una parte consistente di chi si trova in una categoria non c'era in
-quella prima. Entrare tardi è normalissimo.
+L'imbuto non è una catena: una parte consistente di chi si trova in una categoria non c'era
+in quella prima. Entrare tardi è normalissimo.
 
-E la classifica misura quanto sei andato a punti in Italia, con le gare pesate per livello dai
-Juniores in su. È una misura onesta e grossolana: buona per ordinare, insufficiente per
+E la classifica misura quanto sei andato a punti in Italia, con le gare pesate per livello
+dai Juniores in su. È una misura onesta e grossolana: buona per ordinare, insufficiente per
 giudicare.
 
 Restano poi quei 1 845 ragazzi che si perdono per strada fra l'Under 15 e l'Under 23, e la
-domanda ovvia è se abbiano smesso di correre. La risposta è no, e il modo in cui si dimostra è
-la parte più sorprendente di tutta questa ricerca. È il tema della prossima puntata.
+domanda ovvia è se abbiano smesso di correre. La risposta è no, e il modo in cui si dimostra
+è la parte più sorprendente di tutta questa ricerca. È il tema della prossima puntata.
 
 ---
 
@@ -217,9 +221,9 @@ la parte più sorprendente di tutta questa ricerca. È il tema della prossima pu
 > coprono le stagioni 2018-2025, perché prima di allora non sono pubblici.
 >
 > Le due serie non sono perfettamente allineate, in quanto il tesseramento è per categoria e
-> non per specialità: la copertura calcolata è quindi un limite inferiore, perché confronta i
-> classificati su strada con tutti i tesserati di quella categoria, compreso chi corre solo
-> fuoristrada.
+> non per specialità: la copertura calcolata è quindi un limite inferiore, perché confronta
+> i classificati su strada con tutti i tesserati di quella categoria, compreso chi corre
+> solo fuoristrada.
 >
 > Il confronto fra le due versioni del percentile e il test sui pari merito stanno in
 > [R/30_misura.R](https://github.com/lucabnt/ciclismo-giovanile-vs-pro/blob/main/R/30_misura.R); l'esperimento di estrapolazione all'indietro è nella sezione «Si possono
@@ -249,13 +253,13 @@ la parte più sorprendente di tutta questa ricerca. È il tema della prossima pu
 
 **A. Il post è lungo e contiene due temi.** «Chi c'è dentro la classifica» e «cosa misura la
 classifica» sono argomenti imparentati ma distinti, e ci sono tre strade. Lasciarli insieme
-come ora, con il vantaggio che il lettore incontra lo strumento una volta sola e non ci torna
-più. Spostare la parte sulla misura nel post 4, dove il percentile comincia a essere usato per
-predire, il che la avvicina all'uso ma appesantisce un post già denso. Oppure farne un post a
-sé, portando la serie a nove: ha materiale sufficiente, fra i due ciclisti olandesi, i
-moltiplicatori e i pari merito, e un risultato controintuitivo tutto suo. Se la serie può
-permettersi nove puntate consiglierei quest'ultima, perché la storia dei 414 punti identici è
-troppo buona per stare in mezzo a un altro discorso.
+come ora, con il vantaggio che il lettore incontra lo strumento una volta sola e non ci
+torna più. Spostare la parte sulla misura nel post 4, dove il percentile comincia a essere
+usato per predire, il che la avvicina all'uso ma appesantisce un post già denso. Oppure
+farne un post a sé, portando la serie a nove: ha materiale sufficiente, fra i due ciclisti
+olandesi, i moltiplicatori e i pari merito, e un risultato controintuitivo tutto suo. Se la
+serie può permettersi nove puntate consiglierei quest'ultima, perché la storia dei 414 punti
+identici è troppo buona per stare in mezzo a un altro discorso.
 
 **B. Il tono sulla moltiplicazione non fatta.** Ora è raccontata come una scelta metodologica
 di cui andare orgogliosi. Si può anche tagliarla, limitandosi a dire che il dato non c'è,
@@ -264,11 +268,11 @@ costa circa centocinquanta parole e in cambio dà al lettore un esempio concreto
 significhi non barare con i numeri, che è metà del messaggio della serie.
 
 **C. Quale figura mettere in apertura.** Le candidate sono `copertura_tesserati`, che porta il
-numero chiave, e `attrito_imbuto`, che è più spettacolare per via dei tre ordini di grandezza.
-Se il post apre con l'imbuto, però, il lettore incontra la conclusione prima del denominatore,
-che è esattamente l'errore che il post vuole correggere: meglio la copertura in apertura e
-l'imbuto a metà.
+numero chiave, e `attrito_imbuto`, che è più spettacolare per via dei tre ordini di
+grandezza. Se il post apre con l'imbuto, però, il lettore incontra la conclusione prima del
+denominatore, che è esattamente l'errore che il post vuole correggere: meglio la copertura
+in apertura e l'imbuto a metà.
 
 **D. La frase iniziale.** Il post apre smentendo una frase molto diffusa, il che è efficace e
-un filo polemico. L'alternativa più fredda è aprire con la regola dei primi cinque e arrivare
-alla smentita soltanto alla fine.
+un filo polemico. L'alternativa più fredda è aprire con la regola dei primi cinque e
+arrivare alla smentita soltanto alla fine.
