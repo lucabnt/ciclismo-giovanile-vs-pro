@@ -8,7 +8,8 @@
 >
 > **Numero chiave del post:** 30%.
 > **Fonti:** `docs/literature_review.md`. Nessun dato originale.
-> **Figure:** nessuna.
+> **Figure:** nessuna generata dall'analisi; nel testo i segnaposto della copertina e
+> di un grafico da disegnare.
 
 ---
 
@@ -16,6 +17,13 @@
 professionismo. Prima di tirare fuori i miei numeri mi sembrava giusto raccontare cosa la
 ricerca sa già, perché in vent'anni qualche risposta è arrivata, ed è abbastanza diversa da
 quella che si sente ripetere ai bordi delle strade.*
+
+> 📷 **Immagine da procurare (copertina):** la linea di partenza di una gara giovanile su
+>   strada, ripresa da dietro il gruppo, senza volti riconoscibili.
+> *Didascalia proposta:* Ai Mondiali juniores ogni nazione porta sei corridori: chi arriva a
+>   quella linea di partenza ha superato ogni selezione che il ciclismo giovanile riesca a
+>   mettere in piedi.
+> *Testo alternativo:* Un gruppo di giovani ciclisti schierati alla partenza, visti di spalle.
 
 Ai Mondiali juniores su strada ogni nazione porta sei corridori. Sei, su tutti i
 diciassettenni e diciottenni tesserati in quel paese, e chi ha corso da Juniores ricorda
@@ -34,6 +42,14 @@ una cosa comoda. Andare forte da ragazzi non è indispensabile per arrivare, e n
 neanche lontanamente a garantirtelo. Sette predestinati su dieci non ce la fanno, e sette
 arrivati su dieci non erano predestinati. È il risultato più solido di tutta la ricerca sul
 tema ed è anche il più vecchio, visto che da allora nessuno è riuscito a smentirlo.
+
+> 📐 **Grafico da produrre (a corredo dello studio del 2006):** due barre affiancate, una per la
+>   lettura in avanti (quanti juniores del Mondiale arrivano al Mondiale élite) e una per quella
+>   all'indietro, entrambe riempite per circa un terzo.
+> *Didascalia proposta:* Le due percentuali rispondono a domande opposte e si somigliano: sette
+>   predestinati su dieci non arrivano, e sette arrivati su dieci non erano predestinati.
+> *Testo alternativo:* Due barre orizzontali riempite per circa un terzo, una per ciascuna
+>   direzione del confronto.
 
 ## Cosa hanno stabilito vent'anni di ricerca
 

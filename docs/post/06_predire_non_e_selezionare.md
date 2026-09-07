@@ -15,6 +15,13 @@
 rendimento giovanile predica il professionismo; qui provo a usare quella misura per
 scegliere, che è una cosa molto diversa.*
 
+> 📷 **Immagine da procurare (copertina):** la griglia di partenza vista dall'alto o da dietro,
+>   con il gruppo largo e molti atleti nell'inquadratura, volti non riconoscibili.
+> *Didascalia proposta:* Su novecento ragazzi in classifica ne selezioni novantuno, e più della
+>   metà di quei novantuno non diventerà professionista.
+> *Testo alternativo:* Un gruppo numeroso di giovani ciclisti schierati prima della partenza,
+>   inquadrato dall'alto.
+
 Prendiamo la categoria in cui la previsione funziona meglio, cioè i Juniores di secondo
 anno, diciotto anni, e applichiamo il criterio più naturale che una società possa adottare:
 seguo il dieci per cento migliore. Su 901 ragazzi in classifica ne seleziono 91.
@@ -29,6 +36,12 @@ tardi in questi conti non c'è.
 |---|---|
 | futuri professionisti intercettati | **59%** |[^p6metriche]
 | selezionati che non lo diventeranno | **52%** |
+
+> 🖼️ **Figura: `metriche_soglie.png`**
+> *Didascalia proposta:* Le due barre sono la sensibilità e il valore predittivo positivo. Gli
+>   studi sul ciclismo giovanile riportano quasi sempre la prima, e nessuno aveva mai riportato
+>   la seconda.
+> *Testo alternativo:* Due serie di barre per categoria, una in crescita e una che resta bassa.
 
 Sono vere tutte e due, e quasi sempre te ne citano una alla volta. Chi vuole difendere la
 selezione ti dice la prima, cioè che guardando il dieci per cento migliore prendi quasi sei
@@ -136,6 +149,12 @@ Per chi invece c'è tutti gli anni, i numeri sono questi: **11,1%** di probabili
 arrivare al professionismo con un rendimento nella media della classifica, 30,9% con venti
 posizioni percentuali in più, 3,7% con venti in meno.
 
+> 🖼️ **Figura: `sopravvivenza_hazard.png`**
+> *Didascalia proposta:* Il massimo cade a ventitré anni, e prima dei diciannove il rischio è
+>   zero per regolamento e non perché i dati dicano qualcosa.
+> *Testo alternativo:* Due curve di rischio in funzione dell'età, con il massimo attorno ai
+>   ventitré anni.
+
 ## Il rendimento predice l'ingresso, e poi si ferma
 
 Resta un'ultima domanda, e la risposta è la più netta di tutta la serie.
@@ -149,6 +168,11 @@ fra i primi cento al mondo. Il piazzamento a diciotto anni dice qualcosa anche s
 | diventare professionista | **×2,47** |
 | entrare nel top 500, **fra i professionisti** | ×1,20 *(non distinguibile dal caso)* |
 | entrare nel top 100, **fra i top 500** | ×1,28 *(non distinguibile dal caso)* |
+
+> 🖼️ **Figura: `qualita_catena.png`**
+> *Didascalia proposta:* Il gradino più alto poggia su quindici atleti: le curve dicono che non
+>   si vede un effetto, non che non ce ne sia uno.
+> *Testo alternativo:* Tre curve crescenti e quasi parallele, una per ciascun livello di esito.
 
 La classifica giovanile italiana predice chi entrerà, e quasi nulla di quello che succede
 dopo. La formulazione però va scelta con attenzione, perché quella sbagliata è a un passo:

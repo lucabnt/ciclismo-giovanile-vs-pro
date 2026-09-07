@@ -100,6 +100,30 @@ che i numeri di un paragrafo vengono quasi sempre dallo stesso posto.
 «non sono pubblicamente disponibili». È più corto, è quello che sappiamo davvero, e non
 attribuisce un'intenzione a nessuno.
 
+## Le immagini
+
+**Ogni immagine ha un segnaposto nel testo, nel punto esatto in cui va.** Sono tre tipi e si
+riconoscono dall'icona: la cornice è una figura che l'analisi già produce, e il nome fra
+apici è il file in `output/figure_web/`; la macchina fotografica è una fotografia da
+procurare; la squadra è un grafico che non esiste ancora e andrebbe disegnato. Il segnaposto
+parla a chi impagina e non al lettore: quando l'immagine viene caricata sparisce, e restano
+la didascalia e il testo alternativo che si porta dietro. Il nome del file resta nudo, senza
+link a GitHub, per la stessa ragione per cui il blocco di avviso in testa contiene comandi.
+
+**La didascalia aggiunge qualcosa, non ripete la frase accanto.** Se il testo ha appena detto
+che il primo anno prende un quarto dei posti, la didascalia dice perché quel confronto è
+pulito, oppure quale trappola eviti guardando la figura. Una didascalia che riassume il
+paragrafo che le sta sopra è spazio sprecato due volte.
+
+**Il testo alternativo descrive quello che si vede a chi non lo vede**, quindi la forma del
+grafico e il suo andamento, non la conclusione: quella sta già nella didascalia e nel testo.
+
+**Nelle fotografie non entrano volti riconoscibili di minori.** È la stessa ragione per cui i
+dati personali non entrano nel repository, e vale anche per i pettorali, i fogli firma e gli
+ordini di arrivo, che vanno ripresi in modo che i nomi non si leggano. Di ogni fotografia
+bisogna inoltre poter dire da dove arriva, quindi vanno bene solo immagini proprie o con una
+licenza compatibile con quella dei contenuti.
+
 ## La struttura di ogni post
 
 Resta quella del piano editoriale, con una differenza: la nota di contesto in testa, come

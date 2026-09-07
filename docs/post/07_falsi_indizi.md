@@ -15,6 +15,12 @@
 professionismo; qui guardo le altre tre cose che tutti danno per scontate, cioè il mese di
 nascita, la società e la regione.*
 
+> 📷 **Immagine da procurare (copertina):** il foglio firma di partenza con la colonna dell'anno
+>   di nascita accanto ai numeri di gara, fotografato in modo che i nomi non siano leggibili.
+> *Didascalia proposta:* Tre cose che tutti danno per scontate: il mese di nascita, la squadra
+>   e la regione. Due si vedono nei dati, e nessuna significa quello che sembra.
+> *Testo alternativo:* Un foglio firma di gara con le date di nascita, ripreso da vicino.
+
 Se frequenti il ciclismo giovanile sai benissimo che quelle tre cose contano. I ragazzi nati
 a gennaio hanno quasi un anno di sviluppo in più di quelli nati a dicembre, e a quell'età si
 vede. Chi entra in una squadra che sa lavorare arriva, chi resta nel club di paese si perde.
@@ -43,6 +49,12 @@ Fatto per bene, l'effetto c'è ed è grosso.
 | Under 17 | +30% |
 | Under 19 | +15% |
 | Under 23 | −1% |
+
+> 🖼️ **Figura: `rae_gradiente.png`**
+> *Didascalia proposta:* L'atteso non è il 25% per trimestre: in Italia si nasce di più fra
+>   maggio e settembre, e la figura tiene conto della stagionalità reale delle nascite.
+> *Testo alternativo:* Linea discendente del rapporto fra nati nel primo e nell'ultimo
+>   trimestre, da Under 15 a Under 23.
 
 A tredici anni i ragazzi nati nel primo trimestre sono **2,13 volte** quelli nati
 nell'ultimo, mentre in Under 23 il rapporto scende a **1,09**, cioè praticamente sparisce.
@@ -115,6 +127,13 @@ divario grezzo ne resta al massimo **1,16**, e solo due durate di carriera hanno
 atleti in entrambi i gruppi per essere confrontate davvero. Non è una smentita netta, perché
 con due strati non smentisci niente in modo netto, ma basta e avanza per non scrivere quel
 titolo.
+
+> 🖼️ **Figura: `contesto_confondente.png`**
+> *Didascalia proposta:* Le due serie hanno la stessa forma. Il confronto a parità di stagioni
+>   corse regge però solo su due durate di carriera: abbastanza per non scrivere quel titolo, non
+>   abbastanza per una smentita.
+> *Testo alternativo:* Due serie di barre sovrapponibili, una per il tasso di professionismo e
+>   una per le stagioni corse, in funzione del numero di cambi di società.
 
 Poi c'è la scoperta che chiude la questione, e che nessuno degli studi precedenti aveva
 guardato. Non tutte le società sono attive in tutte le categorie, per cui quando un ragazzo

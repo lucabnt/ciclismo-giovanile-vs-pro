@@ -15,6 +15,12 @@
 tesserato su sette e che fra i tredici e i ventidue anni ne perde quasi tutti. Qui provo a
 capire dove finiscano, e ti anticipo che la risposta non è quella che sembra.*
 
+> 📷 **Immagine da procurare (copertina):** un ragazzo solo sulla strada, staccato dal gruppo
+>   che si allontana, ripreso da dietro e in controluce.
+> *Didascalia proposta:* Il nome che sparisce da una classifica quasi sempre sta ancora
+>   pedalando altrove.
+> *Testo alternativo:* Un giovane ciclista solo in strada, con il gruppo lontano davanti a lui.
+
 Un ragazzo chiude la stagione da Allievo secondo anno al settantesimo posto della classifica
 nazionale, l'anno dopo passa Juniores, e a fine stagione il suo nome in classifica non c'è
 più. Se metti a confronto quei due elenchi la conclusione ti viene da sola: ha smesso.
@@ -58,6 +64,13 @@ Resta il fatto più vistoso, quello che sembra reggere la lettura drammatica: **
 chi esce dalla classifica esce nell'ultimo anno della propria categoria**. Non a metà
 percorso, non dopo una brutta stagione, ma proprio quando si cambia fascia.
 
+> 🖼️ **Figura: `attrito_uscite.png`**
+> *Didascalia proposta:* Le uscite non si distribuiscono lungo la categoria: si ammucchiano
+>   nell'ultimo anno, cioè in un momento deciso dal calendario e non da come è andata la
+>   stagione.
+> *Testo alternativo:* Barre delle uscite dalla classifica per anno di categoria, con l'ultimo
+>   anno molto più alto degli altri.
+
 Sembra la prova provata che il salto di categoria sia un trauma, con distanze nuove,
 avversari più grandi e squadra diversa, ed è una lettura del tutto plausibile. Proprio per
 questo conviene metterla alla prova invece di darla per buona.
@@ -70,6 +83,12 @@ categorie diverse. L'unica differenza è che ci sia o no il cambio di fascia.
 |---|---|---|
 | dentro la categoria | **79,9%** | 60,7% |
 | cambiando categoria | **32,4%** | **88,2%** |
+
+> 🖼️ **Figura: `passaggi_ritenzione.png`**
+> *Didascalia proposta:* Le due misure vanno in direzioni opposte, ed è il motivo per cui una
+>   sola delle due inganna: guardando la prima colonna il cambio di categoria sembra una strage.
+> *Testo alternativo:* Due serie di barre a confronto, quota di chi resta e composizione della
+>   lista di arrivo, dentro la categoria e al cambio di fascia.
 
 La prima colonna conferma il crollo, e di brutto: si passa da quattro su cinque a uno su
 tre. La seconda dice il contrario con la stessa forza, perché dopo un cambio di categoria la
@@ -102,6 +121,13 @@ dalla finestra d'età di questo studio.
 Dove nessuno fa concorrenza a nessuno le due annate si dividono i posti a metà, come è ovvio
 che sia. Dove la lista è una sola, e le gare sono esattamente le stesse per tutti, il primo
 anno ne prende poco più di un quarto.
+
+> 🖼️ **Figura: `posti_quote.png`**
+> *Didascalia proposta:* Gli Esordienti sono il caso di controllo, cioè l'unica categoria in
+>   cui ogni annata ha la propria classifica, e sono anche l'unica in cui i posti si dividono a
+>   metà.
+> *Testo alternativo:* Barre della quota di posti presa dal primo anno di categoria, molto più
+>   alta negli Esordienti che nelle altre categorie.
 
 Vuol dire che il crollo **non è una questione di posti che spariscono**: i posti sono gli
 stessi, cambia chi li vince. Un Allievo al primo anno corre contro ragazzi che hanno un anno
@@ -137,6 +163,13 @@ del 40% in Esordienti e del 58% in Under 23, e non è colpa del covid, perché i
 cominciato molto prima e dopo il 2020 non si è tornati ai valori di prima. Nella finestra in
 cui possiamo confrontare, i tesserati Esordienti calano di circa un decimo e le gare di
 quasi un quinto: il movimento si restringe, e il calendario si restringe più in fretta.
+
+> 🖼️ **Figura: `posti_andamento.png`**
+> *Didascalia proposta:* Il 2020 è la stagione dimezzata dal covid, ma il calo comincia molto
+>   prima e dopo non si torna indietro: la figura serve soprattutto a togliere di mezzo la
+>   spiegazione più comoda.
+> *Testo alternativo:* Linee del numero di gare per stagione, in discesa in tutte le categorie
+>   fra il 2009 e il 2025.
 
 ## Sono più continui, quelli che arrivano?
 

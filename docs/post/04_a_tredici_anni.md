@@ -16,6 +16,13 @@
 classifica; da qui in avanti provo a rispondere alla domanda per cui è nato tutto lo studio,
 cioè da che età il risultato in gara dica qualcosa sul futuro.*
 
+> 📷 **Immagine da procurare (copertina):** una volata di Esordienti ripresa di lato o da
+>   dietro, gruppo compatto su una strada stretta, senza volti riconoscibili.
+> *Didascalia proposta:* A tredici anni mi aspettavo di non trovare niente, e invece qualcosa
+>   si vede già.
+> *Testo alternativo:* Un gruppo di giovanissimi ciclisti lanciati in volata su una strada di
+>   paese.
+
 Quando ho cominciato ero convinto che a tredici anni non ci fosse niente da vedere.
 
 Lo dice la letteratura, perché a quell'età quello che misuri è soprattutto chi si è
@@ -55,6 +62,12 @@ diciotto nell'89%. Secondo le soglie convenzionali di questa misura la separazio
 anni è già grande, e ti confesso che non era quello che mi aspettavo di
 trovare.[^p4punteggi]
 
+> 🖼️ **Figura: `punteggi_delta.png`**
+> *Didascalia proposta:* Le due curve sono i percentili mediani dei due gruppi, e il gruppo si
+>   conosce solo guardando indietro: a tredici anni nessuno sapeva chi fosse chi.
+> *Testo alternativo:* Due profili di percentile a confronto, uno per i futuri professionisti e
+>   uno per tutti gli altri, che si allontanano con l'età.
+
 Su questo 74% conviene essere precisi, perché due equivoci sono in agguato. Il primo: il
 confronto è **fra chi era in classifica quell'anno**, non fra tutti i ragazzi. Chi a tredici
 anni non ha mai fatto un punto non entra né fra i professionisti né fra gli altri, quindi la
@@ -81,6 +94,12 @@ quanto conti salire di dieci posizioni percentuali.
 | Under 19, primo anno | 17 | ×1,64 |
 | **Under 19, secondo anno** | **18** | **×2,28** |
 | Under 23, primo anno | 19 | ×1,32 |
+
+> 🖼️ **Figura: `univariati_or.png`**
+> *Didascalia proposta:* Ogni riga è un modello a sé, con l'intervallo al 95% e la scala
+>   logaritmica, perché un odds ratio si legge in rapporti e non in differenze.
+> *Testo alternativo:* Grafico a punti con barre di errore, un odds ratio per ogni categoria e
+>   anno di categoria.
 
 Si legge così: fra due Esordienti che differiscono di dieci posizioni percentuali, quello
 davanti ha circa il 40% di probabilità in più di arrivare al professionismo; fra due
@@ -142,6 +161,12 @@ volta guardando quanto migliori la previsione.
 | più l'Under 17 | 66% |
 | **più l'Under 19** | **81%** |
 | più l'Under 23 | 82% |
+
+> 🖼️ **Figura: `annidati_auc.png`**
+> *Didascalia proposta:* Il confronto regge solo perché i 102 atleti sono sempre gli stessi:
+>   cambiando gruppo a ogni passo si misurerebbe chi è rimasto, e non l'informazione aggiunta.
+> *Testo alternativo:* Linea crescente della capacità predittiva a mano a mano che si
+>   aggiungono categorie, con un gradino marcato in corrispondenza dell'Under 19.
 
 Il salto è tutto in un punto solo: l'Under 19 da solo aggiunge più di tutte le categorie
 precedenti messe insieme, mentre l'Under 23, che pure è la categoria più vicina al

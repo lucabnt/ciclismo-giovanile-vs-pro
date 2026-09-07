@@ -16,6 +16,12 @@
 guardare i miei dati, partendo dalla domanda più noiosa e più importante di tutte, cioè di
 chi stiamo parlando esattamente.*
 
+> 📷 **Immagine da procurare (copertina):** il tavolo della giuria a fine gara, con i fogli
+>   dell'ordine di arrivo, fotografati in modo che i nomi non siano leggibili.
+> *Didascalia proposta:* Tutto lo studio parte da qui: una classifica costruita sui primi
+>   cinque di ogni gara, che non è l'elenco dei giovani ciclisti italiani.
+> *Testo alternativo:* Fogli dell'ordine di arrivo appoggiati sul tavolo della giuria.
+
 C'è una frase che salta fuori ogni volta che si discute di questi numeri, e che è quasi
 sempre sbagliata: su mille giovani ciclisti italiani, trentacinque diventano professionisti.
 Il numero è giusto. È «giovani ciclisti italiani» a non esserlo per niente.
@@ -45,6 +51,13 @@ risposta.
 | Allievi | 2 673 | 371 | 13,9% |
 | Juniores | 1 687 | 262 | 15,5% |
 | Under 23 | 1 060 | 162 | 15,3% |
+
+> 🖼️ **Figura: `copertura_tesserati.png`**
+> *Didascalia proposta:* La barra è la media delle stagioni, la linea va dalla più bassa alla
+>   più alta. Nel conteggio dei tesserati c'è anche chi corre altre specialità, quindi uno su
+>   sette semmai sovrastima la copertura.
+> *Testo alternativo:* Barre per categoria con la quota di tesserati presenti in classifica,
+>   tutte attorno al quindici per cento.
 
 In classifica ci finisce **circa un tesserato su sette**, e la cosa che colpisce non è il
 valore in sé ma quanto stia fermo: quattro categorie e otto stagioni, sempre lo stesso
@@ -77,6 +90,12 @@ guardandola: sì, si piazzano sempre gli stessi. Il dieci per cento migliore si 
 salendo di categoria**: è la stessa a tredici anni e a ventidue, per cui la selezione non si
 stringe con l'età, ha già quella forma fin dall'inizio.
 
+> 🖼️ **Figura: `posti_concentrazione.png`**
+> *Didascalia proposta:* Il dieci per cento migliore prende quattro punti su dieci in ogni
+>   categoria. È la stessa forma anche fra le ragazze, come racconta l'ottava puntata.
+> *Testo alternativo:* Andamento quasi piatto della quota di punti presa dal decile migliore,
+>   categoria per categoria.
+
 ## L'imbuto, e come non leggerlo
 
 Adesso che sai di chi si parla, possiamo guardare l'attrito. Le coorti principali sono i
@@ -93,6 +112,12 @@ serve a rendere confrontabili annate diverse, e chi arriva più tardi qui non ri
 | Under 19 | 1 051 | 34,1% |
 | Under 23 | 342 | 10,2% |
 | professionisti | 77 | 3,5% |
+
+> 🖼️ **Figura: `attrito_imbuto.png`**
+> *Didascalia proposta:* Il primo scalino non è «tutti i giovani ciclisti italiani»: è chi a
+>   tredici anni era già arrivato almeno una volta nei primi cinque. Tre ordini di grandezza
+>   separano quello scalino dall'ultimo.
+> *Testo alternativo:* Imbuto a scalini che si restringe dagli Under 15 ai professionisti.
 
 Da poco più di duemila ragazzi si arriva a settantasette, cioè trentacinque su mille, con
 tre ordini di grandezza fra l'inizio e la fine.
@@ -155,6 +180,13 @@ piazzamenti nei primi cinque.
 | Under 17 | 2,73 |
 | **Under 19** | **3,02** |
 | **Under 23** | **4,17** |
+
+> 🖼️ **Figura: `misura_rapporto.png`**
+> *Didascalia proposta:* I moltiplicatori delle gare non sono nei dati, e si vedono solo
+>   dividendo i punti per il numero di piazzamenti: è un modo indiretto di controllare che la
+>   scala faccia quello che dichiara.
+> *Testo alternativo:* Barre dei punti per piazzamento, in crescita dalle categorie piccole
+>   all'Under 23.
 
 Il salto cade esattamente fra Allievi e Juniores, cioè dove i moltiplicatori entrano in
 funzione. È una conferma indiretta ma pulita: la scala fa quello che dichiara di fare.
@@ -271,7 +303,8 @@ significhi non barare con i numeri, che è metà del messaggio della serie.
 numero chiave, e `attrito_imbuto`, che è più spettacolare per via dei tre ordini di
 grandezza. Se il post apre con l'imbuto, però, il lettore incontra la conclusione prima del
 denominatore, che è esattamente l'errore che il post vuole correggere: meglio la copertura
-in apertura e l'imbuto a metà.
+in apertura e l'imbuto a metà. I segnaposto nel testo seguono già questa scelta, e
+spostarli vuol dire spostare due blocchi.
 
 **D. La frase iniziale.** Il post apre smentendo una frase molto diffusa, il che è efficace e
 un filo polemico. L'alternativa più fredda è aprire con la regola dei primi cinque e

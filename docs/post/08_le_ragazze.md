@@ -15,6 +15,12 @@
 volta che ne ho parlato con qualcuno. Qui rispondo: cosa si può dire delle ragazze, cosa no,
 e perché la differenza fra le due cose non è dove ti aspetteresti.*
 
+> 📷 **Immagine da procurare (copertina):** un gruppo di una gara giovanile femminile, ripreso
+>   di spalle o di lato, senza volti riconoscibili.
+> *Didascalia proposta:* Le ragazze in classifica sono un settimo dei ragazzi, e corrono otto
+>   volte meno gare.
+> *Testo alternativo:* Un gruppo di giovani cicliste in gara su strada, visto da dietro.
+
 Comincio dalla domanda che mi hanno fatto più spesso, cioè perché lo studio riguardi solo i
 maschi. La risposta onesta è che non è stata una scelta di merito: gli esiti di carriera
 femminili non li avevo raccolti, e senza sapere chi ce l'ha fatta ogni domanda del tipo «il
@@ -66,6 +72,12 @@ per annata.
 
 *Esordienti femminili*[^p8ragazze]
 
+> 🖼️ **Figura: `ragazze_separazione.png`**
+> *Didascalia proposta:* È un confronto prima e dopo sulla stessa popolazione, ed è la ragione
+>   per cui vale più del confronto fra categorie diverse della terza puntata.
+> *Testo alternativo:* Due barre a confronto, prima e dopo la separazione delle classifiche,
+>   con la seconda quasi doppia della prima.
+
 Stessa categoria, stessa età, stesse ragazze. Cambia solo se le due annate si dividano la
 classifica oppure no, e la quota dei posti del primo anno passa **da poco più di un quarto a
 metà esatta**.
@@ -92,6 +104,13 @@ debole.
 
 *rapporto fra nati nel primo e nell'ultimo trimestre, sulle stesse annate e con lo stesso
 atteso demografico*[^p8rae]
+
+> 🖼️ **Figura: `rae_sessi.png`**
+> *Didascalia proposta:* Stesse annate e stesso atteso demografico per i due sessi, che è la
+>   condizione perché il confronto significhi qualcosa. Le coorti femminili restano molto meno
+>   numerose.
+> *Testo alternativo:* Due linee a confronto, maschi e femmine, del rapporto fra nati nel primo
+>   e nell'ultimo trimestre.
 
 L'ipotesi regge dove i numeri sono solidi. A tredici anni lo squilibrio femminile è
 sensibilmente più basso, e in Allieve arriva a non distinguersi più dalla distribuzione

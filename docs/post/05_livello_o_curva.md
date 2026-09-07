@@ -7,13 +7,21 @@
 >
 > **Numeri chiave del post:** 20,7% contro 2,1%.
 > **Moduli:** `traiettorie`.
-> **Figure:** `traiettorie_incrocio`.
+> **Figure:** `traiettorie_incrocio`, più un grafico di apertura da disegnare.
 
 ---
 
 *Quinta puntata. Nella precedente ho mostrato che il piazzamento in classifica dice qualcosa
 già a tredici anni; qui provo a rispondere alla domanda che in società ci si fa più spesso,
 cioè se conti di più dove sei o dove stai andando.*
+
+> 📐 **Grafico da produrre (copertina):** due rette su assi età e percentile, una piatta al
+>   settantacinquesimo e una che sale dal quarantesimo al novantesimo. È l'illustrazione dei due
+>   ragazzi inventati dell'apertura e non un dato: conviene che la didascalia lo dica.
+> *Didascalia proposta:* I due ragazzi dell'esempio non esistono. Se dovessi puntare su uno
+>   solo, quale sceglieresti?
+> *Testo alternativo:* Due linee su un grafico età-percentile, una orizzontale e una in salita,
+>   che si incrociano verso i sedici anni.
 
 Due ragazzi, sedici anni tutti e due. Il primo è sempre stato lì, da tre stagioni attorno al
 settantacinquesimo percentile della sua categoria: regolare, nessuna sorpresa, nessun
@@ -62,6 +70,12 @@ sono arrivati in ciascuna delle nove caselle.
 | **livello alto** | 2,1% | 13,2% | **20,7%** |
 | **livello medio** | 0,0% | 0,9% | 5,9% |
 | **livello basso** | 1,1% | 0,0% | 0,7% |
+
+> 🖼️ **Figura: `traiettorie_incrocio.png`**
+> *Didascalia proposta:* Il fondo del grafico non è schiacciato per caso: nel terzo più basso
+>   il miglioramento non salva quasi nessuno, ed è la lettura in verticale a dirlo.
+> *Testo alternativo:* Barre raggruppate per livello e per miglioramento, con una sola barra
+>   molto più alta delle altre.
 
 La tabella si legge in due direzioni, e le due letture insieme sono la risposta del post.
 
