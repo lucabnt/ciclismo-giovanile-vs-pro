@@ -4,6 +4,8 @@ Analisi predittiva sui ranking nazionali giovanili italiani (ciclismo.info, 2007
 
 Impianto metodologico: [`guida_metodologica_v5.md`](guida_metodologica_v5.md).
 
+> **In English.** A statistical study of Italian youth cycling rankings (ciclismo.info, seasons 2007-2025) and of who later races professionally (ProCyclingStats). It asks from what age race results say something about a rider's future. They already do at thirteen, more than the literature expected; the study then measures why that is still a poor basis for selection, since most of the riders any threshold would flag never turn professional. Published here are the code, the generated report (`output/analisi.md`) and the results archive (`output/risultati.db`) that every number in it is drawn from. The underlying data are not published, because they concern minors. Code is MIT, text and figures CC BY 4.0. Everything else, this file included, is in Italian.
+
 ## Da dove vengono i dati
 
 | Fonte | Provenienza |
