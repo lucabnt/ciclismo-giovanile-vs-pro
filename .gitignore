@@ -22,7 +22,11 @@ output/*
 !output/analisi.md
 !output/risultati.db
 !output/figure/
-!output/figure_web/
+
+# Le stesse figure con i testi ingranditi per il web. Non entrano: sono un'esportazione
+# per il blog, e il documento pubblicato punta a output/figure/. Chi ha i dati le
+# rigenera con lo stesso comando; nel repository sarebbero due megabyte di doppioni.
+output/figure_web/
 
 *.db-wal
 *.db-shm
@@ -32,3 +36,22 @@ __pycache__/
 .Rhistory
 .RData
 .Rproj.user/
+
+# ---------------------------------------------------------------------------
+# LAVORAZIONE: qui dentro c'e' il prodotto, non la prova.
+#
+# I post sono quello che viene pubblicato sul blog, e il repository serve a dimostrare
+# come si e' arrivati a quei numeri: la prova sono output/analisi.md e l'archivio dei
+# risultati, contro cui ogni cifra dei post viene controllata. Pubblicare anche le bozze
+# significherebbe mettere online due versioni dello stesso testo, una delle quali dichiara
+# in testa di essere una bozza e si porta dietro le scelte editoriali ancora aperte.
+#
+# Le note dei post rimandano ai file del codice e non a questa cartella, quindi i link dei
+# post pubblicati continuano a funzionare senza di essa.
+# ---------------------------------------------------------------------------
+docs/post/
+docs/piano_post.md
+
+# Le versioni superate della guida metodologica. La sola valida e' guida_metodologica_v5.md,
+# e la storia di git conserva comunque le precedenti.
+archive/

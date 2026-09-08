@@ -22,9 +22,9 @@ per non rischiare di alterarlo trascrivendolo.
 
 | percorso | cosa contiene |
 |---|---|
-| `docs/` | rassegna della letteratura, definizioni, checklist TRIPOD, piano editoriale, bozze dei post |
+| `docs/` | rassegna della letteratura, definizioni, checklist TRIPOD, verifiche della sorgente |
 | `output/analisi.md` | il documento generato dall'analisi |
-| `output/figure/`, `output/figure_web/` | tutte le figure |
+| `output/figure/` | tutte le figure, ciascuna con la data di generazione scritta dentro l'immagine |
 | `README.md`, `guida_metodologica_v5.md` | descrizione del progetto e impianto metodologico |
 | `riferimenti/*.csv` | la **trascrizione** dei dati pubblici FCI, comprese le intestazioni di provenienza |
 

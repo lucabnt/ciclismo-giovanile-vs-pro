@@ -38,11 +38,8 @@ Servono a rispondere alla domanda che dà scala a tutto il resto: **in classific
 | [`docs/da_fare.md`](docs/da_fare.md) | Lavoro aperto: configurazione esterna, correzioni note, analisi da impostare |
 | [`docs/literature_review.md`](docs/literature_review.md) | Rassegna della letteratura, 22 studi, con appendice di revisione |
 | [`docs/tripod.md`](docs/tripod.md) | Checklist TRIPOD compilata: cosa è coperto, cosa resta un limite |
-| [`docs/piano_post.md`](docs/piano_post.md) | Come le sezioni dell'analisi diventano nove blog post |
-| [`docs/post/`](docs/post/) | Le bozze dei nove post, ciascuna con le scelte editoriali ancora aperte |
-| [`docs/post/STILE.md`](docs/post/STILE.md) | Le regole di scrittura dei post, e perché sono quelle |
-| [`docs/post/TITOLI.md`](docs/post/TITOLI.md) | I titoli pubblici della serie e i tag per il sito |
-| [`archive/`](archive/) | Le versioni precedenti della guida metodologica, dalla prima alla quarta. **Sono superate**: la sola versione valida è `guida_metodologica_v5.md`. Stanno qui perché mostrano come il disegno dello studio è cambiato, il che ogni tanto serve a capire perché una scelta è quella che è |
+| `docs/post/`, `docs/piano_post.md` | Le bozze dei nove post, il piano editoriale, le regole di scrittura e i titoli. **Non stanno nel repository**: sono il prodotto, non la prova, e i post finiti si leggono sul blog. Ogni loro cifra è controllata contro `output/risultati.db` da [`scripts/11_verifica_documenti.py`](scripts/11_verifica_documenti.py), che salta i file se non li trova |
+| `archive/` | Le quattro versioni precedenti della guida metodologica. **Non stanno nel repository**: sono superate dalla `v5`, e la storia di git le conserva comunque per chi voglia vedere come il disegno dello studio è cambiato |
 
 ## Rieseguire tutto da zero
 
@@ -227,7 +224,18 @@ partenza contiene dati personali e resta fuori da git, quindi senza i file di ou
 risultati non sarebbero verificabili da nessuno. Sono aggregati e mascherati, e il controllo
 privacy li attraversa come ogni altro file destinato al repository.
 
-Produce `output/analisi.md` — con indice, tabelle, figure e un riquadro «Come si misura» per ogni metodo usato — e le figure in due versioni: `output/figure/` per il documento e `output/figure_web/` per i post, con testi più grandi e maggiore risoluzione.
+Produce `output/analisi.md` — con indice, tabelle, figure e un riquadro «Come si misura» per ogni metodo usato — e le figure in due versioni: `output/figure/` per il documento, che sta nel repository, e `output/figure_web/` per i post, con testi più grandi e maggiore risoluzione, che resta in locale perché sarebbe la stessa cosa due volte.
+
+**Ogni output dice di quando è.** Il documento porta la data di generazione in testa, le
+figure di `output/figure/` la portano scritta dentro l'immagine in basso a destra, e
+l'archivio la registra modulo per modulo nella tabella `esecuzione`. Le figure sono l'unico
+caso in cui la data va dentro il file invece che accanto: un PNG ritagliato dal documento
+viaggia da solo, e senza quella riga nessuno saprebbe più di quando siano i numeri. Le
+versioni per il web ne fanno a meno, per come stanno in pagina: lì la figura sta dentro un
+post che porta già la propria data. Le bozze dei post,
+che sono scritte a mano, portano in intestazione la data dell'analisi contro cui sono state
+verificate, e la scrive `scripts/11_verifica_documenti.py` quando il controllo passa: se le
+cifre non corrispondono più, la data non avanza.
 
 Il testo dei moduli si scrive in ASCII e **gli accenti si applicano alla generazione** (`report/accenti.py`): il documento si rigenera ogni anno con dati nuovi, quindi una correzione fatta a mano sul file andrebbe rifatta ogni volta. Se compare una parola accentata non prevista, l'assemblatore la segnala invece di lasciarla passare.
 
@@ -346,5 +354,5 @@ entra nulla che permetta di risalire a una persona, e nessuna licenza autorizza 
 - [x] Descrittiva: attrito (9), punteggi per gruppo (10), correlazioni e VIF (11), età relativa (15)
 - [x] Descrittiva: contesto e mobilità (STEP 13-14)
 - [x] Modelli in R (FASE 3 e 4) e validazione (FASE 5) — STEP 16-28 chiusi
-- [x] Bozze dei nove blog post ([`docs/post/`](docs/post/)) — restano le scelte editoriali dichiarate in fondo a ciascuna
+- [x] Bozze dei nove blog post — fuori dal repository, come il resto della lavorazione editoriale
 - [ ] Stesura definitiva dei post e revisione delle figure post per post

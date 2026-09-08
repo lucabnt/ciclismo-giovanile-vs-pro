@@ -512,6 +512,44 @@ def _mostra(v):
     return ("%g" % v).replace(".", ",") if isinstance(v, float) else str(v)
 
 
+def data_analisi(db):
+    """La data dell'ultima esecuzione registrata nell'archivio."""
+    r = db.execute("SELECT MAX(eseguito_il) FROM esecuzione").fetchone()
+    return r[0][:10] if r and r[0] else None
+
+
+def timbra(db):
+    """Scrive nell'intestazione di ogni post la data dell'analisi contro cui e' stato
+    verificato.
+
+    I post sono l'unico documento del progetto scritto a mano, e finiscono fuori di casa:
+    chi li legge deve poter sapere di quando siano i numeri. La riga non si scrive a mano,
+    pero', altrimenti resterebbe indietro proprio quando conta. La mette questo script, e
+    solo dopo che il controllo e' passato: se le cifre non corrispondono piu', la data non
+    viene aggiornata e resta quella dell'ultima volta in cui corrispondevano.
+    """
+    quando = data_analisi(db)
+    if not quando or not os.path.isdir(POST):
+        return
+    riga = "> **Cifre verificate contro l'analisi del %s.**" % quando
+    for nome in sorted(os.listdir(POST)):
+        if not re.match(r"^\d\d_.*\.md$", nome):
+            continue
+        percorso = os.path.join(POST, nome)
+        with open(percorso, encoding="utf-8") as f:
+            righe = f.read().split("\n")
+        righe = [r for r in righe if not r.startswith("> **Cifre verificate")]
+        for i, r in enumerate(righe):
+            if r.startswith("> **Figure:**"):
+                righe.insert(i + 1, riga)
+                break
+        else:
+            continue
+        with open(percorso, "w", encoding="utf-8", newline="\n") as f:
+            f.write("\n".join(righe))
+    print("Intestazioni dei post timbrate con la data dell'analisi: %s." % quando)
+
+
 def main():
     if not os.path.exists(RISULTATI):
         sys.exit("Manca %s: eseguire prima l'analisi." % RISULTATI)
@@ -532,13 +570,14 @@ def main():
             controlla(f.read(), voci, problemi)
         print()
 
-    db.close()
     if problemi:
         print("%d cifra/e non corrispondono piu' all'analisi." % len(problemi))
         print("Aggiornare il documento, e rileggere le affermazioni che vi si "
               "appoggiano: quando i numeri cambiano, di solito cambia anche cosa se ne "
               "puo' dire.")
         return 1
+    timbra(db)
+    db.close()
     print("Le cifre dei documenti scritti a mano corrispondono all'analisi corrente.")
     print("Le affermazioni qualitative restano da rivedere a mano: sono la parte che "
           "questo controllo non puo' fare.")

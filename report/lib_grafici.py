@@ -21,6 +21,7 @@ USO
 """
 import contextlib
 import os
+from datetime import date
 
 CARTELLA = "output/figure"
 CARTELLA_WEB = "output/figure_web"
@@ -145,6 +146,23 @@ def _versione_web(fig, percorso):
                 bbox_inches="tight")
 
 
+def _timbro(fig):
+    """La data di generazione, scritta dentro l'immagine. Restituisce il testo aggiunto.
+
+    Serve alla versione del documento, dove una figura puo' essere ritagliata e girare da
+    sola: senza la riga, chi se la ritrova davanti non sa piu' di quando siano i numeri.
+
+    Sulla versione per il web non si mette, ed e' una scelta estetica: li' la figura sta
+    dentro un post che porta gia' la propria data, e una riga di servizio sotto il grafico
+    si vede. Per questo `salva()` la toglie prima di produrla.
+
+    Sta sotto il grafico e fuori dagli assi: `bbox_inches="tight"` allarga l'immagine per
+    comprenderla, quindi non copre niente.
+    """
+    return fig.text(1.0, -0.02, "elaborazione del %s" % date.today(), ha="right", va="top",
+                    fontsize=7, color=RIFERIMENTO)
+
+
 def salva(nome, fig=None):
     """Salva la figura corrente e restituisce il percorso, da passare all'archivio.
 
@@ -157,7 +175,9 @@ def salva(nome, fig=None):
     percorso = os.path.join(CARTELLA, nome + ".png")
     fig = fig or plt.gcf()
     _accenta(fig)
+    timbro = _timbro(fig)
     fig.savefig(percorso)
+    timbro.remove()
     _versione_web(fig, percorso)
     plt.close(fig)
     return percorso
