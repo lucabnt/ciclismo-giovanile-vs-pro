@@ -65,6 +65,20 @@ def calcola():
             (sesso,)).fetchone()[0]
         ar.valore("abbinati_pcs", abbinati)
 
+        # Come sono stati abbinati, non solo quanti: uno studio costruito sul
+        # collegamento fra due archivi si giudica anche da quanto quel collegamento
+        # sia fragile, e la risposta e' una riga di SQL.
+        metodi = dict(db.execute(
+            """SELECT m.metodo, COUNT(*) FROM match_pcs m
+               JOIN tab_b b ON b.athlete_id = m.athlete_id
+               WHERE b.sesso = ? GROUP BY 1""", (sesso,)).fetchall())
+        ar.valore("abbinamenti_per_metodo", metodi)
+        ar.valore("abbinamenti_esatti", metodi.get("esatto_data", 0))
+        ar.valore("abbinamenti_ambigui", db.execute(
+            """SELECT COUNT(*) FROM match_pcs m JOIN tab_b b
+               ON b.athlete_id = m.athlete_id
+               WHERE b.sesso = ? AND m.ambiguo = 1""", (sesso,)).fetchone()[0])
+
         if os.path.exists(DB_PCS):
             p = sqlite3.connect(DB_PCS)
             ar.valore("stagioni_pcs", list(
@@ -154,7 +168,19 @@ def rendi(lt):
         "dove e' arrivato. L'abbinamento fra i due archivi e' fatto su nome e data di "
         "nascita, con quattro passaggi di precisione decrescente; i casi ambigui sono "
         "stati risolti a mano guardando **solo** nome e data, mai la carriera, e "
-        "registrati uno per uno."))
+        "registrati uno per uno.",
+        "",
+        "Quanto regge quel collegamento e' una domanda legittima, e la risposta e' "
+        "questa: dei %s abbinamenti **%s sono esatti su nome piu' data di nascita "
+        "completa**, e due persone diverse con lo stesso nome normalizzato e la stessa "
+        "data al giorno sono un'eventualita' trascurabile. I restanti %s sono stati "
+        "guardati uno per uno, e al termine della verifica **nessun abbinamento resta "
+        "ambiguo**. La stessa verifica ha corretto %s date di nascita: le due fonti non "
+        "sempre concordano, e caso per caso ha avuto ragione ora l'una ora l'altra, "
+        "quindi nessuna regola automatica avrebbe funzionato."
+        % (md.conta(v.get("abbinati_pcs")), md.conta(v.get("abbinamenti_esatti")),
+           md.conta((v.get("abbinati_pcs") or 0) - (v.get("abbinamenti_esatti") or 0)),
+           md.conta(v.get("nascite_corrette")))))
 
     p.append(md.paragrafo(
         "",

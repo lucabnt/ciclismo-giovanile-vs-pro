@@ -34,6 +34,7 @@ ACCENTI = {
     "meta": "metà", "eta": "età", "citta": "città", "societa": "società",
     "qualita": "qualità", "quantita": "quantità", "numerosita": "numerosità",
     "molteplicita": "molteplicità",
+    "eventualita": "eventualità",
     "entita": "entità", "parita": "parità", "mobilita": "mobilità",
     "stagionalita": "stagionalità", "variabilita": "variabilità", "unita": "unità",
     "possibilita": "possibilità", "probabilita": "probabilità", "capacita": "capacità",

@@ -119,8 +119,8 @@ def rendi(lt):
     p.append(md.sezione("Cosa il rendimento giovanile predice", 3))
     p.append(md.paragrafo(
         "**Predice, e da subito.** Gia' al primo anno di Under 15 la separazione fra chi "
-        "arrivera' e chi no e' **grande** secondo le soglie convenzionali (delta di "
-        "Cliff %s). Il peso cresce con l'eta': dieci punti di percentile moltiplicano "
+        "arrivera' e chi no e' sul confine convenzionale fra «medio» e «grande» (delta "
+        "di Cliff %s). Il peso cresce con l'eta': dieci punti di percentile moltiplicano "
         "l'odds di diventare professionista per %s in %s e per %s in %s."
         % (md.num(pun["delta_primo"][1], 2) if pun else "—",
            md.num(prima.get("or"), 2), prima.get("cella", "—"),
@@ -130,9 +130,11 @@ def rendi(lt):
         salto = ann.get("salto_maggiore", {})
         p.append(md.paragrafo(
             "",
-            "**L'informazione si concentra nell'ultima misura disponibile.** Costruendo "
+            "**Fra gli atleti osservati in tutte le categorie, l'informazione si concentra "
+            "nell'ultima misura disponibile.** Costruendo "
             "i modelli per aggiunte successive sugli stessi %s atleti, il salto maggiore "
-            "e' **%s** (ΔAUC %s). Tre metodi indipendenti concordano: i modelli "
+            "e' **%s** (ΔAUC %s). Tre metodi concordano, e due dei tre girano su quasi lo "
+            "stesso sottocampione: i modelli "
             "annidati, una foresta casuale con quindici predittori in piu' (che guadagna "
             "%s di AUC) e una regressione penalizzata su tutte le categorie insieme, che "
             "ne trattiene solo le due piu' vicine all'esito."

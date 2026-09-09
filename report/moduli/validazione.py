@@ -272,7 +272,8 @@ def rendi(lt):
                 "distinguibilita' quasi per niente.** A seconda di cosa si conti come "
                 "professionismo gli eventi vanno da ventisei a centocinquantuno, ma "
                 "l'AUC del percentile Under 19 oscilla di %s in tutto. Le conclusioni "
-                "di questo studio non poggiano sulla definizione scelta."
+                "di questo studio reggono a tutte le definizioni che ho provato, che "
+                "sono quelle di queste tabelle e non tutte quelle possibili."
                 % md.num(osc, 3)),
             "",
             "La finestra d'eta' e' ancora meno influente: spostarla da ventiquattro a "
@@ -297,14 +298,47 @@ def rendi(lt):
         p.append(md.tabella(
             ["popolazione", "professionisti", "atleti", "% pro", "AUC"],
             righe_m, nota=manc["nota"], colonne_conteggio=(1, 2)))
-        p.append(md.paragrafo(
-            "",
-            "Il confronto corretto e' quello qui sopra, e conferma il ragionamento: "
-            "trattare l'assenza come «sotto chiunque sia in classifica» **alza** la "
-            "capacita' discriminante, perche' aggiunge informazione vera invece di "
-            "inventarne. Le sezioni precedenti restano deliberatamente sui soli "
-            "presenti, perche' li' la domanda e' quanto il *rendimento* predica, non "
-            "quanto predica l'esserci."))
+        auc = {r[0]: r[4] for r in manc["righe"]}
+        pro = {r[0]: r[1] for r in manc["righe"]}
+        chiavi = [r[0] for r in manc["righe"]]
+        if len(chiavi) == 4:
+            p.append(md.paragrafo(
+                "",
+                md.afferma(
+                    auc[chiavi[1]] > auc[chiavi[0]] and auc[chiavi[3]] < auc[chiavi[2]],
+                    "l'assenza aggiunge capacita' discriminante a diciotto anni e "
+                    "ne toglie a tredici",
+                    "**L'assenza e' informativa, ma solo tardi.** A diciotto anni "
+                    "trattarla come «sotto chiunque sia in classifica» alza l'AUC da "
+                    "%s a %s: chi non c'e' quasi sempre non arrivera'. A tredici anni "
+                    "la stessa operazione la **abbassa**, da %s a %s, e il motivo sta "
+                    "nella colonna dei professionisti: in Under 15 primo anno ne sono "
+                    "in classifica %s su %s, mentre in Under 19 secondo anno %s su %s. "
+                    "Mettere tutti gli assenti sotto tutti i presenti, a tredici anni, "
+                    "sbaglia posizione a quasi un quarto dei futuri professionisti; a "
+                    "diciotto, a tre."
+                    % (md.num(auc[chiavi[0]], 3), md.num(auc[chiavi[1]], 3),
+                       md.num(auc[chiavi[2]], 3), md.num(auc[chiavi[3]], 3),
+                       md.conta(pro[chiavi[2]]), md.conta(pro[chiavi[3]]),
+                       md.conta(pro[chiavi[0]]), md.conta(pro[chiavi[1]]))),
+                "",
+                "Ha una conseguenza pratica che vale piu' della verifica metodologica "
+                "da cui nasce: **sparire da una classifica a tredici anni non e' un "
+                "verdetto, sparirne a diciotto quasi lo e'**. Non e' un giudizio sui "
+                "ragazzi ma sulla fonte, che alle eta' basse e' ancora in gran parte "
+                "vuota: la classifica Under 15 raccoglie chi ha gia' fatto un punto, e "
+                "molti di quelli che arriveranno lo faranno per la prima volta dopo.",
+                "",
+                "Le sezioni precedenti restano deliberatamente sui soli presenti, "
+                "perche' li' la domanda e' quanto il *rendimento* predica, non quanto "
+                "predica l'esserci."))
+        else:
+            p.append(md.paragrafo(
+                "",
+                "Trattare l'assenza come «sotto chiunque sia in classifica» cambia la "
+                "capacita' discriminante, e il confronto qui sopra dice di quanto. Le "
+                "sezioni precedenti restano sui soli presenti, perche' li' la domanda "
+                "e' quanto il *rendimento* predica, non quanto predica l'esserci."))
 
     f = lt.figura("validazione", "sensibilita")
     if f:

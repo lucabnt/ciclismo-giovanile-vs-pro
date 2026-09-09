@@ -50,6 +50,12 @@ from lib_risultati import Archivio                  # noqa: E402
 DB_PCS = "data/pcs/pcs.db"
 CELLA = "U19y2"          # il predittore su cui si misura la stabilita'
 
+# Il confronto fra chi e' in classifica e tutta la coorte si fa a due eta': l'ultima
+# misura giovanile e la prima. La domanda e' se non esserci a tredici anni dica quanto
+# non esserci a diciotto — cioe' se l'assenza sia informativa gia' all'inizio.
+CELLE_ASSENZA = [("U19y2", "Under 19 secondo anno"),
+                 ("U15y1", "Under 15 primo anno")]
+
 
 def cliff(a, b):
     """delta = P(a > b) - P(a < b)."""
@@ -174,34 +180,34 @@ def main():
         # --- 4. presenti soltanto, oppure tutta la coorte ---------------------
         # Il confronto che sostituisce l'imputazione multipla: chi non e' in classifica
         # non ha un percentile mancante, ha un rendimento che non c'e' stato.
-        tutti = db.execute("""SELECT b.birth_year, COALESCE(m.pcs_id, ''),
-                                     b.present_%s, b.pct_%s
-                              FROM tab_b b LEFT JOIN match_pcs m
-                                   ON m.athlete_id = b.athlete_id
-                              WHERE b.sesso = ? AND b.birth_year BETWEEN ? AND ?"""
-                           % (CELLA, CELLA), (sesso, lo, hi)).fetchall()
-        dentro_p, fuori_p, dentro_a, fuori_a = [], [], [], []
-        for by, pid, pres, pct in tutti:
-            pro = any(cl in classi_base and s <= by + eta_base
-                      for s, cl in squadre.get(pid, ()))
-            if pres == 1 and pct is not None:
-                (dentro_p if pro else fuori_p).append(pct)
-            else:
-                # Assente dalla classifica: sotto chiunque vi compaia.
-                (dentro_a if pro else fuori_a).append(-1.0)
-        righe = [
-            riga("solo chi e' in classifica in %s (analisi principale)" % CELLA,
-                 dentro_p, fuori_p),
-            riga("tutta la coorte, l'assenza vale meno di qualunque percentile",
-                 dentro_p + dentro_a, fuori_p + fuori_a),
-        ]
+        righe = []
+        for cella, etichetta in CELLE_ASSENZA:
+            tutti = db.execute("""SELECT b.birth_year, COALESCE(m.pcs_id, ''),
+                                         b.present_%s, b.pct_%s
+                                  FROM tab_b b LEFT JOIN match_pcs m
+                                       ON m.athlete_id = b.athlete_id
+                                  WHERE b.sesso = ? AND b.birth_year BETWEEN ? AND ?"""
+                               % (cella, cella), (sesso, lo, hi)).fetchall()
+            dentro_p, fuori_p, dentro_a, fuori_a = [], [], [], []
+            for by, pid, pres, pct in tutti:
+                pro = any(cl in classi_base and s <= by + eta_base
+                          for s, cl in squadre.get(pid, ()))
+                if pres == 1 and pct is not None:
+                    (dentro_p if pro else fuori_p).append(pct)
+                else:
+                    # Assente dalla classifica: sotto chiunque vi compaia.
+                    (dentro_a if pro else fuori_a).append(-1.0)
+            righe.append(riga("%s, solo chi e' in classifica" % etichetta,
+                              dentro_p, fuori_p))
+            righe.append(riga("%s, tutta la coorte con l'assenza sotto tutti" % etichetta,
+                              dentro_p + dentro_a, fuori_p + fuori_a))
         ar.tabella("mancanti", righe,
-                   colonne=["popolazione", "professionisti", "atleti", "% pro",
-                            "AUC del percentile Under 19"],
+                   colonne=["popolazione", "professionisti", "atleti", "% pro", "AUC"],
                    titolo="Chi non e' in classifica",
                    nota="l'assenza non e' un dato mancante da imputare: e' un rendimento "
                         "che non c'e' stato, e trattarla come tale alza l'AUC perche' "
-                        "aggiunge un'informazione vera")
+                        "aggiunge un'informazione vera. Le due eta' rispondono alla stessa "
+                        "domanda ai due estremi del percorso giovanile")
 
     # Quanto oscilla la capacita' discriminante fra le varianti: e' il numero che dice
     # se le conclusioni reggono. Si calcola rileggendo dall'archivio, cosi' usa

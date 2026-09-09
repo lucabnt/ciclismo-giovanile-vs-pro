@@ -93,9 +93,9 @@
 
 ### Cosa il rendimento giovanile predice
 
-**Predice, e da subito.** Già al primo anno di Under 15 la separazione fra chi arriverà e chi no è **grande** secondo le soglie convenzionali (delta di Cliff 0,47). Il peso cresce con l'età: dieci punti di percentile moltiplicano l'odds di diventare professionista per 1,40 in U15y1 e per 2,28 in U19y2.
+**Predice, e da subito.** Già al primo anno di Under 15 la separazione fra chi arriverà e chi no è sul confine convenzionale fra «medio» e «grande» (delta di Cliff 0,47). Il peso cresce con l'età: dieci punti di percentile moltiplicano l'odds di diventare professionista per 1,40 in U15y1 e per 2,28 in U19y2.
 
-**L'informazione si concentra nell'ultima misura disponibile.** Costruendo i modelli per aggiunte successive sugli stessi 102 atleti, il salto maggiore è **M3 (+U19y2)** (ΔAUC +0,151). Tre metodi indipendenti concordano: i modelli annidati, una foresta casuale con quindici predittori in più (che guadagna +0,013 di AUC) e una regressione penalizzata su tutte le categorie insieme, che ne trattiene solo le due più vicine all'esito.
+**Fra gli atleti osservati in tutte le categorie, l'informazione si concentra nell'ultima misura disponibile.** Costruendo i modelli per aggiunte successive sugli stessi 102 atleti, il salto maggiore è **M3 (+U19y2)** (ΔAUC +0,151). Tre metodi concordano, e due dei tre girano su quasi lo stesso sottocampione: i modelli annidati, una foresta casuale con quindici predittori in più (che guadagna +0,013 di AUC) e una regressione penalizzata su tutte le categorie insieme, che ne trattiene solo le due più vicine all'esito.
 
 **Il livello è una condizione, il miglioramento un moltiplicatore.** Separando la traiettoria individuale in livello e pendenza, entrambi contano e la pendenza aggiunge informazione: l'AUC passa da 0,848 a 0,919 (p < 0,001). Fra gli atleti di livello alto, chi stava anche migliorando è arrivato al professionismo dieci volte più spesso di chi stava peggiorando; ma nel terzo di livello più basso il miglioramento non basta quasi mai.
 
@@ -152,6 +152,8 @@ Va detto che cosa quella fonte non è: **non è l'archivio ufficiale della feder
 **Le date di nascita** vengono dalle schede personali dello stesso portale, scaricate a parte. Servono all'effetto dell'età relativa, che senza il giorno esatto non si può misurare. La copertura è quasi totale — 11 079 anni di nascita su 11 098 sono letti da una scheda e non dedotti — e questo conta, perché dove la scheda manca l'anno si ricostruirebbe dalla categoria e dalla stagione, che è inferenza e non osservazione. Le due cose restano distinte in tutto il progetto. 18 date sono state corrette a mano dopo aver trovato incoerenze fra la scheda e le classifiche, e le correzioni sono registrate una per una.
 
 **Gli esiti di carriera** vengono da ProCyclingStats: rose delle squadre professionistiche stagione per stagione, da cui si ricava chi è passato professionista e quando, e classifiche mondiali annuali, da cui si ricava fin dove è arrivato. L'abbinamento fra i due archivi è fatto su nome e data di nascita, con quattro passaggi di precisione decrescente; i casi ambigui sono stati risolti a mano guardando **solo** nome e data, mai la carriera, e registrati uno per uno.
+
+Quanto regge quel collegamento è una domanda legittima, e la risposta è questa: dei 727 abbinamenti **707 sono esatti su nome più data di nascita completa**, e due persone diverse con lo stesso nome normalizzato e la stessa data al giorno sono un'eventualità trascurabile. I restanti 20 sono stati guardati uno per uno, e al termine della verifica **nessun abbinamento resta ambiguo**. La stessa verifica ha corretto 18 date di nascita: le due fonti non sempre concordano, e caso per caso ha avuto ragione ora l'una ora l'altra, quindi nessuna regola automatica avrebbe funzionato.
 
 > **Cosa non c'è, ed è il limite principale.** Nessuna delle fonti pubblica altezza, peso, specialità, volume di allenamento o numero di gare disputate. Di ogni atleta si sa il piazzamento, non come ci è arrivato. Ogni conclusione di questo documento va quindi letta come **«a parità di ciò che la classifica registra»**, che è meno di ciò che un allenatore vede.
 
@@ -301,6 +303,8 @@ Il ricambio è così forte che **metà dei classificati al secondo anno di Allie
 ### Chi arriva in fondo
 
 I tre esiti hanno una **finestra temporale**, e senza di essa non si leggono. «Professionista» significa aver corso in una squadra di primo o secondo livello **entro i 25 anni**; il top 500 e il top 100 sono la migliore posizione nel ranking mondiale annuale **entro i 26**. Chi debutta più tardi, o migliora dopo, qui non risulta: è una scelta deliberata, perché una finestra aperta renderebbe le coorti recenti incomparabili con quelle vecchie.
+
+Le due finestre non coincidono, e la ragione è che i due esiti hanno tempi diversi: al professionismo si arriva, mentre nel ranking mondiale si sale, e salire richiede almeno una stagione già corsa da professionista. Dare a entrambe la stessa finestra vorrebbe dire o tagliare fuori chi entra tardi nella classifica mondiale, o allargare quella del professionismo senza motivo. La sensibilità mostra comunque che questa scelta pesa pochissimo.
 
 | esito | atleti | % dei partenti U15 | veniva dall'U15 |
 |---|---|---|---|
@@ -1413,7 +1417,7 @@ Diverse decisioni di questo studio sono difendibili ma non obbligate: dove finis
 
 *sono le due scelte più discrezionali del disegno: dove mettere la soglia e se limitare l'età entro cui raggiungerla*
 
-**Il numero dei professionisti cambia moltissimo, la loro distinguibilità quasi per niente.** A seconda di cosa si conti come professionismo gli eventi vanno da ventisei a centocinquantuno, ma l'AUC del percentile Under 19 oscilla di 0,069 in tutto. Le conclusioni di questo studio non poggiano sulla definizione scelta.
+**Il numero dei professionisti cambia moltissimo, la loro distinguibilità quasi per niente.** A seconda di cosa si conti come professionismo gli eventi vanno da ventisei a centocinquantuno, ma l'AUC del percentile Under 19 oscilla di 0,069 in tutto. Le conclusioni di questo studio reggono a tutte le definizioni che ho provato, che sono quelle di queste tabelle e non tutte quelle possibili.
 
 La finestra d'età è ancora meno influente: spostarla da ventiquattro a ventisei anni non cambia praticamente nulla, perché quasi tutti i passaggi al professionismo avvengono prima. La soglia del «top» invece sposta l'AUC in modo sistematico — più è selettiva, più il rendimento giovanile distingue — ed è un risultato, non un artefatto: le soglie più alte selezionano atleti che erano già più forti da ragazzi.
 
@@ -1421,12 +1425,18 @@ La finestra d'età è ancora meno influente: spostarla da ventiquattro a ventise
 
 | popolazione | professionisti | atleti | % pro | AUC |
 |---|---|---|---|---|
-| solo chi è in classifica in U19y2 (analisi principale) | 74 | 901 | 8,21% | 0,889 |
-| tutta la coorte, l'assenza vale meno di qualunque percentile | 77 | 2817 | 2,73% | 0,943 |
+| Under 19 secondo anno, solo chi è in classifica | 74 | 901 | 8,21% | 0,889 |
+| Under 19 secondo anno, tutta la coorte con l'assenza sotto tutti | 77 | 2817 | 2,73% | 0,943 |
+| Under 15 primo anno, solo chi è in classifica | 59 | 1682 | 3,51% | 0,736 |
+| Under 15 primo anno, tutta la coorte con l'assenza sotto tutti | 77 | 2817 | 2,73% | 0,694 |
 
-*l'assenza non è un dato mancante da imputare: è un rendimento che non c'è stato, e trattarla come tale alza l'AUC perché aggiunge un'informazione vera*
+*l'assenza non è un dato mancante da imputare: è un rendimento che non c'è stato, e trattarla come tale alza l'AUC perché aggiunge un'informazione vera. Le due età rispondono alla stessa domanda ai due estremi del percorso giovanile*
 
-Il confronto corretto è quello qui sopra, e conferma il ragionamento: trattare l'assenza come «sotto chiunque sia in classifica» **alza** la capacità discriminante, perché aggiunge informazione vera invece di inventarne. Le sezioni precedenti restano deliberatamente sui soli presenti, perché lì la domanda è quanto il *rendimento* predica, non quanto predica l'esserci.
+**L'assenza è informativa, ma solo tardi.** A diciotto anni trattarla come «sotto chiunque sia in classifica» alza l'AUC da 0,889 a 0,943: chi non c'è quasi sempre non arriverà. A tredici anni la stessa operazione la **abbassa**, da 0,736 a 0,694, e il motivo sta nella colonna dei professionisti: in Under 15 primo anno ne sono in classifica 59 su 77, mentre in Under 19 secondo anno 74 su 77. Mettere tutti gli assenti sotto tutti i presenti, a tredici anni, sbaglia posizione a quasi un quarto dei futuri professionisti; a diciotto, a tre.
+
+Ha una conseguenza pratica che vale più della verifica metodologica da cui nasce: **sparire da una classifica a tredici anni non è un verdetto, sparirne a diciotto quasi lo è**. Non è un giudizio sui ragazzi ma sulla fonte, che alle età basse è ancora in gran parte vuota: la classifica Under 15 raccoglie chi ha già fatto un punto, e molti di quelli che arriveranno lo faranno per la prima volta dopo.
+
+Le sezioni precedenti restano deliberatamente sui soli presenti, perché lì la domanda è quanto il *rendimento* predica, non quanto predica l'esserci.
 
 ![Il numero di professionisti cambia da ventisei a centocinquantuno a seconda di come li si definisce, ma la capacità del rendimento giovanile di distinguerli resta quasi la stessa. L'asterisco indica la scelta dello studio.](figure/validazione_sensibilita.png)
 

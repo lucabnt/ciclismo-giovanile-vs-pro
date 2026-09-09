@@ -396,7 +396,13 @@ def rendi(lt):
         "**entro i %s anni**; il top 500 e il top 100 sono la migliore posizione nel "
         "ranking mondiale annuale **entro i %s**. Chi debutta piu' tardi, o migliora "
         "dopo, qui non risulta: e' una scelta deliberata, perche' una finestra aperta "
-        "renderebbe le coorti recenti incomparabili con quelle vecchie."
+        "renderebbe le coorti recenti incomparabili con quelle vecchie.\n\n"
+        "Le due finestre non coincidono, e la ragione e' che i due esiti hanno tempi "
+        "diversi: al professionismo si arriva, mentre nel ranking mondiale si sale, e "
+        "salire richiede almeno una stagione gia' corsa da professionista. Dare a "
+        "entrambe la stessa finestra vorrebbe dire o tagliare fuori chi entra tardi "
+        "nella classifica mondiale, o allargare quella del professionismo senza "
+        "motivo. La sensibilita' mostra comunque che questa scelta pesa pochissimo."
         % (md.conta(v.get("eta_massima_pro")), md.conta(v.get("eta_massima_qualita")))))
     if esiti:
         p.append(md.tabella(esiti["colonne"], esiti["righe"],
