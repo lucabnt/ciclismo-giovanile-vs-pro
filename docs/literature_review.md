@@ -50,7 +50,7 @@ Sono inclusi anche, come contesto necessario:
 
 ### Trasparenza sulle fonti
 
-Per gli studi di cui dispongo del testo integrale — Filipas et al. (2024) e Hasselaar & Elferink-Gemser (2025) — le informazioni sono complete e verificate direttamente. Per gli altri, i dettagli derivano da abstract completi, dalle citazioni dettagliate che altri lavori peer-reviewed ne fanno, e da versioni accessibili. Dove un dato numerico non è verificabile in prima fonte, è segnalato esplicitamente. Dove due fonti riportano cifre discordanti, entrambe sono riportate.
+Per gli studi di cui dispongo del testo integrale — Cesanelli et al. (2022), Van Bulck et al. (2021), Voet et al. (2022), Valenzuela et al. (2023) e Hasselaar & Elferink-Gemser (2025), elencati nell'appendice «Verifiche fatte sui testi integrali disponibili» — le informazioni sono complete e verificate direttamente. Per gli altri, i dettagli derivano da abstract completi, dalle citazioni dettagliate che altri lavori peer-reviewed ne fanno, e da versioni accessibili. Dove un dato numerico non è verificabile in prima fonte, è segnalato esplicitamente. Dove due fonti riportano cifre discordanti, entrambe sono riportate.
 
 ---
 
@@ -86,15 +86,22 @@ Gli studi sono ordinati cronologicamente all'interno di ogni sezione, così da r
 
 Analisi prospettica e retrospettiva dei risultati di gara. Il punto di riferimento è il **Campionato del Mondo Juniores** (categoria U19), competizione di massima selettività: ogni nazione può schierare un numero limitato di atleti (sei).
 
+Il campione, dichiarato nell'abstract: **27 454 risultati di 8 004 atleti di 108 paesi**, raccolti dalle grandi gare juniores (fino a 18 anni) ed élite (oltre i 18) fra il 1980 e il 2004. **Non è uno studio sulla sola strada**: l'abstract parla di risultati «in several cycling disciplines», e la fascia élite non è il solo Mondiale ma l'insieme delle grandi gare.
+
 Due direzioni di analisi:
-- **prospettiva**: dei partecipanti ai Mondiali Juniores, quanti sono poi arrivati ai Mondiali élite?
-- **retrospettiva**: degli atleti élite, quanti avevano partecipato ai Mondiali Juniores?
+- **prospettiva**: dei partecipanti ai Mondiali Juniores, quanti hanno poi preso parte a grandi competizioni élite?
+- **retrospettiva**: degli atleti con risultati nelle grandi gare élite, quanti erano passati dal Mondiale Juniores?
 
 ### Risultati
 
-- Solo il **30%** dei ciclisti che avevano partecipato al Mondiale Juniores ha poi corso il Mondiale da adulto.
-- Solo il **34%** dei partecipanti al Mondiale Juniores ha successivamente preso parte a competizioni élite di rilievo.
-- Guardando in direzione opposta: solo il **29,4%** degli atleti élite aveva partecipato al Mondiale Juniores.
+Le cifre che l'abstract riporta sono **due**, e sono queste:
+
+- il **34%** dei partecipanti al Mondiale Juniores ha successivamente preso parte a grandi competizioni élite (direzione prospettica);
+- il **29,4%** degli atleti élite era passato dal Mondiale Juniores (direzione retrospettiva).
+
+> ⚠️ **Il «30%» non esiste nell'abstract.** Questa scheda lo riportava come cifra prospettica autonoma («ha poi corso il Mondiale da adulto»), ed era un dato di provenienza secondaria: compare in Cesanelli 2022, che lo attribuisce in modo incoerente, una volta come cifra a sé e una volta come il 29,4% arrotondato. Verificato sull'abstract il 9 settembre 2026: **le cifre da usare sono 34% e 29,4%**, con l'avvertenza che si riferiscono a due popolazioni diverse e a due traguardi diversi, quindi non sono due misure dello stesso fenomeno.
+
+Altri risultati dell'abstract: chi ha risultati sia da juniores sia da élite (JUNIOR ELITE) è significativamente più vincente in diverse discipline e ottiene il primo e l'ultimo risultato élite più giovane di chi da juniores non compariva (ELITE ONLY); la **durata della carriera** non differisce fra i due gruppi.
 
 Un'osservazione più fine, ripresa da autori successivi: guardando il successo a lungo termine, i vincitori e i podi delle categorie giovanili hanno esiti migliori rispetto a chi si era limitato a partecipare al Mondiale Juniores.
 
@@ -134,8 +141,11 @@ I dati raccolti a 18 anni — allenamento, prestazione in gara, variabili fisiol
 ### Risultati
 
 - A 23 anni, **9 atleti su 80 (11%)** erano di livello World Tour.
-- Il **piazzamento in gara a 18 anni** è risultato il predittore più forte del successo senior, più delle variabili fisiologiche.
-- Il **volume di allenamento** a 18 anni differenziava i gruppi: i futuri World Tour registravano circa **91,5 ± 19,1 ore** di gara contro **62,8 ± 21,8 ore** di chi sarebbe rimasto a livello club (p = 0,032) e **61,8 ± 23,4 ore** di chi si sarebbe ritirato (p = 0,014).
+- Il **piazzamento ai campionati nazionali a 18 anni** separa i gruppi, con AUC 0,882.
+- **Anche le variabili fisiologiche li separano**: la potenza aerobica massimale vale 533 W nei futuri World Tour contro 451 W negli altri (p < 0,05).
+
+> ⚠️ **Questa scheda diceva che la gara «batte» il laboratorio, e non è quello che lo studio dimostra.** Entrambe le famiglie di predittori separano i gruppi; il confronto diretto fra le due non è mai stato fatto, perché i dati fisiologici esistono solo per una dozzina di atleti. È un buco della letteratura, non un risultato a favore della gara. Corretto il 9 settembre 2026.
+- Il **volume di gara** a 18 anni differenziava i gruppi — sono ore di gara, non di allenamento, e la differenza conta per qualunque lettura causale: i futuri World Tour registravano circa **91,5 ± 19,1 ore** di gara contro **62,8 ± 21,8 ore** di chi sarebbe rimasto a livello club (p = 0,032) e **61,8 ± 23,4 ore** di chi si sarebbe ritirato (p = 0,014).
 
 ### Limiti e note
 
@@ -143,7 +153,7 @@ Campione piccolo (9 eventi di interesse), su un solo paese con una struttura cic
 
 ### Rilevanza
 
-È il primo studio a stabilire il **primato del risultato agonistico sui parametri di laboratorio**. Introduce inoltre il tema — poi centrale in Filipas 2024 — che il percorso conta quanto la prestazione istantanea.
+È il primo studio a mettere le due famiglie di predittori **sugli stessi atleti**, ed è il motivo per cui viene citato come prova del primato del risultato agonistico sul laboratorio: è una lettura più forte di quanto i suoi numeri consentano, perché il confronto diretto non c'è. Introduce inoltre il tema — poi centrale in Filipas 2024 — che il percorso conta quanto la prestazione istantanea.
 
 ---
 
@@ -545,7 +555,7 @@ Raccolte **tre misure di coordinazione motoria, cinque di prestazione fisica e d
 
 ### Risultati
 
-- Per la coorte **U15**: maturità, età relativa, storia competitiva, coordinazione motoria, prestazione fisica e prestazione specifica spiegavano complessivamente il **22,6% della varianza** del successo competitivo successivo. Solo **maturità e coordinazione motoria** risultavano predittori significativi del successo nella categoria U17 secondo anno, ciascuna spiegando circa il **5%** della varianza.
+- Per la coorte **U15**: maturità, età relativa, storia competitiva, coordinazione motoria, prestazione fisica e prestazione specifica spiegavano complessivamente il **22,6% della varianza** del successo agonistico nella categoria U17 secondo anno, cioè due o tre anni dopo — non delle differenze fra i ragazzi in generale, e non della carriera. Da notare che **la storia competitiva è fra i predittori**: non è uno studio di soli test motori. Solo **maturità e coordinazione motoria** risultavano predittori significativi del successo nella categoria U17 secondo anno, ciascuna spiegando circa il **5%** della varianza.
 - Per la coorte **U17**: né la coordinazione motoria, né la prestazione fisica, né quella specifica del ciclismo riuscivano a predire il successo competitivo nella categoria U19 secondo anno.
 
 ### Rilevanza
@@ -749,18 +759,27 @@ Il metodo include deliberatamente **altre discipline** — ciclocross, mountain 
 
 ### Il risultato che vale l'articolo
 
-Gli autori mostrano il calcolo su due ciclisti di esempio, uno che corre a livello internazionale e uno che corre soprattutto gare nazionali.
+Gli autori mostrano il calcolo su **due ciclisti di esempio costruiti da loro**, non su due casi osservati: servono a far vedere cosa succede quando uno corre a livello internazionale e l'altro soprattutto gare nazionali. Il meccanismo che illustrano è però reale e documentato nello stesso articolo, cioè che il ranking olandese assegna zero punti alle gare internazionali.
 
 | | Ranking tradizionale | YSCPS |
 |---|---|---|
 | Ciclista internazionale | **414** | **76** |
 | Ciclista nazionale | **414** | **21** |
 
-**Lo stesso punteggio nel ranking federale, un fattore quasi quattro nella nuova metrica.** Il ranking tradizionale non conta le gare internazionali, quindi assegna zero punti proprio ai risultati migliori del primo ciclista. È la dimostrazione più efficace che il problema non è teorico.
+**Lo stesso punteggio nel ranking federale, un fattore 3,6 nella nuova metrica.** Il ranking tradizionale non conta le gare internazionali, quindi assegna zero punti proprio ai risultati migliori del primo ciclista. È la dimostrazione più efficace che il problema non è teorico.
 
 ### Validazione predittiva
 
 Su un campione retrospettivo di **48 ciclisti**, gli autori mostrano che lo YSCPS ha la potenzialità di predire il livello di squadra raggiunto **due anni dopo la categoria Under 19**. Gli stessi autori la presentano come dimostrazione di potenziale, non come validazione: il campione è piccolo e retrospettivo.
+
+**Le due cifre che questa scheda cita vanno tenute distinte**, perché misurano cose diverse e altrove sono state confuse:
+
+| cifra | cosa misura |
+|---|---|
+| **5 su 48** | quanti, dell'**intera annata** Under 19 secondo anno 2022, hanno poi raggiunto un livello alto — dove «alto» vuol dire tesseramento Continental o superiore, non professionismo. È un **tasso di popolazione**, non un tasso di transizione fra i migliori: i 48 non sono un gruppo selezionato |
+| **2 su 5** | quanti di quei cinque la metrica migliore disponibile riesce a individuare in anticipo, contro **1 su 5** del ranking tradizionale. È una misura di **capacità predittiva**, non di transizione |
+
+Confondere le due, o mettere il 5 su 48 in fila con i tassi di transizione di Schumacher e Cesanelli, produce un confronto fra denominatori diversi.
 
 ### Limiti e note
 
@@ -909,7 +928,7 @@ Cesanelli riporta correlazione bassa per l'U16. Mostaert (coordinazione motoria)
 Risultato di Gallo 2022, coerente con l'interpretazione della gestione del salto di categoria.
 
 **⑤ La maggior parte di chi va forte da giovane non arriva.**
-Schumacher 2006: 30%/34%/29,4%. Cesanelli 2022: 15% dall'U16. Hasselaar 2025: 5 su 48 raggiungono un livello alto. Anche i tassi più favorevoli lasciano una larga maggioranza fuori.
+Schumacher 2006: 34% dei juniores del Mondiale prende poi parte a grandi gare élite, e il 29,4% degli élite era passato di lì. Cesanelli 2022: 15% dei primi dieci in U16 fa poi punti nel World Tour. Hasselaar 2025: 5 su 48 di un'intera annata U19 arriva a Continental o meglio. **I tre numeri non sono comparabili** — partono da popolazioni diverse (convocati, top-10, coorte intera) verso traguardi diversi (grandi gare élite, punti World Tour, squadra Continental) — e vanno letti uno per uno. Quello che hanno in comune non è la scala ma la direzione: anche i tassi più favorevoli lasciano fuori una larga maggioranza.
 
 **⑥ I test di laboratorio non predicono meglio dei risultati di gara.**
 Menaspà 2010 è netto: utili per identificare chi eccelle nella propria categoria, non utilizzabili per la talent identification. Svendsen 2018 trova il risultato in gara a 18 anni più predittivo delle variabili fisiologiche. Mostaert 2022 non trova capacità predittiva dai test dai 15 anni in poi. L'eccezione parziale è Valenzuela 2023 sugli U23, dove però l'orizzonte temporale è molto più breve.
@@ -921,7 +940,7 @@ Presente nelle età più giovani e nelle popolazioni non selezionate (Mostaert: 
 Filipas 2024: −50,8% di odds di successo per ogni anno in più nelle giovanili. Coerente con Svendsen (volume competitivo a 18 anni) e con il fatto che i professionisti di successo raggiungono il loro picco più tardi (Kholkine; Boccia sui saltatori).
 
 **⑨ Anche i modelli sofisticati predicono in modo moderato.**
-Janssens 2023: correlazioni di rango attorno a 0,53-0,58. Hasselaar 2025: 2 su 5 individuati con la metrica migliore. Non è un problema di algoritmi.
+Janssens 2023: correlazioni di rango attorno a 0,53-0,58. Hasselaar 2025: 2 su 5 individuati con la metrica migliore, contro 1 su 5 del ranking tradizionale. Non è un problema di algoritmi.
 
 **⑩ Il fenomeno non è specifico del ciclismo.**
 Convergenza con atletica (Pizzuto; Boccia), nuoto (Brustio), e con l'analisi multi-sport di Barreiros.
@@ -1210,7 +1229,24 @@ cancellato: nessuno studio **basato sui risultati di gara** ha mai riportato il 
 **Hasselaar** contiene l'esempio più efficace dell'intera rassegna: due ciclisti con lo
 stesso identico punteggio nel ranking federale, 414, che nella nuova metrica valgono 76 e
 21. La scheda non lo riportava, ed è il modo più diretto di far capire perché la misura
-sia un problema.
+sia un problema — con la precisazione, aggiunta dopo la lettura del testo integrale,
+che quei due ciclisti sono un esempio costruito dagli autori e non due casi
+osservati.
+
+## Verifica sull'abstract di Schumacher 2006
+
+*9 settembre 2026.* Non il testo integrale, ma l'abstract letto per intero, e basta a
+correggere tre cose che la scheda A1 sbagliava e che il primo post aveva ereditato:
+
+- **il «30%» non esiste**: le cifre dello studio sono 34% in avanti e 29,4% all'indietro;
+- **la direzione prospettica non porta al Mondiale élite** ma alle grandi competizioni
+  élite, che è una soglia più larga;
+- **lo studio non riguarda la sola strada**: l'abstract parla di più discipline
+  ciclistiche, e dichiara il campione — 27 454 risultati, 8 004 atleti, 108 paesi.
+
+È il caso che giustifica meglio di ogni altro la regola di questa rassegna: le schede non
+verificate sul testo originale vanno segnalate come tali, perché una cifra presa dalla
+letteratura secondaria può essere sbagliata anche quando tutti la ripetono.
 
 Restano non verificati sui testi integrali: Schumacher (A1), Svendsen (A2), Mostaert
 (A5 e B3), Gallo (A6 e B2), Janssens (A7), Filipas (A8), Menaspà (B1), Leo (B4) e tutta
