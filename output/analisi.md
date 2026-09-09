@@ -85,7 +85,7 @@
 
 **Obiettivo.** Misurare da che età il piazzamento nelle classifiche giovanili italiane informa sull'accesso al professionismo, quanto informa, e cosa significherebbe usarlo per selezionare.
 
-**Dati.** Classifiche nazionali giovanili italiane, stagioni 2007-2025: 28 041 piazzamenti stagionali di 11 098 atleti, con la data di nascita osservata per il 99,8% di loro. Gli esiti di carriera vengono da ProCyclingStats, abbinati su nome e data di nascita. Le coorti principali sono i nati 1996-2000: **2 817 atleti, 77 professionisti** (35,2 per mille di chi era in classifica da Under 15).
+**Dati.** Classifiche nazionali giovanili italiane, stagioni 2007-2025: 28 041 piazzamenti stagionali di 11 098 atleti, con la data di nascita osservata per il 99,8% di loro. Gli esiti di carriera vengono da ProCyclingStats, abbinati su nome e data di nascita. Le coorti principali sono i nati 1996-2000: **2 817 atleti, 77 professionisti** (— per mille di chi era in classifica da Under 15).
 
 **Di chi si parla, e questo è già un risultato.** Comparire in classifica richiede almeno un piazzamento nei primi cinque in una gara, e vi compare **circa un tesserato su 7** (media 15,0%, stabile fra quattro categorie e le stagioni 2018-2025). Ogni percentuale di questo studio ha quindi come denominatore un gruppo già selezionato, non l'insieme dei tesserati.
 
@@ -169,7 +169,7 @@ Tutto quello che segue si appoggia a una misura: il piazzamento nella classifica
 
 > **Come si misura — La critica di Hasselaar, e perché va presa sul serio**
 >
-> Uno studio olandese del 2025 ha mostrato il problema con un esempio che vale più di qualunque argomento. Due ciclisti, uno che corre gare internazionali e uno che corre soprattutto gare locali, ottengono **lo stesso identico punteggio** nel ranking federale: 414 punti. In una metrica costruita apposta per tenere conto del livello delle gare, gli stessi due valgono 76 e 21.
+> Uno studio olandese del 2025 ha mostrato il problema con un esempio che vale più di qualunque argomento. Due ciclisti, uno che corre gare internazionali e uno che corre soprattutto gare locali, ottengono **lo stesso identico punteggio** nel ranking federale: 414 punti. In una metrica costruita apposta per tenere conto del livello delle gare, gli stessi due valgono 76 e 21, cioè un fattore 3,6. I due ciclisti sono **costruiti dagli autori**, non due casi osservati, e vanno citati come tali: il meccanismo che illustrano è però reale e documentato nello stesso articolo.
 >
 > La ragione è che il ranking olandese non conta i risultati internazionali, quindi assegna zero punti proprio alle gare più difficili. E premia chi va bene nelle tipologie di gara più frequenti in calendario: in Olanda i circuiti piatti e ventosi, dove i velocisti hanno molte più occasioni degli scalatori.
 >
@@ -228,7 +228,7 @@ Il progetto lo aveva previsto e aveva scelto di scioglierli guardando prima le v
 
 Prima di chiedersi se il risultato a tredici anni predica qualcosa, conviene sapere quanti di quei ragazzi si ritrovano dopo. La risposta inquadra tutto il resto: **la maggior parte dell'abbandono avviene molto prima del punto in cui la prestazione diventa predittiva**.
 
-Su 2 817 atleti delle coorti 1996-2000, 77 sono arrivati al professionismo: **35,2 su mille** fra i classificati in Under 15.
+Su 2 817 atleti delle coorti 1996-2000, 77 sono arrivati al professionismo: **27,3 su mille**. Fra i soli 2 187 che erano in classifica già da Under 15 il tasso è un po' più alto, 30,2 su mille, perché 11 professionisti su 77 in Under 15 non c'erano: sono entrati nel ranking più tardi. I due tassi rispondono a due domande diverse, e vanno tenuti separati.
 
 > **Chi è «in classifica».** La fonte assegna punti solo ai primi cinque di ogni gara: cinque alla vittoria, uno al quinto posto. Comparire nel ranking con un solo punto significa quindi **essere arrivati almeno una volta nei primi cinque** in quella stagione, e infatti il 100% delle 28 041 righe di classifica ha almeno un piazzamento nei primi cinque.
 >
@@ -251,9 +251,9 @@ Su 2 817 atleti delle coorti 1996-2000, 77 sono arrivati al professionismo: **
 
 Le due colonne centrali dicono cose diverse, e la differenza conta. L'imbuto **non è una catena di sottoinsiemi**: fra un quarto e un terzo degli atleti di ogni categoria non compare mai in Under 15. Sono ragazzi che entrano nel ranking più tardi, e che una lettura ingenua dell'imbuto conterebbe come "sopravvissuti" senza che siano mai partiti.
 
-![L'attrito non è graduale: fra i mille classificati in Under 15 e i 35 che diventano professionisti ci sono tre ordini di grandezza.](figure/attrito_imbuto.png)
+![L'attrito non è graduale, ma non è neanche l'abisso che si racconta: fra i mille classificati in Under 15 e i 30 che diventano professionisti c'è un fattore 33, non i tre ordini di grandezza che verrebbe da dire guardando il grafico.](figure/attrito_imbuto.png)
 
-*L'attrito non è graduale: fra i mille classificati in Under 15 e i 35 che diventano professionisti ci sono tre ordini di grandezza.*
+*L'attrito non è graduale, ma non è neanche l'abisso che si racconta: fra i mille classificati in Under 15 e i 30 che diventano professionisti c'è un fattore 33, non i tre ordini di grandezza che verrebbe da dire guardando il grafico.*
 
 ### Quando si smette
 
@@ -306,11 +306,11 @@ I tre esiti hanno una **finestra temporale**, e senza di essa non si leggono. «
 
 Le due finestre non coincidono, e la ragione è che i due esiti hanno tempi diversi: al professionismo si arriva, mentre nel ranking mondiale si sale, e salire richiede almeno una stagione già corsa da professionista. Dare a entrambe la stessa finestra vorrebbe dire o tagliare fuori chi entra tardi nella classifica mondiale, o allargare quella del professionismo senza motivo. La sensibilità mostra comunque che questa scelta pesa pochissimo.
 
-| esito | atleti | % dei partenti U15 | veniva dall'U15 |
+| esito | atleti | veniva dall'U15 | % dei 2 187 partenti in U15 |
 |---|---|---|---|
-| professionisti | 77 | 3,52 | 66 |
-| top 500 | 37 | 1,69 | 31 |
-| top 100 | 8 | 0,37 | 6 |
+| professionisti | 77 | 66 | 3,02 |
+| top 500 | 37 | 31 | 1,42 |
+| top 100 | 8 | 6 | 0,27 |
 
 Dei 77 professionisti, 66 erano già nel ranking Under 15: gli altri sono entrati più tardi. E accanto a loro ci sono **108 atleti che risultavano ancora a punti dopo i ventidue anni senza essere diventati professionisti**: non tutto ciò che non è professionismo è abbandono.
 
@@ -347,7 +347,7 @@ Gli altri sei su sette **corrono senza mai entrare a punti**, oppure corrono in 
 
 *La barra è la media delle stagioni, la linea l'intervallo fra la stagione più bassa e la più alta. La stabilità fra categorie e fra anni è il dato più notevole.*
 
-> **Conseguenza sulla lettura di tutto il documento.** Quando si legge che il 35,2 per mille dei classificati in Esordienti diventa professionista, il denominatore è quel settimo. Rapportata a tutti i tesserati la quota sarebbe circa sette volte più bassa. Non si è fatta la moltiplicazione nel testo, per una ragione precisa: la copertura si misura su stagioni recenti, mentre le coorti studiate hanno corso prima, e trasferire il rapporto da un periodo all'altro sarebbe una stima travestita da misura.
+> **Conseguenza sulla lettura di tutto il documento.** Quando si legge che il — per mille dei classificati in Esordienti diventa professionista, il denominatore è quel settimo. Rapportata a tutti i tesserati la quota sarebbe circa sette volte più bassa. Non si è fatta la moltiplicazione nel testo, per una ragione precisa: la copertura si misura su stagioni recenti, mentre le coorti studiate hanno corso prima, e trasferire il rapporto da un periodo all'altro sarebbe una stima travestita da misura.
 
 ### L'attrito della classifica e quello vero
 

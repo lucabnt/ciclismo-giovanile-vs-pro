@@ -125,8 +125,11 @@ def attesi_piano(db):
     return [
         ("classificati in Under 15", curva[0][1] if curva else None,
          r"da ([\d  ]+) classificati in Under 15"),
-        ("professionisti", valore(db, "attrito", "pro_totali"),
+        ("professionisti venuti dall'Under 15",
+         valore(db, "attrito", "pro_dall_u15"),
          r"classificati in Under 15 a (\d+)\s"),
+        ("professionisti nelle coorti", valore(db, "attrito", "pro_totali"),
+         r"i (\d+) professionisti sui 2 817"),
         ("rientri dopo un'assenza",
          valore(db, "attrito", "rientri_dopo_assenza"),
          r"(\d+,\d)% degli atleti salta almeno una stagione"),
@@ -197,6 +200,13 @@ def attesi_post(db):
 
     return {
         "02_di_chi_parliamo.md": [
+            ("professionisti venuti dall'Under 15",
+             v("attrito", "pro_dall_u15"), r"ma solo (\d+) erano in classifica"),
+            ("professionisti mai visti in Under 15",
+             v("attrito", "pro_mai_in_u15"), r"gli altri (\d+) sono entrati"),
+            ("persi fra Under 15 e Under 23",
+             v("attrito", "persi_fra_u15_e_u23"), r"e sono circa (\d \d+)"),
+
             ("righe di classifica", v("provenienza", "righe_classifica"),
              r"le (\d[\d ]*\d) righe della"),
             ("copertura minima", v("copertura", "copertura_min"),
@@ -218,7 +228,7 @@ def attesi_post(db):
             ("pari merito massimi", v("misura", "pari_merito_massimo"),
              r"fino al (\d+)% dei classificati"),
             ("errore dell'estrapolazione", v("copertura", "backtest_errore"),
-             r"Sbaglia del (\d+)% a due anni"),
+             r"sbaglia fino al (\d+)%"),
             ("quota dei posti al primo anno di Allievi",
              v("posti", "quota_primo_anno_U17"),
              r"il primo anno ne vince il (\d+,\d)%"),
@@ -226,9 +236,9 @@ def attesi_post(db):
              v("posti", "quota_primo_anno_U15"),
              r"contro il (\d+,\d)% degli Esordienti"),
             ("concentrazione minima", v("posti", "decile_minimo"),
-             r"fra il (\d+)% e il 43% dei punti"),
+             r"fra il (\d+,\d)% e il 43,2% dei punti"),
             ("concentrazione massima", v("posti", "decile_massimo"),
-             r"fra il 37% e il (\d+)% dei punti"),
+             r"fra il 36,7% e il (\d+,\d)% dei punti"),
         ],
         "03_sparire_non_e_smettere.md": [
             ("rientri dopo un'assenza", v("attrito", "rientri_dopo_assenza"),

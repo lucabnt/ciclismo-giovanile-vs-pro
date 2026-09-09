@@ -119,14 +119,28 @@ def calcola():
                                   ("top 100", "tier = 3")):
             n = conta(" AND " + filtro)
             da_u15 = conta(" AND %s AND %s" % (PRESENTE["U15"], filtro))
-            righe_e.append([etichetta, n, round(100 * n / n_u15, 2), da_u15])
+            # La percentuale va calcolata sullo stesso insieme del denominatore: chi
+            # non era in Under 15 non puo' contare come esito "dei partenti U15".
+            righe_e.append([etichetta, n, da_u15, round(100 * da_u15 / n_u15, 2)])
         ar.tabella("esiti", righe_e,
-                   colonne=["esito", "atleti", "% dei partenti U15", "veniva dall'U15"],
+                   colonne=["esito", "atleti", "veniva dall'U15",
+                            "% dei 2 187 partenti in U15"],
                    titolo="Chi arriva in fondo")
         pro = conta(" AND PRO = 1")
+        pro_u15 = conta(" AND %s AND PRO = 1" % PRESENTE["U15"])
+        ar.valore("n_u15", n_u15)
+        # Quanti si perdono davvero fra Under 15 e Under 23: non n_u15 meno gli Under
+        # 23, perche' un terzo di quegli Under 23 in Under 15 non c'era mai stato.
+        u15_e_u23 = conta(" AND %s AND %s" % (PRESENTE["U15"], PRESENTE["U23"]))
+        ar.valore("persi_fra_u15_e_u23", n_u15 - u15_e_u23)
         ar.valore("pro_totali", pro)
-        ar.valore("pro_su_mille_u15", round(1000 * pro / n_u15, 1))
-        ar.valore("pro_dall_u15", conta(" AND %s AND PRO = 1" % PRESENTE["U15"]))
+        ar.valore("pro_dall_u15", pro_u15)
+        ar.valore("pro_mai_in_u15", pro - pro_u15)
+        # Due tassi, e vanno tenuti distinti: il primo risponde a "fra tutti i
+        # classificati", il secondo a "fra chi era in classifica gia' da Under 15".
+        # Il numero pubblicato prima, 1000 * pro / n_u15, li mescolava.
+        ar.valore("pro_su_mille", round(1000 * pro / totale, 1))
+        ar.valore("pro_su_mille_dall_u15", round(1000 * pro_u15 / n_u15, 1))
 
         # --- l'uscita: a che eta' si smette --------------------------------
         eta = dict(db.execute("SELECT last_racing_age, COUNT(*) " + base +
@@ -208,7 +222,9 @@ def disegna(curva, esiti, n_u15, eta, ar, lo, hi):
     with gr.figura("Su mille ragazzi classificati a tredici anni, "
                    "quanti si ritrovano dopo") as (fig, ax):
         etichette = [c for c, _, _ in curva] + [e[0] for e in esiti]
-        valori = [p * 10 for _, _, p in curva] + [1000 * e[1] / n_u15 for e in esiti]
+        # Gli esiti usano la colonna «veniva dall'U15»: la scala dice «su mille
+        # partenti in Under 15», quindi contare anche chi in U15 non c'era la falserebbe.
+        valori = [p * 10 for _, _, p in curva] + [1000 * e[2] / n_u15 for e in esiti]
         colori = [gr.COLORI[0]] * len(curva) + [gr.COLORI[1]] * len(esiti)
         barre = ax.bar(range(len(valori)), valori, color=colori, zorder=3)
         for b, v in zip(barre, valori):
@@ -222,10 +238,13 @@ def disegna(curva, esiti, n_u15, eta, ar, lo, hi):
         ax.set_yscale("log")
         fig.text(0.005, -0.03, "Coorti %d-%d. Scala logaritmica: senza, le ultime tre "
                  "barre sarebbero invisibili." % (lo, hi), fontsize=8, color=gr.GRIGIO)
+    per_mille = 1000 * esiti[0][2] / n_u15
     ar.figura("imbuto", gr.salva("attrito_imbuto"),
-              didascalia="L'attrito non e' graduale: fra i mille classificati in Under 15 "
-                         "e i %.0f che diventano professionisti ci sono tre ordini di "
-                         "grandezza." % (1000 * esiti[0][1] / n_u15))
+              didascalia="L'attrito non e' graduale, ma non e' neanche l'abisso che si "
+                         "racconta: fra i mille classificati in Under 15 e i %.0f che "
+                         "diventano professionisti c'e' un fattore %.0f, non i tre ordini "
+                         "di grandezza che verrebbe da dire guardando il grafico."
+                         % (per_mille, 1000 / per_mille))
 
     # 2. l'eta' di uscita
     with gr.figura("Si smette alla fine di una categoria, non durante") as (fig, ax):
@@ -263,10 +282,14 @@ def rendi(lt):
         "resto: **la maggior parte dell'abbandono avviene molto prima del punto in cui "
         "la prestazione diventa predittiva**.",
         "",
-        "Su %s atleti delle coorti %s, %s sono arrivati al professionismo: **%s su mille** "
-        "fra i classificati in Under 15."
-        % (md.conta(v["atleti_totali"]), v["coorti"],
-           v["pro_totali"], v["pro_su_mille_u15"])))
+        "Su %s atleti delle coorti %s, %s sono arrivati al professionismo: **%s su mille**. "
+        "Fra i soli %s che erano in classifica gia' da Under 15 il tasso e' un po' piu' "
+        "alto, %s su mille, perche' %s professionisti su %s in Under 15 non c'erano: sono "
+        "entrati nel ranking piu' tardi. I due tassi rispondono a due domande diverse, e "
+        "vanno tenuti separati."
+        % (md.conta(v["atleti_totali"]), v["coorti"], v["pro_totali"],
+           v["pro_su_mille"], md.conta(v["n_u15"]), v["pro_su_mille_dall_u15"],
+           md.conta(v["pro_mai_in_u15"]), v["pro_totali"])))
 
     if v.get("quota_con_top5"):
         p.append(md.paragrafo(
@@ -405,8 +428,10 @@ def rendi(lt):
         "motivo. La sensibilita' mostra comunque che questa scelta pesa pochissimo."
         % (md.conta(v.get("eta_massima_pro")), md.conta(v.get("eta_massima_qualita")))))
     if esiti:
+        # Le colonne di conteggio sono le prime due: la terza e' una percentuale,
+        # e mascherarla come se fosse un conteggio la nasconderebbe senza motivo.
         p.append(md.tabella(esiti["colonne"], esiti["righe"],
-                            colonne_conteggio={1, 3}, decimali=2))
+                            colonne_conteggio={1, 2}, decimali=2))
     p.append(md.paragrafo(
         "",
         "Dei %s professionisti, %s erano gia' nel ranking Under 15: gli altri sono entrati "
