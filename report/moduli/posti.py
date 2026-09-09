@@ -391,8 +391,9 @@ def rendi(lt):
         "capire cosa succeda nella seconda.\n\n"
         "I posti si contano cosi': ogni gara assegna cinque piazzamenti a punti, quindi "
         "la somma dei piazzamenti nei primi cinque e' il numero di posti messi in palio, e "
-        "diviso cinque da' il numero di gare. La fonte non pubblica il calendario, ma "
-        "pubblica i piazzamenti." % nomi_sep,
+        "diviso cinque stima il numero di **classificazioni di gara**: non le gare "
+        "davvero corse, ma quelle che hanno lasciato una traccia nella fonte. La fonte "
+        "non pubblica il calendario, ma pubblica i piazzamenti." % nomi_sep,
         [("La verifica sulla struttura delle liste", "docs/verifica_dati_giovanile.md")]))
 
     righe_d = [[r[0], md.conta(r[1]), r[2], md.conta(r[3]), md.conta(r[4]),
@@ -477,13 +478,16 @@ def rendi(lt):
         "annata quando calcoliamo il percentile."))
 
     # --- concentrazione ------------------------------------------------------
-    p.append(md.sezione("Si piazzano sempre gli stessi?", 3))
+    p.append(md.sezione("Quanto sono concentrati i punti", 3))
 
     p.append(md.paragrafo(
         "Chi guarda una classifica giovanile ha spesso l'impressione che i punti se li "
-        "dividano sempre le stesse facce. L'impressione e' fondata, e si misura: basta "
-        "ordinare gli atleti per punti e guardare quanta parte del totale finisce al "
-        "decile migliore."))
+        "dividano sempre le stesse facce. Quello che si misura qui e' meta' di quella "
+        "impressione: quanta parte del totale finisce al decile migliore, chiunque esso "
+        "sia. La concentrazione dei punti e la persistenza delle stesse persone sono due "
+        "cose diverse, e una classifica puo' essere concentratissima e rinnovare i volti "
+        "ogni stagione: chi resta di anno in anno lo dice la correlazione fra stagioni "
+        "consecutive, misurata piu' avanti, non questa tabella."))
 
     righe_c = [[r[0], md.conta(r[1]), md.conta(r[2]), md.conta(r[3]),
                 md.num(r[4], 1) + "%", md.num(r[5], 3)] for r in conc["righe"]]
@@ -538,7 +542,8 @@ def rendi(lt):
                     calo < -10,
                     "il numero di gare stimate cala in tutte le categorie fra la prima e "
                     "l'ultima stagione osservata",
-                    "**Il calendario giovanile italiano si e' quasi dimezzato.** Fra il %s "
+                    "**Il calendario giovanile italiano osservabile nella fonte si e' quasi "
+                    "dimezzato.** Fra il %s "
                     "e il %s le classificazioni di gara calano in ogni categoria, fino a "
                     "%s%% in Under 23. Non e' un effetto della pandemia: il 2020 e' un "
                     "crollo a se', e dopo di esso il calendario non e' tornato ai valori "

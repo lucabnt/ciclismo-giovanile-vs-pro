@@ -265,7 +265,7 @@ def rendi(lt):
         "",
         "Su %s atleti delle coorti %s, %s sono arrivati al professionismo: **%s su mille** "
         "fra i classificati in Under 15."
-        % (f"{v['atleti_totali']:,}".replace(",", "."), v["coorti"],
+        % (md.conta(v["atleti_totali"]), v["coorti"],
            v["pro_totali"], v["pro_su_mille_u15"])))
 
     if v.get("quota_con_top5"):

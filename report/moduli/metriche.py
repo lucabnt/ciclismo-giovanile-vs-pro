@@ -98,31 +98,38 @@ def rendi(lt):
         "intercetterebbero, e quanti dei selezionati non lo diventeranno**."))
 
     p.append(md.metodo(
-        "Sensibilita', specificita' e valore predittivo positivo",
+        "Sensibilita', specificita' e valori predittivi",
         "Fissata una soglia, ogni atleta cade in una di quattro caselle: selezionato e "
         "diventato professionista, selezionato e no, non selezionato e diventato "
         "professionista, non selezionato e no.\n\n"
         "La **sensibilita'** e' la quota di futuri professionisti che finisce dentro la "
         "selezione: quanti non ne perdo. Il **valore predittivo positivo** e' la quota "
         "di selezionati che diventera' professionista: quanti ne prendo a vuoto.\n\n"
+        "Il **valore predittivo negativo** e' la quarta casella letta dall'altra "
+        "parte: fra gli scartati, quanti davvero non sarebbero arrivati. Con un esito "
+        "raro e' sempre altissimo, e proprio per questo non va usato come prova che la "
+        "selezione funzioni: dire che il 99% degli scartati non ce l'avrebbe fatta e' "
+        "quasi una tautologia, visto che non ce la fa il 97% di chiunque. Serve pero' "
+        "a rendere leggibile l'altra meta' del compromesso, ed e' la metrica che "
+        "nessuno studio di questo campo riporta.\n\n"
         "I due numeri non sono simmetrici, e la differenza dipende da quanto l'esito e' "
         "raro. Se i professionisti sono il 3% della coorte, anche una selezione molto "
         "buona resta composta in gran parte da persone che non lo diventeranno: e' "
         "aritmetica della base, non un difetto del criterio. E' la stessa ragione per "
         "cui uno screening accurato su una malattia rara produce molti falsi allarmi.\n\n"
         "La **soglia di Youden** e' quella che massimizza sensibilita' + specificita' - "
-        "1. Serve da riferimento, ma le soglie di capienza — il migliore 10%%, il "
-        "migliore 25%% — sono quelle che corrispondono a una decisione reale.",
+        "1. Serve da riferimento, ma le soglie di capienza — il migliore 10%, il "
+        "migliore 25% — sono quelle che corrispondono a una decisione reale.",
         [("Sensibilita' e specificita'", W + "Sensitivity_and_specificity"),
          ("Valore predittivo positivo", W + "Positive_and_negative_predictive_values"),
          ("Indice di Youden", W + "Youden%27s_J_statistic")]))
 
     righe = [[r[0], r[1], md.num(r[2], 1), r[3], r[4], r[5],
-              md.num(r[6], 0) + "%", md.num(r[8], 0) + "%"]
+              md.num(r[6], 0) + "%", md.num(r[8], 0) + "%", md.num(r[9], 1) + "%"]
              for r in t["righe"]]
     p.append(md.tabella(
         ["cella", "criterio", "soglia", "selezionati", "di cui pro", "a vuoto",
-         "intercettati", "successo dei selezionati"],
+         "intercettati", "successo dei selezionati", "scartati che non arrivano"],
         righe, nota=t["nota"], colonne_conteggio=(3, 4, 5)))
 
     chiave = v.get("frase_chiave")

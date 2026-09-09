@@ -33,6 +33,7 @@ ACCENTI = {
     "vorra": "vorrà", "bastera": "basterà", "ci": "ci",
     "meta": "metà", "eta": "età", "citta": "città", "societa": "società",
     "qualita": "qualità", "quantita": "quantità", "numerosita": "numerosità",
+    "molteplicita": "molteplicità",
     "entita": "entità", "parita": "parità", "mobilita": "mobilità",
     "stagionalita": "stagionalità", "variabilita": "variabilità", "unita": "unità",
     "possibilita": "possibilità", "probabilita": "probabilità", "capacita": "capacità",

@@ -107,6 +107,34 @@ Le modifiche conseguenti:
 
 ---
 
+## Aggiornamento successivo alla verifica della fonte
+
+*Aggiunto dopo l'esecuzione dell'analisi. Questa guida è stata scritta prima di guardare i
+dati, come deve essere; due cose però sono cambiate strada facendo, e lasciarle implicite
+significherebbe avere due definizioni ufficiali dello stesso studio.*
+
+**L'armonizzazione dell'Under 19 con PCS non serve, e non è stata fatta.** La guida prevede,
+alla Sezione 3 e allo Step 12, di costruire due versioni del predittore — grezza e
+armonizzata con indicatori PCS — perché si sospettava che la classifica italiana ignorasse i
+risultati internazionali, come fa quella olandese descritta da Hasselaar. La verifica
+preliminare che la guida stessa impone ha dato una risposta diversa: **la fonte italiana pesa
+già le gare per livello**, con moltiplicatori propri da Juniores in su, e la conseguenza si
+misura nei punti per piazzamento, che salgono esattamente dove i moltiplicatori entrano in
+funzione. Il controllo è in `docs/verifica_dati_giovanile.md` e il risultato nella sezione
+«Lo stesso punteggio è lo stesso risultato?» di `output/analisi.md`. Costruire una versione
+armonizzata avrebbe quindi aggiunto a mano un'informazione che il predittore contiene già.
+Resta valido il resto del ragionamento della Sezione 3, cioè che l'Under 23 non sia
+scomponibile.
+
+**Il conteggio dei professionisti è 77, non 78.** La tabella delle definizioni congela 78
+eventi PRO per le coorti 1996-2000, scritta prima della verifica manuale degli abbinamenti
+con ProCyclingStats. Dopo quella verifica il conteggio che si rigenera è 77, ed è quello che
+vale. La differenza di uno non è stata ricostruita: la riconciliazione fra tutti i conteggi
+dello studio, con il motivo di ciascuno, sta nella sezione «Quanto regge tutto questo» di
+`output/analisi.md`.
+
+---
+
 # PARTE I — IMPOSTAZIONE
 
 ## 1. Le domande di ricerca
@@ -461,7 +489,7 @@ Scrivile in un file `definizioni.md` datato, **prima** di guardare i dati. Se de
 | Concetto | Definizione operativa |
 |---|---|
 | Categorie | U15, U17, U19, U23, sempre distinte per anno di categoria |
-| Coorti — Domande A e C | Nati 1996-2000 (esito PRO: 78 eventi) |
+| Coorti — Domande A e C | Nati 1996-2000 (esito PRO: 78 eventi previsti qui, **77 dopo la verifica manuale degli abbinamenti**: vedi «Aggiornamento successivo alla verifica della fonte») |
 | Coorti — Domanda B | Nati 1992-2000 (top 100: 15 eventi; su 1996-2000 sarebbero 8) |
 | Coorti (sopravvivenza) | Tutte, con censoring |
 | PRO | ≥1 stagione in prima o seconda divisione UCI entro l'anno dei 25 anni: classi PCS `WT`, `PT`, `PCT`, `PRT` |

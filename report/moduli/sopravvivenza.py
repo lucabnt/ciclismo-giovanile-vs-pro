@@ -172,7 +172,8 @@ def rendi(lt):
                     assente[1] < 0.2,
                     "essere assenti dalla classifica l'anno prima riduce il rischio di "
                     "passare professionista di piu' di cinque volte",
-                    "Il coefficiente che domina non e' il rendimento: e' **l'esserci**. "
+                    "Il coefficiente che domina non e' il rendimento: e' **il restare "
+                    "nella popolazione osservata**. "
                     "Chi non era in classifica l'anno precedente ha un rischio pari a "
                     "%s di chi c'era, cioe' circa **%s volte piu' basso**. Fra chi c'e', "
                     "dieci punti di percentile in piu' moltiplicano il rischio per %s."

@@ -103,6 +103,70 @@ def rendi(lt):
         "non si distinguono. Questa sezione raccoglie le tre prove che servono a "
         "separarle."))
 
+    # --- riconciliazione dei conteggi ----------------------------------------
+    p.append(md.sezione("Quanti professionisti, e perche' i conteggi non coincidono", 3))
+    p.append(md.paragrafo(
+        "Il numero di professionisti cambia da una sezione all'altra di questo documento, "
+        "e la prima cosa che un lettore attento fa e' provare a farlo tornare. Non torna, "
+        "e non deve: ogni analisi ha la popolazione che la sua domanda consente. Questa "
+        "tabella mette i conteggi uno accanto all'altro con il motivo di ciascuno, che e' "
+        "piu' utile di un numero unico ottenuto rinunciando a delle domande."))
+
+    liv = lt.tabella("qualita", "livelli")
+    pro_qualita = sum(r[1] for r in liv["righe"][1:]) if liv else None
+    definizioni = lt.tabella("sensibilita", "definizione")
+    estremi_def = None
+    if definizioni:
+        conteggi = sorted(r[1] for r in definizioni["righe"])
+        estremi_def = "da %s a %s" % (md.conta(conteggi[0]), md.conta(conteggi[-1]))
+
+    def _riga(titolo, modulo, k_atleti, k_eventi, motivo, eventi=None):
+        return [titolo, lt.valore(modulo, "coorti"),
+                md.conta(lt.valore(modulo, k_atleti)) if k_atleti else "—",
+                eventi if eventi is not None
+                else md.conta(lt.valore(modulo, k_eventi)), motivo]
+
+    righe_r = [
+        _riga("accesso al professionismo", "attrito", "atleti_totali", "pro_totali",
+              "tutti i classificati delle coorti: e' la popolazione dello studio"),
+        _riga("cosa aggiunge ogni categoria", "annidati", "n", "eventi",
+              "solo chi e' osservato in tutte le categorie, per confrontare i modelli "
+              "sulle stesse persone"),
+        _riga("livello e miglioramento", "traiettorie", "n_atleti", "n_eventi",
+              "serve piu' di una stagione per stimare una pendenza"),
+        _riga("qualita' della carriera", "qualita", "n", None,
+              "coorti piu' larghe, perche' i top 100 sono pochissimi, e solo chi compare "
+              "in Under 19 secondo anno", eventi=md.conta(pro_qualita)),
+        _riga("quando si diventa professionisti", "sopravvivenza", "n_atleti",
+              "n_eventi",
+              "tutte le coorti disponibili, con censura: qui si contano gli eventi, non "
+              "le persone"),
+        _riga("sensibilita' sulle definizioni", "sensibilita", "n", None,
+              "cambia cosa conta come professionismo, a parita' di atleti",
+              eventi=estremi_def or "—"),
+    ]
+    p.append(md.tabella(
+        ["analisi", "coorti", "atleti", "professionisti", "perche' quel numero"],
+        righe_r))
+
+    p.append(md.paragrafo(
+        "",
+        "Resta un settimo numero, e sta fuori da questa tabella perche' non viene da una "
+        "query: `docs/definizioni.md` congela **78 eventi PRO** per le coorti 1996-2000. "
+        "Quel file e' stato scritto prima di guardare i dati, come impone la procedura, e "
+        "prima della verifica manuale degli abbinamenti — diciotto date corrette, dieci "
+        "atleti duplicati riuniti in uno solo. Il conteggio che si rigenera oggi e' quello "
+        "della prima riga, e ho provato a ricostruire da dove venga la differenza di uno "
+        "senza riuscirci: nessuna delle correzioni manuali sposta un professionista dentro "
+        "o fuori quelle coorti. La riporto cosi' com'e' invece di inventarle una causa.",
+        "",
+        "*Nota sui confronti multipli.* Questo documento riporta decine di stime con il "
+        "loro intervallo di confidenza e **non applica nessuna correzione** per la "
+        "molteplicita' dei confronti. E' una scelta, e va saputa: gli intervalli vanno "
+        "letti uno per uno, e un singolo p-value appena sotto la soglia convenzionale, in "
+        "mezzo a tanti, non e' una scoperta. I risultati su cui il documento si appoggia "
+        "sono quelli che restano in piedi per ordine di grandezza, non per un decimale."))
+
     # --- STEP 24 --------------------------------------------------------------
     p.append(md.sezione("Il modello si sta giudicando troppo bene?", 3))
     p.append(md.metodo(
@@ -269,7 +333,9 @@ def rendi(lt):
                     "la foresta casuale non guadagna piu' di cinque centesimi di AUC "
                     "rispetto al modello a due parametri",
                     "**Guadagna %s di AUC, con %s predittori in piu'.** Il guadagno e' "
-                    "costante fra le ripetizioni, quindi reale, ma e' piccolo: un "
+                    "costante fra le ripetizioni, ma non e' un confronto a parita' di "
+                    "informazione — il paragrafo qui sotto dice perche' — e in ogni caso "
+                    "e' piccolo: un "
                     "modello con due parametri cattura quasi tutto quello che c'e' da "
                     "catturare. E' l'argomento a favore della parsimonia, verificato "
                     "invece che affermato."
@@ -338,7 +404,10 @@ def rendi(lt):
             "E sulla previsione il guadagno e' minimo: %s di AUC rispetto al modello con "
             "la sola cella %s, sullo stesso sottocampione. E' la terza volta che questo "
             "documento arriva alla stessa conclusione per tre strade diverse — modelli "
-            "annidati, foresta casuale, penalizzazione — e conviene prenderla sul serio: "
+            "annidati, foresta casuale, penalizzazione — e conviene prenderla sul serio, "
+            "ricordando pero' che non sono tre prove indipendenti: annidati e "
+            "penalizzazione girano su quasi lo stesso sottocampione, e solo la foresta "
+            "vede tutti gli atleti. Detto questo: "
             "**quasi tutta l'informazione utile sta nell'ultima misura disponibile.**"
             % (("%+.3f" % auc_p.get("differenza", 0)).replace(".", ","),
                auc_p.get("cella", ""))))

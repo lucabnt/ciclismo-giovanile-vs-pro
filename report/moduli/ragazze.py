@@ -311,9 +311,10 @@ def rendi(lt):
 
     p.append(md.paragrafo(
         "",
-        "> **Cosa manca, e cosa servirebbe.** Non c'e' una categoria Under 23 femminile, "
+        "> **Cosa manca, e cosa servirebbe.** Nel periodo studiato la fonte non pubblica "
+        "una classifica Under 23 femminile, "
         "quindi il predittore piu' vicino all'esito, quello che nel maschile porta quasi "
-        "tutta l'informazione, sul femminile non esiste. Gli esiti di carriera sono ora "
+        "tutta l'informazione, qui non c'e'. Gli esiti di carriera sono ora "
         "scaricati, ma le divisioni professionistiche femminili nascono nel 2020: prima "
         "esisteva una categoria sola, quindi «professionista» non e' definibile allo stesso "
         "modo e le coorti utilizzabili sono solo le piu' recenti. Finche' quel nodo non e' "

@@ -46,6 +46,8 @@ Il progetto deve poter girare sul femminile cambiando un parametro di configuraz
 | **B** — qualità della carriera | `tier` | **1992-2000** | 15 in top 100 | Sulle 1996-2000 gli eventi sono 8, sotto la soglia: la Domanda B non sarebbe modellabile affatto |
 | Sopravvivenza a tempo discreto | — | tutte, con censura | — | Recupera le coorti 2001+ |
 
+> **I 78 eventi sono la stima congelata qui, prima di guardare i dati.** Dopo la verifica manuale degli abbinamenti con ProCyclingStats il conteggio che si rigenera è **77**, ed è quello che vale: questo file resta com'era perché è un documento datato e riscriverlo a posteriori toglierebbe senso al congelamento. La riconciliazione fra tutti i conteggi dello studio — 77, 74, 102, 140, 121 — con il motivo di ciascuno sta nella sezione «Quanto regge tutto questo» di `output/analisi.md`.
+
 **L'U15 non si perde allargando le coorti.** Le classifiche Esordienti partono dal 2009, quindi l'U15 esiste solo per le coorti 1996+: dichiarare coorti 1992-2000 non aggiunge un solo atleta ai modelli che usano l'U15 (1.281 in entrambi i casi). Allargare le coorti sposta tutto il resto, non l'U15.
 
 Vincoli di copertura, per riferimento:

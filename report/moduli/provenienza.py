@@ -121,7 +121,15 @@ def rendi(lt):
         "([%s](%s)), e questo documento lavora sull'estrazione del %s, schema `%s`. "
         "Tenere separate le due cose ha un motivo pratico — la raccolta si aggiorna con "
         "un ritmo suo, l'analisi si rigenera quando serve — e uno di onesta': chi vuole "
-        "controllare i dati di partenza guarda quel repository, non questo."
+        "controllare i dati di partenza guarda quel repository, non questo.\n\n"
+        "Va detto che cosa quella fonte non e': **non e' l'archivio ufficiale della federazione**, "
+        "ma un portale che raccoglie e ordina i risultati per conto proprio. Le classifiche "
+        "che pubblica sono l'unico archivio giovanile italiano consultabile per stagione e "
+        "per categoria, e la verifica della struttura delle liste e del sistema a punti sta "
+        "in `docs/verifica_dati_giovanile.md`, ma un errore di trascrizione a monte non "
+        "sarebbe visibile da qui. Il percentile attenua il problema, perche' un punteggio "
+        "sbagliato sposta un atleta di qualche posizione e non cambia l'ordine "
+        "generale, e non lo azzera."
         % (v.get("portale"), v.get("repository", "").split("/")[-1],
            v.get("repository"), v.get("estrazione"), v.get("schema"))))
 
@@ -155,6 +163,11 @@ def rendi(lt):
         "Di ogni atleta si sa il piazzamento, non come ci e' arrivato. Ogni conclusione "
         "di questo documento va quindi letta come **«a parita' di cio' che la classifica "
         "registra»**, che e' meno di cio' che un allenatore vede.",
+        "",
+        "> In particolare il percentile non sa quante gare ha corso un atleta: chi ne "
+        "ha corse dieci e chi una sola possono trovarsi allo stesso posto in classifica, "
+        "e il primo ha avuto dieci occasioni di andare a punti. I risultati valgono quindi "
+        "a parita' di esposizione alla gara, che nei dati non c'e'.",
         "",
         "> Non c'e' nemmeno l'elenco dei tesserati per regione, il che lascia aperta "
         "l'unica domanda geografica che varrebbe la pena porre.",

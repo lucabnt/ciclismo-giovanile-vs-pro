@@ -271,7 +271,8 @@ def confronto_sessi(db, rif, ar):
                titolo="L'effetto dell'eta' relativa, maschi e femmine a confronto",
                nota="per ogni categoria si usano le coorti in cui entrambi i sessi sono "
                     "osservati, e l'atteso demografico e' calcolato su quelle stesse "
-                    "coorti; l'Under 23 femminile non esiste come categoria")
+                    "coorti; nel periodo studiato la fonte non pubblica una classifica "
+                    "Under 23 femminile")
     ar.valore("confronto_sessi", per_sesso)
     if per_sesso.get("M") and per_sesso.get("F"):
         ar.valore("sessi_prima_categoria",
@@ -449,8 +450,8 @@ def rendi(lt):
             "delle squadre femminili e le classifiche mondiali femminili renderebbe "
             "possibile sul femminile tutto il resto dello studio. Resterebbero due limiti "
             "strutturali: le atlete in classifica sono circa un decimo degli atleti, e la "
-            "categoria Under 23 femminile non esiste, quindi il predittore piu' vicino "
-            "all'esito mancherebbe."))
+            "classifica Under 23 femminile non esiste nel periodo studiato, quindi il "
+            "predittore piu' vicino all'esito mancherebbe."))
 
     return (chr(10) * 2).join(x.strip() for x in p if x)
 
