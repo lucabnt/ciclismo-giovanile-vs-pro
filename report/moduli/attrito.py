@@ -133,6 +133,33 @@ def calcola():
         # 23, perche' un terzo di quegli Under 23 in Under 15 non c'era mai stato.
         u15_e_u23 = conta(" AND %s AND %s" % (PRESENTE["U15"], PRESENTE["U23"]))
         ar.valore("persi_fra_u15_e_u23", n_u15 - u15_e_u23)
+
+        # Due misure che il post 3 cita e che finora non venivano da qui: quanto a
+        # lungo si resta in classifica, e quanto oscilla il proprio percentile. La
+        # prima e' una conseguenza dell'esito, non una causa, e serve proprio a dirlo.
+        durate = dict(db.execute(
+            "SELECT PRO, AVG(n_seasons_youth) " + base + " GROUP BY 1", par).fetchall())
+        ar.valore("stagioni_medie_pro", round(durate.get(1, 0), 1))
+        ar.valore("stagioni_medie_altri", round(durate.get(0, 0), 1))
+
+        # Lo scarto tipo del percentile, sui soli atleti con almeno tre stagioni:
+        # sotto le tre una dispersione non e' interpretabile.
+        per_atleta = {}
+        for a, pct, flag in db.execute(
+                """SELECT t.athlete_id, t.pct_rank, b.PRO
+                   FROM tab_a t JOIN tab_b b ON b.athlete_id = t.athlete_id
+                   WHERE t.sesso = ? AND t.birth_year BETWEEN ? AND ?
+                     AND t.pct_rank IS NOT NULL""", par):
+            per_atleta.setdefault((a, flag), []).append(pct)
+        import statistics
+        sd = {0: [], 1: []}
+        for (a, flag), v_pct in per_atleta.items():
+            if len(v_pct) >= 3:
+                sd[1 if flag else 0].append(statistics.stdev(v_pct))
+        for chiave, etichetta in ((1, "sd_percentile_pro"), (0, "sd_percentile_altri")):
+            if sd[chiave]:
+                ar.valore(etichetta, round(statistics.fmean(sd[chiave]), 1))
+        ar.valore("min_stagioni_sd", 3)
         ar.valore("pro_totali", pro)
         ar.valore("pro_dall_u15", pro_u15)
         ar.valore("pro_mai_in_u15", pro - pro_u15)

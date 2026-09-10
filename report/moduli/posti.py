@@ -419,9 +419,13 @@ def rendi(lt):
         "classifiche distinte e corrono gare distinte, quindi il conteggio somma i due "
         "calendari; nelle altre categorie la classifica e' una sola e le annate corrono "
         "insieme. Il numero degli Esordienti e' quindi comparabile agli altri solo "
-        "accettando che a quell'eta' si corra davvero separati, il che e' la prassi ma non "
-        "e' documentato nella fonte. Chi preferisce la lettura prudente puo' dimezzarlo: "
-        "resta un calo anche partendo da meta'."))
+        "accettando che a quell'eta' si corra davvero separati. Non e' piu' un'assunzione: le "
+        "Norme Attuative della federazione prevedono che le due annate corrano "
+        "separatamente, e che anche quando la gara e' unica la classifica sia distinta per "
+        "fascia d'eta' (art. 4.2.1 e 4.2.5, con l'eccezione dei meno di dieci partenti "
+        "all'art. 4.2.4). La verifica sui regolamenti sta in "
+        "`docs/verifica_dati_giovanile.md`. Chi preferisce comunque la lettura prudente "
+        "puo' dimezzare il conteggio: resta un calo anche partendo da meta'."))
 
     p.append(md.sezione("Ma il primo anno non sparisce per mancanza di posti", 3))
 

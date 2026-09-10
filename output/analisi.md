@@ -1,6 +1,6 @@
 # Ranking giovanili italiani e transizione al professionismo
 
-*Documento generato da `report/assembla.py` il 2026-09-09. Ogni numero viene da una query: non c'è nulla scritto a mano.*
+*Documento generato da `report/assembla.py` il 2026-09-10. Ogni numero viene da una query: non c'è nulla scritto a mano.*
 
 | | |
 |---|---|
@@ -418,7 +418,7 @@ Le sezioni precedenti hanno mostrato che al cambio di categoria la classifica si
 
 **Una parte della lettura corrente è giusta: i posti calano davvero.** Si passa da 640 classificazioni di gara per stagione in Esordienti a 146 in Under 23. Il calendario si accorcia, e con esso la lista, per ragioni che non hanno nulla a che vedere con il valore dei ragazzi.
 
-> **Un confronto da fare con una cautela.** Negli Esordienti le due annate hanno classifiche distinte e corrono gare distinte, quindi il conteggio somma i due calendari; nelle altre categorie la classifica è una sola e le annate corrono insieme. Il numero degli Esordienti è quindi comparabile agli altri solo accettando che a quell'età si corra davvero separati, il che è la prassi ma non è documentato nella fonte. Chi preferisce la lettura prudente può dimezzarlo: resta un calo anche partendo da metà.
+> **Un confronto da fare con una cautela.** Negli Esordienti le due annate hanno classifiche distinte e corrono gare distinte, quindi il conteggio somma i due calendari; nelle altre categorie la classifica è una sola e le annate corrono insieme. Il numero degli Esordienti è quindi comparabile agli altri solo accettando che a quell'età si corra davvero separati. Non è più un'assunzione: le Norme Attuative della federazione prevedono che le due annate corrano separatamente, e che anche quando la gara è unica la classifica sia distinta per fascia d'età (art. 4,2,1 e 4,2,5, con l'eccezione dei meno di dieci partenti all'art. 4,2,4). La verifica sui regolamenti sta in `docs/verifica_dati_giovanile.md`. Chi preferisce comunque la lettura prudente può dimezzare il conteggio: resta un calo anche partendo da metà.
 
 ### Ma il primo anno non sparisce per mancanza di posti
 

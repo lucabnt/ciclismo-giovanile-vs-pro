@@ -99,6 +99,36 @@ Due conseguenze operative, entrambe recepite in `scripts/01_build_tabelle.py`:
 
 ---
 
+## 2-bis. Cosa dicono i regolamenti federali
+
+*Aggiunto il 10 settembre 2026, leggendo le Norme Attuative 2027 della FCI — due documenti, uno
+per Esordienti e Allievi, uno per Juniores, Under 23 ed Elite.* Fino a qui la struttura delle
+classifiche era stata ricostruita dai dati; questi articoli la confermano dalla parte del
+regolamento, e chiudono un'assunzione che i post dichiaravano come tale.
+
+| Cosa | Dove | Cosa dice |
+|---|---|---|
+| **Le due annate degli Esordienti hanno classifiche separate** | Esordienti/Allievi, art. 4.2.1 e 4.2.5 | Primo e secondo anno «possono correre separatamente in manifestazioni organizzate nella stessa località»; e quando il comitato regionale approva una **gara unica**, si adotta il chilometraggio del primo anno «**con classifica separata per fascia d'età**». Vale anche per le Donne Esordienti |
+| **L'eccezione, ed è stretta** | Esordienti/Allievi, art. 4.2.4 | Se in una delle due categorie i partenti sono meno di dieci, «può essere stilata un'unica classifica». Sotto i cinque partenti, la categoria può essere accorpata (Elite/U23/Juniores, art. 1.7) |
+| **I punti vanno ai primi cinque, da 5 a 1** | Esordienti/Allievi, art. 4.4.21 | «5 pnt al 1°, 4 pnt al 2°, 3 pnt al 3°, 2 pnt al 4°, 1 pnt al 5°». La stessa scala compare per le gare femminili: «punteggio di valorizzazione FCI per le prime 5 classificate» (Juniores/U23, art. 11.4.1 e 11.6) |
+| **Le classifiche restano separate anche quando la gara è una sola** | Juniores/U23, art. 11.6 | Nelle gare femminili «Open», che mettono insieme Junior ed Elite/Under 23, «sono previste due classifiche separate» |
+| **Le categorie e le età** | Esordienti/Allievi, art. 1.1-1.5; Juniores/U23, art. 11 | Esordienti 13 e 14 anni distinti per annata, Allievi 15-16 in una categoria sola, Juniores 17-18, Under 23 dai 19 |
+| **La lista Under 23 contiene anche gli Elite** | Juniores/U23, art. 11.2.2 | Nelle gare nazionali e regionali Elite/Under 23 corrono italiani fino a 27 anni. È la ragione per cui il conteggio delle gare in Under 23 è un limite inferiore |
+
+**Cosa non c'è in questi documenti.** I moltiplicatori per livello di gara — nazionale che vale
+il doppio di una regionale, internazionale il triplo — non compaiono nelle Norme Attuative: la
+scala federale di valorizzazione è piatta, cinque punti al vincitore di qualunque gara. Il peso
+per livello è quindi un'elaborazione della fonte, oppure sta nel RTAA, che è un altro documento
+e non l'ho letto. Il documento tecnico attribuisce correttamente quel peso «alla classifica
+italiana» e non alla federazione, e l'effetto è comunque verificato dai dati, dividendo i punti
+per il numero di piazzamenti.
+
+**Cosa cambia nei testi.** Il post 3 dichiarava come assunzione che negli Esordienti le due
+annate non si facciano concorrenza: ora è un articolo di regolamento, con la sua nota. Il post 2
+afferma che i punti vanno ai primi cinque: è la scala federale, non una convenzione della fonte.
+
+---
+
 ## 3. Anno di corso: la regola è esatta
 
 L'anno di corso in U17 e U19 si deduce dall'appartenenza alla lista "primo anno". È una deduzione, quindi andava validata. Il test: prendere i 6.656 atleti il cui anno di nascita è **certo** perché ricavato dalle liste disgiunte degli Esordienti, e verificare se la loro presenza nella lista primo anno Allievi corrisponde davvero all'avere 15 anni.

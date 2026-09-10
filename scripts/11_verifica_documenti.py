@@ -241,6 +241,18 @@ def attesi_post(db):
              r"fra il 36,7% e il (\d+,\d)% dei punti"),
         ],
         "03_sparire_non_e_smettere.md": [
+            ("stagioni medie dei professionisti",
+             v("attrito", "stagioni_medie_pro"),
+             r"in classifica per (\d,\d) stagioni in media"),
+            ("stagioni medie degli altri",
+             v("attrito", "stagioni_medie_altri"),
+             r"contro le (\d,\d) di tutti gli altri"),
+            ("scarto tipo del percentile, professionisti",
+             v("attrito", "sd_percentile_pro"),
+             r"vale (\d+,\d) posizioni"),
+            ("scarto tipo del percentile, gli altri",
+             v("attrito", "sd_percentile_altri"), r"e (\d+,\d) per tutti gli altri"),
+
             ("rientri dopo un'assenza", v("attrito", "rientri_dopo_assenza"),
              r"Il (\d+,\d)% degli atleti salta almeno una stagione"),
             ("rientri dopo due stagioni", v("attrito", "rientri_dopo_assenza_lunga"),
@@ -419,7 +431,7 @@ def attesi_post(db):
              r"\| Esordienti \| 1,98 \| (\d,\d\d) \|"),
             ("atlete in Esordienti",
              v("rae", "sessi_prima_categoria", "n_femmine"),
-             r"in Esordienti sono (\d+) contro"),
+             r"anni, sono (\d+) contro"),
         ],
         "08_le_ragazze.md": [
             ("quota dei posti prima della separazione",
