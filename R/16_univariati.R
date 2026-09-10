@@ -144,6 +144,53 @@ confronto_anni <- function(dati, celle, min_eventi) {
 }
 
 
+# LA DOMANDA CHE UN LETTORE FA SUBITO
+#     A tredici anni il percentile misura il rendimento o misura la data di nascita?
+#     Fra ragazzi della stessa annata chi e' nato a gennaio ha fino a dodici mesi di
+#     sviluppo in piu' di chi e' nato a dicembre, e la sezione sull'effetto dell'eta'
+#     relativa mostra che nel ranking Under 15 i nati nel primo trimestre sono il doppio
+#     di quelli dell'ultimo. Se il vantaggio in classifica fosse in buona parte
+#     maturazione anagrafica, l'AUC di 0,736 direbbe soprattutto quello.
+#
+#     Il modo diretto di rispondere e' rifare ogni modello aggiungendo l'eta' relativa
+#     come covariata e guardare cosa succede al coefficiente del percentile. Se resta
+#     dov'era, la maturazione non e' cio' che il percentile sta misurando.
+#
+#     L'eta' relativa e' continua — giorni fra la nascita e il 31 dicembre — e non
+#     ridotta a trimestri: il trimestre e' una discretizzazione arbitraria che butta via
+#     informazione, e con eventi rari conviene non buttarne. Il coefficiente si legge
+#     per cento giorni, cioe' circa un trimestre.
+modello_eta_relativa <- function(dati, cella, min_eventi) {
+  col_pct <- paste0("pct_", cella)
+  col_pre <- paste0("present_", cella)
+
+  d <- dati[dati[[col_pre]] == 1 & !is.na(dati[[col_pct]]), ]
+  d <- data.frame(pro = as.integer(d$PRO), pct = as.numeric(d[[col_pct]]),
+                  anno = as.numeric(d$birth_year), rel = as.numeric(d$rel_age))
+  d <- d[stats::complete.cases(d), ]
+  if (nrow(d) == 0) return(NULL)
+
+  eventi <- sum(d$pro)
+  if (eventi < min_eventi || nrow(d) - eventi < min_eventi) return(NULL)
+
+  d$anno_c <- d$anno - mean(d$anno)
+  d$rel_c <- (d$rel - mean(d$rel)) / 100        # per cento giorni, circa un trimestre
+
+  fit_s <- logistf(pro ~ pct + anno_c, data = d)
+  fit_c <- logistf(pro ~ pct + anno_c + rel_c, data = d)
+  fit_r <- logistf(pro ~ rel_c + anno_c, data = d)
+
+  auc <- function(f) as.numeric(pROC::auc(pROC::roc(d$pro, f$predict, quiet = TRUE)))
+
+  list(cella = cella, n = nrow(d), eventi = eventi,
+       or_senza = exp(unname(coef(fit_s)["pct"]) * PASSO),
+       or_con = exp(unname(coef(fit_c)["pct"]) * PASSO),
+       auc_senza = auc(fit_s), auc_con = auc(fit_c), auc_rel = auc(fit_r),
+       or_rel = exp(unname(coef(fit_c)["rel_c"])),
+       p_rel = unname(fit_c$prob["rel_c"]))
+}
+
+
 main <- function() {
   dd <- dati_apri()
   on.exit(dbDisconnect(dd))
@@ -202,6 +249,19 @@ Primo contro secondo anno, sugli stessi atleti:
 ")
   anni <- confronto_anni(dati, celle, min_eventi)
 
+  cat("
+Il percentile, aggiustato anche per l'eta' relativa:
+")
+  rel <- list()
+  for (cella in celle) {
+    r <- modello_eta_relativa(dati, cella, min_eventi)
+    if (is.null(r)) next
+    cat(sprintf("  %-7s OR %.2f -> %.2f   AUC %.3f -> %.3f   (sola eta' relativa %.3f)
+",
+                r$cella, r$or_senza, r$or_con, r$auc_senza, r$auc_con, r$auc_rel))
+    rel[[length(rel) + 1]] <- r
+  }
+
   # Chi diventa professionista senza mai comparire nelle classifiche Under 23: se fosse
   # una quota rilevante, i modelli sull'Under 23 sarebbero stimati su un gruppo da cui
   # i piu' forti sono usciti, e andrebbero letti di conseguenza.
@@ -227,6 +287,34 @@ i 20 anni: %d.
                    nota = paste("Solo gli atleti presenti in entrambe le classifiche",
                                 "della categoria: e' l'unico confronto in cui le due",
                                 "misure riguardano le stesse persone."))
+  }
+  if (length(rel)) {
+    scrivi_tabella(
+      ar, "eta_relativa",
+      lapply(rel, function(r) list(r$cella, r$n, r$eventi, r$or_senza, r$or_con,
+                                   r$auc_senza, r$auc_con, r$or_rel, r$p_rel,
+                                   r$auc_rel)),
+      c("cella", "atleti", "professionisti", "or_senza", "or_con", "auc_senza",
+        "auc_con", "or_rel", "p_rel", "auc_rel"),
+      titolo = "Il percentile, prima e dopo l'aggiustamento per eta' relativa",
+      nota = paste("L'eta' relativa e' in giorni dal 31 dicembre e il suo odds ratio",
+                   "si legge per cento giorni, cioe' circa un trimestre. Le due AUC",
+                   "sono dello stesso modello con e senza quel termine, sugli stessi",
+                   "atleti."))
+    peggio <- rel[[which.max(sapply(rel, function(r) abs(r$auc_con - r$auc_senza)))]]
+    scrivi_valore(ar, "rel_age_scarto_auc", round(peggio$auc_con - peggio$auc_senza, 4),
+                  "massimo spostamento di AUC dovuto all'aggiustamento per eta' relativa")
+    primo <- rel[[1]]
+    scrivi_valore(ar, "rel_age_prima_cella",
+                  list(cella = primo$cella,
+                       or_senza = round(primo$or_senza, 2),
+                       or_con = round(primo$or_con, 2),
+                       auc_senza = round(primo$auc_senza, 3),
+                       auc_con = round(primo$auc_con, 3),
+                       auc_rel = round(primo$auc_rel, 3),
+                       or_rel = round(primo$or_rel, 2),
+                       p_rel = signif(primo$p_rel, 3)),
+                  "la cella piu' precoce, quella in cui l'eta' relativa dovrebbe pesare di piu'")
   }
   scrivi_valore(ar, "pro_mai_in_u23", pro_mai_u23)
   scrivi_valore(ar, "pro_totali", pro_tot)

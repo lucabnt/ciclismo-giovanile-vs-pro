@@ -156,7 +156,11 @@ def calcola():
                         "delta calcolati su popolazioni diverse")
         if curva:
             giovanili = [c for c in curva if not c[0].startswith("U23")]
-            ar.valore("delta_primo", [giovanili[0][0], round(giovanili[0][1], 2)])
+            # Due decimali per la tabella, tre per il testo: il primo delta cade
+            # a ridosso della soglia fra «medio» e «grande», e arrotondato a due
+            # cifre sembra starci esattamente sopra invece che appena oltre.
+            ar.valore("delta_primo", [giovanili[0][0], round(giovanili[0][1], 2),
+                                      round(giovanili[0][1], 3)])
             mx = max(giovanili, key=lambda c: c[1])
             ar.valore("delta_massimo", [mx[0], round(mx[1], 2), round((mx[1] + 1) / 2, 2)])
             u23 = [c for c in curva if c[0].startswith("U23")]
@@ -165,9 +169,9 @@ def calcola():
                                         round(100 * u23[0][2] / u23[0][3], 1)])
 
         # --- il gradiente per livello dell'esito ---------------------------
-        righe_t = []
+        righe_t, eccezioni = [], []
         for cella in celle:
-            riga = [cella]
+            riga, mediane = [cella], []
             for t in range(4):
                 v = [r[0] for r in db.execute(
                     """SELECT pct_%s FROM tab_b WHERE sesso = ? AND
@@ -176,7 +180,18 @@ def calcola():
                     (sesso, lo, hi, t))]
                 riga.append("%.0f (n=%d)" % (quantile(v, .5), len(v)) if len(v) >= MIN_GRUPPO
                             else ("n=%d" % len(v) if v else "—"))
+                # Si confrontano le mediane come la tabella le mostra, arrotondate:
+                # un'inversione che sparisce all'arrotondamento non e' un'eccezione
+                # che il lettore possa vedere.
+                mediane.append(round(quantile(v, .5)) if len(v) >= MIN_GRUPPO else None)
+            # La monotonia si verifica, non si afferma: se un anno una riga smettesse
+            # di crescere, il testo lo direbbe da solo.
+            viste = [m for m in mediane if m is not None]
+            if len(viste) > 1 and any(b < a for a, b in zip(viste, viste[1:])):
+                eccezioni.append(cella)
             righe_t.append(riga)
+        ar.valore("tier_eccezioni", eccezioni,
+                  "celle in cui la mediana non cresce a ogni livello raggiunto")
         ar.tabella("per_tier", righe_t,
                    colonne=["cella", "non pro", "pro senza top 500", "top 500", "top 100"],
                    titolo="Percentile mediano per livello raggiunto",
@@ -272,10 +287,13 @@ def rendi(lt):
         p.append(md.paragrafo(
             "",
             "**Gia' a tredici anni la separazione e' netta.** Il delta in %s vale "
-            "**%.2f**, esattamente sul confine convenzionale fra «medio» e «grande», e "
-            "sale fino a **%.2f** in %s — un'AUC di %.2f, che e' l'ordine di grandezza "
-            "di cio' che un modello univariato potra' ottenere."
-            % (dp[0], dp[1], dm[1], dm[0], dm[2])))
+            "**%s**, cioe' appena sopra il confine convenzionale fra «medio» e "
+            "«grande», che sta a 0,47: la tabella lo arrotonda a due cifre e per "
+            "questo sembra caderci esattamente sopra. Sale poi fino a **%.2f** in "
+            "%s — un'AUC di %.2f, che e' l'ordine di grandezza di cio' che un modello "
+            "univariato potra' ottenere."
+            % (dp[0], md.num(dp[2] if len(dp) > 2 else dp[1], 3),
+               dm[1], dm[0], dm[2])))
 
     du = v.get("delta_u23")
     if du:
@@ -306,12 +324,21 @@ def rendi(lt):
     p.append(md.sezione("Il gradiente per livello raggiunto", 3))
     if per_tier:
         p.append(md.tabella(per_tier["colonne"], per_tier["righe"], nota=per_tier["nota"]))
+    ecc = v.get("tier_eccezioni") or []
     p.append(md.paragrafo(
         "",
-        "La mediana cresce monotonicamente con il livello raggiunto, in tutte le celle: "
-        "non c'e' una soglia oltre la quale il percentile smette di dire qualcosa. "
-        "Le colonne di destra sono pero' sottili — otto atleti in tutto arrivano in "
-        "top 100 — e vanno lette come indicazione, non come stima."))
+        "La mediana cresce con il livello raggiunto, e non solo fra chi arriva e chi "
+        "no: e' una relazione dose-risposta, qualitativamente diversa da un confronto "
+        "fra due gruppi, perche' un rumore casuale non produce una scala ordinata. "
+        + (md.afferma(
+            len(ecc) <= 1,
+            "la crescita per livello raggiunto ha al piu' un'eccezione fra tutte le "
+            "celle",
+            "La crescita e' pero' monotona in tutte le celle tranne %s, dove l'ultima "
+            "colonna scende." % ", ".join(ecc)) if ecc
+           else "La crescita e' monotona in tutte le celle.")
+        + " Le colonne di destra sono comunque sottili — otto atleti in tutto arrivano "
+          "in top 100 — e vanno lette come indicazione, non come stima."))
     return (chr(10) * 2).join(x.strip() for x in p if x)
 
 

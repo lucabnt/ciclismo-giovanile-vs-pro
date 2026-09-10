@@ -198,6 +198,74 @@ def rendi(lt):
                 "esiste, ma e' piccola."
                 % (md.conta(mai), md.conta(tot), md.conta(v.get("pro_precoci"))))))
 
+    # --- rendimento o data di nascita? ----------------------------------------
+    # E' l'obiezione che un lettore fa subito, e alle eta' piu' basse e' seria: se il
+    # percentile a tredici anni fosse in buona parte maturazione anagrafica, l'AUC di
+    # questa sezione misurerebbe soprattutto quella. Si risponde rifacendo i modelli
+    # con l'eta' relativa dentro, non argomentando.
+    rel = lt.tabella("univariati", "eta_relativa")
+    prima = v.get("rel_age_prima_cella")
+    if rel and prima:
+        p.append(md.sezione("E' rendimento, o e' la data di nascita?", 3))
+        p.append(md.paragrafo(
+            "Fra ragazzi della stessa annata chi e' nato a gennaio ha fino a dodici mesi "
+            "di sviluppo in piu' di chi e' nato a dicembre, e la sezione sull'effetto "
+            "dell'eta' relativa mostrera' che nel ranking Under 15 i nati nel primo "
+            "trimestre sono piu' del doppio di quelli dell'ultimo. L'obiezione e' quindi "
+            "legittima: a tredici anni il percentile misura il rendimento, o misura "
+            "quanto presto uno e' cresciuto?",
+            "",
+            "Il modo diretto di rispondere e' rifare ogni modello con l'eta' relativa "
+            "dentro e guardare cosa succede al coefficiente del percentile. L'eta' "
+            "relativa e' contata in giorni fra la nascita e il 31 dicembre, non ridotta "
+            "a trimestri, e il suo odds ratio si legge per cento giorni, cioe' circa un "
+            "trimestre."))
+        righe_r = [[r[0], r[1], r[2], md.num(r[3], 2), md.num(r[4], 2),
+                    md.num(r[5], 3), md.num(r[6], 3), md.num(r[7], 2), _p(r[8]),
+                    md.num(r[9], 3)]
+                   for r in rel["righe"]]
+        p.append(md.tabella(
+            ["cella", "atleti", "professionisti", "OR percentile", "OR aggiustato",
+             "AUC", "AUC aggiustata", "OR eta' relativa", "p", "AUC della sola eta'"],
+            righe_r, nota=rel["nota"], colonne_conteggio=(1, 2)))
+
+        scarto = v.get("rel_age_scarto_auc")
+        p.append(md.paragrafo(
+            "",
+            md.afferma(
+                abs(prima["or_con"] - prima["or_senza"]) <= 0.05
+                and prima["auc_rel"] < 0.60,
+                "aggiungere l'eta' relativa ai modelli non sposta il coefficiente del "
+                "percentile, e da sola l'eta' relativa non distingue chi arrivera'",
+                "**Non sposta niente.** Nella cella piu' precoce, %s, l'odds ratio del "
+                "percentile passa da %s a %s e l'AUC da %s a %s; su tutte le celle lo "
+                "spostamento massimo di AUC e' %s. E l'eta' relativa da sola, come unico "
+                "predittore, arriva a un'AUC di **%s**: praticamente una monetina "
+                "(p = %s)."
+                % (prima["cella"], md.num(prima["or_senza"], 2),
+                   md.num(prima["or_con"], 2), md.num(prima["auc_senza"], 3),
+                   md.num(prima["auc_con"], 3), md.num(scarto, 3),
+                   md.num(prima["auc_rel"], 3), _p(prima["p_rel"])))))
+
+        p.append(md.paragrafo(
+            "",
+            "Il risultato va letto insieme all'altro, non al posto suo. L'eta' relativa "
+            "pesa moltissimo su **chi entra** in classifica — e' il senso del rapporto "
+            "di due a uno fra primo e ultimo trimestre in Under 15 — e non pesa "
+            "praticamente nulla su **chi arriva**, fra quelli entrati. Sono le due "
+            "meta' della stessa conclusione: un effetto di accesso, non di talento. "
+            "Quello che si puo' dire e' che il percentile non e' una data di nascita "
+            "travestita; quello che non si puo' dire e' che la data di nascita non "
+            "conti, perche' ha gia' agito prima, sulla porta d'ingresso."))
+
+        mancanti = t["righe"][0][1] - rel["righe"][0][1]
+        if mancanti > 0:
+            p.append(md.paragrafo(
+                "",
+                "*Il confronto gira su %s atleti in meno della tabella precedente: sono "
+                "quelli di cui si conosce l'anno ma non il giorno di nascita, e senza "
+                "quello l'eta' relativa non si calcola.*" % md.conta(mancanti)))
+
     # --- il tasso di professionismo per cella non e' un segnale ---------------
     amp = lt.tabella("univariati", "ampiezza_liste")
     anni = lt.tabella("univariati", "primo_contro_secondo")
@@ -216,10 +284,10 @@ def rendi(lt):
             for c in esempi)
         p.append(md.paragrafo(
             "Nella tabella qui sopra il tasso di professionismo e' piu' alto nelle celle "
-            "del **primo** anno di categoria che in quelle del secondo: %s. Sembra "
-            "suggerire che il primo anno selezioni meglio. Non e' cosi', ed e' un buon "
-            "esempio di come un denominatore possa produrre un segnale che non c'e'."
-            % elenco,
+            "del **primo** anno delle categorie a lista unica che in quelle del secondo: "
+            "%s. Sembra suggerire che il primo anno selezioni meglio. Non e' cosi', ed e' "
+            "un buon esempio di come un denominatore possa produrre un segnale che non "
+            "c'e'." % elenco,
             "",
             "Dagli Allievi in su la classifica e' **una sola per categoria** e le due "
             "annate ci convivono, correndo le stesse gare. Al primo anno se ne vince una "
@@ -231,6 +299,24 @@ def rendi(lt):
             "previsione."
             % (md.conta(larghezze.get("U17y1")), md.conta(larghezze.get("U17y2")),
                md.conta(larghezze.get("U19y1")), md.conta(larghezze.get("U19y2")))))
+
+        # Il caso di controllo e' gia' in tabella: l'Under 15 ha due classifiche
+        # separate per regolamento, quindi il meccanismo del denominatore non puo'
+        # operare, e infatti li' i due tassi coincidono.
+        if tassi.get("U15y1") and tassi.get("U15y2"):
+            p.append(md.paragrafo(
+                "",
+                md.afferma(
+                    abs(tassi["U15y1"] - tassi["U15y2"]) < 0.5,
+                    "in Under 15, dove le due annate hanno classifiche separate, i due "
+                    "tassi di professionismo praticamente coincidono",
+                    "La verifica di questa spiegazione sta nella riga che non ci "
+                    "rientra. In **Under 15 le due annate hanno classifiche separate "
+                    "per regolamento**, quindi ciascuna ha i propri posti e il "
+                    "meccanismo del denominatore non puo' operare: li' i due tassi "
+                    "sono %s%% e %s%%, cioe' praticamente lo stesso numero. Dove la "
+                    "lista e' unica il divario compare, dove e' doppia sparisce."
+                    % (md.num(tassi["U15y1"], 1), md.num(tassi["U15y2"], 1)))))
 
     if anni:
         p.append(md.paragrafo(

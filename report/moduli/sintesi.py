@@ -119,10 +119,11 @@ def rendi(lt):
     p.append(md.sezione("Cosa il rendimento giovanile predice", 3))
     p.append(md.paragrafo(
         "**Predice, e da subito.** Gia' al primo anno di Under 15 la separazione fra chi "
-        "arrivera' e chi no e' sul confine convenzionale fra «medio» e «grande» (delta "
-        "di Cliff %s). Il peso cresce con l'eta': dieci punti di percentile moltiplicano "
-        "l'odds di diventare professionista per %s in %s e per %s in %s."
-        % (md.num(pun["delta_primo"][1], 2) if pun else "—",
+        "arrivera' e chi no e' appena sopra il confine convenzionale fra «medio» e "
+        "«grande» (delta di Cliff %s). Il peso cresce con l'eta': dieci punti di "
+        "percentile moltiplicano l'odds di diventare professionista per %s in %s e per "
+        "%s in %s."
+        % (md.num(pun["delta_primo"][2], 3) if pun else "—",
            md.num(prima.get("or"), 2), prima.get("cella", "—"),
            md.num(massima.get("or"), 2), massima.get("cella", "—"))))
 
@@ -230,10 +231,17 @@ def rendi(lt):
             "trimestre sono **%s volte** i nati nel quarto in %s, e il vantaggio si "
             "spegne a **%s** in %s. Fra chi arriva al professionismo il rapporto e' %s e "
             "non si distingue dal caso (p %s). Chi seleziona presto premia la maturita' "
-            "anagrafica, e quel vantaggio non si converte in carriera."
+            "anagrafica, e quel vantaggio non si converte in carriera. I modelli lo "
+            "confermano dall'altro lato: aggiungere l'eta' relativa non sposta il "
+            "coefficiente del percentile in nessuna cella%s, e da sola l'eta' relativa "
+            "arriva a un'AUC di %s."
             % (md.num(dec.get("prima_q1_su_q4"), 2), dec.get("prima", "—"),
                md.num(dec.get("ultima_q1_su_q4"), 2), dec.get("ultima", "—"),
-               md.num(succ.get("q1_su_q4"), 2), _p(succ.get("p"), 2))))
+               md.num(succ.get("q1_su_q4"), 2), _p(succ.get("p"), 2),
+               ("" if uni.get("rel_age_scarto_auc") is None
+                else " (l'AUC si muove al massimo di %s)"
+                     % md.num(uni["rel_age_scarto_auc"], 3)),
+               md.num((uni.get("rel_age_prima_cella") or {}).get("auc_rel"), 3))))
 
     if con:
         p.append(md.paragrafo(

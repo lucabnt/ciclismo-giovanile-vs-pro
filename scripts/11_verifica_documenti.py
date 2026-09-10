@@ -192,6 +192,13 @@ def attesi_post(db):
     def pct(x):
         return None if x is None else x * 100
 
+    def _mediana(cella):
+        """Da «49 (n=1623)» al solo 49: la tabella per livello porta i due insieme."""
+        if cella is None:
+            return None
+        m = re.match(r"\s*(\d+)", str(cella))
+        return float(m.group(1)) if m else None
+
     hazard = tabella(db, "sopravvivenza", "hazard_grezzo") or []
     eta_max = max(hazard, key=lambda r: r[3])[0] if hazard else None
     mob = v("contesto", "mobilita_grezza_da_a") or [None, None]
@@ -299,7 +306,19 @@ def attesi_post(db):
             ("quanto separa a diciotto anni", pct(v("univariati", "auc_massima", "auc")),
              r"a diciotto nell'(\d+)%"),
             ("odds ratio a tredici anni", v("univariati", "auc_prima", "or"),
-             r"\| Under 15, primo anno \| 13 \| ×(\d,\d\d) \|"),
+             r"\| Under 15, primo anno \| 13 \| ×(\d,\d\d) \(fra"),
+            ("estremo basso dell'intervallo a tredici anni",
+             riga("univariati", "per_cella", "U15y1", 5),
+             r"×1,40 \(fra (\d,\d\d) e 1,58\)"),
+            ("estremo alto dell'intervallo a tredici anni",
+             riga("univariati", "per_cella", "U15y1", 6),
+             r"×1,40 \(fra 1,25 e (\d,\d\d)\)"),
+            ("estremo basso dell'intervallo a diciotto anni",
+             riga("univariati", "per_cella", "U19y2", 5),
+             r"×2,28 \(fra (\d,\d\d) e 2,80\)"),
+            ("estremo alto dell'intervallo a diciotto anni",
+             riga("univariati", "per_cella", "U19y2", 6),
+             r"×2,28 \(fra 1,91 e (\d,\d\d)\)"),
             ("odds ratio a diciotto anni", v("univariati", "auc_massima", "or"),
              r"Under 19, secondo anno \| 18 \| ×(\d,\d\d)"),
             ("secondo anno di Under 15",
@@ -317,7 +336,7 @@ def attesi_post(db):
              v("penalizzato", "trattenuti"), r"ne ha tenute (\d) su 8"),
             ("lunghezza della lista U17y1",
              riga("univariati", "ampiezza_liste", "U17y1", 1),
-             r"sono (\d+) contro 320 in Under 17"),
+             r"sono in media (\d+) contro 320 in Under 17"),
             ("separazione a tredici anni con gli assenti",
              pct(riga("sensibilita", "mancanti", "Under 15 primo anno, tutta", 4)),
              r"dal 74% al (\d+)%"),
@@ -327,6 +346,64 @@ def attesi_post(db):
             ("professionisti in classifica a tredici anni",
              riga("sensibilita", "mancanti", "Under 15 primo anno, solo", 1),
              r"(\d+) dei 77 futuri professionisti"),
+
+            # --- il gradiente per livello raggiunto -----------------------
+            ("percentile mediano di chi non arriva, a tredici anni",
+             _mediana(riga("punteggi", "per_tier", "U15y1", 1)),
+             r"le mediane sono (\d+), 69 e 89"),
+            ("percentile mediano dei professionisti senza top 500",
+             _mediana(riga("punteggi", "per_tier", "U15y1", 2)),
+             r"le mediane sono 49, (\d+) e 89"),
+            ("percentile mediano di chi entra nel top 500",
+             _mediana(riga("punteggi", "per_tier", "U15y1", 3)),
+             r"le mediane sono 49, 69 e (\d+)"),
+            ("percentile mediano di chi entra nel top 100",
+             _mediana(riga("punteggi", "per_tier", "U15y1", 4)),
+             r"a tredici anni, è (\d+), cioè sotto"),
+
+            # --- rendimento o data di nascita ------------------------------
+            ("rapporto fra primo e ultimo trimestre in Under 15",
+             v("rae", "decadimento", "prima_q1_su_q4"),
+             r"sono (\d,\d\d) volte quelli dell'ultimo"),
+            ("rapporto fra trimestri, fra i professionisti",
+             v("rae", "successo_professionisti", "q1_su_q4"),
+             r"quel rapporto scende a (\d,\d\d)"),
+            ("odds ratio a tredici anni con l'eta' relativa dentro",
+             v("univariati", "rel_age_prima_cella", "or_con"),
+             r"passa da 1,40 a (\d,\d\d)"),
+            ("AUC a tredici anni senza l'eta' relativa",
+             v("univariati", "rel_age_prima_cella", "auc_senza"),
+             r"distinguere da (\d,\d\d\d) a 0,738"),
+            ("AUC a tredici anni con l'eta' relativa",
+             v("univariati", "rel_age_prima_cella", "auc_con"),
+             r"distinguere da 0,735 a (\d,\d\d\d)"),
+            ("AUC della sola eta' relativa",
+             v("univariati", "rel_age_prima_cella", "auc_rel"),
+             r"arriva a (\d,\d\d\d): praticamente una monetina"),
+
+            # --- il tasso di professionismo per cella ---------------------
+            ("tasso di professionismo in Under 19 primo anno",
+             riga("univariati", "per_cella", "U19y1", 3),
+             r"sono già il (\d,\d)% della lista"),
+            ("tasso di professionismo in Under 17 secondo anno",
+             riga("univariati", "per_cella", "U17y2", 3),
+             r"contro il (\d,\d)% della cella precedente"),
+            ("tasso di professionismo in Under 15 primo anno",
+             riga("univariati", "per_cella", "U15y1", 3),
+             r"i due tassi sono (\d,\d)% e 3,5%"),
+            ("tasso di professionismo in Under 15 secondo anno",
+             riga("univariati", "per_cella", "U15y2", 3),
+             r"i due tassi sono 3,5% e (\d,\d)%"),
+
+            # --- gli intervalli della tabella annidata --------------------
+            ("estremo basso dell'intervallo con l'Under 19",
+             pct(riga("annidati", "sequenza", "M3", 4)),
+             r"più l'Under 19 \| 81% \| (\d+)-89% \|"),
+            ("estremo alto dell'intervallo con l'Under 19",
+             pct(riga("annidati", "sequenza", "M3", 5)),
+             r"più l'Under 19 \| 81% \| 73-(\d+)% \|"),
+            ("professionisti fra i 102 della sequenza",
+             v("annidati", "tasso_pro"), r"i professionisti sono il (\d+)%"),
         ],
         "05_livello_o_curva.md": [
             ("odds ratio del livello",

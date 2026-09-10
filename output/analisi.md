@@ -52,6 +52,7 @@
   - [Cambiare società spesso non è una scelta](#cambiare-società-spesso-non-è-una-scelta)
   - [Regione e società di partenza](#regione-e-società-di-partenza)
 - [Quanto vale il rendimento, misurato](#quanto-vale-il-rendimento-misurato)
+  - [È rendimento, o è la data di nascita?](#è-rendimento-o-è-la-data-di-nascita)
   - [Perché la colonna «% pro» non va letta come un segnale](#perché-la-colonna--pro-non-va-letta-come-un-segnale)
 - [Cosa aggiunge ogni categoria](#cosa-aggiunge-ogni-categoria)
 - [Se il ranking si usasse per selezionare](#se-il-ranking-si-usasse-per-selezionare)
@@ -93,7 +94,7 @@
 
 ### Cosa il rendimento giovanile predice
 
-**Predice, e da subito.** Già al primo anno di Under 15 la separazione fra chi arriverà e chi no è sul confine convenzionale fra «medio» e «grande» (delta di Cliff 0,47). Il peso cresce con l'età: dieci punti di percentile moltiplicano l'odds di diventare professionista per 1,40 in U15y1 e per 2,28 in U19y2.
+**Predice, e da subito.** Già al primo anno di Under 15 la separazione fra chi arriverà e chi no è appena sopra il confine convenzionale fra «medio» e «grande» (delta di Cliff 0,471). Il peso cresce con l'età: dieci punti di percentile moltiplicano l'odds di diventare professionista per 1,40 in U15y1 e per 2,28 in U19y2.
 
 **Fra gli atleti osservati in tutte le categorie, l'informazione si concentra nell'ultima misura disponibile.** Costruendo i modelli per aggiunte successive sugli stessi 102 atleti, il salto maggiore è **M3 (+U19y2)** (ΔAUC +0,151). Tre metodi concordano, e due dei tre girano su quasi lo stesso sottocampione: i modelli annidati, una foresta casuale con quindici predittori in più (che guadagna +0,013 di AUC) e una regressione penalizzata su tutte le categorie insieme, che ne trattiene solo le due più vicine all'esito.
 
@@ -109,7 +110,7 @@
 
 **Uscire dalla classifica non è smettere.** Il **30,6%** degli atleti salta almeno una stagione e poi ricompare, e metà dei classificati al secondo anno di Allievi non c'era al primo. Il crollo apparente al cambio di categoria — resta il 32,4% contro il 79,9% dei passaggi interni — non viene dalla scarsità dei posti ma dalla concorrenza fra annate: la classifica di arrivo è composta per il 88,2% da chi c'era già, contro il 60,7% dei passaggi interni. Il confronto con i tesserati federali conferma dall'esterno che la classifica non si restringe più in fretta della popolazione che la genera.
 
-**L'effetto dell'età relativa è di accesso, non di talento.** Rispetto all'atteso demografico italiano — non all'uniforme — i nati nel primo trimestre sono **2,13 volte** i nati nel quarto in U15, e il vantaggio si spegne a **1,09** in U23. Fra chi arriva al professionismo il rapporto è 1,47 e non si distingue dal caso (p 0,12). Chi seleziona presto premia la maturità anagrafica, e quel vantaggio non si converte in carriera.
+**L'effetto dell'età relativa è di accesso, non di talento.** Rispetto all'atteso demografico italiano — non all'uniforme — i nati nel primo trimestre sono **2,13 volte** i nati nel quarto in U15, e il vantaggio si spegne a **1,09** in U23. Fra chi arriva al professionismo il rapporto è 1,47 e non si distingue dal caso (p 0,12). Chi seleziona presto premia la maturità anagrafica, e quel vantaggio non si converte in carriera. I modelli lo confermano dall'altro lato: aggiungere l'età relativa non sposta il coefficiente del percentile in nessuna cella (l'AUC si muove al massimo di 0,007), e da sola l'età relativa arriva a un'AUC di 0,513.
 
 **Società, mobilità e regione non aggiungono nulla di leggibile.** Il gradiente della mobilità sembra enorme — dal 0,68% al 7,32% di professionisti secondo il numero di cambi di società — ma a parità di stagioni corse quasi sparisce. E il **96,3%** cambia società passando dagli Juniores all'Under 23, contro circa il 21% dei passaggi interni a una categoria: è organizzazione dello sport, non una decisione. La società di partenza va dal 2,90% al 3,79%, la regione non mostra differenze leggibili.
 
@@ -593,7 +594,7 @@ Il numero da guardare **non è il p-value**. Con milleseicento non professionist
 
 *il percentile va da 0 a 100; la colonna «% pro» è il tasso di professionisti della cella, e serve a non confrontare fra loro delta calcolati su popolazioni diverse*
 
-**Già a tredici anni la separazione è netta.** Il delta in U15y1 vale **0,47**, esattamente sul confine convenzionale fra «medio» e «grande», e sale fino a **0,78** in U19y2 — un'AUC di 0,89, che è l'ordine di grandezza di ciò che un modello univariato potrà ottenere.
+**Già a tredici anni la separazione è netta.** Il delta in U15y1 vale **0,471**, cioè appena sopra il confine convenzionale fra «medio» e «grande», che sta a 0,47: la tabella lo arrotonda a due cifre e per questo sembra caderci esattamente sopra. Sale poi fino a **0,78** in U19y2 — un'AUC di 0,89, che è l'ordine di grandezza di ciò che un modello univariato potrà ottenere.
 
 **Attenzione però all'ultima riga.** In U23y1 il delta scende a 0,40, e sarebbe facile leggerlo come «il rendimento da Under 23 conta meno». Non è così: in quella cella i professionisti sono il **37%**, contro poche unità percentuali nelle categorie giovanili. Chi arriva lì è già un sopravvissuto, e il confronto avviene fra atleti già selezionati. I delta di righe diverse **non sono confrontabili** fra loro, ed è il motivo per cui la tabella riporta il tasso di professionisti accanto a ciascuno.
 
@@ -621,7 +622,7 @@ Il numero da guardare **non è il p-value**. Con milleseicento non professionist
 
 *fra parentesi la numerosità; dove è sotto la soglia si riporta solo quella, non la mediana*
 
-La mediana cresce monotonicamente con il livello raggiunto, in tutte le celle: non c'è una soglia oltre la quale il percentile smette di dire qualcosa. Le colonne di destra sono però sottili — otto atleti in tutto arrivano in top 100 — e vanno lette come indicazione, non come stima.
+La mediana cresce con il livello raggiunto, e non solo fra chi arriva e chi no: è una relazione dose-risposta, qualitativamente diversa da un confronto fra due gruppi, perché un rumore casuale non produce una scala ordinata. La crescita è però monotona in tutte le celle tranne U15y1, dove l'ultima colonna scende. Le colonne di destra sono comunque sottili — otto atleti in tutto arrivano in top 100 — e vanno lette come indicazione, non come stima.
 
 ## L'effetto dell'età relativa
 
@@ -905,11 +906,37 @@ Resta la trappola già segnalata nella descrittiva: **gli odds ratio di celle di
 
 C'è un secondo verso della selezione, meno ovvio: un atleta molto forte può passare professionista subito dopo gli Juniores e non comparire mai nelle classifiche Under 23. Se fosse frequente, i modelli sull'Under 23 sarebbero stimati su un gruppo da cui i migliori sono usciti, e ne sottostimerebbero la predittività. Succede a **3 professionisti su 77**: 11 hanno debuttato entro i vent'anni, ma quasi tutti erano comunque a punti nel ranking Under 23 di quella stagione, perché in Italia si continua a correre da Under 23 anche con un contratto da professionista. La distorsione esiste, ma è piccola.
 
+### È rendimento, o è la data di nascita?
+
+Fra ragazzi della stessa annata chi è nato a gennaio ha fino a dodici mesi di sviluppo in più di chi è nato a dicembre, e la sezione sull'effetto dell'età relativa mostrerà che nel ranking Under 15 i nati nel primo trimestre sono più del doppio di quelli dell'ultimo. L'obiezione è quindi legittima: a tredici anni il percentile misura il rendimento, o misura quanto presto uno è cresciuto?
+
+Il modo diretto di rispondere è rifare ogni modello con l'età relativa dentro e guardare cosa succede al coefficiente del percentile. L'età relativa è contata in giorni fra la nascita e il 31 dicembre, non ridotta a trimestri, e il suo odds ratio si legge per cento giorni, cioè circa un trimestre.
+
+| cella | atleti | professionisti | OR percentile | OR aggiustato | AUC | AUC aggiustata | OR età relativa | p | AUC della sola età |
+|---|---|---|---|---|---|---|---|---|---|
+| U15y1 | 1673 | 59 | 1,40 | 1,41 | 0,735 | 0,738 | 0,88 | 0,344 | 0,513 |
+| U15y2 | 1785 | 63 | 1,56 | 1,56 | 0,787 | 0,787 | 0,93 | 0,584 | 0,513 |
+| U17y1 | 927 | 62 | 1,70 | 1,70 | 0,815 | 0,815 | 1,01 | 0,939 | 0,544 |
+| U17y2 | 1602 | 72 | 1,98 | 1,98 | 0,858 | 0,859 | 0,91 | 0,475 | 0,506 |
+| U19y1 | 701 | 68 | 1,64 | 1,65 | 0,805 | 0,807 | 0,88 | 0,351 | 0,515 |
+| U19y2 | 901 | 74 | 2,28 | 2,28 | 0,890 | 0,889 | 1,04 | 0,750 | 0,531 |
+| U23y1 | 137 | 51 | 1,32 | 1,32 | 0,704 | 0,710 | 1,21 | 0,321 | 0,579 |
+
+*L'età relativa è in giorni dal 31 dicembre e il suo odds ratio si legge per cento giorni, cioè circa un trimestre. Le due AUC sono dello stesso modello con e senza quel termine, sugli stessi atleti.*
+
+**Non sposta niente.** Nella cella più precoce, U15y1, l'odds ratio del percentile passa da 1,40 a 1,41 e l'AUC da 0,735 a 0,738; su tutte le celle lo spostamento massimo di AUC è 0,007. E l'età relativa da sola, come unico predittore, arriva a un'AUC di **0,513**: praticamente una monetina (p = 0,344).
+
+Il risultato va letto insieme all'altro, non al posto suo. L'età relativa pesa moltissimo su **chi entra** in classifica — è il senso del rapporto di due a uno fra primo e ultimo trimestre in Under 15 — e non pesa praticamente nulla su **chi arriva**, fra quelli entrati. Sono le due metà della stessa conclusione: un effetto di accesso, non di talento. Quello che si può dire è che il percentile non è una data di nascita travestita; quello che non si può dire è che la data di nascita non conti, perché ha già agito prima, sulla porta d'ingresso.
+
+*Il confronto gira su 9 atleti in meno della tabella precedente: sono quelli di cui si conosce l'anno ma non il giorno di nascita, e senza quello l'età relativa non si calcola.*
+
 ### Perché la colonna «% pro» non va letta come un segnale
 
-Nella tabella qui sopra il tasso di professionismo è più alto nelle celle del **primo** anno di categoria che in quelle del secondo: 6,7% contro 4,5% in U17, 9,7% contro 8,2% in U19. Sembra suggerire che il primo anno selezioni meglio. Non è così, ed è un buon esempio di come un denominatore possa produrre un segnale che non c'è.
+Nella tabella qui sopra il tasso di professionismo è più alto nelle celle del **primo** anno delle categorie a lista unica che in quelle del secondo: 6,7% contro 4,5% in U17, 9,7% contro 8,2% in U19. Sembra suggerire che il primo anno selezioni meglio. Non è così, ed è un buon esempio di come un denominatore possa produrre un segnale che non c'è.
 
 Dagli Allievi in su la classifica è **una sola per categoria** e le due annate ci convivono, correndo le stesse gare. Al primo anno se ne vince una minoranza, e infatti i classificati sono in media 181 contro 320 in Under 17 e 141 contro 203 in Under 19. Comparire in classifica al primo anno è quindi molto più difficile: chi c'è è già più selezionato, e un gruppo più selezionato contiene per forza una quota maggiore di futuri professionisti. Il tasso misura la selettività della cella, non la qualità della previsione.
+
+La verifica di questa spiegazione sta nella riga che non ci rientra. In **Under 15 le due annate hanno classifiche separate per regolamento**, quindi ciascuna ha i propri posti e il meccanismo del denominatore non può operare: lì i due tassi sono 3,5% e 3,5%, cioè praticamente lo stesso numero. Dove la lista è unica il divario compare, dove è doppia sparisce.
 
 La domanda giusta — *il primo anno predice meglio del secondo?* — si risponde solo confrontando le due misure **sulle stesse persone**: gli atleti presenti in entrambe le classifiche della categoria.
 
