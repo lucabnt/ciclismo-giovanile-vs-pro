@@ -413,7 +413,7 @@ def attesi_post(db):
              riga("traiettorie", "coefficienti", "pendenza", 1),
              r"di miglioramento annuo \| ×(\d,\d\d)"),
             ("previsione con il solo livello", pct(v("traiettorie", "auc", "livello")),
-             r"in circa (\d+) casi su 100"),
+             r"in circa (\d+) coppie su 100"),
             ("previsione con anche la pendenza",
              pct(v("traiettorie", "auc", "completo")),
              r"si sale a (\d+)"),
@@ -431,6 +431,39 @@ def attesi_post(db):
             ("atleti con una sola stagione",
              riga("traiettorie", "stagioni", "1", 1),
              r"(\d+) dei 2 747 atleti"),
+
+            ("livello alto e miglioramento medio", incrocio(db, "alto", "medio"),
+             r"arriva al (\d+,\d)%, cioè sei volte"),
+            ("atleti nella casella livello medio in crescita",
+             riga_incrocio(db, "medio", "alto", 2),
+             r"poggia su (\d+) atleti"),
+            ("professionisti nella casella livello medio in crescita",
+             riga_incrocio(db, "medio", "alto", 3),
+             r"187 atleti e (\d+) professionisti"),
+            ("la casella piu' piccola", _min_atleti(db),
+             r"da (\d+) a 333 atleti"),
+            ("la casella piu' grande", _max_atleti(db),
+             r"da 88 a (\d+) atleti"),
+
+            ("estremo basso dell'intervallo sul livello",
+             riga("traiettorie", "coefficienti", "livello", 2),
+             r"×3,02 \(fra (\d,\d\d) e 3,71\)"),
+            ("estremo alto dell'intervallo sul livello",
+             riga("traiettorie", "coefficienti", "livello", 3),
+             r"×3,02 \(fra 2,51 e (\d,\d\d)\)"),
+            ("estremo basso dell'intervallo sulla pendenza",
+             riga("traiettorie", "coefficienti", "pendenza", 2),
+             r"×3,35 \(fra (\d,\d\d) e 4,51\)"),
+            ("estremo alto dell'intervallo sulla pendenza",
+             riga("traiettorie", "coefficienti", "pendenza", 3),
+             r"×3,35 \(fra 2,54 e (\d,\d\d)\)"),
+
+            ("deviazione standard delle pendenze stimate",
+             v("traiettorie", "sd_pendenza_stimata"),
+             r"vale circa (\d,\d) punti di percentile"),
+            ("pendenza media della popolazione",
+             abs(v("traiettorie", "pendenza_media") or 0),
+             r"meno (\d,\d\d) punti di percentile"),
         ],
         "06_predire_non_e_selezionare.md": [
             ("futuri professionisti intercettati",
@@ -579,6 +612,28 @@ def incrocio(db, livello, pendenza):
         if r[0] == livello and r[1] == pendenza:
             return r[4]
     return None
+
+
+def riga_incrocio(db, livello, pendenza, colonna):
+    """Una colonna qualsiasi della riga (livello, pendenza) di `traiettorie.incrocio`."""
+    for r in tabella(db, "traiettorie", "incrocio") or []:
+        if r[0] == livello and r[1] == pendenza:
+            return r[colonna]
+    return None
+
+
+def _atleti_incrocio(db):
+    return [r[2] for r in tabella(db, "traiettorie", "incrocio") or []]
+
+
+def _min_atleti(db):
+    v = _atleti_incrocio(db)
+    return min(v) if v else None
+
+
+def _max_atleti(db):
+    v = _atleti_incrocio(db)
+    return max(v) if v else None
 
 
 def riga_soglia(db, cella, criterio, colonna):

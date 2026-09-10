@@ -1178,19 +1178,19 @@ Il modello dell'esito gira sui 1 903 atleti con almeno 2 stagioni osservate, f
 
 | livello | miglioramento | atleti | professionisti | % pro |
 |---|---|---|---|---|
-| basso | basso | 88 | <5 | 1,1 |
+| basso | basso | 88 | 1 | 1,1 |
 | basso | medio | 250 | 0 | 0,0 |
-| basso | alto | 297 | <5 | 0,7 |
+| basso | alto | 297 | 2 | 0,7 |
 | medio | basso | 214 | 0 | 0,0 |
-| medio | medio | 233 | <5 | 0,9 |
+| medio | medio | 233 | 2 | 0,9 |
 | medio | alto | 187 | 11 | 5,9 |
 | alto | basso | 333 | 7 | 2,1 |
 | alto | medio | 151 | 20 | 13,2 |
 | alto | alto | 150 | 31 | 20,7 |
 
-*3 cella/e con meno di 5 atleti sono mascherate · terzili delle due dimensioni; il gradiente corre in entrambe le direzioni, che è il modo più diretto di dire che contano tutte e due*
+*terzili delle due dimensioni; il gradiente corre in entrambe le direzioni, che è il modo più diretto di dire che contano tutte e due; la colonna dei professionisti non è mascherata perché il conteggio si ricava comunque dalla percentuale e dal numero di atleti della stessa riga*
 
-Il gradiente corre in **entrambe** le direzioni, ma non allo stesso modo. Nel terzo di atleti con il livello più alto, chi stava anche migliorando è diventato professionista nel 20,7% dei casi, chi stava peggiorando nel 2,1%: quasi dieci volte tanto, a parità di livello. Nel terzo con livello medio e miglioramento alto si arriva al 5,9%, più che nel terzo con livello alto e pendenza in calo.
+Il gradiente corre in **entrambe** le direzioni, ma non allo stesso modo. Nel terzo di atleti con il livello più alto, chi stava anche migliorando è diventato professionista nel 20,7% dei casi, chi stava peggiorando nel 2,1%: quasi dieci volte tanto, a parità di livello. Il salto non è però distribuito lungo la riga: quasi tutto sta fra chi calava e chi teneva, perché la cella di mezzo vale già il 13,2%. Nel terzo con livello medio e miglioramento alto si arriva al 5,9%, più che nel terzo con livello alto e pendenza in calo — con la cautela che sono tassi di due gruppi diversi e non due atleti messi uno contro l'altro.
 
 Nel terzo con il livello più basso, invece, il miglioramento non salva quasi nessuno. **Il livello è una condizione, il miglioramento è un moltiplicatore**: senza il primo il secondo non basta, ma con il primo il secondo cambia molto.
 
@@ -1212,7 +1212,7 @@ La sezione sulla mobilità ha mostrato che un gradiente vistoso può essere la d
 
 *chi ha poche stagioni riceve una pendenza vicina alla media della popolazione: è il comportamento corretto del modello misto, non un difetto, ma va saputo*
 
-Il controllo si fa aggiungendo al modello il numero di stagioni osservate: l'odds ratio della pendenza passa da 3,35 a 3,09. Si riduce, ma resta grande. **Questa volta il gradiente non è un travestimento della durata della carriera.**
+Il controllo si fa aggiungendo al modello il numero di stagioni osservate: l'odds ratio della pendenza passa da 3,35 a 3,09. Si riduce, ma resta grande. **Questa volta il gradiente non sembra essere solo un travestimento della durata della carriera** — il numero di stagioni è una misura sola di quella durata, quindi il sospetto si ridimensiona invece di sparire.
 
 Il numero di stagioni non entra però nel modello principale, e per la stessa ragione per cui non ci entrano società e regione: chi va meglio resta di più, quindi la durata sta sul percorso causale fra rendimento ed esito. Metterla fra i controlli sottrarrebbe una parte dell'effetto che si vuole misurare. La si usa come verifica, non come aggiustamento.
 
@@ -1432,6 +1432,23 @@ Resta un settimo numero, e sta fuori da questa tabella perché non viene da una 
 **L'ottimismo è praticamente nullo**: al massimo 0,001 punti di AUC, contro una soglia convenzionale di 0,05 oltre la quale un modello andrebbe semplificato. E le pendenze di calibrazione sono a ridosso di 1. Non è un caso fortunato: sono modelli con due o tre parametri stimati su centinaia di atleti, e a quel rapporto non c'è spazio per adattarsi al rumore.
 
 È anche un argomento a favore della forma che questo studio ha scelto. La tentazione, con dati longitudinali su migliaia di persone, è costruire modelli ricchi; il prezzo sarebbe stato pagarlo qui.
+
+#### Quel modello si stima in due tempi, e il conto ne copre uno
+
+C'è una cosa che la tabella qui sopra non misura, e riguarda la riga più importante. Livello e pendenza non sono osservati: sono stime prodotte dal modello misto, e per chi ha poche stagioni sono stime prudenti, tirate verso la media dallo shrinkage. Il ricampionamento appena descritto rifà ogni volta la logistica, ma **non** il modello misto, che gira una volta sola prima del ciclo: livello e pendenza entrano nel bootstrap come se fossero colonne osservate. L'ottimismo che ne esce è quindi quello del solo secondo stadio.
+
+Non è un difetto grave, e conviene dire perché. Il modello misto non vede mai l'esito — legge soltanto le classifiche — quindi non può adattarsi ad esso, che è la forma di ottimismo che questa sezione cerca. E la validazione temporale qui sotto ristima le traiettorie sulle sole coorti di addestramento, quindi il primo stadio una prova la affronta. Resta che gli intervalli, così calcolati, sono più stretti del vero.
+
+| variabile | odds ratio | IC 95% a due stadi |
+|---|---|---|
+| livello: dieci punti di percentile in più | 3,02 | 2,49-3,86 |
+| pendenza: una deviazione standard di miglioramento annuo | 3,35 | 2,60-4,58 |
+
+*intervalli percentili del bootstrap per grappoli: a ogni ripetizione si ristima anche il modello misto, quindi l'incertezza delle pendenze stimate è dentro l'intervallo e non fuori*
+
+Rifacendo il conto con il modello misto **dentro** il ciclo — 500 ricampionamenti per grappoli, che estraggono atleti interi e non singole stagioni — l'ottimismo dell'AUC passa da 0,001 a **0,001**, e l'AUC corretta vale 0,917.
+
+Il calcolo sta in `R/26_bootstrap_traiettorie.R`, che è il passo più lento della catena e si esegue a parte: gli altri script si rieseguono in secondi, questo ristima un modello misto a ogni ripetizione.
 
 ### Funziona su coorti che il modello non ha visto?
 

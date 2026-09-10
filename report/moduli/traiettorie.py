@@ -160,14 +160,27 @@ def rendi(lt):
     if inc:
         p.append(md.sezione("La stessa risposta senza coefficienti", 3))
         righe_i = [[r[0], r[1], r[2], r[3], md.num(r[4], 1)] for r in inc["righe"]]
+        # Qui si maschera la colonna degli atleti e non quella dei professionisti,
+        # e la ragione va detta perche' e' un'eccezione alla regola generale. La
+        # riga porta il numero di atleti e la percentuale di professionisti: chi
+        # volesse il conteggio mascherato lo ricava moltiplicando, e infatti si
+        # ricava esattamente. Un mascheramento che si annulla da solo e' peggio di
+        # nessun mascheramento, perche' promette una protezione che non c'e'. La
+        # regola dei cinque protegge i ragazzi in classifica, che restano contati
+        # per cella; il numero di quelli arrivati al professionismo e' pubblico e
+        # questo documento lo pubblica ovunque.
         p.append(md.tabella(
             ["livello", "miglioramento", "atleti", "professionisti", "% pro"],
-            righe_i, nota=inc["nota"], colonne_conteggio=(2, 3)))
+            righe_i, nota=inc["nota"] + "; la colonna dei professionisti non e' "
+            "mascherata perche' il conteggio si ricava comunque dalla percentuale e "
+            "dal numero di atleti della stessa riga",
+            colonne_conteggio=(2,)))
 
         per_cella = {(r[0], r[1]): r for r in inc["righe"]}
         alto_alto = per_cella.get(("alto", "alto"))
         alto_basso = per_cella.get(("alto", "basso"))
         medio_alto = per_cella.get(("medio", "alto"))
+        alto_medio = per_cella.get(("alto", "medio"))
         if alto_alto and alto_basso:
             p.append(md.paragrafo(
                 "",
@@ -175,9 +188,14 @@ def rendi(lt):
                 "modo. Nel terzo di atleti con il livello piu' alto, chi stava anche "
                 "migliorando e' diventato professionista nel %s%% dei casi, chi stava "
                 "peggiorando nel %s%%: quasi dieci volte tanto, a parita' di livello. "
+                "Il salto non e' pero' distribuito lungo la riga: quasi tutto sta fra "
+                "chi calava e chi teneva, perche' la cella di mezzo vale gia' il %s%%. "
                 "Nel terzo con livello medio e miglioramento alto si arriva al %s%%, "
-                "piu' che nel terzo con livello alto e pendenza in calo."
+                "piu' che nel terzo con livello alto e pendenza in calo — con la "
+                "cautela che sono tassi di due gruppi diversi e non due atleti messi "
+                "uno contro l'altro."
                 % (md.num(alto_alto[4], 1), md.num(alto_basso[4], 1),
+                   md.num(alto_medio[4], 1) if alto_medio else "—",
                    md.num(medio_alto[4], 1) if medio_alto else "—")))
         p.append(md.paragrafo(
             "",
@@ -211,8 +229,10 @@ def rendi(lt):
                 "stagioni osservate",
                 "Il controllo si fa aggiungendo al modello il numero di stagioni "
                 "osservate: l'odds ratio della pendenza passa da %s a %s. Si riduce, ma "
-                "resta grande. **Questa volta il gradiente non e' un travestimento della "
-                "durata della carriera.**"
+                "resta grande. **Questa volta il gradiente non sembra essere solo un "
+                "travestimento della durata della carriera** — il numero di stagioni e' "
+                "una misura sola di quella durata, quindi il sospetto si ridimensiona "
+                "invece di sparire."
                 % (md.num(ctrl["senza"], 2), md.num(ctrl["con"], 2))),
             "",
             "Il numero di stagioni non entra pero' nel modello principale, e per la "

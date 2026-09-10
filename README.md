@@ -69,6 +69,7 @@ Senza quello non si parte, e non c'è modo di ricostruirlo da qui.
 | 10 | `Rscript R/16_univariati.R` … `R/30_misura.R` | qualche minuto in tutto | i modelli, nell'ordine elencato più avanti |
 | 11 | `python scripts/10_sensibilita.py` | qualche minuto | analisi di sensibilità |
 | 12 | `python report/assembla.py` | un minuto | genera `output/analisi.md` e le figure |
+| 13 | `Rscript R/26_bootstrap_traiettorie.R` | cinque minuti | facoltativo: l'incertezza delle traiettorie stimate; poi si rilancia il 12 |
 
 **Due trappole, entrambe già costate tempo.** La prima: `01` ricostruisce `analisi.db` da
 zero e svuota `match_pcs`, quindi dopo ogni `01` vanno rifatti `05` e `06`, in
@@ -280,6 +281,18 @@ Rscript R/17_penalizzato.R               # e se si usassero tutte le categorie i
 Rscript R/30_misura.R                    # lo stesso punteggio e' lo stesso risultato?
 python report/assembla.py                # rigenera il documento
 ```
+
+Fuori da questa sequenza c'è un passo solo, e sta fuori perché è l'unico lento:
+
+```bash
+Rscript R/26_bootstrap_traiettorie.R     # circa 5 minuti, 500 ricampionamenti
+```
+
+Ristima il modello misto delle traiettorie a ogni ricampionamento, cosa che
+`24_validazione.R` non fa, e misura quanta incertezza aggiunga il fatto che livello e
+pendenza siano stimati e non osservati. Va rieseguito solo quando cambiano i dati.
+Se non lo si esegue il documento si genera lo stesso: la sezione dice che manca e
+riporta il comando.
 
 `08_prepara_modelli.py` esiste perché le regole dello studio — coorti, sesso, celle, quali classi contano come professionismo — stanno in `config.toml`, che R non legge senza dipendenze aggiuntive. Le regole si applicano una volta sola in Python e R trova un rettangolo già filtrato: cambiare le coorti significa modificare `config.toml` e rilanciare lo script, senza toccare i file R.
 

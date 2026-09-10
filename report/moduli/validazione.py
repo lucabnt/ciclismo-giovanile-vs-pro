@@ -209,6 +209,71 @@ def rendi(lt):
             "tentazione, con dati longitudinali su migliaia di persone, e' costruire "
             "modelli ricchi; il prezzo sarebbe stato pagarlo qui."))
 
+    # --- l'ottimismo del solo secondo stadio ----------------------------------
+    # Il modello con livello e pendenza si stima in due tempi, e il ricampionamento
+    # qui sopra ne rifa' uno solo. Se qualcuno ha eseguito lo STEP 26 il confronto e'
+    # nell'archivio; altrimenti si dice che manca, invece di lasciar credere che
+    # l'ottimismo di 0,001 copra tutta la procedura.
+    bs_v = lt.valori("bootstrap_traiettorie")
+    bs_t = lt.tabella("bootstrap_traiettorie", "coefficienti")
+    p.append(md.sezione("Quel modello si stima in due tempi, e il conto ne copre uno", 4))
+    p.append(md.paragrafo(
+        "C'e' una cosa che la tabella qui sopra non misura, e riguarda la riga piu' "
+        "importante. Livello e pendenza non sono osservati: sono stime prodotte dal "
+        "modello misto, e per chi ha poche stagioni sono stime prudenti, tirate verso "
+        "la media dallo shrinkage. Il ricampionamento appena descritto rifa' ogni "
+        "volta la logistica, ma **non** il modello misto, che gira una volta sola "
+        "prima del ciclo: livello e pendenza entrano nel bootstrap come se fossero "
+        "colonne osservate. L'ottimismo che ne esce e' quindi quello del solo secondo "
+        "stadio.",
+        "",
+        "Non e' un difetto grave, e conviene dire perche'. Il modello misto non vede "
+        "mai l'esito — legge soltanto le classifiche — quindi non puo' adattarsi ad "
+        "esso, che e' la forma di ottimismo che questa sezione cerca. E la validazione "
+        "temporale qui sotto ristima le traiettorie sulle sole coorti di "
+        "addestramento, quindi il primo stadio una prova la affronta. Resta che gli "
+        "intervalli, cosi' calcolati, sono piu' stretti del vero."))
+
+    if bs_t and bs_v.get("ottimismo") is not None:
+        righe_bs = [[r[0], md.num(r[1], 2), "%s-%s" % (md.num(r[2], 2), md.num(r[3], 2))]
+                    for r in bs_t["righe"]]
+        p.append(md.tabella(["variabile", "odds ratio", "IC 95% a due stadi"],
+                            righe_bs, nota=bs_t["nota"]))
+        semplice = None
+        for r in (ott["righe"] if ott else []):
+            if "traiettoria" in str(r[0]):
+                semplice = r[4]
+        p.append(md.paragrafo(
+            "",
+            "Rifacendo il conto con il modello misto **dentro** il ciclo — %s "
+            "ricampionamenti per grappoli, che estraggono atleti interi e non singole "
+            "stagioni — l'ottimismo dell'AUC passa da %s a **%s**, e l'AUC corretta "
+            "vale %s.%s"
+            % (md.conta(bs_v.get("ripetizioni")),
+               md.num(semplice, 3) if semplice is not None else "—",
+               md.num(bs_v.get("ottimismo"), 3),
+               md.num(bs_v.get("auc_corretta"), 3),
+               (" Un ottimismo negativo non e' un errore: vuol dire che il modello, "
+                "sui campioni estratti, si giudica se mai un po' peggio di quanto sia."
+                if (bs_v.get("ottimismo") or 0) < 0 else ""))))
+        p.append(md.paragrafo(
+            "",
+            "Il calcolo sta in `R/26_bootstrap_traiettorie.R`, che e' il passo piu' "
+            "lento della catena e si esegue a parte: gli altri script si rieseguono in "
+            "secondi, questo ristima un modello misto a ogni ripetizione."))
+    else:
+        p.append(md.paragrafo(
+            "",
+            "*Il conto a due stadi non risulta ancora eseguito. Per produrlo:*",
+            "",
+            "```",
+            "Rscript R/26_bootstrap_traiettorie.R",
+            "```",
+            "",
+            "*Finche' manca, l'ottimismo riportato per il modello con livello e "
+            "pendenza va letto come un limite inferiore, e i suoi intervalli come "
+            "piu' stretti del vero.*"))
+
     # --- STEP 25 --------------------------------------------------------------
     if temp:
         p.append(md.sezione("Funziona su coorti che il modello non ha visto?", 3))
