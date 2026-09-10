@@ -203,14 +203,22 @@ def rendi(lt):
         "era che il salto in Under 19 fosse un artefatto dello strumento: se il ranking "
         "nazionale non contasse le gare internazionali, chi corre all'estero vi "
         "risulterebbe piu' debole di quanto sia, e le categorie non sarebbero "
-        "confrontabili fra loro. La verifica dice il contrario — la fonte include le "
-        "gare internazionali in tutte le categorie, con una scala punti piu' alta (15 "
-        "punti per la vittoria internazionale contro 5 per quella nazionale). Lo "
-        "strumento e' lo stesso lungo tutto il percorso e il salto resta.",
+        "confrontabili fra loro. La verifica dice il contrario — il regolamento della "
+        "fonte prevede le gare all'estero in tutte le categorie, e dagli Juniores in su "
+        "le pesa di piu': 15 punti per la vittoria in una gara internazionale contro i "
+        "10 di una nazionale e i 5 di una regionale. Lo strumento e' lo stesso lungo "
+        "tutto il percorso e il salto resta.",
         "",
-        "Resta un limite diverso, che non si corregge ma si dichiara: chi corre "
-        "stabilmente all'estero senza gare in Italia non compare affatto in classifica. "
-        "E' un problema di copertura della popolazione, non di confrontabilita' delle "
-        "misure."))
+        "La riserva pero' non si chiude del tutto, ed e' giusto dire dove resta aperta. "
+        "I risultati ottenuti all'estero entrano in classifica **solo se il corridore li "
+        "segnala**, mandando alla fonte copia dell'ordine di arrivo: sono previsti, non "
+        "raccolti d'ufficio. Chi corre molto fuori dall'Italia ha quindi tutto "
+        "l'interesse a farlo, e presumibilmente lo fa, ma la copertura delle gare "
+        "internazionali dipende da un'iniziativa individuale e non da una procedura.",
+        "",
+        "Resta infine un limite diverso, che non si corregge ma si dichiara: chi corre "
+        "stabilmente all'estero senza gare in Italia non compare affatto in classifica, "
+        "e non vi compare nemmeno chi e' tesserato per una societa' straniera. E' un "
+        "problema di copertura della popolazione, non di confrontabilita' delle misure."))
 
     return (chr(10) * 2).join(x.strip() for x in p if x)

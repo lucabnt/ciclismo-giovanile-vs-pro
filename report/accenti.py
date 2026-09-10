@@ -25,7 +25,7 @@ ACCENTI = {
     "piu": "più", "gia": "già", "cosi": "così", "li": "lì", "cio": "ciò",
     "puo": "può", "pero": "però", "giu": "giù",
     "sara": "sarà", "saranno": "saranno", "potra": "potrà", "dovra": "dovrà",
-    "andra": "andrà", "verra": "verrà", "mostrera": "mostrerà", "restera": "resterà", "arrivera": "arriverà",
+    "andra": "andrà", "verra": "verrà", "mostrera": "mostrerà", "fara": "farà", "segnalera": "segnalerà", "restera": "resterà", "arrivera": "arriverà",
     "ridurra": "ridurrà", "crescera": "crescerà", "cambiera": "cambierà",
     "passera": "passerà", "restera": "resterà", "arrivera": "arriverà",
     "entrera": "entrerà", "uscira": "uscirà", "andra": "andrà",

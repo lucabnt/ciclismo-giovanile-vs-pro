@@ -180,7 +180,21 @@ Tutto quello che segue si appoggia a una misura: il piazzamento nella classifica
 
 ### La nostra fonte conta le gare internazionali
 
-La prima metà della critica non si applica. La classifica italiana **pesa le gare per livello**, ma solo dalle categorie internazionali in su: in Juniores e Under 23 una gara nazionale vale il doppio di una regionale e una internazionale il triplo. In Esordienti e Allievi, che non hanno calendario internazionale, una gara all'estero vale quanto una regionale.
+La prima metà della critica non si applica. La classifica italiana **pesa le gare per livello**, ma solo dalle categorie internazionali in su. I regolamenti della fonte, che sono pubblici, danno la scala esatta:
+
+| tipo di gara | Esordienti e Allievi | Juniores (e Under 23) |
+|---|---|---|
+| regionale | 5-4-3-2-1 | 5-4-3-2-1 |
+| nazionale | 5-4-3-2-1 | 10-8-6-4-2 |
+| internazionale | non in calendario | 15-12-9-6-3 |
+| campionato italiano in linea | 15-12-9-6-3 | 15-12-9-6-3 |
+| campionato italiano a cronometro | 15-12-9-6-3, ma solo Allievi | 15-12-9-6-3 |
+| campionato europeo | non in calendario | 20-16-12-8-4 |
+| campionato del mondo | non in calendario | 30-24-18-12-6 |
+
+*punti dal primo al quinto arrivato. Il campionato italiano a cronometro Esordienti non si disputa, quindi per quella categoria la riga è lettera morta. Il regolamento Under 23 non è stato reperito: qui si assume che ricalchi quello Juniores, come categoria internazionale, e l'assunzione va tenuta presente*
+
+In Esordienti e Allievi, quindi, la scala è piatta salvo i campionati italiani, che valgono il triplo: due in Allievi, la gara in linea e quella a cronometro, e **uno solo in Esordienti**, perché il campionato a cronometro per quella categoria non si disputa. Il regolamento della fonte lo elenca lo stesso, ricalcando il fascicolo degli Allievi, ma è lettera morta. Per il resto, a quelle età una gara all'estero vale quanto una gara sotto casa. Dagli Juniores in su i moltiplicatori compaiono, e sono più di due — il campionato europeo vale quattro volte una gara regionale e quello del mondo sei.
 
 Non abbiamo il dettaglio delle singole gare, ma la conseguenza si vede lo stesso: se le gare pesano, un piazzamento vale in media di più. Basta dividere i punti per il numero di piazzamenti nei primi cinque.
 
@@ -191,7 +205,7 @@ Non abbiamo il dettaglio delle singole gare, ma la conseguenza si vede lo stesso
 | U19 | 1602 | 15,6 | 4,28 | 3,02 |
 | U23 | 706 | 19,0 | 3,91 | 4,17 |
 
-*nelle categorie internazionali la fonte moltiplica per due le gare nazionali e per tre le internazionali; nelle altre no*
+*la scala della tabella precedente si applica a ogni piazzamento: in Esordienti e Allievi è piatta salvo i due campionati italiani, dagli Juniores in su cresce con il livello della gara*
 
 **Il salto è esattamente dove deve essere.** Un piazzamento vale 2,67 punti in U15 e 4,17 in U23, e la crescita comincia fra Allievi e Juniores — cioè dove i moltiplicatori entrano in funzione. È una conferma indiretta ma pulita: la scala fa quello che dichiara di fare.
 
@@ -199,11 +213,25 @@ Non abbiamo il dettaglio delle singole gare, ma la conseguenza si vede lo stesso
 
 *Il salto avviene fra Allievi e Juniores, che è esattamente dove la fonte comincia a moltiplicare i punti delle gare nazionali e internazionali.*
 
+> **Come si misura — Cosa entra in classifica, e cosa no**
+>
+> I regolamenti della fonte delimitano la popolazione e il calendario in modo più stretto di quanto si direbbe, e ognuno dei quattro limiti che seguono lascia un segno nei dati.
+>
+> **Solo strada.** Contano le gare su strada, in circuito e a cronometro, di qualunque lunghezza; le gare su pista sono escluse per regolamento. Chi corre altre specialità è tesserato ma non può comparire, ed è una delle ragioni per cui la copertura calcolata più avanti è un limite inferiore.
+>
+> **Solo tesserati con società italiane.** Chi è tesserato per una società affiliata all'estero non entra in classifica nemmeno quando ottiene risultati in gare che si corrono in Italia. Un atleta che passa a una squadra straniera esce quindi dalla classifica senza aver smesso di correre, ed è un meccanismo in più fra quelli che fanno sparire un nome.
+>
+> **I risultati all'estero li segnala l'atleta.** Il regolamento chiede a chi corre fuori dall'Italia di far pervenire copia dell'ordine di arrivo perché il risultato venga conteggiato. Le gare internazionali sono quindi incluse, ma per iniziativa del corridore: è ragionevole che a segnalarle siano soprattutto quelli che ci vanno spesso e che ne ricavano punti pesanti.
+>
+> **Anche in Italia la raccolta è a impegno di mezzi.** Il comitato dichiara che farà il possibile per conoscere tutti i risultati e che segnalerà le gare mancanti al momento della pubblicazione. Non è un archivio ufficiale della federazione, ed è bene ricordarlo ogni volta che si legge un'assenza come un'informazione.
+
 ### Ma i pari merito sono moltissimi
 
 Resta un problema diverso, e più grande di quanto sembri. La scala assegna cinque punti alla vittoria e uno al quinto posto, quindi i totali possibili sono pochi e gli atleti tanti: **fino al 95,1% dei classificati condivide il proprio punteggio con qualcun altro**. Guardando solo i punti, quegli atleti sono indistinguibili.
 
 Il progetto lo aveva previsto e aveva scelto di scioglierli guardando prima le vittorie, poi i secondi posti e così via fino al quinto. La scelta era stata presa **prima di guardare qualunque esito**, il che permette ora di metterla alla prova senza il sospetto di averla scelta perché funzionava.
+
+C'è di più, ed è emerso dopo: quel criterio non è una nostra invenzione ma **la regola di spareggio che il regolamento della fonte dichiara**, nelle stesse parole e nello stesso ordine. Ricostruendo il percentile con esso non stiamo quindi imponendo un ordinamento nostro, stiamo riproducendo quello pubblicato. Il regolamento prosegue con due criteri ulteriori che qui non si applicano: a parità anche di piazzamenti vince chi ha raggiunto per primo il punteggio, e in ultimo il più giovane. Il primo chiederebbe la data di ogni gara, che non abbiamo; il secondo introdurrebbe l'età dentro la misura, che è esattamente ciò che non vogliamo. Chi resta a pari merito qui ha lo stesso identico palmares, e la tabella qui sotto mostra che spingersi oltre non servirebbe.
 
 | cella | atleti | professionisti | pari merito | AUC sui punti | AUC con il criterio esteso | differenza | p |
 |---|---|---|---|---|---|---|---|
@@ -325,7 +353,7 @@ Tutto il resto del documento parla di atleti «in classifica». Quanti sono, ris
 >
 > Dalla Federazione Ciclistica Italiana, che pubblica i tesserati per categoria nel documento «I numeri della Federazione Ciclistica Italiana». La serie usata qui copre le stagioni 2018-2025; il valore 2020 proviene da una fonte secondaria che riporta il confronto 2020-2022 e i cui valori 2021 e 2022 coincidono con quelli ufficiali.
 >
-> Tre avvertenze, tutte importanti. Il tesseramento è **per categoria, non per specialità**: un Esordiente tesserato può correre solo fuoristrada e non comparire mai in una classifica su strada, quindi la copertura calcolata qui è un **limite inferiore**. Le categorie coprono un numero diverso di anni di età — due per Esordienti, Allievi e Juniores, quattro per l'Under 23 — e i conteggi vanno divisi per l'ampiezza prima di confrontarli. Le stagioni anomale sono escluse: il tesseramento si paga a inizio anno, le gare no.
+> Quattro avvertenze, tutte importanti. Il tesseramento è **per categoria, non per specialità**: un Esordiente tesserato può correre solo fuoristrada e non comparire mai in una classifica su strada, e il regolamento della classifica esclude esplicitamente anche le gare su pista — quindi la copertura calcolata qui è un **limite inferiore**. Il numeratore inoltre non comprende chi è tesserato per una società affiliata all'estero, che il regolamento tiene fuori dalla classifica anche quando corre in Italia. Le categorie coprono un numero diverso di anni di età — due per Esordienti, Allievi e Juniores, quattro per l'Under 23 — e i conteggi vanno divisi per l'ampiezza prima di confrontarli. Le stagioni anomale sono escluse: il tesseramento si paga a inizio anno, le gare no.
 >
 > I dati sono in `riferimenti/tesserati_fci.csv`, con la provenienza di ogni riga.
 >
@@ -992,9 +1020,11 @@ L'ultimo passo merita attenzione: **M4 (+U23y1)** migliora l'adattamento del mod
 
 > **Come vanno lette queste AUC.** Non accanto a quelle dei modelli per singola categoria. Lì il campione erano tutti gli atleti presenti in una cella; qui è chi è arrivato fino all'Under 23 restando in classifica, e fra loro i professionisti sono il 43,1%. Su un gruppo già scremato distinguere è più difficile, e infatti i numeri sono più bassi. Di questa tabella conta la **differenza fra righe**, non il livello.
 
-*Una riserva che si è rivelata infondata, e vale la pena dirlo.* Il sospetto era che il salto in Under 19 fosse un artefatto dello strumento: se il ranking nazionale non contasse le gare internazionali, chi corre all'estero vi risulterebbe più debole di quanto sia, e le categorie non sarebbero confrontabili fra loro. La verifica dice il contrario — la fonte include le gare internazionali in tutte le categorie, con una scala punti più alta (15 punti per la vittoria internazionale contro 5 per quella nazionale). Lo strumento è lo stesso lungo tutto il percorso e il salto resta.
+*Una riserva che si è rivelata infondata, e vale la pena dirlo.* Il sospetto era che il salto in Under 19 fosse un artefatto dello strumento: se il ranking nazionale non contasse le gare internazionali, chi corre all'estero vi risulterebbe più debole di quanto sia, e le categorie non sarebbero confrontabili fra loro. La verifica dice il contrario — il regolamento della fonte prevede le gare all'estero in tutte le categorie, e dagli Juniores in su le pesa di più: 15 punti per la vittoria in una gara internazionale contro i 10 di una nazionale e i 5 di una regionale. Lo strumento è lo stesso lungo tutto il percorso e il salto resta.
 
-Resta un limite diverso, che non si corregge ma si dichiara: chi corre stabilmente all'estero senza gare in Italia non compare affatto in classifica. È un problema di copertura della popolazione, non di confrontabilità delle misure.
+La riserva però non si chiude del tutto, ed è giusto dire dove resta aperta. I risultati ottenuti all'estero entrano in classifica **solo se il corridore li segnala**, mandando alla fonte copia dell'ordine di arrivo: sono previsti, non raccolti d'ufficio. Chi corre molto fuori dall'Italia ha quindi tutto l'interesse a farlo, e presumibilmente lo fa, ma la copertura delle gare internazionali dipende da un'iniziativa individuale e non da una procedura.
+
+Resta infine un limite diverso, che non si corregge ma si dichiara: chi corre stabilmente all'estero senza gare in Italia non compare affatto in classifica, e non vi compare nemmeno chi è tesserato per una società straniera. È un problema di copertura della popolazione, non di confrontabilità delle misure.
 
 ## Se il ranking si usasse per selezionare
 

@@ -119,13 +119,113 @@ regolamento, e chiudono un'assunzione che i post dichiaravano come tale.
 il doppio di una regionale, internazionale il triplo — non compaiono nelle Norme Attuative: la
 scala federale di valorizzazione è piatta, cinque punti al vincitore di qualunque gara. Il peso
 per livello è quindi un'elaborazione della fonte, oppure sta nel RTAA, che è un altro documento
-e non l'ho letto. Il documento tecnico attribuisce correttamente quel peso «alla classifica
+e non l'ho letto. **Il punto si è chiuso il giorno dopo**: il regolamento della fonte, letto in
+§2-ter, pubblica i moltiplicatori per esteso, quindi sono suoi. Il documento tecnico attribuisce correttamente quel peso «alla classifica
 italiana» e non alla federazione, e l'effetto è comunque verificato dai dati, dividendo i punti
 per il numero di piazzamenti.
 
 **Cosa cambia nei testi.** Il post 3 dichiarava come assunzione che negli Esordienti le due
 annate non si facciano concorrenza: ora è un articolo di regolamento, con la sua nota. Il post 2
 afferma che i punti vanno ai primi cinque: è la scala federale, non una convenzione della fonte.
+
+---
+
+## 2-ter. Cosa dice il regolamento della fonte
+
+*Aggiunto il 10 settembre 2026, leggendo i «Regolamenti speciali della classifica nazionale by
+ciclismo.info»: Esordienti (ver. 1.00 del 16 febbraio 2009), Allievi e Juniores (ver. 1.00 del
+16 agosto 2008). Sono tre documenti di una pagina, datati ma coerenti con i dati fino al 2026, e
+sono conservati fuori dal repository insieme al resto del materiale di lavorazione. Il
+regolamento Under 23 non è stato reperito.*
+
+Fino a qui la scala dei punti era stata dichiarata sulla base della documentazione del sito e
+verificata indirettamente sui dati. Questi documenti la danno per esteso, e con essa quattro
+regole di raccolta che non erano note e che lasciano un segno nei numeri.
+
+### La scala dei punti
+
+| tipo di gara | Esordienti e Allievi | Juniores |
+|---|---|---|
+| regionale | 5-4-3-2-1 | 5-4-3-2-1 |
+| nazionale | 5-4-3-2-1 | 10-8-6-4-2 |
+| internazionale | non in calendario | 15-12-9-6-3 |
+| campionato italiano in linea | 15-12-9-6-3 | 15-12-9-6-3 |
+| campionato italiano a cronometro | 15-12-9-6-3, ma **solo Allievi** | 15-12-9-6-3 |
+| campionato europeo | non in calendario | 20-16-12-8-4 |
+| campionato del mondo | non in calendario | 30-24-18-12-6 |
+
+**Una delle righe è lettera morta.** Il fascicolo Esordienti della fonte ricalca quello
+Allievi parola per parola, campionato a cronometro compreso, ma quel campionato **per gli
+Esordienti non si disputa**: le Norme Attuative 2027, art. 6.2.2, lo prevedono in due gare
+distinte «per le categorie Allievi e Donne Allieve», e basta. In Esordienti la gara a punteggio
+triplo è quindi una sola all'anno, il campionato italiano in linea, che l'art. 6.1 prevede in
+prove distinte per il primo e per il secondo anno — un'altra conferma della separazione fra le
+due annate.
+
+*Un dettaglio che vale la pena notare, perché lega la classifica alla selezione.* In Esordienti
+l'unica gara che vale il triplo è anche l'unica a cui non ci si iscrive: al campionato italiano
+in linea si va selezionati dal proprio comitato regionale, tre atleti per comitato più le quote
+proporzionali ai tesserati (art. 6.1). I punti pesanti di quella categoria sono quindi
+accessibili solo a chi è già stato scelto da qualcuno. Sono cinque piazzamenti all'anno su
+migliaia, quindi l'effetto sui totali è trascurabile, ma è un caso in cui la misura e la
+selezione non sono del tutto indipendenti.
+
+Per l'Under 23 si assume la scala Juniores, essendo anch'essa una categoria con calendario
+internazionale. **È un'assunzione, e va tenuta presente**: se l'Under 23 avesse moltiplicatori
+diversi, la riga U23 della tabella «quanto vale un piazzamento» andrebbe letta di conseguenza.
+Il resto dell'analisi non ne dipende, perché il predittore è il percentile dentro la cella e non
+il punteggio.
+
+### Le quattro regole di raccolta
+
+| Regola | Cosa dice il regolamento | Effetto sui dati |
+|---|---|---|
+| **Solo strada** | Contano le gare su strada, in circuito e a cronometro, di qualunque lunghezza, «escluse le gare tipo pista» | La classifica non è un censimento del ciclismo giovanile ma della sola strada: la copertura sui tesserati è un limite inferiore |
+| **Solo società italiane** | «Non partecipano i corridori appartenenti a Società affiliate all'estero anche se ottengono risultati in gare svolte in Italia» | Chi passa a una squadra straniera esce dalla classifica senza aver smesso di correre: un meccanismo in più fra quelli del post 3 |
+| **I risultati esteri li segnala l'atleta** | Chi corre all'estero «dovrà far pervenire a ciclismo.info copia dell'ordine di arrivo» perché il risultato valga | Le gare internazionali sono previste ma non raccolte d'ufficio: la copertura dipende da un'iniziativa individuale |
+| **Anche in Italia la raccolta è a impegno di mezzi** | Il comitato «farà il possibile» per conoscere tutti i risultati e segnalerà le gare mancanti al momento della pubblicazione | Non è un archivio ufficiale: un'assenza può essere una mancanza della fonte |
+
+### Lo spareggio è quello della fonte
+
+A parità di punti il regolamento ordina «per prima cosa [per] le vittorie, a seguire i secondi
+posti e così via fino al quinto posto»; poi, se ancora pari, vince chi ha raggiunto per primo il
+punteggio; in ultimo il più giovane.
+
+**I primi due livelli sono esattamente il criterio esteso di questo studio**, scelto all'inizio
+del progetto come scelta metodologica propria e prima di guardare qualunque esito. Non era una
+nostra invenzione: è la regola pubblicata. Ricostruendo il percentile con essa non si impone un
+ordinamento nostro, si riproduce quello della fonte — e la verifica sui pari merito mostra
+comunque che la scelta non cambia i risultati. Gli ultimi due livelli non si applicano qui: il
+primo chiederebbe la data di ogni gara, che non abbiamo; il secondo introdurrebbe l'età dentro
+la misura, che è ciò che l'analisi si preoccupa di tenerne fuori.
+
+### Altre due cose minori
+
+**I pari merito in gara.** Se due atleti arrivano a pari merito, entrambi prendono i punti della
+posizione e il corridore successivo è considerato terzo. È la ragione per cui i punti totali di
+una stagione possono superare la somma teorica dei posti a punti.
+
+**La stagione.** Va da fine marzo all'ultima gara di ottobre, secondo il calendario federale, e
+i risultati arretrati entrano fino a quindici giorni dopo la fine.
+
+### Cosa cambia rispetto a quanto era scritto
+
+1. **Il punto lasciato aperto in §2-bis si chiude.** I moltiplicatori per livello non sono
+   nelle Norme Attuative della FCI perché **sono della fonte**, e il suo regolamento li
+   pubblica. Non serve più ipotizzare che stiano nel RTAA.
+2. **Erano due i moltiplicatori, sono cinque.** Il documento tecnico diceva «nazionale il
+   doppio, internazionale il triplo»: mancavano il campionato italiano (×3 anche in Esordienti e
+   Allievi), l'europeo (×4) e il mondiale (×6).
+3. **La scala in Esordienti e Allievi non è piatta**, come si era scritto: i campionati
+   italiani valgono il triplo. Sono due gare per stagione in Allievi e **una sola in
+   Esordienti**, dove il campionato a cronometro non si disputa: l'effetto sui totali è
+   trascurabile, ma la frase era sbagliata due volte.
+4. **Una cifra era sbagliata.** «15 punti per la vittoria internazionale contro 5 per quella
+   nazionale» confondeva la gara nazionale con quella regionale: la nazionale ne vale 10.
+5. **Il regolamento non descrive due classifiche per gli Esordienti**, e parla della categoria
+   come di una sola. La struttura ricostruita in §2 mostra però che dal 2009 la fonte pubblica
+   per gli Esordienti maschili **due liste disgiunte**, e per le Donne Esordienti lo fa dal
+   2022: su questo il regolamento è più vecchio dei dati, e valgono i dati.
 
 ---
 

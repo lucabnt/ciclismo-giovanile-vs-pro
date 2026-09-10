@@ -116,10 +116,33 @@ def rendi(lt):
         p.append(md.sezione("La nostra fonte conta le gare internazionali", 3))
         p.append(md.paragrafo(
             "La prima meta' della critica non si applica. La classifica italiana **pesa "
-            "le gare per livello**, ma solo dalle categorie internazionali in su: in "
-            "Juniores e Under 23 una gara nazionale vale il doppio di una regionale e "
-            "una internazionale il triplo. In Esordienti e Allievi, che non hanno "
-            "calendario internazionale, una gara all'estero vale quanto una regionale.",
+            "le gare per livello**, ma solo dalle categorie internazionali in su. I "
+            "regolamenti della fonte, che sono pubblici, danno la scala esatta:"))
+        p.append(md.tabella(
+            ["tipo di gara", "Esordienti e Allievi", "Juniores (e Under 23)"],
+            [["regionale", "5-4-3-2-1", "5-4-3-2-1"],
+             ["nazionale", "5-4-3-2-1", "10-8-6-4-2"],
+             ["internazionale", "non in calendario", "15-12-9-6-3"],
+             ["campionato italiano in linea", "15-12-9-6-3", "15-12-9-6-3"],
+             ["campionato italiano a cronometro", "15-12-9-6-3, ma solo Allievi",
+              "15-12-9-6-3"],
+             ["campionato europeo", "non in calendario", "20-16-12-8-4"],
+             ["campionato del mondo", "non in calendario", "30-24-18-12-6"]],
+            nota="punti dal primo al quinto arrivato. Il campionato italiano a "
+                 "cronometro Esordienti non si disputa, quindi per quella categoria la "
+                 "riga e' lettera morta. Il regolamento Under 23 non e' stato reperito: "
+                 "qui si assume che ricalchi quello Juniores, come categoria "
+                 "internazionale, e l'assunzione va tenuta presente"))
+        p.append(md.paragrafo(
+            "In Esordienti e Allievi, quindi, la scala e' piatta salvo i campionati "
+            "italiani, che valgono il triplo: due in Allievi, la gara in linea e quella "
+            "a cronometro, e **uno solo in Esordienti**, perche' il campionato a "
+            "cronometro per quella categoria non si disputa. Il regolamento della fonte "
+            "lo elenca lo stesso, ricalcando il fascicolo degli Allievi, ma e' lettera "
+            "morta. Per il resto, a quelle eta' una gara all'estero vale quanto una gara "
+            "sotto casa. Dagli Juniores in su i moltiplicatori compaiono, e sono piu' di "
+            "due — il campionato europeo vale quattro volte una gara regionale e quello "
+            "del mondo sei.",
             "",
             "Non abbiamo il dettaglio delle singole gare, ma la conseguenza si vede lo "
             "stesso: se le gare pesano, un piazzamento vale in media di piu'. Basta "
@@ -147,6 +170,33 @@ def rendi(lt):
         if f:
             p.append(md.figura(f["percorso"], f["didascalia"]))
 
+        p.append(md.metodo(
+            "Cosa entra in classifica, e cosa no",
+            "I regolamenti della fonte delimitano la popolazione e il calendario in "
+            "modo piu' stretto di quanto si direbbe, e ognuno dei quattro limiti che "
+            "seguono lascia un segno nei dati.\n\n"
+            "**Solo strada.** Contano le gare su strada, in circuito e a cronometro, di "
+            "qualunque lunghezza; le gare su pista sono escluse per regolamento. Chi "
+            "corre altre specialita' e' tesserato ma non puo' comparire, ed e' una delle "
+            "ragioni per cui la copertura calcolata piu' avanti e' un limite inferiore."
+            "\n\n"
+            "**Solo tesserati con societa' italiane.** Chi e' tesserato per una societa' "
+            "affiliata all'estero non entra in classifica nemmeno quando ottiene "
+            "risultati in gare che si corrono in Italia. Un atleta che passa a una "
+            "squadra straniera esce quindi dalla classifica senza aver smesso di "
+            "correre, ed e' un meccanismo in piu' fra quelli che fanno sparire un nome."
+            "\n\n"
+            "**I risultati all'estero li segnala l'atleta.** Il regolamento chiede a chi "
+            "corre fuori dall'Italia di far pervenire copia dell'ordine di arrivo perche' "
+            "il risultato venga conteggiato. Le gare internazionali sono quindi incluse, "
+            "ma per iniziativa del corridore: e' ragionevole che a segnalarle siano "
+            "soprattutto quelli che ci vanno spesso e che ne ricavano punti pesanti.\n\n"
+            "**Anche in Italia la raccolta e' a impegno di mezzi.** Il comitato dichiara "
+            "che fara' il possibile per conoscere tutti i risultati e che segnalera' le "
+            "gare mancanti al momento della pubblicazione. Non e' un archivio "
+            "ufficiale della federazione, ed e' bene ricordarlo ogni volta che si legge "
+            "un'assenza come un'informazione."))
+
     # --- la seconda verifica: i pari merito ---------------------------------
     p.append(md.sezione("Ma i pari merito sono moltissimi", 3))
     p.append(md.paragrafo(
@@ -162,7 +212,18 @@ def rendi(lt):
         "Il progetto lo aveva previsto e aveva scelto di scioglierli guardando prima le "
         "vittorie, poi i secondi posti e cosi' via fino al quinto. La scelta era stata "
         "presa **prima di guardare qualunque esito**, il che permette ora di metterla "
-        "alla prova senza il sospetto di averla scelta perche' funzionava."))
+        "alla prova senza il sospetto di averla scelta perche' funzionava.",
+        "",
+        "C'e' di piu', ed e' emerso dopo: quel criterio non e' una nostra invenzione ma "
+        "**la regola di spareggio che il regolamento della fonte dichiara**, nelle stesse "
+        "parole e nello stesso ordine. Ricostruendo il percentile con esso non stiamo "
+        "quindi imponendo un ordinamento nostro, stiamo riproducendo quello pubblicato. "
+        "Il regolamento prosegue con due criteri ulteriori che qui non si applicano: a "
+        "parita' anche di piazzamenti vince chi ha raggiunto per primo il punteggio, e "
+        "in ultimo il piu' giovane. Il primo chiederebbe la data di ogni gara, che non "
+        "abbiamo; il secondo introdurrebbe l'eta' dentro la misura, che e' esattamente "
+        "cio' che non vogliamo. Chi resta a pari merito qui ha lo stesso identico "
+        "palmares, e la tabella qui sotto mostra che spingersi oltre non servirebbe."))
 
     righe_c = [[r[0], r[1], r[2], md.num(r[3], 1) + "%", md.num(r[4], 3),
                 md.num(r[5], 3), ("%+.3f" % r[6]).replace(".", ","), _p(r[7])]

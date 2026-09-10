@@ -115,8 +115,9 @@ main <- function() {
     c("categoria", "osservazioni", "punti medi", "piazzamenti medi",
       "punti per piazzamento"),
     titolo = "Quanto vale un piazzamento, categoria per categoria",
-    nota = paste("nelle categorie internazionali la fonte moltiplica per due le gare",
-                 "nazionali e per tre le internazionali; nelle altre no"))
+    nota = paste("la scala della tabella precedente si applica a ogni piazzamento: in",
+                 "Esordienti e Allievi e' piatta salvo i due campionati italiani,",
+                 "dagli Juniores in su cresce con il livello della gara"))
 
   scrivi_valore(ar, "celle_migliorate", positivi)
   scrivi_valore(ar, "celle_confrontate", length(righe))
