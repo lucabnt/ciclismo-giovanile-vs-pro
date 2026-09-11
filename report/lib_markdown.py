@@ -122,8 +122,28 @@ def _virgola_decimale(testo):
     """
     pezzi = testo.split("`")
     for i in range(0, len(pezzi), 2):          # gli indici dispari sono dentro gli apici
-        pezzi[i] = re.sub(r"(?<=\d)\.(?=\d)", ",", pezzi[i])
+        pezzi[i] = _converti(pezzi[i])
     return "`".join(pezzi)
+
+
+# I numeri di articolo non sono decimali: «art. 11.5» diventava «art. 11,5», e «art. 4.2.1»
+# addirittura «4,2,1». Restano intatti i riferimenti introdotti da «art.» o «artt.», con
+# le eventuali liste («art. 4.2.1 e 4.2.5»), e ogni numero con due o piu' punti, che in
+# questo documento non e' mai un decimale.
+_ARTICOLI = re.compile(r"\bartt?\.\s*\d+(?:\.\d+)*(?:\s*(?:,|e|-)\s*\d+(?:\.\d+)*)*")
+_PIU_PUNTI = re.compile(r"\d+(?:\.\d+){2,}")
+
+
+def _converti(testo):
+    protetti = []
+
+    def salva(m):
+        protetti.append(m.group(0))
+        return "\x00%d\x00" % (len(protetti) - 1)
+
+    testo = _PIU_PUNTI.sub(salva, _ARTICOLI.sub(salva, testo))
+    testo = re.sub(r"(?<=\d)\.(?=\d)", ",", testo)
+    return re.sub("\x00(\\d+)\x00", lambda m: protetti[int(m.group(1))], testo)
 
 
 def figura(percorso, didascalia=None, radice="output"):

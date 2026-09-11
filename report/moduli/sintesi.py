@@ -290,19 +290,21 @@ def rendi(lt):
     if rag:
         sep = rag.get("separazione_quote") or {}
         rap = rag.get("rapporto_gare") or {}
+        conf = rag.get("rapporto_gare_confrontabile") or {}
         sessi = (lt.valori("rae") or {}).get("sessi_prima_categoria") or {}
         if sep and sessi:
             p.append(md.paragrafo(
                 "",
                 "**Sul femminile si e' potuto misurare cio' che non richiede un esito.** "
-                "Il movimento corre circa %s volte meno gare di quello maschile e non ha "
-                "una categoria Under 23. L'effetto dell'eta' relativa e' piu' debole che "
-                "fra i maschi, %s contro %s in Esordienti sulle stesse coorti, coerente "
-                "con una maturazione piu' precoce. E un cambio di regolamento della fonte "
-                "fornisce la conferma piu' netta del meccanismo dei posti: separando le "
-                "classifiche delle Esordienti nel %s, la quota del primo anno e' passata "
-                "dal %s%% al %s%% sulla stessa popolazione."
-                % (md.num(rap.get("Esordienti"), 1), md.num(sessi.get("femmine"), 2),
+                "Dove il conteggio e' confrontabile, il movimento corre fra %s e %s volte "
+                "meno gare di quello maschile, e non ha una classifica Under 23. L'effetto "
+                "dell'eta' relativa e' piu' debole che fra i maschi a tredici anni, %s "
+                "contro %s sulle stesse coorti, coerente con una maturazione piu' precoce. "
+                "E un cambio di regolamento della fonte conferma il meccanismo dei posti: "
+                "separando le classifiche delle Esordienti nel %s, la quota del primo anno "
+                "e' passata dal %s%% al %s%%, nella stessa categoria e alle stesse eta'."
+                % (md.num(conf.get("minimo"), 1), md.num(conf.get("massimo"), 1),
+                   md.num(sessi.get("femmine"), 2),
                    md.num(sessi.get("maschi"), 2), sep.get("anno"),
                    md.num(sep.get("prima"), 1), md.num(sep.get("dopo"), 1))))
 

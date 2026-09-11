@@ -14,12 +14,12 @@ PERCHE' UNA SEZIONE A SE'
 L'ESPERIMENTO NATURALE
     Il risultato piu' bello arriva da un cambio di regolamento della fonte. Nelle
     Esordienti femminili la classifica e' stata **unica** fino al 2021 e **separata per
-    annata** dal 2022. Stessa categoria, stesse eta', stesse ragazze: cambia solo la
-    struttura della lista, e si puo' vedere cosa fa.
+    annata** dal 2022. Stessa categoria e stesse eta', in due periodi diversi: cambia
+    la struttura della lista, e si puo' vedere cosa fa.
 
     Nel documento la stessa cosa era stata mostrata confrontando maschi e femmine, che
-    pero' sono popolazioni diverse. Qui il confronto e' dentro la stessa popolazione,
-    prima e dopo, ed e' molto piu' stringente.
+    pero' sono popolazioni diverse. Qui il confronto resta dentro la stessa categoria
+    e alle stesse eta', ed e' piu' stringente.
 
 UN AVVISO SUL CONTEGGIO DELLE GARE
     Quando le liste si separano, la stessa giornata di gara produce **due** classifiche
@@ -75,10 +75,20 @@ def calcola():
                      "gare per stagione, femminili", "maschili", "rapporto fra le gare"],
             titolo="Quanto e' grande il movimento femminile, in rapporto",
             nota="atlete e atleti distinti su tutte le stagioni disponibili; le gare sono "
-                 "stimate dai piazzamenti nei primi cinque, cinque per gara")
+                 "stimate dai piazzamenti nei primi cinque, cinque per gara; in Esordienti "
+                 "il rapporto fra le gare non si confronta con le altre righe, perche' il "
+                 "conteggio maschile somma i due calendari, uno per annata, e quello "
+                 "femminile ne conta uno solo fino al %d" % (ANNO_SEPARAZIONE - 1))
         if righe:
             ar.valore("rapporto_atleti", {r[0]: r[3] for r in righe})
             ar.valore("rapporto_gare", {r[0]: r[6] for r in righe})
+            # Il rapporto fra le gare regge solo dove entrambi i sessi hanno una lista
+            # unica: negli Esordienti maschili il conteggio somma due calendari.
+            confrontabili = [r[6] for r in righe if r[0] != NOMI["U15"]]
+            if confrontabili:
+                ar.valore("rapporto_gare_confrontabile",
+                          {"minimo": min(confrontabili), "massimo": max(confrontabili)},
+                          "solo le categorie con una lista unica per entrambi i sessi")
 
         # --- 2. l'esperimento naturale delle Esordienti ----------------------
         quote = []
@@ -169,6 +179,29 @@ def calcola():
                       {"prima": anni[0], "ultima": anni[-1],
                        "variazioni": {r[0]: r[3] for r in righe_c}})
 
+        # --- 5. l'archivio degli esiti femminili, solo in forma aggregata ------
+        # Le rose vengono da profili di persone identificabili e restano fuori dal
+        # repository; qui se ne ricavano soltanto tre conteggi, perche' i numeri che il
+        # post cita passino dal controllo automatico come tutti gli altri.
+        pcs = os.path.join("data", "pcs", "pcs_F.db")
+        if os.path.exists(pcs):
+            dp = sqlite3.connect(pcs)
+            try:
+                squadre = dp.execute("SELECT COUNT(*) FROM pcs_team").fetchone()[0]
+                righe_rosa = dp.execute("SELECT COUNT(*) FROM pcs_roster").fetchone()[0]
+                italiane = dp.execute(
+                    """SELECT COUNT(DISTINCT r.pcs_id) FROM pcs_roster r
+                       JOIN pcs_team t ON t.season = r.season AND t.team_slug = r.team_slug
+                       WHERE t.team_class IN ('WTW', 'PRW')
+                         AND r.season BETWEEN 2020 AND 2025 AND r.nazionalita = 'IT'"""
+                ).fetchone()[0]
+                ar.valore("pcs_femminile",
+                          {"squadre_stagione": squadre, "righe_rosa": righe_rosa,
+                           "italiane_2020_2025": italiane},
+                          "conteggi aggregati dell'archivio PCS femminile, che resta privato")
+            finally:
+                dp.close()
+
         disegna(quote, ar)
 
     print("Modulo 'ragazze' eseguito.")
@@ -200,9 +233,29 @@ def disegna(quote, ar):
         gr.legenda(ax)
         ax.grid(axis="x", visible=False)
     ar.figura("separazione", gr.salva("ragazze_separazione"),
-              didascalia="Stessa categoria, stesse eta', stesse ragazze: cambia solo se le "
-                         "due annate condividano la classifica. Il primo anno passa da poco "
-                         "piu' di un quarto dei posti a meta' esatta.")
+              didascalia="Stessa categoria e stesse eta', prima e dopo la separazione "
+                         "delle liste: con la lista condivisa il primo anno prende poco piu' "
+                         "di un quarto dei posti, con le liste separate la meta', che li' e' "
+                         "quasi automatica.")
+
+
+def _dettaglio_pcs(v):
+    c = v.get("pcs_femminile") or {}
+    if not c:
+        return ""
+    return (" — %s squadre-stagione e %s righe di rosa, con %s atlete italiane "
+            "distinte nelle squadre di prima e seconda divisione fra il 2020 e il 2025 —"
+            % (md.conta(c.get("squadre_stagione")), md.conta(c.get("righe_rosa")),
+               md.conta(c.get("italiane_2020_2025"))))
+
+
+def _coda_calendario(ce):
+    var = list((ce.get("variazioni") or {}).values())
+    if var and all(x > 0 for x in var):
+        return ": e' anzi cresciuto in tutte e due"
+    if var and any(x > 0 for x in var):
+        return ": in una categoria e' cresciuto, nell'altra ha perso poco"
+    return ""
 
 
 def rendi(lt):
@@ -232,14 +285,19 @@ def rendi(lt):
 
     rap_a = v.get("rapporto_atleti") or {}
     rap_g = v.get("rapporto_gare") or {}
-    if rap_a and rap_g:
+    conf_g = v.get("rapporto_gare_confrontabile") or {}
+    if rap_a and conf_g:
         p.append(md.paragrafo(
             "",
             "Il movimento femminile e' piu' piccolo di quello maschile di circa **%s volte** "
-            "in Esordienti, ma le gare sono meno di **%s volte**: le ragazze non sono "
-            "semplicemente meno, corrono anche molto meno spesso di quanto la loro "
-            "numerosita' farebbe pensare."
-            % (md.num(rap_a.get("Esordienti"), 1), md.num(rap_g.get("Esordienti"), 1))))
+            "in Esordienti. Le gare invece si confrontano solo dove la classifica e' una "
+            "lista unica per entrambi i sessi, cioe' in Allievi e Juniores, e li' sono da "
+            "**%s a %s volte** meno: le ragazze non sono semplicemente meno, corrono anche "
+            "molto meno spesso. Il rapporto degli Esordienti e' piu' alto ma non va preso "
+            "alla lettera, perche' il conteggio maschile somma da sempre due calendari, uno "
+            "per annata, e quello femminile solo dal %s."
+            % (md.num(rap_a.get("Esordienti"), 1), md.num(conf_g.get("minimo"), 1),
+               md.num(conf_g.get("massimo"), 1), ANNO_SEPARAZIONE)))
 
     # --- l'esperimento naturale ---------------------------------------------
     if sep:
@@ -267,12 +325,18 @@ def rendi(lt):
                     sq.get("dopo", 0) - sq.get("prima", 0) > 10,
                     "separando le classifiche per annata la quota dei posti del primo anno "
                     "sale in modo netto",
-                    "**Stessa categoria, stesse eta', stesse ragazze: cambia solo la "
-                    "struttura della lista, e il primo anno passa dal %s%% al %s%% dei "
-                    "posti.** E' la conferma piu' pulita che si potesse chiedere: dove le "
-                    "annate condividono la classifica, il primo anno non sparisce perche' "
-                    "ci siano meno posti, ma perche' quei posti li vincono le piu' grandi."
-                    % (md.num(sq.get("prima"), 1), md.num(sq.get("dopo"), 1)))))
+                    "**Stessa categoria e stesse eta', in due periodi diversi e quindi con "
+                    "ragazze diverse: cambia la struttura della lista, e il primo anno passa "
+                    "dal %s%% al %s%% dei posti.** Dei due numeri e' il primo a portare "
+                    "l'informazione: con le liste separate ogni annata ha i propri posti, e "
+                    "la meta' e' quasi automatica. Con la lista condivisa, invece, il primo "
+                    "anno ne prende poco piu' di un quarto, lo stesso ordine del %s%% degli "
+                    "Allievi maschi. Il confronto e' piu' stretto di quello fra categorie "
+                    "maschili, perche' categoria ed eta' restano le stesse: dove le annate "
+                    "condividono la classifica, il primo anno non sparisce perche' ci siano "
+                    "meno posti, ma perche' quei posti li vincono le piu' grandi."
+                    % (md.num(sq.get("prima"), 1), md.num(sq.get("dopo"), 1),
+                       md.num((lt.valori("posti") or {}).get("quota_primo_anno_U17"), 1)))))
         f = lt.figura("ragazze", "separazione")
         if f:
             p.append(md.figura(f["percorso"], f["didascalia"]))
@@ -288,11 +352,12 @@ def rendi(lt):
         if est:
             p.append(md.paragrafo(
                 "",
-                "La concentrazione dei punti e' **la stessa nei due movimenti**: il decile "
+                "La concentrazione dei punti e' **dello stesso ordine nei due movimenti**: il "
+                "decile "
                 "migliore ne prende fra il %s%% e il %s%%, che e' l'intervallo gia' visto "
                 "confrontando le categorie maschili fra loro. Cambia tutto — la "
                 "numerosita', il numero di gare, la struttura delle liste — e la forma "
-                "della distribuzione resta identica."
+                "della distribuzione resta molto simile."
                 % (md.num(est.get("minimo"), 1), md.num(est.get("massimo"), 1))))
 
     # --- calendario ----------------------------------------------------------
@@ -302,7 +367,8 @@ def rendi(lt):
             "",
             "Un'ultima differenza, e va nella direzione opposta a quella che ci si "
             "aspetterebbe. Il calendario maschile si e' quasi dimezzato; quello femminile, "
-            "nelle categorie che non hanno cambiato struttura, no."))
+            "nelle categorie che non hanno cambiato struttura, molto meno%s."
+            % _coda_calendario(ce)))
         p.append(md.tabella(
             cal["colonne"],
             [[r[0], md.conta(r[1]), md.conta(r[2]),
@@ -312,12 +378,13 @@ def rendi(lt):
     p.append(md.paragrafo(
         "",
         "> **Cosa manca, e cosa servirebbe.** Nel periodo studiato la fonte non pubblica "
-        "una classifica Under 23 femminile, "
+        "una classifica Under 23 femminile, anche se la categoria esiste nel regolamento "
+        "federale e corre insieme alle Elite (Norme Attuative 2027, art. 11.5), "
         "quindi il predittore piu' vicino all'esito, quello che nel maschile porta quasi "
         "tutta l'informazione, qui non c'e'. Gli esiti di carriera sono ora "
-        "scaricati, ma le divisioni professionistiche femminili nascono nel 2020: prima "
+        "scaricati%s, ma le divisioni professionistiche femminili nascono nel 2020: prima "
         "esisteva una categoria sola, quindi «professionista» non e' definibile allo stesso "
         "modo e le coorti utilizzabili sono solo le piu' recenti. Finche' quel nodo non e' "
-        "sciolto, questa sezione resta descrittiva."))
+        "sciolto, questa sezione resta descrittiva." % _dettaglio_pcs(v)))
 
     return (chr(10) * 2).join(x.strip() for x in p if x)

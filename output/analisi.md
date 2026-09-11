@@ -116,7 +116,7 @@
 
 **Il primo anno di categoria non sparisce per mancanza di posti.** Dove ogni annata ha la propria classifica il primo anno ne vince il 49,7%, dove la lista è unica e le gare sono le stesse il 26,7%: è concorrenza, non scarsità. I posti però calano davvero salendo di categoria, da 640 classificazioni di gara per stagione in Esordienti a 146 in Under 23, e calano anche nel tempo, con una perdita del 58,3% fra la prima e l'ultima stagione osservata. La concentrazione dei punti invece non cambia mai: il decile migliore ne prende fra il 36,7% e il 43,2% a ogni età.
 
-**Sul femminile si è potuto misurare ciò che non richiede un esito.** Il movimento corre circa 8,3 volte meno gare di quello maschile e non ha una categoria Under 23. L'effetto dell'età relativa è più debole che fra i maschi, 1,51 contro 1,98 in Esordienti sulle stesse coorti, coerente con una maturazione più precoce. E un cambio di regolamento della fonte fornisce la conferma più netta del meccanismo dei posti: separando le classifiche delle Esordienti nel 2022, la quota del primo anno è passata dal 28,5% al 49,6% sulla stessa popolazione.
+**Sul femminile si è potuto misurare ciò che non richiede un esito.** Dove il conteggio è confrontabile, il movimento corre fra 6,4 e 8,1 volte meno gare di quello maschile, e non ha una classifica Under 23. L'effetto dell'età relativa è più debole che fra i maschi a tredici anni, 1,51 contro 1,98 sulle stesse coorti, coerente con una maturazione più precoce. E un cambio di regolamento della fonte conferma il meccanismo dei posti: separando le classifiche delle Esordienti nel 2022, la quota del primo anno è passata dal 28,5% al 49,6%, nella stessa categoria e alle stesse età.
 
 ### Quanto sono solidi questi risultati
 
@@ -447,7 +447,7 @@ Le sezioni precedenti hanno mostrato che al cambio di categoria la classifica si
 
 **Una parte della lettura corrente è giusta: i posti calano davvero.** Si passa da 640 classificazioni di gara per stagione in Esordienti a 146 in Under 23. Il calendario si accorcia, e con esso la lista, per ragioni che non hanno nulla a che vedere con il valore dei ragazzi.
 
-> **Un confronto da fare con una cautela.** Negli Esordienti le due annate hanno classifiche distinte e corrono gare distinte, quindi il conteggio somma i due calendari; nelle altre categorie la classifica è una sola e le annate corrono insieme. Il numero degli Esordienti è quindi comparabile agli altri solo accettando che a quell'età si corra davvero separati. Non è più un'assunzione: le Norme Attuative della federazione prevedono che le due annate corrano separatamente, e che anche quando la gara è unica la classifica sia distinta per fascia d'età (art. 4,2,1 e 4,2,5, con l'eccezione dei meno di dieci partenti all'art. 4,2,4). La verifica sui regolamenti sta in `docs/verifica_dati_giovanile.md`. Chi preferisce comunque la lettura prudente può dimezzare il conteggio: resta un calo anche partendo da metà.
+> **Un confronto da fare con una cautela.** Negli Esordienti le due annate hanno classifiche distinte e corrono gare distinte, quindi il conteggio somma i due calendari; nelle altre categorie la classifica è una sola e le annate corrono insieme. Il numero degli Esordienti è quindi comparabile agli altri solo accettando che a quell'età si corra davvero separati. Non è più un'assunzione: le Norme Attuative della federazione prevedono che le due annate corrano separatamente, e che anche quando la gara è unica la classifica sia distinta per fascia d'età (art. 4.2.1 e 4.2.5, con l'eccezione dei meno di dieci partenti all'art. 4.2.4). La verifica sui regolamenti sta in `docs/verifica_dati_giovanile.md`. Chi preferisce comunque la lettura prudente può dimezzare il conteggio: resta un calo anche partendo da metà.
 
 ### Ma il primo anno non sparisce per mancanza di posti
 
@@ -1349,9 +1349,9 @@ Tutto il resto di questo documento riguarda i maschi, e la ragione non è una sc
 | Allievi | 722 | 6 195 | 8,6× | 65 | 414 | 6,4× |
 | Juniores | 389 | 4 181 | 10,7× | 35 | 282 | 8,1× |
 
-*atlete e atleti distinti su tutte le stagioni disponibili; le gare sono stimate dai piazzamenti nei primi cinque, cinque per gara*
+*atlete e atleti distinti su tutte le stagioni disponibili; le gare sono stimate dai piazzamenti nei primi cinque, cinque per gara; in Esordienti il rapporto fra le gare non si confronta con le altre righe, perché il conteggio maschile somma i due calendari, uno per annata, e quello femminile ne conta uno solo fino al 2021*
 
-Il movimento femminile è più piccolo di quello maschile di circa **7,4 volte** in Esordienti, ma le gare sono meno di **8,3 volte**: le ragazze non sono semplicemente meno, corrono anche molto meno spesso di quanto la loro numerosità farebbe pensare.
+Il movimento femminile è più piccolo di quello maschile di circa **7,4 volte** in Esordienti. Le gare invece si confrontano solo dove la classifica è una lista unica per entrambi i sessi, cioè in Allievi e Juniores, e lì sono da **6,4 a 8,1 volte** meno: le ragazze non sono semplicemente meno, corrono anche molto meno spesso. Il rapporto degli Esordienti è più alto ma non va preso alla lettera, perché il conteggio maschile somma da sempre due calendari, uno per annata, e quello femminile solo dal 2022.
 
 ### Un cambio di regolamento che vale un esperimento
 
@@ -1364,11 +1364,11 @@ La sezione sui posti ha mostrato che dove le due annate condividono la classific
 
 *Esordienti femminili: la fonte ha separato le due classifiche dal 2022, e prima ne pubblicava una sola*
 
-**Stessa categoria, stesse età, stesse ragazze: cambia solo la struttura della lista, e il primo anno passa dal 28,5% al 49,6% dei posti.** È la conferma più pulita che si potesse chiedere: dove le annate condividono la classifica, il primo anno non sparisce perché ci siano meno posti, ma perché quei posti li vincono le più grandi.
+**Stessa categoria e stesse età, in due periodi diversi e quindi con ragazze diverse: cambia la struttura della lista, e il primo anno passa dal 28,5% al 49,6% dei posti.** Dei due numeri è il primo a portare l'informazione: con le liste separate ogni annata ha i propri posti, e la metà è quasi automatica. Con la lista condivisa, invece, il primo anno ne prende poco più di un quarto, lo stesso ordine del 26,7% degli Allievi maschi. Il confronto è più stretto di quello fra categorie maschili, perché categoria ed età restano le stesse: dove le annate condividono la classifica, il primo anno non sparisce perché ci siano meno posti, ma perché quei posti li vincono le più grandi.
 
-![Stessa categoria, stesse età, stesse ragazze: cambia solo se le due annate condividano la classifica. Il primo anno passa da poco più di un quarto dei posti a metà esatta.](figure/ragazze_separazione.png)
+![Stessa categoria e stesse età, prima e dopo la separazione delle liste: con la lista condivisa il primo anno prende poco più di un quarto dei posti, con le liste separate la metà, che lì è quasi automatica.](figure/ragazze_separazione.png)
 
-*Stessa categoria, stesse età, stesse ragazze: cambia solo se le due annate condividano la classifica. Il primo anno passa da poco più di un quarto dei posti a metà esatta.*
+*Stessa categoria e stesse età, prima e dopo la separazione delle liste: con la lista condivisa il primo anno prende poco più di un quarto dei posti, con le liste separate la metà, che lì è quasi automatica.*
 
 ### Le cose che non cambiano
 
@@ -1380,9 +1380,9 @@ La sezione sui posti ha mostrato che dove le due annate condividono la classific
 
 *medie sulle stagioni; è la stessa misura della sezione sui posti*
 
-La concentrazione dei punti è **la stessa nei due movimenti**: il decile migliore ne prende fra il 39,6% e il 44,9%, che è l'intervallo già visto confrontando le categorie maschili fra loro. Cambia tutto — la numerosità, il numero di gare, la struttura delle liste — e la forma della distribuzione resta identica.
+La concentrazione dei punti è **dello stesso ordine nei due movimenti**: il decile migliore ne prende fra il 39,6% e il 44,9%, che è l'intervallo già visto confrontando le categorie maschili fra loro. Cambia tutto — la numerosità, il numero di gare, la struttura delle liste — e la forma della distribuzione resta molto simile.
 
-Un'ultima differenza, e va nella direzione opposta a quella che ci si aspetterebbe. Il calendario maschile si è quasi dimezzato; quello femminile, nelle categorie che non hanno cambiato struttura, no.
+Un'ultima differenza, e va nella direzione opposta a quella che ci si aspetterebbe. Il calendario maschile si è quasi dimezzato; quello femminile, nelle categorie che non hanno cambiato struttura, molto meno: in una categoria è cresciuto, nell'altra ha perso poco.
 
 | categoria | gare nel 2011 | gare nel 2025 | variazione |
 |---|---|---|---|
@@ -1391,7 +1391,7 @@ Un'ultima differenza, e va nella direzione opposta a quella che ci si aspettereb
 
 *le Esordienti restano fuori: separando le classifiche nel 2022 i posti raddoppiano per costruzione, e il confronto nel tempo non reggerebbe*
 
-> **Cosa manca, e cosa servirebbe.** Nel periodo studiato la fonte non pubblica una classifica Under 23 femminile, quindi il predittore più vicino all'esito, quello che nel maschile porta quasi tutta l'informazione, qui non c'è. Gli esiti di carriera sono ora scaricati, ma le divisioni professionistiche femminili nascono nel 2020: prima esisteva una categoria sola, quindi «professionista» non è definibile allo stesso modo e le coorti utilizzabili sono solo le più recenti. Finché quel nodo non è sciolto, questa sezione resta descrittiva.
+> **Cosa manca, e cosa servirebbe.** Nel periodo studiato la fonte non pubblica una classifica Under 23 femminile, anche se la categoria esiste nel regolamento federale e corre insieme alle Elite (Norme Attuative 2027, art. 11.5), quindi il predittore più vicino all'esito, quello che nel maschile porta quasi tutta l'informazione, qui non c'è. Gli esiti di carriera sono ora scaricati — 414 squadre-stagione e 5 580 righe di rosa, con 51 atlete italiane distinte nelle squadre di prima e seconda divisione fra il 2020 e il 2025 —, ma le divisioni professionistiche femminili nascono nel 2020: prima esisteva una categoria sola, quindi «professionista» non è definibile allo stesso modo e le coorti utilizzabili sono solo le più recenti. Finché quel nodo non è sciolto, questa sezione resta descrittiva.
 
 ## Quanto regge tutto questo
 
