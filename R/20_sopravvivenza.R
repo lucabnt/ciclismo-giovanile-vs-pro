@@ -228,7 +228,13 @@ main <- function() {
                 round(100 * mean(d$assente), 1),
                 paste("quota delle stagioni a rischio in cui l'atleta non era",
                       "in classifica l'anno prima"))
-  scrivi_valore(ar, "eta_rischio_massimo", curva$eta[which.max(curva$h)])
+  # L'eta' del rischio piu' alto si legge sulla tabella osservata, che e' quella che il
+  # documento mostra; il massimo della curva stimata, piu' liscia, puo' cadere altrove e
+  # ha un nome suo.
+  scrivi_valore(ar, "eta_rischio_massimo", grezzo$eta[which.max(grezzo$hazard)],
+                "eta' con il rischio osservato piu' alto, dalla tabella hazard_grezzo")
+  scrivi_valore(ar, "eta_rischio_massimo_modello", curva$eta[which.max(curva$h)],
+                "eta' con il rischio piu' alto sulla curva stimata, a parita' del resto")
   scrivi_valore(ar, "cumulate", list(alto = round(100 * p_alto, 1),
                                      medio = round(100 * p_medio, 1),
                                      basso = round(100 * p_basso, 1),

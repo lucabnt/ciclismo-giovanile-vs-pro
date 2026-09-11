@@ -11,8 +11,9 @@
 
 ## Cosa copre questa licenza
 
-I contenuti di questo repository — la prosa, le tabelle, le figure, l'analisi — sono
-distribuiti sotto **Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0)**.
+I contenuti di questo repository — la prosa, le tabelle, le figure, l'analisi — sono di
+**lucabnt**, che ne è autore e titolare dei diritti, e sono distribuiti sotto **Creative
+Commons Attribuzione 4.0 Internazionale (CC BY 4.0)**.
 
 - Sintesi leggibile: <https://creativecommons.org/licenses/by/4.0/deed.it>
 - Testo legale completo: <https://creativecommons.org/licenses/by/4.0/legalcode.it>
@@ -37,7 +38,8 @@ qualcosa*, non fra un'estensione di file e un'altra.
 
 **I dati di partenza non sono nostri e non possiamo concederli.**
 
-Le classifiche giovanili vengono da ciclismo.info, gli esiti di carriera da
+Appartengono ai siti di riferimento da cui vengono, e nel repository non sono inclusi. Le
+classifiche giovanili vengono da ciclismo.info, gli esiti di carriera da
 ProCyclingStats, le nascite attese da Eurostat, i tesserati dalla Federazione Ciclistica
 Italiana. Su ciascuna fonte valgono le condizioni della fonte, e nell'Unione Europea una
 banca dati può essere protetta dal **diritto sui generis del costitutore** anche quando i
@@ -101,8 +103,8 @@ Due cortesie che la licenza non impone e che chiediamo lo stesso:
 
 Il codice — `scripts/`, `R/`, i moduli in `report/`, `config.toml`, `.githooks/` — sta
 sotto **licenza MIT** ([`LICENSE`](LICENSE)), che è più permissiva: chiede solo di
-conservare la nota di copyright. La scelta è deliberata. Il valore di questo progetto non
-sta nel codice, sta in come sono state prese le decisioni; il codice si riusi liberamente,
+conservare la nota di copyright, che porta lo stesso nome: lucabnt. La scelta è
+deliberata. Il valore di questo progetto non sta nel codice, sta in come sono state prese le decisioni; il codice si riusi liberamente,
 e se qualcuno rifà lo stesso lavoro su un'altra federazione, tanto meglio.
 
 ## Se questa licenza non ti basta
@@ -120,9 +122,11 @@ licensed under [Creative Commons Attribution 4.0 International (CC BY
 4.0)](https://creativecommons.org/licenses/by/4.0/). You may reuse, adapt and redistribute
 it, including commercially, provided you credit the source and indicate changes.
 
-The **code** is under the MIT licence, see [`LICENSE`](LICENSE).
+The **code** is under the MIT licence, see [`LICENSE`](LICENSE). Code and content are by
+lucabnt, who holds the copyright.
 
-The **underlying data is not ours to license**: youth rankings come from ciclismo.info,
+The **underlying data is not included and is not ours to license**: it belongs to the source
+sites. Youth rankings come from ciclismo.info,
 career outcomes from ProCyclingStats, expected births from Eurostat, licence-holder counts
 from the Italian Cycling Federation. Their terms apply, and in the EU a database may carry
 a sui generis right of its own. This repository does not redistribute any of it.

@@ -50,10 +50,15 @@ spiegano ogni passo nel dettaglio; questa serve a non doverle leggere tutte per 
 che ordine vanno e quanto costano.
 
 **Cosa serve prima di cominciare.** Python 3.9 o successivo (`tomllib` è nella libreria
-standard dal 3.11; sotto, `requirements.txt` installa `tomli`), R 4.2 o successivo per i
+standard dal 3.11; sotto, `requirements.txt` installa `tomli`), R 4.6 per i
 soli modelli, e il database di partenza `data/giovanile/ciclismo.db`, che **non è in questo
 repository**: viene da [risultati-ciclismo-giovanile](https://github.com/lucabnt/risultati-ciclismo-giovanile).
 Senza quello non si parte, e non c'è modo di ricostruirlo da qui.
+
+**La versione di R conta.** La catena è collaudata con R 4.6.1. I pacchetti compilati per
+una versione di R non si caricano con una precedente: con `logistf` installato sotto la
+4.6, un R 4.2 rimasto sulla stessa macchina si ferma al primo modello. Se ne convivono due,
+`Rscript --version` dice quale risponde.
 
 | # | comando | quanto dura | serve a |
 |---|---|---|---|
@@ -345,10 +350,16 @@ Il confine passa fra *ciò che fa qualcosa* e *ciò che dice qualcosa*, non fra 
 file: la prosa che i moduli di `report/` producono è contenuto, anche se il file che la
 genera è codice.
 
-**I dati di partenza non sono nostri e non li licenziamo.** Classifiche, esiti di carriera,
-nascite attese e tesserati vengono da fonti terze, ciascuna con le proprie condizioni, e
-nell'Unione Europea una banca dati può essere protetta anche quando i fatti che contiene non
-lo sono. Questo repository non ne distribuisce nessuna: `data/` è escluso da git per intero.
+**Il titolare dei diritti è lucabnt**, autore del codice e dei contenuti: è il nome che
+portano i due file di licenza.
+
+**I dati di partenza non sono inclusi e non sono nostri.** Appartengono ai siti da cui
+vengono, ciascuno con le proprie condizioni: le classifiche a ciclismo.info, gli esiti di
+carriera a ProCyclingStats, le nascite attese a Eurostat, i tesserati alla Federazione
+Ciclistica Italiana. Nell'Unione Europea una banca dati può essere protetta anche quando i
+fatti che contiene non lo sono. Questo repository non ne distribuisce nessuna: `data/` è
+escluso da git per intero, e `riferimenti/` contiene soltanto totali nazionali già
+pubblicati dalla federazione, trascritti con la loro fonte.
 
 **E resta il vincolo che viene prima di ogni licenza**: i dati riguardano minorenni, qui non
 entra nulla che permetta di risalire a una persona, e nessuna licenza autorizza a provarci.
