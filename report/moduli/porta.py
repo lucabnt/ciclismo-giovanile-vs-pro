@@ -343,8 +343,10 @@ def rendi(lt):
 
     p.append(md.paragrafo(
         "",
-        "> **Cosa resta non verificato.** Questa sezione dice che la nazionalita' conta, "
-        "ma non misura *quanto* pesi rispetto al valore dell'atleta: per farlo servirebbe "
+        "> **Cosa resta non verificato.** Questa sezione dice che la squadra con cui si "
+        "debutta si accompagna a carriere diverse, e la classifica per nazionalita' la "
+        "ricava dalla composizione delle rose. Non misura *quanto* di quella differenza "
+        "dipenda dalla nazionalita' e quanto dal valore dell'atleta: per farlo servirebbe "
         "confrontare corridori italiani e stranieri a parita' di rendimento giovanile, e i "
         "ranking giovanili degli altri paesi non sono nei dati. Resta anche possibile che "
         "la differenza fra le due porte non dipenda dalla porta ma da chi la sceglie: chi "

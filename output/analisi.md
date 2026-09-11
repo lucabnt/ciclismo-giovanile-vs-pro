@@ -1036,7 +1036,7 @@ Fin qui si è misurato quanto il rendimento giovanile predice. Questa sezione tr
 >
 > La **sensibilità** è la quota di futuri professionisti che finisce dentro la selezione: quanti non ne perdo. Il **valore predittivo positivo** è la quota di selezionati che diventerà professionista: quanti ne prendo a vuoto.
 >
-> Il **valore predittivo negativo** è la quarta casella letta dall'altra parte: fra gli scartati, quanti davvero non sarebbero arrivati. Con un esito raro è sempre altissimo, e proprio per questo non va usato come prova che la selezione funzioni: dire che il 99% degli scartati non ce l'avrebbe fatta è quasi una tautologia, visto che non ce la fa il 97% di chiunque. Serve però a rendere leggibile l'altra metà del compromesso, ed è la metrica che nessuno studio di questo campo riporta.
+> Il **valore predittivo negativo** è la quarta casella letta dall'altra parte: fra gli scartati, quanti davvero non sarebbero arrivati. Con un esito raro è sempre altissimo, e proprio per questo non va usato come prova che la selezione funzioni: dire che il 99% degli scartati non ce l'avrebbe fatta è quasi una tautologia, visto che non ce la fa il 97% di chiunque. Serve però a rendere leggibile l'altra metà del compromesso, ed è una metrica che nessuno studio basato sui risultati di gara riporta: l'unico, fra quelli letti per questo progetto, che la riporta è Valenzuela 2023, e parte da un test di laboratorio su 65 Under 23 già selezionati.
 >
 > I due numeri non sono simmetrici, e la differenza dipende da quanto l'esito è raro. Se i professionisti sono il 3% della coorte, anche una selezione molto buona resta composta in gran parte da persone che non lo diventeranno: è aritmetica della base, non un difetto del criterio. È la stessa ragione per cui uno screening accurato su una malattia rara produce molti falsi allarmi.
 >
@@ -1335,7 +1335,7 @@ Ne segue una lettura più precisa del risultato della sezione precedente. Non è
 
 Dentro ciascun gruppo, poi, il rendimento giovanile aiuta poco a capire chi andrà lontano: 0,582 fra chi è entrato da una squadra italiana e 0,651 fra chi è entrato da una straniera, dove 0,5 significa tirare a indovinare. Su questi numeri sono indicazioni, non stime: i due gruppi contano 160 e 105 professionisti.
 
-> **Cosa resta non verificato.** Questa sezione dice che la nazionalità conta, ma non misura *quanto* pesi rispetto al valore dell'atleta: per farlo servirebbe confrontare corridori italiani e stranieri a parità di rendimento giovanile, e i ranking giovanili degli altri paesi non sono nei dati. Resta anche possibile che la differenza fra le due porte non dipenda dalla porta ma da chi la sceglie: chi è più forte va all'estero, e sarebbe arrivato lontano comunque.
+> **Cosa resta non verificato.** Questa sezione dice che la squadra con cui si debutta si accompagna a carriere diverse, e la classifica per nazionalità la ricava dalla composizione delle rose. Non misura *quanto* di quella differenza dipenda dalla nazionalità e quanto dal valore dell'atleta: per farlo servirebbe confrontare corridori italiani e stranieri a parità di rendimento giovanile, e i ranking giovanili degli altri paesi non sono nei dati. Resta anche possibile che la differenza fra le due porte non dipenda dalla porta ma da chi la sceglie: chi è più forte va all'estero, e sarebbe arrivato lontano comunque.
 
 ## Le ragazze
 
