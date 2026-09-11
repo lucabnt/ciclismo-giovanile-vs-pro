@@ -224,20 +224,24 @@ def rendi(lt):
     if rae:
         dec = rae.get("decadimento", {})
         succ = rae.get("successo_professionisti", {})
+        tutti = rae.get("successo_tutti_i_classificati", {})
         p.append(md.paragrafo(
             "",
             "**L'effetto dell'eta' relativa e' di accesso, non di talento.** Rispetto "
             "all'atteso demografico italiano — non all'uniforme — i nati nel primo "
             "trimestre sono **%s volte** i nati nel quarto in %s, e il vantaggio si "
-            "spegne a **%s** in %s. Fra chi arriva al professionismo il rapporto e' %s e "
-            "non si distingue dal caso (p %s). Chi seleziona presto premia la maturita' "
+            "spegne a **%s** in %s. Fra chi arriva al professionismo il rapporto e' %s, "
+            "contro %s di tutti i classificati, e non si distingue dal caso (p %s): su "
+            "%s atleti e' un indizio piu' che una prova. Chi seleziona presto premia la "
+            "maturita' "
             "anagrafica, e quel vantaggio non si converte in carriera. I modelli lo "
             "confermano dall'altro lato: aggiungere l'eta' relativa non sposta il "
             "coefficiente del percentile in nessuna cella%s, e da sola l'eta' relativa "
             "arriva a un'AUC di %s."
             % (md.num(dec.get("prima_q1_su_q4"), 2), dec.get("prima", "—"),
                md.num(dec.get("ultima_q1_su_q4"), 2), dec.get("ultima", "—"),
-               md.num(succ.get("q1_su_q4"), 2), _p(succ.get("p"), 2),
+               md.num(succ.get("q1_su_q4"), 2), md.num(tutti.get("q1_su_q4"), 2),
+               _p(succ.get("p"), 2), md.conta(succ.get("n")),
                ("" if uni.get("rel_age_scarto_auc") is None
                 else " (l'AUC si muove al massimo di %s)"
                      % md.num(uni["rel_age_scarto_auc"], 3)),

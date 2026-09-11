@@ -110,7 +110,7 @@
 
 **Uscire dalla classifica non è smettere.** Il **30,6%** degli atleti salta almeno una stagione e poi ricompare, e metà dei classificati al secondo anno di Allievi non c'era al primo. Il crollo apparente al cambio di categoria — resta il 32,4% contro il 79,9% dei passaggi interni — non viene dalla scarsità dei posti ma dalla concorrenza fra annate: la classifica di arrivo è composta per il 88,2% da chi c'era già, contro il 60,7% dei passaggi interni. Il confronto con i tesserati federali conferma dall'esterno che la classifica non si restringe più in fretta della popolazione che la genera.
 
-**L'effetto dell'età relativa è di accesso, non di talento.** Rispetto all'atteso demografico italiano — non all'uniforme — i nati nel primo trimestre sono **2,13 volte** i nati nel quarto in U15, e il vantaggio si spegne a **1,09** in U23. Fra chi arriva al professionismo il rapporto è 1,47 e non si distingue dal caso (p 0,12). Chi seleziona presto premia la maturità anagrafica, e quel vantaggio non si converte in carriera. I modelli lo confermano dall'altro lato: aggiungere l'età relativa non sposta il coefficiente del percentile in nessuna cella (l'AUC si muove al massimo di 0,007), e da sola l'età relativa arriva a un'AUC di 0,513.
+**L'effetto dell'età relativa è di accesso, non di talento.** Rispetto all'atteso demografico italiano — non all'uniforme — i nati nel primo trimestre sono **2,13 volte** i nati nel quarto in U15, e il vantaggio si spegne a **1,09** in U23. Fra chi arriva al professionismo il rapporto è 1,47, contro 1,73 di tutti i classificati, e non si distingue dal caso (p 0,12): su 77 atleti è un indizio più che una prova. Chi seleziona presto premia la maturità anagrafica, e quel vantaggio non si converte in carriera. I modelli lo confermano dall'altro lato: aggiungere l'età relativa non sposta il coefficiente del percentile in nessuna cella (l'AUC si muove al massimo di 0,007), e da sola l'età relativa arriva a un'AUC di 0,513.
 
 **Società, mobilità e regione non aggiungono nulla di leggibile.** Il gradiente della mobilità sembra enorme — dal 0,68% al 7,32% di professionisti secondo il numero di cambi di società — ma a parità di stagioni corse quasi sparisce. E il **96,3%** cambia società passando dagli Juniores all'Under 23, contro circa il 21% dei passaggi interni a una categoria: è organizzazione dello sport, non una decisione. La società di partenza va dal 2,90% al 3,79%, la regione non mostra differenze leggibili.
 
@@ -654,7 +654,7 @@ La mediana cresce con il livello raggiunto, e non solo fra chi arriva e chi no: 
 
 ## L'effetto dell'età relativa
 
-Fra ragazzi della stessa annata, chi è nato a gennaio ha fino a dodici mesi di sviluppo in più di chi è nato a dicembre. Alle età più basse quella differenza è probabilmente il fattore dominante del risultato agonistico: se lo è, selezionare sul risultato a tredici anni significa in parte selezionare la data di nascita.
+Fra ragazzi della stessa annata, chi è nato a gennaio ha fino a dodici mesi di sviluppo in più di chi è nato a dicembre. Alle età più basse quella differenza è difficile da separare dalla prestazione vera e propria: se pesa molto, selezionare sul risultato a tredici anni significa in parte selezionare la data di nascita.
 
 Il confronto non è con il 25 per cento per trimestre. In Italia si nasce di più fra maggio e settembre, e il primo trimestre è il **più scarso** della popolazione: l'atteso è Q1 23,95%, Q2 25,24%, Q3 26,30%, Q4 24,50%. Usare l'uniforme sottostimerebbe l'effetto invece di sovrastimarlo.
 
@@ -696,11 +696,13 @@ Il vantaggio si spegne con l'età: da **2,13 a uno** in U15 a **1,09** in U23. E
 
 *4 cella/e con meno di 5 atleti sono mascherate · i conteggi sono atleti; le celle sotto la soglia sono mascherate*
 
-La distinzione fra le due tabelle è quella che rende il risultato interpretabile: un effetto forte nella composizione e assente nel successo significa che il vantaggio è di **accesso**, non di talento.
+Il confronto va fatto con la riga giusta. Il rapporto dei professionisti è calcolato su atleti di tutte le categorie, quindi il suo termine di paragone è quello di tutti i classificati, 1,73, e non il 2,13 della categoria più giovane. Da 1,73 a 1,47, su 77 atleti, è uno scarto piccolo, e il valore dei professionisti non si distingue dall'atteso demografico (p = 0,12): preso da solo è un indizio, non una prova.
+
+La prova più forte sta nei modelli. Aggiungendo l'età relativa, il peso del piazzamento a tredici anni passa da 1,40 a 1,41, e l'età relativa da sola distingue chi arriverà con un'AUC di 0,513, cioè come una monetina. Messi insieme, i due risultati dicono che il vantaggio di chi è nato a inizio anno è soprattutto di **accesso** alla classifica, non di arrivo.
 
 ### Lo stesso effetto sulle ragazze
 
-Questa è la sola analisi dello studio che si può fare anche sul femminile, e la ragione non è la numerosità. Tutte le altre domande hanno bisogno di un esito di carriera, e per le atlete quell'esito **non è stato raccolto**: le rose e le classifiche scaricate da ProCyclingStats sono quelle maschili. L'effetto dell'età relativa fa eccezione perché confronta la composizione del ranking con la demografia, e chiede solo la data di nascita.
+È una delle poche analisi dello studio che si possono rifare sul femminile, e la ragione non è la numerosità. Tutte quelle sulla previsione hanno bisogno di un esito di carriera, e per le atlete quell'esito **non è stato raccolto**: le rose e le classifiche scaricate da ProCyclingStats sono quelle maschili. L'effetto dell'età relativa fa eccezione perché confronta la composizione del ranking con la demografia, e chiede solo la data di nascita; lo stesso vale per il cambio di regolamento delle Esordienti raccontato nella sezione sulle ragazze.
 
 Il confronto ha un motivo sostanziale, oltre alla disponibilità dei dati. Le ragazze maturano prima: a tredici anni molte hanno già attraversato la pubertà, mentre fra i coetanei maschi la differenza di sviluppo fra gennaio e dicembre è al suo massimo. Se il vantaggio di essere nati a inizio anno è un vantaggio di maturazione, e non di talento, fra le atlete dovrebbe essere più debole.
 
@@ -715,13 +717,13 @@ Il confronto ha un motivo sostanziale, oltre alla disponibilità dei dati. Le ra
 
 *per ogni categoria si usano le coorti in cui entrambi i sessi sono osservati, e l'atteso demografico è calcolato su quelle stesse coorti; nel periodo studiato la fonte non pubblica una classifica Under 23 femminile*
 
-**L'ipotesi regge, e il divario è netto.** In U15 i nati nel primo trimestre sono 1,98 volte quelli dell'ultimo fra i maschi e 1,51 volte fra le femmine, sulle stesse coorti e con lo stesso atteso demografico. In Allievi l'effetto femminile scende ancora, fino a non distinguersi più dalla distribuzione attesa.
+**A tredici anni il pattern è quello atteso, e regge a un test.** In U15 i nati nel primo trimestre sono, rispetto all'atteso, 1,98 volte quelli dell'ultimo fra i maschi e 1,51 volte fra le femmine, sulle stesse coorti e con lo stesso atteso demografico; la differenza fra i due sessi ha p = 0,007 al chi quadro sui due trimestri estremi, che sulle stesse coorti basta, perché l'atteso demografico è lo stesso per tutti e due e si semplifica. È il risultato che ci si aspetta se il vantaggio è soprattutto di maturazione, anche se da solo non lo dimostra.
 
-> **Due cautele, e sono serie.** Le atlete sono 874 in Esordienti contro 5 544 atleti, quindi gli intervalli attorno ai valori femminili sono molto più larghi. E il valore femminile in Juniores risale invece di scendere: con poche centinaia di atlete un rimbalzo del genere è esattamente ciò che il caso produce, e non va letto come un ritorno dell'effetto. Quello che si può dire con ragionevole sicurezza riguarda le età più basse, dove i numeri sono maggiori e la differenza fra i sessi è più larga.
+> **Due cautele, e sono serie.** Le atlete sono 874 in Esordienti contro 5 544 atleti, quindi gli intervalli attorno ai valori femminili sono molto più larghi. E oltre i quattordici anni i valori femminili non seguono una linea: in Allieve lo squilibrio non si distingue dall'atteso (p = 0,144 su 681 atlete), in Juniores torna a distinguersi (p = 0,001 su 370), con una V di Cramer di 0,205, più alta dello 0,188 delle Esordienti. Nessuno dei due va preso come conferma o come smentita dell'ipotesi, perché con poche centinaia di atlete per categoria non si può dire se fra Allieve e Juniores ci sia una differenza vera. Quello che si può dire con ragionevole sicurezza riguarda le età più basse, dove i numeri sono maggiori.
 
-![Fra le atlete lo squilibrio c'è ma è più contenuto, e in Allieve non si distingue dall'atteso demografico. Le coorti femminili sono però molto meno numerose, e il rimbalzo in Juniores va letto con quella cautela.](figure/rae_sessi.png)
+![A tredici anni fra le atlete lo squilibrio c'è ma è più contenuto. Dopo, i valori femminili poggiano su poche centinaia di atlete e non seguono una linea: in Allieve non si distinguono dall'atteso, in Juniores sì.](figure/rae_sessi.png)
 
-*Fra le atlete lo squilibrio c'è ma è più contenuto, e in Allieve non si distingue dall'atteso demografico. Le coorti femminili sono però molto meno numerose, e il rimbalzo in Juniores va letto con quella cautela.*
+*A tredici anni fra le atlete lo squilibrio c'è ma è più contenuto. Dopo, i valori femminili poggiano su poche centinaia di atlete e non seguono una linea: in Allieve non si distinguono dall'atteso, in Juniores sì.*
 
 > **Cosa servirebbe per andare oltre.** Scaricare da ProCyclingStats le rose delle squadre femminili e le classifiche mondiali femminili renderebbe possibile sul femminile tutto il resto dello studio. Resterebbero due limiti strutturali: le atlete in classifica sono circa un decimo degli atleti, e la classifica Under 23 femminile non esiste nel periodo studiato, quindi il predittore più vicino all'esito mancherebbe.
 
@@ -788,9 +790,9 @@ Questa sezione è scritta in negativo, e vale la pena dire subito perché. Le va
 
 > **Come si misura — Perché queste variabili non entrano nei modelli come controlli**
 >
-> Società e regione cambiano durante la carriera, e cambiano *in risposta* ai risultati: un buon piazzamento a quattordici anni fa arrivare l'offerta di una società migliore. Stanno quindi sul percorso causale fra rendimento ed esito, e sono mediatori, non confondenti.
+> I cambi di società e di regione avvengono durante la carriera, e spesso *in risposta* ai risultati: un buon piazzamento a quattordici anni fa arrivare l'offerta di una società migliore. Stanno quindi sul percorso fra rendimento ed esito, e inserirli fra i controlli di un modello sottrarrebbe parte dell'effetto che si vuole misurare, facendolo apparire più debole di quanto sia.
 >
-> Inserire un mediatore fra i controlli di un modello sottrae parte dell'effetto che si vuole misurare, e lo fa apparire più debole di quanto sia. Per questo qui sono oggetto di studio e mai variabili di controllo. L'unica eccezione è la regione alla prima stagione osservata, che precede il predittore.
+> Diverso è il caso della società e della regione **di partenza**, che vengono prima del rendimento e potrebbero semmai essere confondenti. Non entrano nei modelli per un'altra ragione: con l'esito, come si vede più sotto, non mostrano un'associazione leggibile, quindi non c'è niente da aggiustare.
 >
 > Approfondimenti: [Mediazione](https://en.wikipedia.org/wiki/Mediation_(statistics)) · [Confondimento](https://en.wikipedia.org/wiki/Confounding)
 
@@ -854,24 +856,24 @@ Segue che **`n_team_changes` conta in larga parte transizioni imposte dall'organ
 |  | atleti | professionisti | % pro |
 |---|---|---|---|
 | è rimasto | 2660 | 73 | 2,74 |
-| ha cambiato regione | 83 | <5 | 4,82 |
+| ha cambiato regione | 83 | 4 | 4,82 |
 
-*1 cella/e con meno di 5 atleti sono mascherate*
+*la colonna dei professionisti non è mascherata perché il conteggio si ricaverebbe comunque dalla percentuale e dal numero di atleti della stessa riga*
 
 Il cambio di regione riguarda **83 atleti su circa duemilaottocento**, con 4 professionisti fra loro. Con questi numeri non si conclude niente in un senso o nell'altro, e vale la pena dirlo esplicitamente invece di riportare una percentuale che sembrerebbe informativa.
 
 | tasso storico della società di partenza | atleti | professionisti | % pro |
 |---|---|---|---|
 | nessun professionista | 1137 | 33 | 2,90 |
-| fino al 5% | 58 | <5 | 3,45 |
+| fino al 5% | 58 | 2 | 3,45 |
 | dal 5 al 10% | 243 | 9 | 3,70 |
 | oltre il 10% | 264 | 10 | 3,79 |
 
-*1 cella/e con meno di 5 atleti sono mascherate*
+*la colonna dei professionisti non è mascherata perché il conteggio si ricaverebbe comunque dalla percentuale e dal numero di atleti della stessa riga*
 
-Anche la società da cui si parte dice poco: si va dal **2,90%** al **3,79%**, una differenza che con questi numeri non si distingue dal caso. E il 67% degli atleti parte da una società che nelle coorti precedenti non aveva prodotto nessun professionista — il che rende la variabile poco informativa già per costruzione.
+Anche la società da cui si parte dice poco: si va dal **2,90%** al **3,79%**, una differenza che non si distingue dal caso (p = 0,43 al test esatto di Fisher fra la prima e l'ultima fascia). E il 67% degli atleti parte da una società che nelle coorti precedenti non aveva prodotto nessun professionista — il che rende la variabile poco informativa già per costruzione.
 
-Per la sola geografia conviene allargare le coorti. La regione di partenza non entra in nessun modello e non ha bisogno della finestra stretta che serve agli esiti: usando le **9 coorti 1992-2000** invece delle cinque del resto del documento, gli atleti passano da — a 4 827 e le numerosità regionali diventano leggibili. Tutte queste coorti hanno comunque avuto il tempo pieno per arrivare al professionismo.
+Per la sola geografia conviene allargare le coorti. La regione di partenza non entra in nessun modello e non ha bisogno della finestra stretta che serve agli esiti: usando le **9 coorti 1992-2000** invece delle cinque del resto del documento, si arriva a 4 827 atleti e le numerosità regionali diventano leggibili. Tutte queste coorti hanno comunque avuto il tempo pieno per arrivare al professionismo.
 
 | regione alla prima stagione | atleti | professionisti | % pro |
 |---|---|---|---|
@@ -880,19 +882,19 @@ Per la sola geografia conviene allargare le coorti. La regione di partenza non e
 | toscana | 576 | 17 | 2,95 |
 | emilia romagna | 477 | 10 | 2,10 |
 | piemonte | 236 | 6 | 2,54 |
-| sicilia | 187 | <5 | 1,07 |
-| friuli venezia giulia | 175 | <5 | 1,71 |
+| sicilia | 187 | 2 | 1,07 |
+| friuli venezia giulia | 175 | 3 | 1,71 |
 | trentino alto adige | 174 | 11 | 6,32 |
-| marche | 155 | <5 | 1,29 |
-| abruzzo | 140 | <5 | 2,14 |
+| marche | 155 | 2 | 1,29 |
+| abruzzo | 140 | 3 | 2,14 |
 | lazio | 134 | 5 | 3,73 |
 | campania | 132 | 0 | 0,00 |
-| liguria | 126 | <5 | 3,17 |
+| liguria | 126 | 4 | 3,17 |
 | sardegna | 119 | 0 | 0,00 |
-| umbria | 93 | <5 | 1,08 |
-| puglia | 82 | <5 | 1,22 |
+| umbria | 93 | 1 | 1,08 |
+| puglia | 82 | 1 | 1,22 |
 
-*7 cella/e con meno di 5 atleti sono mascherate · coorti 1992-2000, più ampie del resto del documento; solo le regioni con almeno 50 atleti*
+*coorti 1992-2000, più ampie del resto del documento; solo le regioni con almeno 50 atleti; la colonna dei professionisti non è mascherata perché il conteggio si ricaverebbe comunque dalla percentuale e dal numero di atleti della stessa riga*
 
 La concentrazione geografica è forte: lombardia, veneto, toscana da sole raccolgono circa il 52% degli atleti.
 

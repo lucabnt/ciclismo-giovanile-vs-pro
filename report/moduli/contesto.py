@@ -18,9 +18,10 @@ MEDIATORI, NON CONFONDENTI
     inserirle come controlli in un modello sottrarrebbe parte dell'effetto che si vuole
     misurare.
 
-    L'unica variabile di contesto ammissibile come controllo e' la **regione alla prima
-    stagione osservata**, che precede il predittore. Tutte le altre sono oggetto di
-    studio, mai controlli — vedi definizioni.md.
+    Fanno eccezione le variabili fissate alla partenza, cioe' la **regione alla prima
+    stagione osservata** e la **societa' di partenza**: vengono prima del predittore
+    e potrebbero semmai essere confondenti. Non entrano nei modelli perche' con
+    l'esito non mostrano un'associazione leggibile — vedi definizioni.md.
 
 COSA C'E' E COSA NO
     La qualita' della societa' di partenza e' calcolata come tasso di professionisti
@@ -41,6 +42,14 @@ import lib_grafici as gr                           # noqa: E402
 
 W = "https://en.wikipedia.org/wiki/"
 MIN_GRUPPO = 20          # sotto questa numerosita' un tasso non si riporta
+
+# In queste tabelle si maschera il numero di atleti ma non quello dei professionisti:
+# la riga porta atleti e percentuale, e il conteggio mascherato si ricaverebbe
+# moltiplicando. Un mascheramento che si annulla da solo promette una protezione che
+# non c'e'; la stessa scelta, con la stessa ragione, sta in traiettorie.py.
+NOTA_PRO = ("la colonna dei professionisti non e' mascherata perche' il conteggio si "
+            "ricaverebbe comunque dalla percentuale e dal numero di atleti della stessa "
+            "riga")
 
 
 def calcola():
@@ -195,6 +204,17 @@ def calcola():
         ar.valore("quota_societa_senza_pro", round(100 * r[1] / r[0], 0) if r[0] else None)
         if len(righe_q) >= 2:
             ar.valore("qualita_da_a", [righe_q[0][3], righe_q[-1][3]])
+            # «Non si distingue dal caso» va dimostrato, non affermato: test esatto
+            # fra la fascia piu' bassa e quella piu' alta, che con conteggi di questa
+            # grandezza e' piu' affidabile di un chi quadro.
+            try:
+                from scipy.stats import fisher_exact
+                a, b = righe_q[0], righe_q[-1]
+                _, p_q = fisher_exact([[a[2], a[1] - a[2]], [b[2], b[1] - b[2]]])
+                ar.valore("qualita_test", {"da": a[0], "a": b[0], "p": float(p_q)},
+                          "test esatto di Fisher fra la prima e l'ultima fascia")
+            except ImportError:
+                pass
 
         # --- 5. densita' regionale, descrittiva -----------------------------
         # Qui si usano le coorti piu' ampie, quelle della Domanda B. La regione di
@@ -267,6 +287,16 @@ def disegna(grezza, strat, ar, lo, hi):
                          "durata della carriera: e' la seconda a spiegare la prima.")
 
 
+def _esito_partenza(t):
+    if not t or t.get("p") is None:
+        return "con questi numeri non si distingue dal caso"
+    if t["p"] >= 0.05:
+        return ("non si distingue dal caso (p = %s al test esatto di Fisher fra la "
+                "prima e l'ultima fascia)" % md.num(t["p"], 2))
+    return ("e' piccola ma distinguibile dal caso (p = %s al test esatto di Fisher "
+            "fra la prima e l'ultima fascia)" % md.num(t["p"], 3))
+
+
 def rendi(lt):
     v = lt.valori("contesto")
     grezza = lt.tabella("contesto", "mobilita_grezza")
@@ -283,14 +313,16 @@ def rendi(lt):
 
     p.append(md.metodo(
         "Perche' queste variabili non entrano nei modelli come controlli",
-        "Societa' e regione cambiano durante la carriera, e cambiano *in risposta* ai "
-        "risultati: un buon piazzamento a quattordici anni fa arrivare l'offerta di una "
-        "societa' migliore. Stanno quindi sul percorso causale fra rendimento ed esito, "
-        "e sono mediatori, non confondenti.\n\n"
-        "Inserire un mediatore fra i controlli di un modello sottrae parte dell'effetto "
-        "che si vuole misurare, e lo fa apparire piu' debole di quanto sia. Per questo "
-        "qui sono oggetto di studio e mai variabili di controllo. L'unica eccezione e' "
-        "la regione alla prima stagione osservata, che precede il predittore.",
+        "I cambi di societa' e di regione avvengono durante la carriera, e spesso *in "
+        "risposta* ai risultati: un buon piazzamento a quattordici anni fa arrivare "
+        "l'offerta di una societa' migliore. Stanno quindi sul percorso fra rendimento "
+        "ed esito, e inserirli fra i controlli di un modello sottrarrebbe parte "
+        "dell'effetto che si vuole misurare, facendolo apparire piu' debole di quanto "
+        "sia.\n\n"
+        "Diverso e' il caso della societa' e della regione **di partenza**, che vengono "
+        "prima del rendimento e potrebbero semmai essere confondenti. Non entrano nei "
+        "modelli per un'altra ragione: con l'esito, come si vede piu' sotto, non "
+        "mostrano un'associazione leggibile, quindi non c'e' niente da aggiustare.",
         [("Mediazione", W + "Mediation_(statistics)"),
          ("Confondimento", W + "Confounding")]))
 
@@ -380,8 +412,8 @@ def rendi(lt):
 
     p.append(md.sezione("Regione e societa' di partenza", 3))
     if regione:
-        p.append(md.tabella(regione["colonne"], regione["righe"], colonne_conteggio={1, 2},
-                            decimali=2))
+        p.append(md.tabella(regione["colonne"], regione["righe"], colonne_conteggio={1},
+                            decimali=2, nota=NOTA_PRO))
     if v.get("n_cambio_regione"):
         p.append(md.paragrafo(
             "",
@@ -393,30 +425,32 @@ def rendi(lt):
 
     if qualita:
         p.append(md.tabella(qualita["colonne"], qualita["righe"],
-                            colonne_conteggio={1, 2}, decimali=2))
+                            colonne_conteggio={1}, decimali=2, nota=NOTA_PRO))
     qa = v.get("qualita_da_a")
     if qa:
         p.append(md.paragrafo(
             "",
             "Anche la societa' da cui si parte dice poco: si va dal **%.2f%%** al "
-            "**%.2f%%**, una differenza che con questi numeri non si distingue dal caso. "
+            "**%.2f%%**, una differenza che %s. "
             "E il %d%% degli atleti parte da una societa' che nelle coorti precedenti non "
             "aveva prodotto nessun professionista — il che rende la variabile poco "
             "informativa gia' per costruzione."
-            % (qa[0], qa[1], v.get("quota_societa_senza_pro", 0))))
+            % (qa[0], qa[1], _esito_partenza(v.get("qualita_test")),
+               v.get("quota_societa_senza_pro", 0))))
 
     if regioni:
         p.append(md.paragrafo(
             "Per la sola geografia conviene allargare le coorti. La regione di partenza "
             "non entra in nessun modello e non ha bisogno della finestra stretta che "
             "serve agli esiti: usando le **%s coorti %s** invece delle cinque del resto "
-            "del documento, gli atleti passano da %s a %s e le numerosita' regionali "
+            "del documento, si arriva a %s atleti e le numerosita' regionali "
             "diventano leggibili. Tutte queste coorti hanno comunque avuto il tempo "
             "pieno per arrivare al professionismo."
             % (md.conta(v.get("n_coorti_regioni")), v.get("coorti_regioni"),
-               md.conta(v.get("atleti_totali")), md.conta(v.get("atleti_regioni")))))
+               md.conta(v.get("atleti_regioni")))))
         p.append(md.tabella(regioni["colonne"], regioni["righe"],
-                            colonne_conteggio={1, 2}, decimali=2, nota=regioni["nota"]))
+                            colonne_conteggio={1}, decimali=2,
+                            nota=regioni["nota"] + "; " + NOTA_PRO))
     if v.get("prime_tre_regioni"):
         est = v.get("regioni_estremi")
         p.append(md.paragrafo(
