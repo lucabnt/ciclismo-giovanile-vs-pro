@@ -1,6 +1,6 @@
 # Ranking giovanili italiani e transizione al professionismo
 
-*Documento generato da `report/assembla.py` il 2026-09-10. Ogni numero viene da una query: non c'è nulla scritto a mano.*
+*Documento generato da `report/assembla.py` il 2026-09-11. Ogni numero viene da una query: non c'è nulla scritto a mano.*
 
 | | |
 |---|---|
@@ -1433,20 +1433,22 @@ Resta un settimo numero, e sta fuori da questa tabella perché non viene da una 
 
 È anche un argomento a favore della forma che questo studio ha scelto. La tentazione, con dati longitudinali su migliaia di persone, è costruire modelli ricchi; il prezzo sarebbe stato pagarlo qui.
 
-#### Quel modello si stima in due tempi, e il conto ne copre uno
+#### Quel modello si stima in due tempi
 
 C'è una cosa che la tabella qui sopra non misura, e riguarda la riga più importante. Livello e pendenza non sono osservati: sono stime prodotte dal modello misto, e per chi ha poche stagioni sono stime prudenti, tirate verso la media dallo shrinkage. Il ricampionamento appena descritto rifà ogni volta la logistica, ma **non** il modello misto, che gira una volta sola prima del ciclo: livello e pendenza entrano nel bootstrap come se fossero colonne osservate. L'ottimismo che ne esce è quindi quello del solo secondo stadio.
 
-Non è un difetto grave, e conviene dire perché. Il modello misto non vede mai l'esito — legge soltanto le classifiche — quindi non può adattarsi ad esso, che è la forma di ottimismo che questa sezione cerca. E la validazione temporale qui sotto ristima le traiettorie sulle sole coorti di addestramento, quindi il primo stadio una prova la affronta. Resta che gli intervalli, così calcolati, sono più stretti del vero.
+Non è un difetto grave, e conviene dire perché. Il modello misto non vede mai l'esito — legge soltanto le classifiche — quindi non può adattarsi ad esso, che è la forma di ottimismo che questa sezione cerca. E la validazione temporale qui sotto ristima le traiettorie sulle sole coorti di addestramento, quindi il primo stadio una prova la affronta.
 
-| variabile | odds ratio | IC 95% a due stadi |
-|---|---|---|
-| livello: dieci punti di percentile in più | 3,02 | 2,49-3,86 |
-| pendenza: una deviazione standard di miglioramento annuo | 3,35 | 2,60-4,58 |
+| variabile | odds ratio | IC 95% di Firth | IC 95% a due stadi |
+|---|---|---|---|
+| livello: dieci punti di percentile in più | 3,02 | 2,51-3,71 | 2,49-3,86 |
+| pendenza: una deviazione standard di miglioramento annuo | 3,35 | 2,54-4,51 | 2,60-4,58 |
 
-*intervalli percentili del bootstrap per grappoli: a ogni ripetizione si ristima anche il modello misto, quindi l'incertezza delle pendenze stimate è dentro l'intervallo e non fuori*
+*intervalli percentili del bootstrap per grappoli: a ogni ripetizione si ristima anche il modello misto, quindi l'incertezza delle pendenze stimate è dentro l'intervallo e non fuori; la colonna di Firth è l'intervallo del modello stimato una volta sola, quello che il resto del documento riporta*
 
-Rifacendo il conto con il modello misto **dentro** il ciclo — 500 ricampionamenti per grappoli, che estraggono atleti interi e non singole stagioni — l'ottimismo dell'AUC passa da 0,001 a **0,001**, e l'AUC corretta vale 0,917.
+Rifacendo il conto con il modello misto **dentro** il ciclo — 500 ricampionamenti per grappoli, che estraggono atleti interi e non singole stagioni — **l'ottimismo resta dov'era**: 0,0014, contro 0,0014 del conto a uno stadio, e l'AUC corretta vale ancora 0,917. È quello che ci si doveva aspettare se il primo stadio, non vedendo mai l'esito, non ha modo di adattarvisi: adesso non è più un argomento, è un numero.
+
+Gli intervalli invece si muovono, e non allo stesso modo. Quello sul livello si allarga di circa il 14%, soprattutto verso l'alto. Quello sulla pendenza — il più ampio fin dall'inizio, e quello su cui poggia il risultato principale della sezione sulle traiettorie — cambia di ampiezza dello 0,4% e si sposta appena. L'incertezza delle stime individuali c'è, dunque, ma è piccola rispetto a quella che gli intervalli portavano già.
 
 Il calcolo sta in `R/26_bootstrap_traiettorie.R`, che è il passo più lento della catena e si esegue a parte: gli altri script si rieseguono in secondi, questo ristima un modello misto a ogni ripetizione.
 

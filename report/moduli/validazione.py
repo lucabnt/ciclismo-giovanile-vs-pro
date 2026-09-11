@@ -216,7 +216,7 @@ def rendi(lt):
     # l'ottimismo di 0,001 copra tutta la procedura.
     bs_v = lt.valori("bootstrap_traiettorie")
     bs_t = lt.tabella("bootstrap_traiettorie", "coefficienti")
-    p.append(md.sezione("Quel modello si stima in due tempi, e il conto ne copre uno", 4))
+    p.append(md.sezione("Quel modello si stima in due tempi", 4))
     p.append(md.paragrafo(
         "C'e' una cosa che la tabella qui sopra non misura, e riguarda la riga piu' "
         "importante. Livello e pendenza non sono osservati: sono stime prodotte dal "
@@ -231,31 +231,75 @@ def rendi(lt):
         "mai l'esito — legge soltanto le classifiche — quindi non puo' adattarsi ad "
         "esso, che e' la forma di ottimismo che questa sezione cerca. E la validazione "
         "temporale qui sotto ristima le traiettorie sulle sole coorti di "
-        "addestramento, quindi il primo stadio una prova la affronta. Resta che gli "
-        "intervalli, cosi' calcolati, sono piu' stretti del vero."))
+        "addestramento, quindi il primo stadio una prova la affronta."))
 
     if bs_t and bs_v.get("ottimismo") is not None:
-        righe_bs = [[r[0], md.num(r[1], 2), "%s-%s" % (md.num(r[2], 2), md.num(r[3], 2))]
-                    for r in bs_t["righe"]]
-        p.append(md.tabella(["variabile", "odds ratio", "IC 95% a due stadi"],
-                            righe_bs, nota=bs_t["nota"]))
+        # Gli intervalli del modello stimato una volta sola stanno accanto a quelli a
+        # due stadi: il confronto e' il risultato, e va visto, non raccontato.
+        firth = {}
+        coeff_tr = lt.tabella("traiettorie", "coefficienti")
+        for r in (coeff_tr["righe"] if coeff_tr else []):
+            firth[str(r[0]).split(":")[0]] = (r[2], r[3])
+        righe_bs, confronto = [], {}
+        for r in bs_t["righe"]:
+            chiave = str(r[0]).split(":")[0]
+            f = firth.get(chiave)
+            righe_bs.append([
+                r[0], md.num(r[1], 2),
+                "%s-%s" % (md.num(f[0], 2), md.num(f[1], 2)) if f else "—",
+                "%s-%s" % (md.num(r[2], 2), md.num(r[3], 2))])
+            if f:
+                confronto[chiave] = {"rapporto": (r[3] - r[2]) / (f[1] - f[0]),
+                                     "su": r[3] - f[1], "giu": f[0] - r[2]}
+        p.append(md.tabella(
+            ["variabile", "odds ratio", "IC 95% di Firth", "IC 95% a due stadi"],
+            righe_bs,
+            nota=bs_t["nota"] + "; la colonna di Firth e' l'intervallo del modello "
+                 "stimato una volta sola, quello che il resto del documento riporta"))
+
         semplice = None
         for r in (ott["righe"] if ott else []):
             if "traiettoria" in str(r[0]):
                 semplice = r[4]
+        ott2 = bs_v.get("ottimismo")
+        # Quattro decimali: a tre, 0,0014 e 0,0014 diventano «da 0,001 a 0,001»,
+        # che sembra un errore di battitura invece che il risultato.
         p.append(md.paragrafo(
             "",
-            "Rifacendo il conto con il modello misto **dentro** il ciclo — %s "
-            "ricampionamenti per grappoli, che estraggono atleti interi e non singole "
-            "stagioni — l'ottimismo dell'AUC passa da %s a **%s**, e l'AUC corretta "
-            "vale %s.%s"
-            % (md.conta(bs_v.get("ripetizioni")),
-               md.num(semplice, 3) if semplice is not None else "—",
-               md.num(bs_v.get("ottimismo"), 3),
-               md.num(bs_v.get("auc_corretta"), 3),
-               (" Un ottimismo negativo non e' un errore: vuol dire che il modello, "
-                "sui campioni estratti, si giudica se mai un po' peggio di quanto sia."
-                if (bs_v.get("ottimismo") or 0) < 0 else ""))))
+            md.afferma(
+                semplice is not None and abs(ott2 - semplice) < 0.005,
+                "rimettere il modello misto dentro il ricampionamento non cambia "
+                "l'ottimismo in modo apprezzabile",
+                "Rifacendo il conto con il modello misto **dentro** il ciclo — %s "
+                "ricampionamenti per grappoli, che estraggono atleti interi e non "
+                "singole stagioni — **l'ottimismo resta dov'era**: %s, contro %s del "
+                "conto a uno stadio, e l'AUC corretta vale ancora %s. E' quello che ci "
+                "si doveva aspettare se il primo stadio, non vedendo mai l'esito, non ha "
+                "modo di adattarvisi: adesso non e' piu' un argomento, e' un numero."
+                % (md.conta(bs_v.get("ripetizioni")), md.num(ott2, 4),
+                   md.num(semplice, 4) if semplice is not None else "—",
+                   md.num(bs_v.get("auc_corretta"), 3)))))
+
+        liv, pen = confronto.get("livello"), confronto.get("pendenza")
+        if liv and pen:
+            verso = (", soprattutto verso l'alto" if liv["su"] > 2 * max(liv["giu"], 0)
+                     else "")
+            p.append(md.paragrafo(
+                "",
+                md.afferma(
+                    abs(pen["rapporto"] - 1) < 0.05 and liv["rapporto"] < 1.5,
+                    "l'incertezza delle traiettorie stimate allarga gli intervalli "
+                    "di poco, e quello sulla pendenza quasi per niente",
+                    "Gli intervalli invece si muovono, e non allo stesso modo. Quello sul "
+                    "livello si allarga di circa il %s%%%s. Quello sulla pendenza — il "
+                    "piu' ampio fin dall'inizio, e quello su cui poggia il risultato "
+                    "principale della sezione sulle traiettorie — cambia di ampiezza "
+                    "dello %s%% e si sposta appena. L'incertezza delle stime individuali "
+                    "c'e', dunque, ma e' piccola rispetto a quella che gli intervalli "
+                    "portavano gia'."
+                    % (md.num((liv["rapporto"] - 1) * 100, 0), verso,
+                       md.num(abs(pen["rapporto"] - 1) * 100, 1)))))
+
         p.append(md.paragrafo(
             "",
             "Il calcolo sta in `R/26_bootstrap_traiettorie.R`, che e' il passo piu' "
