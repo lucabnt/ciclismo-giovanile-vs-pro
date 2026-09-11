@@ -1512,7 +1512,7 @@ La finestra d'età è ancora meno influente: spostarla da ventiquattro a ventise
 
 **L'assenza è informativa, ma solo tardi.** A diciotto anni trattarla come «sotto chiunque sia in classifica» alza l'AUC da 0,889 a 0,943: chi non c'è quasi sempre non arriverà. A tredici anni la stessa operazione la **abbassa**, da 0,736 a 0,694, e il motivo sta nella colonna dei professionisti: in Under 15 primo anno ne sono in classifica 59 su 77, mentre in Under 19 secondo anno 74 su 77. Mettere tutti gli assenti sotto tutti i presenti, a tredici anni, sbaglia posizione a quasi un quarto dei futuri professionisti; a diciotto, a tre.
 
-Ha una conseguenza pratica che vale più della verifica metodologica da cui nasce: **sparire da una classifica a tredici anni non è un verdetto, sparirne a diciotto quasi lo è**. Non è un giudizio sui ragazzi ma sulla fonte, che alle età basse è ancora in gran parte vuota: la classifica Under 15 raccoglie chi ha già fatto un punto, e molti di quelli che arriveranno lo faranno per la prima volta dopo.
+Ha una conseguenza pratica che vale più della verifica metodologica da cui nasce: **sparire da una classifica a tredici anni non è un verdetto, sparirne a diciotto è un segnale molto più forte, anche se non definitivo**. Non è un giudizio sui ragazzi ma sulla fonte, che alle età basse è ancora in gran parte vuota: la classifica Under 15 raccoglie chi ha già fatto un punto, e molti di quelli che arriveranno lo faranno per la prima volta dopo.
 
 Le sezioni precedenti restano deliberatamente sui soli presenti, perché lì la domanda è quanto il *rendimento* predica, non quanto predica l'esserci.
 

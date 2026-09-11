@@ -433,7 +433,8 @@ def rendi(lt):
                 "",
                 "Ha una conseguenza pratica che vale piu' della verifica metodologica "
                 "da cui nasce: **sparire da una classifica a tredici anni non e' un "
-                "verdetto, sparirne a diciotto quasi lo e'**. Non e' un giudizio sui "
+                "verdetto, sparirne a diciotto e' un segnale molto piu' forte, anche se "
+                "non definitivo**. Non e' un giudizio sui "
                 "ragazzi ma sulla fonte, che alle eta' basse e' ancora in gran parte "
                 "vuota: la classifica Under 15 raccoglie chi ha gia' fatto un punto, e "
                 "molti di quelli che arriveranno lo faranno per la prima volta dopo.",

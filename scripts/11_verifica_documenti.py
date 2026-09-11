@@ -674,13 +674,27 @@ def attesi_post(db):
              riga("sensibilita", "definizione", "anche le Continental", 1),
              r"passa da 26 a (\d+)"),
             ("oscillazione dell'AUC", v("sensibilita", "oscillazione_auc"),
-             r"in tutto di (\d,\d+)"),
+             r"oscilla di (\d,\d+), cioè sette"),
+            ("oscillazione dell'AUC con la soglia del top", oscillazione_auc(db, "soglia"),
+             r"quasi altrettanto, (\d,\d\d\d)"),
             ("pendenza di calibrazione",
              riga("validazione", "ottimismo", "livello e pendenza", 6),
              r"vale fra (\d,\d\d) e 1,02"),
             ("uscite nell'ultimo anno di categoria",
              v("attrito", "quota_uscite_a_fine_categoria"),
-             r"concentra il (\d+)% delle uscite"),
+             r"cade il (\d+)% delle uscite"),
+            ("ottimismo a due stadi", v("bootstrap_traiettorie", "ottimismo"),
+             r"ottimismo (\d,\d\d\d\d) contro"),
+            ("futuri professionisti assenti a diciotto anni",
+             None if riga("sensibilita", "mancanti", "Under 19 secondo anno, solo", 1) is None
+             else 77 - riga("sensibilita", "mancanti", "Under 19 secondo anno, solo", 1),
+             r"anche se (\d+) futuri professionisti su 77"),
+            ("il gradino piu' alto della catena",
+             riga("qualita", "stadi", "top 100", 2), r"poggia su (\d+) ragazzi"),
+            ("calo del calendario in Esordienti", calo_calendario(db, "U15"),
+             r"circa il (\d+)% in Esordienti"),
+            ("calo del calendario in Allievi", calo_calendario(db, "U17"),
+             r"e il (\d+)% in Allievi"),
         ],
     }
 
@@ -713,6 +727,20 @@ def _min_atleti(db):
 def _max_atleti(db):
     v = _atleti_incrocio(db)
     return max(v) if v else None
+
+
+def oscillazione_auc(db, chiave):
+    """Distanza fra la AUC piu' alta e la piu' bassa di una tabella di sensibilita'."""
+    auc = [r[4] for r in tabella(db, "sensibilita", chiave) or [] if r[4] is not None]
+    return (max(auc) - min(auc)) if auc else None
+
+
+def calo_calendario(db, categoria, da="2009", a="2025"):
+    """Di quanto sono calate le classificazioni di gara, in percentuale positiva."""
+    serie = (valore(db, "posti", "serie_gare") or {}).get(categoria) or {}
+    if da in serie and a in serie:
+        return abs(100 * (serie[a] - serie[da]) / serie[da])
+    return None
 
 
 def riga_soglia(db, cella, criterio, colonna):
