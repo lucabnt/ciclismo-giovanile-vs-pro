@@ -16,6 +16,7 @@ e vengono applicate al prossimo giro di 01_build_tabelle.py.
 """
 import csv
 import os
+import re
 import sys
 from collections import defaultdict
 
@@ -29,11 +30,33 @@ def scrivi_csv(percorso, righe):
     """Scrive un CSV, oppure lo rimuove se non ci sono piu' casi da verificare.
 
     Un file vuoto lasciato sul disco farebbe pensare che ci sia ancora lavoro da fare.
+
+    I verdetti scritti a mano nelle colonne 'verdetto' e 'nota' sopravvivono alla
+    rigenerazione, come in 05_match_pcs.py: un file di lavoro che cancella le decisioni
+    gia' prese e' un file che non si usa due volte. Le decisioni operative restano
+    comunque quelle di data/private/manual/, che sono le sole che la catena applica.
     """
     if not righe:
         if os.path.exists(percorso):
             os.remove(percorso)
         return
+    chiavi = [k for k in ("id_a", "id_b", "id_atleta") if k in righe[0]]
+    a_mano = {}
+    if chiavi and os.path.exists(percorso):
+        with open(percorso, encoding="utf-8-sig") as f:
+            for r in csv.DictReader(f, delimiter=";"):
+                v, n = (r.get("verdetto") or "").strip(), (r.get("nota") or "").strip()
+                if v or n:
+                    a_mano[tuple((r.get(k) or "").strip() for k in chiavi)] = (v, n)
+    if a_mano:
+        tenuti = 0
+        for r in righe:
+            k = tuple(str(r.get(c, "")).strip() for c in chiavi)
+            if k in a_mano:
+                r["verdetto"], r["nota"] = a_mano[k]
+                tenuti += 1
+        print("   %s: verdetti scritti a mano conservati %d su %d"
+              % (os.path.basename(percorso), tenuti, len(a_mano)))
     with open(percorso, "w", newline="", encoding="utf-8-sig") as f:
         w = csv.DictWriter(f, list(righe[0].keys()), delimiter=";")
         w.writeheader()
@@ -56,9 +79,10 @@ def carriera(src, id_atleta):
     """, (id_atleta,)).fetchall()
     reg = src.execute("""SELECT regione, COUNT(*) FROM atleti_regioni WHERE id_atleta = ?
                          GROUP BY 1 ORDER BY 2 DESC""", (id_atleta,)).fetchall()
-    voci, societa, stagioni = [], [], set()
+    voci, societa, stagioni, sessi = [], [], set(), set()
     for r in rows:
         cat = CATEGORIE[r["slug"]][0]
+        sessi.add(CATEGORIE[r["slug"]][1])
         marca = "y1" if r["primo"] else ""
         voci.append("%d %s%s p%d/%gpt" % (r["anno"], cat, marca, r["posizione"], r["punti"]))
         stagioni.add(r["anno"])
@@ -69,6 +93,7 @@ def carriera(src, id_atleta):
         "societa": " ; ".join(dict.fromkeys(societa)),
         "regioni": " ; ".join("%s(%d)" % (a, b) for a, b in reg),
         "stagioni": stagioni,
+        "sessi": sessi,
         "prima": min(stagioni) if stagioni else None,
         "ultima": max(stagioni) if stagioni else None,
     }
@@ -84,21 +109,54 @@ def distanza_uno(x, y):
     return any(hi[:i] + hi[i + 1:] == lo for i in range(len(hi)))
 
 
+# Nomi che non distinguono una societa' da un'altra: restano fuori dal confronto.
+GENERICHE = {"POLISPORTIVA", "SPORTIVA", "SPORTIVO", "CICLISMO", "CICLISTICA", "CICLISTICO",
+             "TEAM", "CYCLING", "GRUPPO", "UNIONE", "SOCIETA", "ASSOCIAZIONE",
+             "DILETTANTISTICA", "VELOCIPEDISTICA"}
+
+# Una nascita 'osservata' viene dalla fonte o dalla scheda personale, non da un'inferenza:
+# vale piu' di 'certo', che e' il livello piu' alto fra quelle ricostruite.
+OSSERVATE = ("sorgente", "scheda", "corretta_a_mano")
+
+
+def parole_societa(info):
+    """Le parole distintive delle societa' di un atleta, per confronti approssimati."""
+    parole = set()
+    for pezzo in re.split(r"[^0-9A-Za-z]+", (info["societa"] or "").upper()):
+        if len(pezzo) >= 5 and pezzo not in GENERICHE:
+            parole.add(pezzo)
+    return parole
+
+
 def suggerisci(a, b, ia, ib, sovrapposte):
     """Verdetto proposto per una coppia di omonimi. Da rivedere, non da applicare al buio.
 
-    La regola sulle nascite entrambe 'certo' si appoggia a un fatto misurato: fra i 5.068
-    atleti con almeno due segnali di nascita indipendenti di livello 1, i segnali
-    concordano in 5.067 casi (99,98%). Due stime 'certo' diverse sono quindi molto piu'
-    probabilmente due persone che un errore.
+    La regola sulle nascite osservate si appoggia a un fatto misurato: fra i 5.068 atleti
+    con almeno due segnali di nascita indipendenti di livello 1, i segnali concordano in
+    5.067 casi (99,98%). Due nascite osservate diverse sono quindi molto piu' probabilmente
+    due persone che un errore.
+
+    La regola sulla stagione condivisa ha un'eccezione che va prima di lei: una ragazza che
+    fa punti in una gara maschile entra anche nella classifica maschile, e prima del 2011 la
+    fonte non pubblicava quelle femminili. In quei casi i due identificativi sono la stessa
+    persona *proprio* nella stessa stagione, e la regola generale li separerebbe.
     """
-    if sovrapposte:
-        return "diversi", "presenti nella stessa stagione"
     reg_a = ia["regioni"].split("(")[0]
     reg_b = ib["regioni"].split("(")[0]
     if reg_a and reg_b and reg_a != reg_b:
         return "diversi", "regioni diverse (%s / %s)" % (reg_a, reg_b)
+    if ia["sessi"] and ib["sessi"] and not (ia["sessi"] & ib["sessi"]):
+        if parole_societa(ia) & parole_societa(ib):
+            return "stessa", ("un id in categorie femminili e uno in maschili, stessa "
+                              "societa': le ragazze a punti fra i maschi entrano in "
+                              "entrambe le classifiche")
+        return "", ("un id in categorie femminili e uno in maschili, societa' diverse: "
+                    "da decidere")
+    if sovrapposte:
+        return "diversi", "presenti nella stessa stagione"
     if a["birth_year"] != b["birth_year"]:
+        if a["birth_year_conf"] in OSSERVATE and b["birth_year_conf"] in OSSERVATE:
+            return "diversi", "due nascite osservate sulla scheda, e discordanti"
         if a["birth_year_conf"] == b["birth_year_conf"] == "certo":
             return "diversi", "due stime di nascita di livello 1 discordanti"
         return "", "nascite discordanti ma almeno una presunta: da decidere"

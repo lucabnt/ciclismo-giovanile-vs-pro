@@ -1,6 +1,6 @@
 # Ranking giovanili italiani e transizione al professionismo
 
-*Documento generato da `report/assembla.py` il 2026-09-11. Ogni numero viene da una query: non c'è nulla scritto a mano.*
+*Documento generato da `report/assembla.py` il 2026-09-12. Ogni numero viene da una query: non c'è nulla scritto a mano.*
 
 | | |
 |---|---|
@@ -14,6 +14,12 @@
 > I risultati riguardano **gruppi, non persone**. Le celle con meno di 5 atleti sono mascherate: i dati riguardano minorenni.
 
 ---
+
+> ⚠️ **Attenzione: 1 osservazione/i del testo non sono piu' sostenute dai dati.**
+>
+> Il documento si rigenera dai dati, ma i commenti che li interpretano sono scritti a mano. Queste premesse valevano quando i commenti sono stati scritti e oggi non valgono piu': i paragrafi corrispondenti, segnalati nel testo, vanno riscritti.
+>
+> - l'incertezza delle traiettorie stimate allarga gli intervalli di poco, e quello sulla pendenza quasi per niente
 
 ## Indice
 
@@ -86,7 +92,7 @@
 
 **Obiettivo.** Misurare da che età il piazzamento nelle classifiche giovanili italiane informa sull'accesso al professionismo, quanto informa, e cosa significherebbe usarlo per selezionare.
 
-**Dati.** Classifiche nazionali giovanili italiane, stagioni 2007-2025: 28 041 piazzamenti stagionali di 11 098 atleti, con la data di nascita osservata per il 99,8% di loro. Gli esiti di carriera vengono da ProCyclingStats, abbinati su nome e data di nascita. Le coorti principali sono i nati 1996-2000: **2 817 atleti, 77 professionisti** (— per mille di chi era in classifica da Under 15).
+**Dati.** Classifiche nazionali giovanili italiane, stagioni 2007-2025: 28 037 piazzamenti stagionali di 11 094 atleti, con la data di nascita osservata per il 99,8% di loro. Gli esiti di carriera vengono da ProCyclingStats, abbinati su nome e data di nascita. Le coorti principali sono i nati 1996-2000: **2 813 atleti, 77 professionisti** (— per mille di chi era in classifica da Under 15).
 
 **Di chi si parla, e questo è già un risultato.** Comparire in classifica richiede almeno un piazzamento nei primi cinque in una gara, e vi compare **circa un tesserato su 7** (media 15,0%, stabile fra quattro categorie e le stagioni 2018-2025). Ogni percentuale di questo studio ha quindi come denominatore un gruppo già selezionato, non l'insieme dei tesserati.
 
@@ -94,9 +100,9 @@
 
 ### Cosa il rendimento giovanile predice
 
-**Predice, e da subito.** Già al primo anno di Under 15 la separazione fra chi arriverà e chi no è appena sopra il confine convenzionale fra «medio» e «grande» (delta di Cliff 0,471). Il peso cresce con l'età: dieci punti di percentile moltiplicano l'odds di diventare professionista per 1,40 in U15y1 e per 2,28 in U19y2.
+**Predice, e da subito.** Già al primo anno di Under 15 la separazione fra chi arriverà e chi no è appena sopra il confine convenzionale fra «medio» e «grande» (delta di Cliff 0,470). Il peso cresce con l'età: dieci punti di percentile moltiplicano l'odds di diventare professionista per 1,40 in U15y1 e per 2,28 in U19y2.
 
-**Fra gli atleti osservati in tutte le categorie, l'informazione si concentra nell'ultima misura disponibile.** Costruendo i modelli per aggiunte successive sugli stessi 102 atleti, il salto maggiore è **M3 (+U19y2)** (ΔAUC +0,151). Tre metodi concordano, e due dei tre girano su quasi lo stesso sottocampione: i modelli annidati, una foresta casuale con quindici predittori in più (che guadagna +0,013 di AUC) e una regressione penalizzata su tutte le categorie insieme, che ne trattiene solo le due più vicine all'esito.
+**Fra gli atleti osservati in tutte le categorie, l'informazione si concentra nell'ultima misura disponibile.** Costruendo i modelli per aggiunte successive sugli stessi 102 atleti, il salto maggiore è **M3 (+U19y2)** (ΔAUC +0,151). Tre metodi concordano, e due dei tre girano su quasi lo stesso sottocampione: i modelli annidati, una foresta casuale con quindici predittori in più (che guadagna +0,020 di AUC) e una regressione penalizzata su tutte le categorie insieme, che ne trattiene solo le due più vicine all'esito.
 
 **Il livello è una condizione, il miglioramento un moltiplicatore.** Separando la traiettoria individuale in livello e pendenza, entrambi contano e la pendenza aggiunge informazione: l'AUC passa da 0,848 a 0,919 (p < 0,001). Fra gli atleti di livello alto, chi stava anche migliorando è arrivato al professionismo dieci volte più spesso di chi stava peggiorando; ma nel terzo di livello più basso il miglioramento non basta quasi mai.
 
@@ -108,19 +114,19 @@
 
 **Predice l'ingresso, non la profondità della carriera.** Sulla scala a quattro livelli il rendimento Under 19 moltiplica per 2,50 l'odds di salire di gradino (IC 95% 2,15-2,90). Ma scomponendo il percorso in stadi successivi, il coefficiente vale 2,47 per diventare professionista e scende a valori il cui intervallo di confidenza comprende l'uno per entrare nel top 500 fra i professionisti e nel top 100 fra i top 500: sui gradini successivi l'associazione non è distinguibile dal caso, che non è la stessa cosa che averne dimostrata l'assenza. Una parte della spiegazione è che la soglia non sia una sola: il 63% dei professionisti debutta in una squadra a maggioranza italiana, e di questi arriva nel top 500 il 33% contro il 59% di chi debutta in una squadra straniera, mentre il rendimento giovanile predice le due porte allo stesso modo.
 
-**Uscire dalla classifica non è smettere.** Il **30,6%** degli atleti salta almeno una stagione e poi ricompare, e metà dei classificati al secondo anno di Allievi non c'era al primo. Il crollo apparente al cambio di categoria — resta il 32,4% contro il 79,9% dei passaggi interni — non viene dalla scarsità dei posti ma dalla concorrenza fra annate: la classifica di arrivo è composta per il 88,2% da chi c'era già, contro il 60,7% dei passaggi interni. Il confronto con i tesserati federali conferma dall'esterno che la classifica non si restringe più in fretta della popolazione che la genera.
+**Uscire dalla classifica non è smettere.** Il **30,6%** degli atleti salta almeno una stagione e poi ricompare, e metà dei classificati al secondo anno di Allievi non c'era al primo. Il crollo apparente al cambio di categoria — resta il 32,4% contro il 80,0% dei passaggi interni — non viene dalla scarsità dei posti ma dalla concorrenza fra annate: la classifica di arrivo è composta per il 88,2% da chi c'era già, contro il 60,7% dei passaggi interni. Il confronto con i tesserati federali conferma dall'esterno che la classifica non si restringe più in fretta della popolazione che la genera.
 
 **L'effetto dell'età relativa è di accesso, non di talento.** Rispetto all'atteso demografico italiano — non all'uniforme — i nati nel primo trimestre sono **2,13 volte** i nati nel quarto in U15, e il vantaggio si spegne a **1,09** in U23. Fra chi arriva al professionismo il rapporto è 1,47, contro 1,73 di tutti i classificati, e non si distingue dal caso (p 0,12): su 77 atleti è un indizio più che una prova. Chi seleziona presto premia la maturità anagrafica, e quel vantaggio non si converte in carriera. I modelli lo confermano dall'altro lato: aggiungere l'età relativa non sposta il coefficiente del percentile in nessuna cella (l'AUC si muove al massimo di 0,007), e da sola l'età relativa arriva a un'AUC di 0,513.
 
 **Società, mobilità e regione non aggiungono nulla di leggibile.** Il gradiente della mobilità sembra enorme — dal 0,68% al 7,32% di professionisti secondo il numero di cambi di società — ma a parità di stagioni corse quasi sparisce. E il **96,3%** cambia società passando dagli Juniores all'Under 23, contro circa il 21% dei passaggi interni a una categoria: è organizzazione dello sport, non una decisione. La società di partenza va dal 2,90% al 3,79%, la regione non mostra differenze leggibili.
 
-**Il primo anno di categoria non sparisce per mancanza di posti.** Dove ogni annata ha la propria classifica il primo anno ne vince il 49,7%, dove la lista è unica e le gare sono le stesse il 26,7%: è concorrenza, non scarsità. I posti però calano davvero salendo di categoria, da 640 classificazioni di gara per stagione in Esordienti a 146 in Under 23, e calano anche nel tempo, con una perdita del 58,3% fra la prima e l'ultima stagione osservata. La concentrazione dei punti invece non cambia mai: il decile migliore ne prende fra il 36,7% e il 43,2% a ogni età.
+**Il primo anno di categoria non sparisce per mancanza di posti.** Dove ogni annata ha la propria classifica il primo anno ne vince il 49,7%, dove la lista è unica e le gare sono le stesse il 26,7%: è concorrenza, non scarsità. I posti però calano davvero salendo di categoria, da 639 classificazioni di gara per stagione in Esordienti a 146 in Under 23, e calano anche nel tempo, con una perdita del 58,3% fra la prima e l'ultima stagione osservata. La concentrazione dei punti invece non cambia mai: il decile migliore ne prende fra il 36,7% e il 43,2% a ogni età.
 
 **Sul femminile si è potuto misurare ciò che non richiede un esito.** Dove il conteggio è confrontabile, il movimento corre fra 6,4 e 8,1 volte meno gare di quello maschile, e non ha una classifica Under 23. L'effetto dell'età relativa è più debole che fra i maschi a tredici anni, 1,51 contro 1,98 sulle stesse coorti, coerente con una maturazione più precoce. E un cambio di regolamento della fonte conferma il meccanismo dei posti: separando le classifiche delle Esordienti nel 2022, la quota del primo anno è passata dal 28,5% al 49,6%, nella stessa categoria e alle stesse età.
 
 ### Quanto sono solidi questi risultati
 
-L'ottimismo dei modelli, stimato con 500 ricampionamenti bootstrap, è al massimo di 0,001 punti di AUC contro una soglia di allarme di 0,05, e le pendenze di calibrazione sono a ridosso di 1. Addestrando sulle coorti più vecchie e verificando sulle più recenti la capacità discriminante non cala. Cambiando la definizione di professionista gli eventi passano da ventisei a centocinquantuno, ma l'AUC oscilla di 0,069 in tutto; spostare la finestra d'età da ventiquattro a ventisei anni non cambia praticamente nulla. Il fattore di inflazione della varianza massimo è 2,89, sotto la soglia di 5: le categorie portano informazione abbastanza distinta da poter essere usate insieme. Le AUC dei modelli univariati coincidono con quelle ricavate dal delta di Cliff per via puramente descrittiva entro 0,0005: due strade indipendenti per la stessa quantità.
+L'ottimismo dei modelli, stimato con 500 ricampionamenti bootstrap, è al massimo di 0,001 punti di AUC contro una soglia di allarme di 0,05, e le pendenze di calibrazione sono a ridosso di 1. Addestrando sulle coorti più vecchie e verificando sulle più recenti la capacità discriminante non cala. Cambiando la definizione di professionista gli eventi passano da ventisei a centocinquantuno, ma l'AUC oscilla di 0,069 in tutto; spostare la finestra d'età da ventiquattro a ventisei anni non cambia praticamente nulla. Il fattore di inflazione della varianza massimo è 2,89, sotto la soglia di 5: le categorie portano informazione abbastanza distinta da poter essere usate insieme. Le AUC dei modelli univariati coincidono con quelle ricavate dal delta di Cliff per via puramente descrittiva entro 0,0008: due strade indipendenti per la stessa quantità.
 
 ### Limiti
 
@@ -140,8 +146,8 @@ Ogni numero di questo documento nasce da due fonti pubbliche, unite da una terza
 
 | cosa | fonte | quanto |
 |---|---|---|
-| classifiche giovanili italiane | ciclismo.info, stagioni 2007-2025 | 28 041 righe di classifica, 11 098 atleti |
-| date di nascita | schede personali su ciclismo.info | 10 544 date complete; 11 079 anni di nascita osservati anziché dedotti |
+| classifiche giovanili italiane | ciclismo.info, stagioni 2007-2025 | 28 037 righe di classifica, 11 094 atleti |
+| date di nascita | schede personali su ciclismo.info | 10 544 date complete; 11 075 anni di nascita osservati anziché dedotti |
 | esiti di carriera | ProCyclingStats, classifiche 2007-2026 | 727 atleti abbinati |
 | nascite attese per trimestre | Eurostat, tavola `demo_fmonth` | serve solo all'effetto dell'età relativa |
 | tesserati per categoria | Federazione Ciclistica Italiana, dati statistici pubblicati | serve a dare scala alle percentuali |
@@ -150,7 +156,7 @@ Ogni numero di questo documento nasce da due fonti pubbliche, unite da una terza
 
 Va detto che cosa quella fonte non è: **non è l'archivio ufficiale della federazione**, ma un portale che raccoglie e ordina i risultati per conto proprio. Le classifiche che pubblica sono l'unico archivio giovanile italiano consultabile per stagione e per categoria, e la verifica della struttura delle liste e del sistema a punti sta in `docs/verifica_dati_giovanile.md`, ma un errore di trascrizione a monte non sarebbe visibile da qui. Il percentile attenua il problema, perché un punteggio sbagliato sposta un atleta di qualche posizione e non cambia l'ordine generale, e non lo azzera.
 
-**Le date di nascita** vengono dalle schede personali dello stesso portale, scaricate a parte. Servono all'effetto dell'età relativa, che senza il giorno esatto non si può misurare. La copertura è quasi totale — 11 079 anni di nascita su 11 098 sono letti da una scheda e non dedotti — e questo conta, perché dove la scheda manca l'anno si ricostruirebbe dalla categoria e dalla stagione, che è inferenza e non osservazione. Le due cose restano distinte in tutto il progetto. 18 date sono state corrette a mano dopo aver trovato incoerenze fra la scheda e le classifiche, e le correzioni sono registrate una per una.
+**Le date di nascita** vengono dalle schede personali dello stesso portale, scaricate a parte. Servono all'effetto dell'età relativa, che senza il giorno esatto non si può misurare. La copertura è quasi totale — 11 075 anni di nascita su 11 094 sono letti da una scheda e non dedotti — e questo conta, perché dove la scheda manca l'anno si ricostruirebbe dalla categoria e dalla stagione, che è inferenza e non osservazione. Le due cose restano distinte in tutto il progetto. 18 date sono state corrette a mano dopo aver trovato incoerenze fra la scheda e le classifiche, e le correzioni sono registrate una per una.
 
 **Gli esiti di carriera** vengono da ProCyclingStats: rose delle squadre professionistiche stagione per stagione, da cui si ricava chi è passato professionista e quando, e classifiche mondiali annuali, da cui si ricava fin dove è arrivato. L'abbinamento fra i due archivi è fatto su nome e data di nascita, con quattro passaggi di precisione decrescente; i casi ambigui sono stati risolti a mano guardando **solo** nome e data, mai la carriera, e registrati uno per uno.
 
@@ -200,7 +206,7 @@ Non abbiamo il dettaglio delle singole gare, ma la conseguenza si vede lo stesso
 
 | categoria | osservazioni | punti medi | piazzamenti medi | punti per piazzamento |
 |---|---|---|---|---|
-| U15 | 3468 | 16,3 | 5,38 | 2,67 |
+| U15 | 3464 | 16,3 | 5,39 | 2,67 |
 | U17 | 2529 | 12,5 | 4,14 | 2,73 |
 | U19 | 1602 | 15,6 | 4,28 | 3,02 |
 | U23 | 706 | 19,0 | 3,91 | 4,17 |
@@ -235,7 +241,7 @@ C'è di più, ed è emerso dopo: quel criterio non è una nostra invenzione ma *
 
 | cella | atleti | professionisti | pari merito | AUC sui punti | AUC con il criterio esteso | differenza | p |
 |---|---|---|---|---|---|---|---|
-| U15y1 | 1682 | 59 | 93,8% | 0,738 | 0,736 | -0,002 | 0,208 |
+| U15y1 | 1678 | 59 | 93,7% | 0,737 | 0,735 | -0,002 | 0,246 |
 | U15y2 | 1786 | 63 | 95,1% | 0,786 | 0,786 | +0,000 | 0,935 |
 | U17y1 | 927 | 62 | 94,1% | 0,812 | 0,814 | +0,002 | 0,340 |
 | U17y2 | 1602 | 72 | 94,3% | 0,859 | 0,858 | -0,001 | 0,418 |
@@ -257,9 +263,9 @@ C'è di più, ed è emerso dopo: quel criterio non è una nostra invenzione ma *
 
 Prima di chiedersi se il risultato a tredici anni predica qualcosa, conviene sapere quanti di quei ragazzi si ritrovano dopo. La risposta inquadra tutto il resto: **la maggior parte dell'abbandono avviene molto prima del punto in cui la prestazione diventa predittiva**.
 
-Su 2 817 atleti delle coorti 1996-2000, 77 sono arrivati al professionismo: **27,3 su mille**. Fra i soli 2 187 che erano in classifica già da Under 15 il tasso è un po' più alto, 30,2 su mille, perché 11 professionisti su 77 in Under 15 non c'erano: sono entrati nel ranking più tardi. I due tassi rispondono a due domande diverse, e vanno tenuti separati.
+Su 2 813 atleti delle coorti 1996-2000, 77 sono arrivati al professionismo: **27,4 su mille**. Fra i soli 2 183 che erano in classifica già da Under 15 il tasso è un po' più alto, 30,2 su mille, perché 11 professionisti su 77 in Under 15 non c'erano: sono entrati nel ranking più tardi. I due tassi rispondono a due domande diverse, e vanno tenuti separati.
 
-> **Chi è «in classifica».** La fonte assegna punti solo ai primi cinque di ogni gara: cinque alla vittoria, uno al quinto posto. Comparire nel ranking con un solo punto significa quindi **essere arrivati almeno una volta nei primi cinque** in quella stagione, e infatti il 100% delle 28 041 righe di classifica ha almeno un piazzamento nei primi cinque.
+> **Chi è «in classifica».** La fonte assegna punti solo ai primi cinque di ogni gara: cinque alla vittoria, uno al quinto posto. Comparire nel ranking con un solo punto significa quindi **essere arrivati almeno una volta nei primi cinque** in quella stagione, e infatti il 100% delle 28 037 righe di classifica ha almeno un piazzamento nei primi cinque.
 >
 > Tutte le percentuali di questo documento hanno quindi come denominatore un gruppo **già selezionato**, non l'insieme dei tesserati: rispetto a tutti i ragazzi che corrono, le quote qui riportate sono sovrastime. La sezione successiva quantifica di quanto — circa un tesserato su sette compare in classifica.
 
@@ -273,10 +279,10 @@ Su 2 817 atleti delle coorti 1996-2000, 77 sono arrivati al professionismo: **
 
 | categoria | atleti | % di chi era in U15 | % del livello precedente | % mai visti in U15 |
 |---|---|---|---|---|
-| U15 | 2187 | 100,0 | — | 0,0 |
-| U17 | 1741 | 59,6 | 59,6 | 25,2 |
+| U15 | 2183 | 100,0 | — | 0,0 |
+| U17 | 1741 | 59,7 | 59,7 | 25,2 |
 | U19 | 1051 | 34,1 | 51,2 | 29,1 |
-| U23 | 342 | 10,2 | 26,7 | 34,5 |
+| U23 | 342 | 10,3 | 26,7 | 34,5 |
 
 Le due colonne centrali dicono cose diverse, e la differenza conta. L'imbuto **non è una catena di sottoinsiemi**: fra un quarto e un terzo degli atleti di ogni categoria non compare mai in Under 15. Sono ragazzi che entrano nel ranking più tardi, e che una lettura ingenua dell'imbuto conterebbe come "sopravvissuti" senza che siano mai partiti.
 
@@ -288,14 +294,14 @@ Le due colonne centrali dicono cose diverse, e la differenza conta. L'imbuto **n
 
 | categoria | età | escono nella categoria | escono all'ultimo anno | % all'ultimo anno |
 |---|---|---|---|---|
-| U15 | 13-14 | 841 | 551 | 65,5 |
+| U15 | 13-14 | 837 | 551 | 65,8 |
 | U17 | 15-16 | 837 | 713 | 85,2 |
 | U19 | 17-18 | 752 | 611 | 81,2 |
 | U23 | 19-22 | 252 | 79 | 31,3 |
 
 *l'ultimo anno di categoria è quello in cui si è costretti a cambiare fascia*
 
-Il **77,2%** di chi esce lo fa nell'ultimo anno della propria categoria. Non si smette perché si va male a metà percorso: si smette al passaggio di fascia, quando cambiano distanze, avversari e squadra.
+Il **77,3%** di chi esce lo fa nell'ultimo anno della propria categoria. Non si smette perché si va male a metà percorso: si smette al passaggio di fascia, quando cambiano distanze, avversari e squadra.
 
 Il passaggio di categoria si comporta quindi come una **discontinuità e non come una tappa**: se la crescita fosse continua e la classifica ne fosse una misura fedele, le uscite si distribuirebbero lungo tutto il percorso. Cosa esattamente si rompa in quel punto è un'altra domanda, e la sezione «Il passaggio di categoria è una rottura?» la affronta: l'anticipazione è che a cambiare bruscamente sia soprattutto **quanti posti ci sono in classifica**, non il rendimento di chi li occupava.
 
@@ -395,7 +401,7 @@ La sezione sull'attrito diceva che uscire dalla classifica non significa smetter
 
 I singoli passi differiscono — fra Esordienti e Allievi calano più i classificati, fra Allievi e Juniores calano più i tesserati — ma il risultato complessivo è lo stesso, e sono differenze su medie di cinque stagioni che non vale la pena interpretare una per una.
 
-Il confronto interessante è con il **terzo** numero, quello delle persone. Questi due imbuti contano teste per stagione; seguendo invece i singoli atleti, solo il 59,6% di chi era in Esordienti si ritrova in Allievi. La distanza fra i conteggi aggregati e quella percentuale **è il ricambio**: la classifica mantiene la propria dimensione sostituendo le persone, non trattenendole.
+Il confronto interessante è con il **terzo** numero, quello delle persone. Questi due imbuti contano teste per stagione; seguendo invece i singoli atleti, solo il 59,7% di chi era in Esordienti si ritrova in Allievi. La distanza fra i conteggi aggregati e quella percentuale **è il ricambio**: la classifica mantiene la propria dimensione sostituendo le persone, non trattenendole.
 
 È la conferma esterna di ciò che la sezione sull'attrito aveva già misurato dall'interno con i rientri e il rinnovo delle liste. Due fonti indipendenti, la stessa conclusione: **l'imbuto individuale che si osserva nella classifica è molto più ripido dell'abbandono reale dello sport.**
 
@@ -438,14 +444,14 @@ Le sezioni precedenti hanno mostrato che al cambio di categoria la classifica si
 
 | categoria | annate | una lista per annata | classificazioni di gara per stagione | posti a punti per stagione | atleti in classifica per stagione | posti per atleta |
 |---|---|---|---|---|---|---|
-| Esordienti | 2 | sì | 640 | 3 198 | 589 | 5,43 |
+| Esordienti | 2 | sì | 639 | 3 197 | 588 | 5,43 |
 | Allievi | 2 | no | 414 | 2 070 | 479 | 4,32 |
 | Juniores | 2 | no | 282 | 1 410 | 331 | 4,25 |
 | Under 23 | 4 | no | 146 | 730 | 176 | 4,14 |
 
 *i posti sono stimati dai piazzamenti nei primi cinque, cinque per gara; negli Esordienti, che hanno una classifica per annata, il conteggio somma i due calendari; per l'Under 23 sono un limite inferiore, perché la lista sorgente contiene anche gli Elite, esclusi dalla finestra d'età*
 
-**Una parte della lettura corrente è giusta: i posti calano davvero.** Si passa da 640 classificazioni di gara per stagione in Esordienti a 146 in Under 23. Il calendario si accorcia, e con esso la lista, per ragioni che non hanno nulla a che vedere con il valore dei ragazzi.
+**Una parte della lettura corrente è giusta: i posti calano davvero.** Si passa da 639 classificazioni di gara per stagione in Esordienti a 146 in Under 23. Il calendario si accorcia, e con esso la lista, per ragioni che non hanno nulla a che vedere con il valore dei ragazzi.
 
 > **Un confronto da fare con una cautela.** Negli Esordienti le due annate hanno classifiche distinte e corrono gare distinte, quindi il conteggio somma i due calendari; nelle altre categorie la classifica è una sola e le annate corrono insieme. Il numero degli Esordienti è quindi comparabile agli altri solo accettando che a quell'età si corra davvero separati. Non è più un'assunzione: le Norme Attuative della federazione prevedono che le due annate corrano separatamente, e che anche quando la gara è unica la classifica sia distinta per fascia d'età (art. 4.2.1 e 4.2.5, con l'eccezione dei meno di dieci partenti all'art. 4.2.4). La verifica sui regolamenti sta in `docs/verifica_dati_giovanile.md`. Chi preferisce comunque la lettura prudente può dimezzare il conteggio: resta un calo anche partendo da metà.
 
@@ -453,7 +459,7 @@ Le sezioni precedenti hanno mostrato che al cambio di categoria la classifica si
 
 | categoria | anno di categoria | atleti | posti presi | quota dei posti | posti per atleta |
 |---|---|---|---|---|---|
-| Esordienti | 1 | 4 503 | 25 421 | 49,7% | 5,65 |
+| Esordienti | 1 | 4 499 | 25 415 | 49,7% | 5,65 |
 | Esordienti | 2 | 4 914 | 25 741 | 50,3% | 5,24 |
 | Allievi | 1 | 3 065 | 9 948 | 26,7% | 3,25 |
 | Allievi | 2 | 5 552 | 27 308 | 73,3% | 4,92 |
@@ -559,7 +565,7 @@ Le uscite dalla classifica si concentrano nell'ultimo anno di ogni categoria, e 
 
 | passaggio | tipo | in classifica prima | in classifica dopo | % che resta | % della lista di arrivo che c'era già | correlazione fra i due percentili | spostamento mediano (punti) |
 |---|---|---|---|---|---|---|---|
-| U15y1 → U15y2 | dentro la categoria | 1682 | 1786 | 76,2 | 71,7 | 0,658 | 12,9 |
+| U15y1 → U15y2 | dentro la categoria | 1678 | 1786 | 76,3 | 71,7 | 0,658 | 13,0 |
 | U15y2 → U17y1 | cambio di categoria | 1786 | 927 | 44,3 | 85,3 | 0,524 | 16,6 |
 | U17y1 → U17y2 | dentro la categoria | 927 | 1602 | 85,0 | 49,2 | 0,538 | 15,7 |
 | U17y2 → U19y1 | cambio di categoria | 1602 | 701 | 39,1 | 89,4 | 0,484 | 18,1 |
@@ -568,7 +574,7 @@ Le uscite dalla classifica si concentrano nell'ultimo anno di ogni categoria, e 
 
 *tutti i passaggi distano una stagione: la sola differenza è se comportino o no un cambio di fascia*
 
-**Il crollo c'è, ed è grande.** Dentro una categoria resta in classifica il 79,9% degli atleti; al cambio di fascia il 32,4%. Presa così, la lettura del trauma sembra confermata.
+**Il crollo c'è, ed è grande.** Dentro una categoria resta in classifica il 80,0% degli atleti; al cambio di fascia il 32,4%. Presa così, la lettura del trauma sembra confermata.
 
 **Ma la colonna successiva dice il contrario, e con la stessa forza.** La lista che si trova dopo un cambio di categoria è composta per il 88,2% da persone che c'erano già; dopo un passaggio interno, solo per il 60,7%. Al cambio di fascia non entra quasi nessuno di nuovo.
 
@@ -612,7 +618,7 @@ Il numero da guardare **non è il p-value**. Con milleseicento non professionist
 
 | cella | atleti | % pro | non pro: mediana [IQR] | pro: mediana [IQR] | delta di Cliff | entità | AUC |
 |---|---|---|---|---|---|---|---|
-| U15y1 | 1682 | 3,50 | 49 [27-74] | 81 [56-94] | 0,47 | grande | 0,74 |
+| U15y1 | 1678 | 3,50 | 49 [27-74] | 81 [56-94] | 0,47 | grande | 0,74 |
 | U15y2 | 1786 | 3,50 | 49 [27-74] | 90 [66-96] | 0,57 | grande | 0,79 |
 | U17y1 | 927 | 6,70 | 50 [27-72] | 90 [73-96] | 0,63 | grande | 0,81 |
 | U17y2 | 1602 | 4,50 | 49 [26-73] | 92 [83-98] | 0,72 | grande | 0,86 |
@@ -622,7 +628,7 @@ Il numero da guardare **non è il p-value**. Con milleseicento non professionist
 
 *il percentile va da 0 a 100; la colonna «% pro» è il tasso di professionisti della cella, e serve a non confrontare fra loro delta calcolati su popolazioni diverse*
 
-**Già a tredici anni la separazione è netta.** Il delta in U15y1 vale **0,471**, cioè appena sopra il confine convenzionale fra «medio» e «grande», che sta a 0,47: la tabella lo arrotonda a due cifre e per questo sembra caderci esattamente sopra. Sale poi fino a **0,78** in U19y2 — un'AUC di 0,89, che è l'ordine di grandezza di ciò che un modello univariato potrà ottenere.
+**Già a tredici anni la separazione è netta.** Il delta in U15y1 vale **0,470**, cioè appena sopra il confine convenzionale fra «medio» e «grande», che sta a 0,47: la tabella lo arrotonda a due cifre e per questo sembra caderci esattamente sopra. Sale poi fino a **0,78** in U19y2 — un'AUC di 0,89, che è l'ordine di grandezza di ciò che un modello univariato potrà ottenere.
 
 **Attenzione però all'ultima riga.** In U23y1 il delta scende a 0,40, e sarebbe facile leggerlo come «il rendimento da Under 23 conta meno». Non è così: in quella cella i professionisti sono il **37%**, contro poche unità percentuali nelle categorie giovanili. Chi arriva lì è già un sopravvissuto, e il confronto avviene fra atleti già selezionati. I delta di righe diverse **non sono confrontabili** fra loro, ed è il motivo per cui la tabella riporta il tasso di professionisti accanto a ciascuno.
 
@@ -640,7 +646,7 @@ Il numero da guardare **non è il p-value**. Con milleseicento non professionist
 
 | cella | non pro | pro senza top 500 | top 500 | top 100 |
 |---|---|---|---|---|
-| U15y1 | 49 (n=1623) | 69 (n=31) | 89 (n=22) | 84 (n=6) |
+| U15y1 | 49 (n=1619) | 69 (n=31) | 89 (n=22) | 84 (n=6) |
 | U15y2 | 49 (n=1723) | 86 (n=33) | 90 (n=24) | 94 (n=6) |
 | U17y1 | 50 (n=865) | 86 (n=29) | 90 (n=26) | 97 (n=7) |
 | U17y2 | 49 (n=1530) | 92 (n=35) | 92 (n=29) | 98 (n=8) |
@@ -698,7 +704,7 @@ Il vantaggio si spegne con l'età: da **2,13 a uno** in U15 a **1,09** in U23. E
 
 Il confronto va fatto con la riga giusta. Il rapporto dei professionisti è calcolato su atleti di tutte le categorie, quindi il suo termine di paragone è quello di tutti i classificati, 1,73, e non il 2,13 della categoria più giovane. Da 1,73 a 1,47, su 77 atleti, è uno scarto piccolo, e il valore dei professionisti non si distingue dall'atteso demografico (p = 0,12): preso da solo è un indizio, non una prova.
 
-La prova più forte sta nei modelli. Aggiungendo l'età relativa, il peso del piazzamento a tredici anni passa da 1,40 a 1,41, e l'età relativa da sola distingue chi arriverà con un'AUC di 0,513, cioè come una monetina. Messi insieme, i due risultati dicono che il vantaggio di chi è nato a inizio anno è soprattutto di **accesso** alla classifica, non di arrivo.
+La prova più forte sta nei modelli. Aggiungendo l'età relativa, il peso del piazzamento a tredici anni passa da 1,40 a 1,40, e l'età relativa da sola distingue chi arriverà con un'AUC di 0,513, cioè come una monetina. Messi insieme, i due risultati dicono che il vantaggio di chi è nato a inizio anno è soprattutto di **accesso** alla classifica, non di arrivo.
 
 ### Lo stesso effetto sulle ragazze
 
@@ -782,7 +788,7 @@ La coppia più concorde è **U15y1 con U15y2** (0,66), la meno concorde **U15y1 
 
 **No.** Il VIF più alto è 2,89, sotto la soglia di 5: le celle portano informazione abbastanza distinta da poter essere usate insieme in una regressione ordinaria. La versione penalizzata resta comunque utile come confronto, ma non è obbligata.
 
-> Il VIF richiede che tutte le variabili siano osservate sullo stesso atleta, e il campione crolla: dei 2817 atleti delle coorti, solo **291** compaiono in tutte le celle considerate. È la stessa selezione che limita i modelli annidati, e va ricordata ogni volta che si cita un numero di questa sezione.
+> Il VIF richiede che tutte le variabili siano osservate sullo stesso atleta, e il campione crolla: dei 2813 atleti delle coorti, solo **291** compaiono in tutte le celle considerate. È la stessa selezione che limita i modelli annidati, e va ricordata ogni volta che si cita un numero di questa sezione.
 
 ## Società, regione, mobilità
 
@@ -798,7 +804,7 @@ Questa sezione è scritta in negativo, e vale la pena dire subito perché. Le va
 
 | cambi di società | atleti | professionisti | % pro | stagioni corse in media |
 |---|---|---|---|---|
-| 0 | 1625 | 11 | 0,68 | 1,80 |
+| 0 | 1621 | 11 | 0,68 | 1,80 |
 | 1 | 759 | 34 | 4,48 | 4,00 |
 | 2 | 336 | 25 | 7,44 | 5,30 |
 | 3 | 82 | 6 | 7,32 | 6,00 |
@@ -817,7 +823,7 @@ Ma l'ultima colonna dice come stanno le cose: chi non ha mai cambiato ha corso *
 
 | durata della carriera | nessun cambio | un cambio | due o più |
 |---|---|---|---|
-| 1 stagione | 0,2% (n=878) | — | — |
+| 1 stagione | 0,2% (n=874) | — | — |
 | 2 stagioni | 0,0% (n=437) | 0,0% (n=187) | — |
 | 3 stagioni | 0,6% (n=167) | 0,0% (n=195) | 1,8% (n=57) |
 | 4 stagioni | 0,0% (n=93) | 0,0% (n=128) | 0,0% (n=81) |
@@ -855,7 +861,7 @@ Segue che **`n_team_changes` conta in larga parte transizioni imposte dall'organ
 
 |  | atleti | professionisti | % pro |
 |---|---|---|---|
-| è rimasto | 2660 | 73 | 2,74 |
+| è rimasto | 2657 | 73 | 2,75 |
 | ha cambiato regione | 83 | 4 | 4,82 |
 
 *la colonna dei professionisti non è mascherata perché il conteggio si ricaverebbe comunque dalla percentuale e dal numero di atleti della stessa riga*
@@ -864,24 +870,24 @@ Il cambio di regione riguarda **83 atleti su circa duemilaottocento**, con 4 pro
 
 | tasso storico della società di partenza | atleti | professionisti | % pro |
 |---|---|---|---|
-| nessun professionista | 1137 | 33 | 2,90 |
+| nessun professionista | 1136 | 33 | 2,90 |
 | fino al 5% | 58 | 2 | 3,45 |
-| dal 5 al 10% | 243 | 9 | 3,70 |
+| dal 5 al 10% | 242 | 9 | 3,72 |
 | oltre il 10% | 264 | 10 | 3,79 |
 
 *la colonna dei professionisti non è mascherata perché il conteggio si ricaverebbe comunque dalla percentuale e dal numero di atleti della stessa riga*
 
 Anche la società da cui si parte dice poco: si va dal **2,90%** al **3,79%**, una differenza che non si distingue dal caso (p = 0,43 al test esatto di Fisher fra la prima e l'ultima fascia). E il 67% degli atleti parte da una società che nelle coorti precedenti non aveva prodotto nessun professionista — il che rende la variabile poco informativa già per costruzione.
 
-Per la sola geografia conviene allargare le coorti. La regione di partenza non entra in nessun modello e non ha bisogno della finestra stretta che serve agli esiti: usando le **9 coorti 1992-2000** invece delle cinque del resto del documento, si arriva a 4 827 atleti e le numerosità regionali diventano leggibili. Tutte queste coorti hanno comunque avuto il tempo pieno per arrivare al professionismo.
+Per la sola geografia conviene allargare le coorti. La regione di partenza non entra in nessun modello e non ha bisogno della finestra stretta che serve agli esiti: usando le **9 coorti 1992-2000** invece delle cinque del resto del documento, si arriva a 4 823 atleti e le numerosità regionali diventano leggibili. Tutte queste coorti hanno comunque avuto il tempo pieno per arrivare al professionismo.
 
 | regione alla prima stagione | atleti | professionisti | % pro |
 |---|---|---|---|
-| lombardia | 1035 | 40 | 3,86 |
+| lombardia | 1033 | 40 | 3,87 |
 | veneto | 846 | 39 | 4,61 |
 | toscana | 576 | 17 | 2,95 |
 | emilia romagna | 477 | 10 | 2,10 |
-| piemonte | 236 | 6 | 2,54 |
+| piemonte | 235 | 6 | 2,55 |
 | sicilia | 187 | 2 | 1,07 |
 | friuli venezia giulia | 175 | 3 | 1,71 |
 | trentino alto adige | 174 | 11 | 6,32 |
@@ -918,7 +924,7 @@ La descrittiva ha mostrato che chi è arrivato al professionismo andava già meg
 
 | cella | atleti | professionisti | % pro | OR per 10 punti | IC 95% | AUC |
 |---|---|---|---|---|---|---|
-| U15y1 | 1682 | 59 | 3,5 | 1,40 | 1,25-1,58 | 0,736 |
+| U15y1 | 1678 | 59 | 3,5 | 1,40 | 1,25-1,57 | 0,736 |
 | U15y2 | 1786 | 63 | 3,5 | 1,56 | 1,38-1,78 | 0,787 |
 | U17y1 | 927 | 62 | 6,7 | 1,70 | 1,48-1,98 | 0,815 |
 | U17y2 | 1602 | 72 | 4,5 | 1,98 | 1,70-2,35 | 0,858 |
@@ -944,7 +950,7 @@ Il modo diretto di rispondere è rifare ogni modello con l'età relativa dentro 
 
 | cella | atleti | professionisti | OR percentile | OR aggiustato | AUC | AUC aggiustata | OR età relativa | p | AUC della sola età |
 |---|---|---|---|---|---|---|---|---|---|
-| U15y1 | 1673 | 59 | 1,40 | 1,41 | 0,735 | 0,738 | 0,88 | 0,344 | 0,513 |
+| U15y1 | 1673 | 59 | 1,40 | 1,40 | 0,736 | 0,738 | 0,88 | 0,344 | 0,513 |
 | U15y2 | 1785 | 63 | 1,56 | 1,56 | 0,787 | 0,787 | 0,93 | 0,584 | 0,513 |
 | U17y1 | 927 | 62 | 1,70 | 1,70 | 0,815 | 0,815 | 1,01 | 0,939 | 0,544 |
 | U17y2 | 1602 | 72 | 1,98 | 1,98 | 0,858 | 0,859 | 0,91 | 0,475 | 0,506 |
@@ -954,11 +960,11 @@ Il modo diretto di rispondere è rifare ogni modello con l'età relativa dentro 
 
 *L'età relativa è in giorni dal 31 dicembre e il suo odds ratio si legge per cento giorni, cioè circa un trimestre. Le due AUC sono dello stesso modello con e senza quel termine, sugli stessi atleti.*
 
-**Non sposta niente.** Nella cella più precoce, U15y1, l'odds ratio del percentile passa da 1,40 a 1,41 e l'AUC da 0,735 a 0,738; su tutte le celle lo spostamento massimo di AUC è 0,007. E l'età relativa da sola, come unico predittore, arriva a un'AUC di **0,513**: praticamente una monetina (p = 0,344).
+**Non sposta niente.** Nella cella più precoce, U15y1, l'odds ratio del percentile passa da 1,40 a 1,40 e l'AUC da 0,736 a 0,738; su tutte le celle lo spostamento massimo di AUC è 0,007. E l'età relativa da sola, come unico predittore, arriva a un'AUC di **0,513**: praticamente una monetina (p = 0,344).
 
 Il risultato va letto insieme all'altro, non al posto suo. L'età relativa pesa moltissimo su **chi entra** in classifica — è il senso del rapporto di due a uno fra primo e ultimo trimestre in Under 15 — e non pesa praticamente nulla su **chi arriva**, fra quelli entrati. Sono le due metà della stessa conclusione: un effetto di accesso, non di talento. Quello che si può dire è che il percentile non è una data di nascita travestita; quello che non si può dire è che la data di nascita non conti, perché ha già agito prima, sulla porta d'ingresso.
 
-*Il confronto gira su 9 atleti in meno della tabella precedente: sono quelli di cui si conosce l'anno ma non il giorno di nascita, e senza quello l'età relativa non si calcola.*
+*Il confronto gira su 5 atleti in meno della tabella precedente: sono quelli di cui si conosce l'anno ma non il giorno di nascita, e senza quello l'età relativa non si calcola.*
 
 ### Perché la colonna «% pro» non va letta come un segnale
 
@@ -984,13 +990,13 @@ La risposta è netta e va nella direzione opposta all'impressione: **il secondo 
 
 *Ogni cella è un modello a sé. Gli intervalli sono al 95% e la scala è logaritmica, perché un odds ratio si legge in rapporti e non in differenze.*
 
-> **Controllo.** L'AUC di questi modelli e quella ricavata dal delta di Cliff nella sezione descrittiva devono coincidere: misurano la stessa quantità per due strade indipendenti. Lo scarto massimo osservato è 0,0005, cioè arrotondamento. Se le due strade divergessero, uno dei due percorsi avrebbe un errore.
+> **Controllo.** L'AUC di questi modelli e quella ricavata dal delta di Cliff nella sezione descrittiva devono coincidere: misurano la stessa quantità per due strade indipendenti. Lo scarto massimo osservato è 0,0008, cioè arrotondamento. Se le due strade divergessero, uno dei due percorsi avrebbe un errore.
 
 ## Cosa aggiunge ogni categoria
 
 Sapere come è andato un ragazzo in Under 15 dice qualcosa. Sapere **anche** come è andato in Under 17 dice qualcosa in più, o è informazione già contenuta nella precedente? È la domanda che distingue «la prestazione giovanile predice» da «la prestazione giovanile predice, e sempre di più man mano che ci si avvicina».
 
-I modelli si costruiscono per aggiunte successive e girano tutti sugli **stessi 102 atleti**: quelli osservati in tutte le categorie della sequenza. È una condizione stretta — restano 102 atleti su 2 817 della coorte — ma senza di essa il confronto misurerebbe il cambio di popolazione invece dell'aggiunta di informazione.
+I modelli si costruiscono per aggiunte successive e girano tutti sugli **stessi 102 atleti**: quelli osservati in tutte le categorie della sequenza. È una condizione stretta — restano 102 atleti su 2 813 della coorte — ma senza di essa il confronto misurerebbe il cambio di popolazione invece dell'aggiunta di informazione.
 
 > **Come si misura — Modelli annidati, AUC e test di DeLong**
 >
@@ -1048,9 +1054,9 @@ Fin qui si è misurato quanto il rendimento giovanile predice. Questa sezione tr
 
 | cella | criterio | soglia | selezionati | di cui pro | a vuoto | intercettati | successo dei selezionati | scartati che non arrivano |
 |---|---|---|---|---|---|---|---|---|
-| U15y1 | Youden | 52,7 | 802 | 50 | 752 | 85% | 6% | 99,0% |
-| U15y1 | migliore 10% | 90,1 | 169 | 19 | 150 | 32% | 11% | 97,4% |
-| U15y1 | migliore 25% | 75,1 | 421 | 32 | 389 | 54% | 8% | 97,9% |
+| U15y1 | Youden | 52,6 | 802 | 50 | 752 | 85% | 6% | 99,0% |
+| U15y1 | migliore 10% | 90,1 | 168 | 19 | 149 | 32% | 11% | 97,4% |
+| U15y1 | migliore 25% | 75,2 | 420 | 32 | 388 | 54% | 8% | 97,9% |
 | U15y2 | Youden | 83,1 | 304 | 41 | 263 | 65% | 13% | 98,5% |
 | U15y2 | migliore 10% | 90,1 | 179 | 31 | 148 | 49% | 17% | 98,0% |
 | U15y2 | migliore 25% | 75,1 | 447 | 42 | 405 | 67% | 9% | 98,4% |
@@ -1098,11 +1104,11 @@ Tutte le sezioni precedenti chiedono **chi** arriverà al professionismo. Questa
 
 | età | atleti a rischio | passaggi al professionismo | per mille |
 |---|---|---|---|
-| 19 | 5608 | 16 | 2,9 |
-| 20 | 5189 | 13 | 2,5 |
-| 21 | 4739 | 33 | 7,0 |
-| 22 | 4249 | 29 | 6,8 |
-| 23 | 3758 | 30 | 8,0 |
+| 19 | 5604 | 16 | 2,9 |
+| 20 | 5185 | 13 | 2,5 |
+| 21 | 4735 | 33 | 7,0 |
+| 22 | 4245 | 29 | 6,8 |
+| 23 | 3754 | 30 | 8,0 |
 
 *una riga per stagione a rischio; chi diventa professionista esce dal rischio, chi non ha ancora finito la finestra dei venticinque anni è censurato*
 
@@ -1116,15 +1122,15 @@ Tutte le sezioni precedenti chiedono **chi** arriverà al professionismo. Questa
 |---|---|---|---|
 | dieci punti di percentile in più | 1,776 | 1,553-2,030 | < 0,001 |
 | assente dalla classifica l'anno prima | 0,049 | 0,026-0,093 | < 0,001 |
-| un anno di nascita più recente | 1,022 | 0,954-1,095 | 0,534 |
+| un anno di nascita più recente | 1,022 | 0,954-1,095 | 0,535 |
 
-*n = 23 543 · errori standard raggruppati per atleta: le stagioni dello stesso corridore non sono osservazioni indipendenti*
+*n = 23 523 · errori standard raggruppati per atleta: le stagioni dello stesso corridore non sono osservazioni indipendenti*
 
 Il coefficiente che domina non è il rendimento: è **il restare nella popolazione osservata**. Chi non era in classifica l'anno precedente ha un rischio pari a 0,049 di chi c'era, cioè circa **20 volte più basso**. Fra chi c'è, dieci punti di percentile in più moltiplicano il rischio per 1,78.
 
 Va letto con la cautela che merita. Le sezioni precedenti hanno mostrato che sparire dalla classifica significa smettere di fare punti, non smettere di correre, e che al cambio di categoria il posto in lista sparisce per ragioni che riguardano la lunghezza della classifica. Questo coefficiente misura quindi in buona parte **quanto è difficile rientrare** una volta usciti dal gruppo osservato, non quanto sia compromessa la carriera di chi esce.
 
-Un dato di contesto che rende la cifra meno sorprendente: su cento stagioni a rischio, in 88 casi l'atleta **non** era in classifica l'anno prima. La classifica Under 23 ha poche decine di posti, quindi l'assenza è la condizione normale e non l'eccezione.
+Un dato di contesto che rende la cifra meno sorprendente: su cento stagioni a rischio, in 87 casi l'atleta **non** era in classifica l'anno prima. La classifica Under 23 ha poche decine di posti, quindi l'assenza è la condizione normale e non l'eccezione.
 
 ![La distanza fra le due curve è quanto pesa l'essere ancora nella classifica nazionale: a parità di età, chi c'è ha un rischio molte volte maggiore.](figure/sopravvivenza_hazard.png)
 
@@ -1134,7 +1140,7 @@ Messo in forma leggibile: per un atleta che resta in classifica **ogni** stagion
 
 > **Attenzione al condizionamento.** Queste probabilità valgono per chi resta in classifica tutti gli anni, che è una minoranza molto selezionata: non sono la probabilità di un ragazzo qualunque che comincia a correre. Quella resta quella dell'imbuto, di gran lunga più bassa.
 
-> **Un controllo che vale la pena riportare.** L'anno di nascita non sposta il rischio (rapporto 1,022, p = 0,534). Le tredici coorti qui incluse si comportano allo stesso modo, il che vuol dire che i risultati non dipendono da quale periodo si guardi — ed è la stessa conclusione a cui era arrivato, per un'altra strada, il modello per singola categoria.
+> **Un controllo che vale la pena riportare.** L'anno di nascita non sposta il rischio (rapporto 1,022, p = 0,535). Le tredici coorti qui incluse si comportano allo stesso modo, il che vuol dire che i risultati non dipendono da quale periodo si guardi — ed è la stessa conclusione a cui era arrivato, per un'altra strada, il modello per singola categoria.
 
 ## Conta il livello o il miglioramento?
 
@@ -1152,11 +1158,11 @@ Un ragazzo che passa dal quarantesimo al novantesimo percentile in tre anni è p
 >
 > Approfondimenti: [Modelli a effetti misti](https://en.wikipedia.org/wiki/Mixed_model) · [Shrinkage](https://en.wikipedia.org/wiki/Shrinkage_(statistics)) · [BLUP](https://en.wikipedia.org/wiki/Best_linear_unbiased_prediction)
 
-Le traiettorie sono stimate su **7 599 osservazioni** di 2 747 atleti, ma le stagioni osservate per atleta sono poche e molto diseguali.
+Le traiettorie sono stimate su **7 595 osservazioni** di 2 743 atleti, ma le stagioni osservate per atleta sono poche e molto diseguali.
 
 | stagioni osservate | atleti |
 |---|---|
-| 1 | 844 |
+| 1 | 840 |
 | 2 | 619 |
 | 3 | 429 |
 | 4 | 336 |
@@ -1169,7 +1175,7 @@ Il modello dell'esito gira sui 1 903 atleti con almeno 2 stagioni osservate, f
 
 | variabile | odds ratio | IC 95% | p |
 |---|---|---|---|
-| livello: dieci punti di percentile in più | 3,02 | 2,51-3,71 | < 0,001 |
+| livello: dieci punti di percentile in più | 3,03 | 2,51-3,71 | < 0,001 |
 | pendenza: una deviazione standard di miglioramento annuo | 3,35 | 2,54-4,51 | < 0,001 |
 
 *n = 1 903 · le due variabili entrano sempre insieme: sono correlate per costruzione, perché il percentile ha un soffitto a 100 e chi parte alto ha meno spazio per salire*
@@ -1184,15 +1190,15 @@ Il modello dell'esito gira sui 1 903 atleti con almeno 2 stagioni osservate, f
 | basso | medio | 250 | 0 | 0,0 |
 | basso | alto | 297 | 2 | 0,7 |
 | medio | basso | 214 | 0 | 0,0 |
-| medio | medio | 233 | 2 | 0,9 |
-| medio | alto | 187 | 11 | 5,9 |
+| medio | medio | 234 | 2 | 0,9 |
+| medio | alto | 186 | 11 | 5,9 |
 | alto | basso | 333 | 7 | 2,1 |
-| alto | medio | 151 | 20 | 13,2 |
-| alto | alto | 150 | 31 | 20,7 |
+| alto | medio | 150 | 20 | 13,3 |
+| alto | alto | 151 | 31 | 20,5 |
 
 *terzili delle due dimensioni; il gradiente corre in entrambe le direzioni, che è il modo più diretto di dire che contano tutte e due; la colonna dei professionisti non è mascherata perché il conteggio si ricava comunque dalla percentuale e dal numero di atleti della stessa riga*
 
-Il gradiente corre in **entrambe** le direzioni, ma non allo stesso modo. Nel terzo di atleti con il livello più alto, chi stava anche migliorando è diventato professionista nel 20,7% dei casi, chi stava peggiorando nel 2,1%: quasi dieci volte tanto, a parità di livello. Il salto non è però distribuito lungo la riga: quasi tutto sta fra chi calava e chi teneva, perché la cella di mezzo vale già il 13,2%. Nel terzo con livello medio e miglioramento alto si arriva al 5,9%, più che nel terzo con livello alto e pendenza in calo — con la cautela che sono tassi di due gruppi diversi e non due atleti messi uno contro l'altro.
+Il gradiente corre in **entrambe** le direzioni, ma non allo stesso modo. Nel terzo di atleti con il livello più alto, chi stava anche migliorando è diventato professionista nel 20,5% dei casi, chi stava peggiorando nel 2,1%: quasi dieci volte tanto, a parità di livello. Il salto non è però distribuito lungo la riga: quasi tutto sta fra chi calava e chi teneva, perché la cella di mezzo vale già il 13,3%. Nel terzo con livello medio e miglioramento alto si arriva al 5,9%, più che nel terzo con livello alto e pendenza in calo — con la cautela che sono tassi di due gruppi diversi e non due atleti messi uno contro l'altro.
 
 Nel terzo con il livello più basso, invece, il miglioramento non salva quasi nessuno. **Il livello è una condizione, il miglioramento è un moltiplicatore**: senza il primo il secondo non basta, ma con il primo il secondo cambia molto.
 
@@ -1207,7 +1213,7 @@ La sezione sulla mobilità ha mostrato che un gradiente vistoso può essere la d
 | stagioni osservate | pendenza media in valore assoluto |
 |---|---|
 | 2 | 1,58 |
-| 3 | 2,35 |
+| 3 | 2,34 |
 | 4 | 3,32 |
 | 5 | 3,67 |
 | 6 | 3,18 |
@@ -1345,7 +1351,7 @@ Tutto il resto di questo documento riguarda i maschi, e la ragione non è una sc
 
 | categoria | atlete | atleti | rapporto | gare per stagione, femminili | maschili | rapporto fra le gare |
 |---|---|---|---|---|---|---|
-| Esordienti | 864 | 6 360 | 7,4× | 77 | 640 | 8,3× |
+| Esordienti | 864 | 6 356 | 7,4× | 77 | 639 | 8,3× |
 | Allievi | 722 | 6 195 | 8,6× | 65 | 414 | 6,4× |
 | Juniores | 389 | 4 181 | 10,7× | 35 | 282 | 8,1× |
 
@@ -1403,11 +1409,11 @@ Il numero di professionisti cambia da una sezione all'altra di questo documento,
 
 | analisi | coorti | atleti | professionisti | perché quel numero |
 |---|---|---|---|---|
-| accesso al professionismo | 1996-2000 | 2 817 | 77 | tutti i classificati delle coorti: è la popolazione dello studio |
+| accesso al professionismo | 1996-2000 | 2 813 | 77 | tutti i classificati delle coorti: è la popolazione dello studio |
 | cosa aggiunge ogni categoria | 1996-2000 | 102 | 44 | solo chi è osservato in tutte le categorie, per confrontare i modelli sulle stesse persone |
 | livello e miglioramento | 1996-2000 | 1 903 | 74 | serve più di una stagione per stimare una pendenza |
 | qualità della carriera | 1992-2000 | 1 730 | 140 | coorti più larghe, perché i top 100 sono pochissimi, e solo chi compare in Under 19 secondo anno |
-| quando si diventa professionisti | 1996-2008 | 5 608 | 121 | tutte le coorti disponibili, con censura: qui si contano gli eventi, non le persone |
+| quando si diventa professionisti | 1996-2008 | 5 604 | 121 | tutte le coorti disponibili, con censura: qui si contano gli eventi, non le persone |
 | sensibilità sulle definizioni | 1996-2000 | 901 | da 26 a 151 | cambia cosa conta come professionismo, a parità di atleti |
 
 Resta un settimo numero, e sta fuori da questa tabella perché non viene da una query: `docs/definizioni.md` congela **78 eventi PRO** per le coorti 1996-2000. Quel file è stato scritto prima di guardare i dati, come impone la procedura, e prima della verifica manuale degli abbinamenti — diciotto date corrette, dieci atleti duplicati riuniti in uno solo. Il conteggio che si rigenera oggi è quello della prima riga, e ho provato a ricostruire da dove venga la differenza di uno senza riuscirci: nessuna delle correzioni manuali sposta un professionista dentro o fuori quelle coorti. La riporto così com'è invece di inventarle una causa.
@@ -1443,14 +1449,16 @@ Non è un difetto grave, e conviene dire perché. Il modello misto non vede mai 
 
 | variabile | odds ratio | IC 95% di Firth | IC 95% a due stadi |
 |---|---|---|---|
-| livello: dieci punti di percentile in più | 3,02 | 2,51-3,71 | 2,49-3,86 |
-| pendenza: una deviazione standard di miglioramento annuo | 3,35 | 2,54-4,51 | 2,60-4,58 |
+| livello: dieci punti di percentile in più | 3,03 | 2,51-3,71 | 2,55-3,80 |
+| pendenza: una deviazione standard di miglioramento annuo | 3,35 | 2,54-4,51 | 2,56-4,78 |
 
 *intervalli percentili del bootstrap per grappoli: a ogni ripetizione si ristima anche il modello misto, quindi l'incertezza delle pendenze stimate è dentro l'intervallo e non fuori; la colonna di Firth è l'intervallo del modello stimato una volta sola, quello che il resto del documento riporta*
 
-Rifacendo il conto con il modello misto **dentro** il ciclo — 500 ricampionamenti per grappoli, che estraggono atleti interi e non singole stagioni — **l'ottimismo resta dov'era**: 0,0014, contro 0,0014 del conto a uno stadio, e l'AUC corretta vale ancora 0,917. È quello che ci si doveva aspettare se il primo stadio, non vedendo mai l'esito, non ha modo di adattarvisi: adesso non è più un argomento, è un numero.
+Rifacendo il conto con il modello misto **dentro** il ciclo — 500 ricampionamenti per grappoli, che estraggono atleti interi e non singole stagioni — **l'ottimismo resta dov'era**: 0,0018, contro 0,0014 del conto a uno stadio, e l'AUC corretta vale ancora 0,917. È quello che ci si doveva aspettare se il primo stadio, non vedendo mai l'esito, non ha modo di adattarvisi: adesso non è più un argomento, è un numero.
 
-Gli intervalli invece si muovono, e non allo stesso modo. Quello sul livello si allarga di circa il 14%, soprattutto verso l'alto. Quello sulla pendenza — il più ampio fin dall'inizio, e quello su cui poggia il risultato principale della sezione sulle traiettorie — cambia di ampiezza dello 0,4% e si sposta appena. L'incertezza delle stime individuali c'è, dunque, ma è piccola rispetto a quella che gli intervalli portavano già.
+> ⚠️ **Commento da riscrivere.** La frase qui sotto è stata scritta quando valeva questa premessa: *l'incertezza delle traiettorie stimate allarga gli intervalli di poco, e quello sulla pendenza quasi per niente*. Con i dati di oggi non vale più.
+
+Gli intervalli invece si muovono, e non allo stesso modo. Quello sul livello si allarga di circa il 4%, soprattutto verso l'alto. Quello sulla pendenza — il più ampio fin dall'inizio, e quello su cui poggia il risultato principale della sezione sulle traiettorie — cambia di ampiezza dello 12,5% e si sposta appena. L'incertezza delle stime individuali c'è, dunque, ma è piccola rispetto a quella che gli intervalli portavano già.
 
 Il calcolo sta in `R/26_bootstrap_traiettorie.R`, che è il passo più lento della catena e si esegue a parte: gli altri script si rieseguono in secondi, questo ristima un modello misto a ogni ripetizione.
 
@@ -1504,13 +1512,13 @@ La finestra d'età è ancora meno influente: spostarla da ventiquattro a ventise
 | popolazione | professionisti | atleti | % pro | AUC |
 |---|---|---|---|---|
 | Under 19 secondo anno, solo chi è in classifica | 74 | 901 | 8,21% | 0,889 |
-| Under 19 secondo anno, tutta la coorte con l'assenza sotto tutti | 77 | 2817 | 2,73% | 0,943 |
-| Under 15 primo anno, solo chi è in classifica | 59 | 1682 | 3,51% | 0,736 |
-| Under 15 primo anno, tutta la coorte con l'assenza sotto tutti | 77 | 2817 | 2,73% | 0,694 |
+| Under 19 secondo anno, tutta la coorte con l'assenza sotto tutti | 77 | 2813 | 2,74% | 0,943 |
+| Under 15 primo anno, solo chi è in classifica | 59 | 1678 | 3,52% | 0,735 |
+| Under 15 primo anno, tutta la coorte con l'assenza sotto tutti | 77 | 2813 | 2,74% | 0,694 |
 
 *l'assenza non è un dato mancante da imputare: è un rendimento che non c'è stato, e trattarla come tale alza l'AUC perché aggiunge un'informazione vera. Le due età rispondono alla stessa domanda ai due estremi del percorso giovanile*
 
-**L'assenza è informativa, ma solo tardi.** A diciotto anni trattarla come «sotto chiunque sia in classifica» alza l'AUC da 0,889 a 0,943: chi non c'è quasi sempre non arriverà. A tredici anni la stessa operazione la **abbassa**, da 0,736 a 0,694, e il motivo sta nella colonna dei professionisti: in Under 15 primo anno ne sono in classifica 59 su 77, mentre in Under 19 secondo anno 74 su 77. Mettere tutti gli assenti sotto tutti i presenti, a tredici anni, sbaglia posizione a quasi un quarto dei futuri professionisti; a diciotto, a tre.
+**L'assenza è informativa, ma solo tardi.** A diciotto anni trattarla come «sotto chiunque sia in classifica» alza l'AUC da 0,889 a 0,943: chi non c'è quasi sempre non arriverà. A tredici anni la stessa operazione la **abbassa**, da 0,735 a 0,694, e il motivo sta nella colonna dei professionisti: in Under 15 primo anno ne sono in classifica 59 su 77, mentre in Under 19 secondo anno 74 su 77. Mettere tutti gli assenti sotto tutti i presenti, a tredici anni, sbaglia posizione a quasi un quarto dei futuri professionisti; a diciotto, a tre.
 
 Ha una conseguenza pratica che vale più della verifica metodologica da cui nasce: **sparire da una classifica a tredici anni non è un verdetto, sparirne a diciotto è un segnale molto più forte, anche se non definitivo**. Non è un giudizio sui ragazzi ma sulla fonte, che alle età basse è ancora in gran parte vuota: la classifica Under 15 raccoglie chi ha già fatto un punto, e molti di quelli che arriveranno lo faranno per la prima volta dopo.
 
@@ -1526,23 +1534,23 @@ Le sezioni precedenti restano deliberatamente sui soli presenti, perché lì la 
 
 | modello | predittori | auc media | deviazione standard |
 |---|---|---|---|
-| parametrico (pct_U19y2 + coorte) | 2 | 0,932 | 0,002 |
-| foresta casuale (17 predittori) | 17 | 0,945 | 0,008 |
+| parametrico (pct_U19y2 + coorte) | 2 | 0,933 | 0,002 |
+| foresta casuale (17 predittori) | 17 | 0,953 | 0,004 |
 
-*n = 2 817 · validazione incrociata a 5 parti, ripetuta 5 volte sulle stesse partizioni per entrambi i modelli*
+*n = 2 813 · validazione incrociata a 5 parti, ripetuta 5 volte sulle stesse partizioni per entrambi i modelli*
 
-**Guadagna +0,013 di AUC, con 15 predittori in più.** Il guadagno è costante fra le ripetizioni, ma non è un confronto a parità di informazione — il paragrafo qui sotto dice perché — e in ogni caso è piccolo: un modello con due parametri cattura quasi tutto quello che c'è da catturare. È l'argomento a favore della parsimonia, verificato invece che affermato.
+**Guadagna +0,020 di AUC, con 15 predittori in più.** Il guadagno è costante fra le ripetizioni, ma non è un confronto a parità di informazione — il paragrafo qui sotto dice perché — e in ogni caso è piccolo: un modello con due parametri cattura quasi tutto quello che c'è da catturare. È l'argomento a favore della parsimonia, verificato invece che affermato.
 
 Anche il modo in cui la foresta usa i dati è istruttivo. In cima alla sua classifica di importanza c'è proprio il percentile Under 19, che è l'unico predittore del modello parametrico; al secondo posto il numero di stagioni corse, che questo studio esclude di proposito perché è un mediatore — chi va meglio resta di più. **Parte del piccolo vantaggio della foresta viene dall'usare una variabile che il modello parametrico rifiuta per ragioni di interpretazione, non di prestazione.**
 
 | variabile | importanza (riduzione di impurità) |
 |---|---|
-| pct_U19y2 | 30,96 |
-| n_seasons_youth | 18,21 |
-| pct_U23y1 | 17,73 |
-| pct_U19y1 | 16,32 |
-| pct_U17y2 | 12,55 |
-| rel_age | 11,04 |
+| pct_U19y2 | 31,05 |
+| n_seasons_youth | 18,29 |
+| pct_U23y1 | 17,83 |
+| pct_U19y1 | 16,08 |
+| pct_U17y2 | 11,93 |
+| rel_age | 11,13 |
 
 *diagnostica, non spiegazione causale: serve a vedere se la foresta usi informazione che il modello parametrico sta ignorando*
 
@@ -1577,6 +1585,6 @@ La foresta casuale risponde alla domanda «più complicato serve?» con un model
 
 E sulla previsione il guadagno è minimo: +0,015 di AUC rispetto al modello con la sola cella U19y2, sullo stesso sottocampione. È la terza volta che questo documento arriva alla stessa conclusione per tre strade diverse — modelli annidati, foresta casuale, penalizzazione — e conviene prenderla sul serio, ricordando però che non sono tre prove indipendenti: annidati e penalizzazione girano su quasi lo stesso sottocampione, e solo la foresta vede tutti gli atleti. Detto questo: **quasi tutta l'informazione utile sta nell'ultima misura disponibile.**
 
-*Con una riserva che vale più del risultato.* Il modello richiede tutte le categorie osservate sullo stesso atleta, e restano **82 atleti su 2 817**, fra cui 40 professionisti: circa la metà del sottocampione. Su un gruppo così piccolo e così selezionato le AUC non sono confrontabili con nessun altro numero del documento, e l'azzeramento delle prime categorie potrebbe in parte riflettere la scarsità di dati più che la loro inutilità. Resta che va nella stessa direzione di tutto il resto.
+*Con una riserva che vale più del risultato.* Il modello richiede tutte le categorie osservate sullo stesso atleta, e restano **82 atleti su 2 813**, fra cui 40 professionisti: circa la metà del sottocampione. Su un gruppo così piccolo e così selezionato le AUC non sono confrontabili con nessun altro numero del documento, e l'azzeramento delle prime categorie potrebbe in parte riflettere la scarsità di dati più che la loro inutilità. Resta che va nella stessa direzione di tutto il resto.
 
 > **Come vanno lette le AUC di questa sezione.** Alcune sono calcolate su tutta la coorte, codificando l'assenza dalla classifica come una categoria, e sono perciò più alte di quelle delle sezioni precedenti, che girano sui soli atleti presenti. Non vanno messe a confronto fra sezioni: qui conta la **stabilità** dei numeri fra una variante e l'altra, non il loro livello.
