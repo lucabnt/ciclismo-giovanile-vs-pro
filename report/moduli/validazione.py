@@ -153,7 +153,9 @@ def rendi(lt):
         "",
         "Resta un settimo numero, e sta fuori da questa tabella perche' non viene da una "
         "query: `docs/definizioni.md` congela **78 eventi PRO** per le coorti 1996-2000. "
-        "Quel file e' stato scritto prima di guardare i dati, come impone la procedura, e "
+        "Quel file compare nel primo commit del repository ed e' stato scritto prima di "
+        "guardare i dati, come impone la procedura (lo si puo' dichiarare, non "
+        "dimostrare: il lavoro precedente al repository non lascia traccia), e "
         "prima della verifica manuale degli abbinamenti — diciotto date corrette, dieci "
         "atleti duplicati riuniti in uno solo. Il conteggio che si rigenera oggi e' quello "
         "della prima riga, e ho provato a ricostruire da dove venga la differenza di uno "

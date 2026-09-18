@@ -210,9 +210,12 @@ def rendi(lt):
     p.append(md.paragrafo(
         "",
         "Il progetto lo aveva previsto e aveva scelto di scioglierli guardando prima le "
-        "vittorie, poi i secondi posti e cosi' via fino al quinto. La scelta era stata "
-        "presa **prima di guardare qualunque esito**, il che permette ora di metterla "
-        "alla prova senza il sospetto di averla scelta perche' funzionava.",
+        "vittorie, poi i secondi posti e cosi' via fino al quinto. La scelta e' "
+        "registrata in `docs/definizioni.md` fin dal primo commit del repository ed e' "
+        "stata presa **prima di guardare qualunque esito**, il che permette ora di "
+        "metterla alla prova senza il sospetto di averla scelta perche' funzionava. "
+        "Quest'ultima parte e' una dichiarazione e non una prova: del lavoro precedente "
+        "al repository non resta traccia.",
         "",
         "C'e' di piu', ed e' emerso dopo: quel criterio non e' una nostra invenzione ma "
         "**la regola di spareggio che il regolamento della fonte dichiara**, nelle stesse "

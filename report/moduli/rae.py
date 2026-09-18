@@ -50,7 +50,7 @@ NOMI = {"U15": "Esordienti", "U17": "Allievi", "U19": "Juniores", "U23": "Under 
 
 
 def chi_quadro(osservati, attesi_frazioni):
-    """Statistica chi-quadro, V di Cramer e p, con gli attesi dati come frazioni.
+    """Statistica chi-quadro, w di Cohen e p, con gli attesi dati come frazioni.
 
     Il p arriva da scipy se c'e'. Se manca, si riportano comunque statistica ed effect
     size: con migliaia di osservazioni il p diventa significativo per squilibri
@@ -60,13 +60,17 @@ def chi_quadro(osservati, attesi_frazioni):
     attesi = [f * n for f in attesi_frazioni]
     x2 = sum((o - a) ** 2 / a for o, a in zip(osservati, attesi) if a > 0)
     gl = len(osservati) - 1
-    v = (x2 / n) ** 0.5 if n else 0.0          # k=2 categorie nominali -> V = sqrt(X2/n)
+    # w di Cohen, l'effetto standard per un test di adattamento: sqrt(X2/n). Non e' la
+    # V di Cramer, che si definisce sulle tabelle di contingenza, e non ha massimo 1:
+    # con k categorie arriva a sqrt(k-1). Le soglie convenzionali 0,1 / 0,3 / 0,5 per un
+    # effetto piccolo, medio e grande sono proprio quelle di w.
+    w = (x2 / n) ** 0.5 if n else 0.0
     try:
         from scipy.stats import chi2
         p = float(chi2.sf(x2, gl))
     except ImportError:
         p = None
-    return {"x2": x2, "gl": gl, "cramer_v": v, "p": p, "attesi": attesi}
+    return {"x2": x2, "gl": gl, "w": w, "p": p, "attesi": attesi}
 
 
 def attesi_per_coorti(rif, lo, hi):
@@ -113,7 +117,7 @@ def calcola():
             # di mezzo la stagionalita' demografica invece di ignorarla
             oa = [(o / n) / a for o, a in zip(oss, attesi)]
             righe.append([cat, n] + [round(x, 2) for x in oa]
-                         + [round(oa[0] / oa[3], 2), round(t["cramer_v"], 3)])
+                         + [round(oa[0] / oa[3], 2), round(t["w"], 3)])
             gradiente.append((cat, oa[0] / oa[3], n))
             ar.valore("composizione_%s_oss" % cat, oss)
             ar.valore("composizione_%s_test" % cat,
@@ -122,7 +126,7 @@ def calcola():
 
         ar.tabella("composizione", righe,
                    colonne=["categoria", "atleti", "Q1 oss/att", "Q2", "Q3", "Q4",
-                            "Q1/Q4", "V di Cramer"],
+                            "Q1/Q4", "w di Cohen"],
                    titolo="Chi entra nel ranking, per trimestre di nascita",
                    nota="valori sopra 1 = piu' atleti dell'atteso demografico")
         ar.valore("gradiente", [(c, round(r, 2), n) for c, r, n in gradiente])
@@ -266,7 +270,7 @@ def confronto_sessi(db, rif, ar):
             righe.append([cat, "maschi" if sesso == "M" else "femmine", n,
                           "%d-%d" % (lo, hi), round(oa[0], 2), round(oa[3], 2),
                           round(rapporto, 2) if rapporto else None,
-                          round(t["cramer_v"], 3),
+                          round(t["w"], 3),
                           round(t["p"], 4) if t["p"] is not None else None])
             per_sesso.setdefault(sesso, []).append((cat, round(rapporto, 2), n))
         if test_sessi is None and "M" in oss_cat and "F" in oss_cat:
@@ -285,7 +289,7 @@ def confronto_sessi(db, rif, ar):
         return
     ar.tabella("sessi", righe,
                colonne=["categoria", "sesso", "atleti", "coorti", "Q1 oss/att",
-                        "Q4 oss/att", "Q1/Q4", "V di Cramer", "p"],
+                        "Q4 oss/att", "Q1/Q4", "w di Cohen", "p"],
                titolo="L'effetto dell'eta' relativa, maschi e femmine a confronto",
                nota="per ogni categoria si usano le coorti in cui entrambi i sessi sono "
                     "osservati, e l'atteso demografico e' calcolato su quelle stesse "
@@ -365,8 +369,8 @@ def _femminile_oltre(righe):
     if not (a and j and e):
         return "i campioni sono troppo piccoli per una lettura categoria per categoria."
     return ("in Allieve lo squilibrio non si distingue dall'atteso (p = %s su %s "
-            "atlete), in Juniores torna a distinguersi (p = %s su %s), con una V di "
-            "Cramer di %s, piu' alta dello %s delle Esordienti."
+            "atlete), in Juniores torna a distinguersi (p = %s su %s), con una w di "
+            "Cohen di %s, piu' alta dello %s delle Esordienti."
             % (_pv(a[8]), md.conta(a[2]), _pv(j[8]), md.conta(j[2]),
                md.num(j[7], 3), md.num(e[7], 3)))
 
@@ -398,20 +402,23 @@ def rendi(lt):
         % tuple(100 * a for a in att) if len(att) == 4 else ""))
 
     p.append(md.metodo(
-        "Rapporto fra osservato e atteso, e V di Cramer",
+        "Rapporto fra osservato e atteso, e w di Cohen",
         "Per ogni trimestre si divide la quota di atleti nati in quel trimestre per la "
         "quota di nati nella popolazione italiana delle stesse annate. Un valore di "
         "1,39 significa che quel trimestre e' rappresentato del 39% in piu' di quanto "
         "la demografia giustifichi.\n\n"
-        "La V di Cramer riassume in un solo numero quanto l'intera distribuzione si "
-        "discosta dall'attesa: va da 0, distribuzione identica all'attesa, a 1. Si "
-        "riporta al posto del p-value del test chi quadro perche' con migliaia di "
-        "osservazioni quel test risulta significativo anche per squilibri irrilevanti, "
-        "mentre la V misura l'entita' dello squilibrio e non la sua rilevabilita'.\n\n"
+        "La w di Cohen riassume in un solo numero quanto l'intera distribuzione si "
+        "discosta dall'attesa: vale 0 quando la distribuzione coincide con l'attesa e "
+        "cresce con lo scostamento, e con quattro trimestri non puo' superare la radice "
+        "di 3. Per convenzione 0,1, 0,3 e 0,5 indicano un effetto piccolo, medio e "
+        "grande. Si riporta al posto del p-value del test chi quadro perche' con "
+        "migliaia di osservazioni quel test risulta significativo anche per squilibri "
+        "irrilevanti, mentre w misura l'entita' dello squilibrio e non la sua "
+        "rilevabilita'.\n\n"
         "L'attesa demografica viene dalle nascite mensili registrate in Italia, non da "
         "una distribuzione uniforme.",
         [("Bonta' di adattamento", W + "Goodness_of_fit"),
-         ("V di Cramer", W + "Cram%C3%A9r%27s_V"),
+         ("w di Cohen", W + "Effect_size#Cohen%27s_w"),
          ("Effetto dell'eta' relativa", W + "Relative_age_effect"),
          ("Nascite per mese, Eurostat",
           "https://ec.europa.eu/eurostat/databrowser/view/demo_fmonth/default/table")]))

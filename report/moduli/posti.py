@@ -588,15 +588,17 @@ def rendi(lt):
                     md.num(r[3], 1) + " volte"] for r in pro["righe"]]
         p.append(md.tabella(pro["colonne"], righe_p, nota=pro["nota"]))
         quote_pro = v.get("pro_quota_posti") or {}
-        if quote_pro:
+        esord = next((r for r in pro["righe"] if r[0] == "Esordienti"), None)
+        if quote_pro and esord:
             p.append(md.paragrafo(
                 "",
                 "Gia' in Esordienti i futuri professionisti prendono il **%s%%** dei "
-                "posti pur essendo il 3,5%% dei classificati, cioe' due volte la loro "
+                "posti pur essendo il %s%% dei classificati, cioe' %s volte la loro "
                 "quota. E' la stessa cosa che le sezioni sui punteggi mostrano con i "
                 "percentili, vista dal lato dei posti invece che da quello degli atleti: "
                 "a tredici anni il vantaggio si vede gia'."
-                % md.num(quote_pro.get("Esordienti"), 1)))
+                % (md.num(quote_pro.get("Esordienti"), 1), md.num(esord[1], 1),
+                   md.num(esord[3], 1))))
 
     p.append(md.paragrafo(
         "",

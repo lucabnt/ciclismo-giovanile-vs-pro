@@ -36,6 +36,26 @@ def _p(x, decimali=3):
     return "< 0,001" if x < 0.001 else md.num(x, decimali)
 
 
+def _frase_porte(lt):
+    """Le due porte d'ingresso, con tutti i numeri sulla stessa popolazione.
+
+    La quota italiana e' calcolata sugli stessi professionisti del top 500 per porta,
+    cioe' quelli presenti in classifica a diciotto anni. Prima era un 63% scritto a
+    mano, su una popolazione piu' ampia, che nessuna rigenerazione avrebbe aggiornato.
+    """
+    porte = lt.valore("porta", "qualita_porte") or {}
+    ita, est = porte.get("italiana"), porte.get("internazionale")
+    if not (ita and est and ita.get("n") and est.get("n")):
+        return ""
+    return (" Una parte della spiegazione e' che la soglia non sia una sola: fra i "
+            "professionisti presenti in classifica a diciotto anni, il %s%% debutta in "
+            "una squadra a maggioranza italiana, e di questi arriva nel top 500 il %s%% "
+            "contro il %s%% di chi debutta in una squadra straniera, mentre il "
+            "rendimento giovanile predice le due porte allo stesso modo."
+            % (md.num(100 * ita["n"] / (ita["n"] + est["n"]), 0),
+               md.num(ita["quota"], 0), md.num(est["quota"], 0)))
+
+
 def rendi(lt):
     # Tutto viene riletto dai moduli che lo hanno prodotto: questa sezione non calcola.
     prov = lt.valori("provenienza")
@@ -179,8 +199,8 @@ def rendi(lt):
         p.append(md.paragrafo(
             "**Predire non e' selezionare.** Selezionando il 10%% migliore della "
             "classifica %s si intercetta il **%s%% dei futuri professionisti**, ma il "
-            "**%s%% dei selezionati non lo diventera'**. Con un esito che riguarda meno "
-            "del 3%% della coorte, anche un ordinamento accurato produce in maggioranza "
+            "**%s%% dei selezionati non lo diventera'**. Con un esito che riguarda "
+            "meno del 3%% della coorte, anche un ordinamento accurato produce in maggioranza "
             "falsi positivi: e' aritmetica della base, non un difetto del criterio."
             % (chiave.get("cella", "—"), md.num(chiave.get("sensibilita"), 0),
                md.num(100 - chiave.get("vpp", 0), 0))))
@@ -197,13 +217,10 @@ def rendi(lt):
             "cui intervallo di confidenza comprende l'uno per entrare nel top 500 fra i "
             "professionisti e nel top 100 fra i top 500: sui gradini successivi "
             "l'associazione non e' distinguibile dal caso, che non e' la stessa cosa "
-            "che averne dimostrata l'assenza. Una parte della spiegazione "
-            "e' che la soglia non sia una sola: il 63%% dei professionisti debutta in "
-            "una squadra a maggioranza italiana, e di questi arriva nel top 500 il 33%% "
-            "contro il 59%% di chi debutta in una squadra straniera, mentre il "
-            "rendimento giovanile predice le due porte allo stesso modo."
+            "che averne dimostrata l'assenza.%s"
             % (md.num(qua["ordinale"]["or"], 2), md.num(qua["ordinale"]["lo"], 2),
-               md.num(qua["ordinale"]["hi"], 2), md.num(primo_stadio, 2))))
+               md.num(qua["ordinale"]["hi"], 2), md.num(primo_stadio, 2),
+               _frase_porte(lt))))
 
     if att and pas:
         p.append(md.paragrafo(

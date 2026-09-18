@@ -249,9 +249,11 @@ def calcola():
                         "regioni con almeno 50 atleti" % (lo_b, hi_b))
         if righe_d:
             ar.valore("prime_tre_regioni", [r[0] for r in righe_d[:3]])
-            tot = sum(r[1] for r in righe_d)
+            # Il denominatore sono tutti gli atleti delle coorti allargate, come dice la
+            # frase che cita il numero, e non le sole regioni con almeno cinquanta atleti
+            # della tabella: su quella base ristretta il 51% diventava un 52%.
             ar.valore("quota_prime_tre",
-                      round(100 * sum(r[1] for r in righe_d[:3]) / tot, 0))
+                      round(100 * sum(r[1] for r in righe_d[:3]) / n_b, 0))
 
         if not os.environ.get("SENZA_FIGURE"):
             try:

@@ -254,22 +254,31 @@ def misure(src, out, celle, eta):
     out.execute("DROP TABLE IF EXISTS misure")
     out.execute("""CREATE TABLE misure (
         athlete_id TEXT, cella TEXT, eta INTEGER, categoria TEXT,
-        pct_punti REAL, pct_esteso REAL, punti REAL, top5 REAL, PRO INTEGER
+        pct_punti REAL, pct_esteso REAL, punti REAL, top5 REAL, PRO INTEGER,
+        stagione INTEGER, pari INTEGER
     )""")
+    # Un pari merito esiste solo dentro la stessa classifica: si conta sul campo completo
+    # della stagione e della cella, tutte le coorti comprese, e non fra i soli atleti in
+    # studio ne' sommando stagioni diverse. R legge il flag e ne fa soltanto la media.
+    from collections import Counter
+    campo = Counter(tuple(r) for r in src.execute(
+        """SELECT season, category, cat_year, points_raw FROM tab_a
+           WHERE sesso = ? AND cat_year IS NOT NULL""", (sesso,)))
     righe = []
     for c in celle:
         cat, anno = c.split("y")
         for r in src.execute(
                 """SELECT a.athlete_id, a.pct_rank, a.pct_rank_ext, a.points_raw,
-                          a.top5, b.PRO
+                          a.top5, b.PRO, a.season
                    FROM tab_a a JOIN tab_b b ON b.athlete_id = a.athlete_id
                    WHERE a.sesso = ? AND a.category = ? AND a.cat_year = ?
                      AND b.birth_year BETWEEN ? AND ?
                      AND a.pct_rank IS NOT NULL AND a.pct_rank_ext IS NOT NULL
                      AND b.PRO IS NOT NULL""",
                 (sesso, cat, int(anno), lo, hi)):
-            righe.append((r[0], c, eta.get(c), cat) + tuple(r[1:]))
-    out.executemany("INSERT INTO misure VALUES (?,?,?,?,?,?,?,?,?)", righe)
+            pari = int(campo[(r[6], cat, int(anno), r[3])] > 1)
+            righe.append((r[0], c, eta.get(c), cat) + tuple(r[1:]) + (pari,))
+    out.executemany("INSERT INTO misure VALUES (?,?,?,?,?,?,?,?,?,?,?)", righe)
     return len(righe)
 
 

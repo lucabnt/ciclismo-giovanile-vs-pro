@@ -31,6 +31,7 @@ COSA NON FA
 USO
     python scripts/11_verifica_documenti.py
 """
+import glob
 import json
 import os
 import re
@@ -248,6 +249,11 @@ def attesi_post(db):
              r"fra il 36,7% e il (\d+,\d)% dei punti"),
         ],
         "03_sparire_non_e_smettere.md": [
+            ("persone da Esordienti ad Allievi", v("attrito", "curva", 1, 2),
+             r"solo il (\d+,\d)% di chi era in Esordienti"),
+            ("classificati per anno di eta' da Esordienti ad Allievi",
+             riga("copertura", "imbuti", "Allievi", 4),
+             r"le teste che restano sono invece il (\d+)%"),
             ("stagioni medie dei professionisti",
              v("attrito", "stagioni_medie_pro"),
              r"in classifica per (\d,\d) stagioni in media"),
@@ -707,6 +713,46 @@ def attesi_post(db):
     }
 
 
+# Percentuali che possono stare scritte nel codice di resa perche' sono scelte di disegno,
+# non risultati: la soglia di selezione e il livello degli intervalli di confidenza. Il
+# limite «meno del 3%» e' ammesso solo se l'archivio lo conferma.
+COSTANTI_AMMESSE = {"10%%", "95%%"}
+LIMITE_PRO = "meno del 3%%"
+
+
+def numeri_scritti_a_mano(db, problemi):
+    """Cerca nella prosa dei moduli di resa percentuali scritte a mano.
+
+    Il documento generato non deve contenere numeri che non vengano dall'archivio: e'
+    la regola che rende impossibile, per costruzione, una cifra invecchiata. Un 63% e un
+    3,5% scritti dentro una stringa l'avevano aggirata senza che nessun controllo se ne
+    accorgesse. Guarda solo le percentuali: un «due volte» scritto a mano non lo vede.
+    """
+    print("report/moduli/*.py")
+    trovati = []
+    for percorso in sorted(glob.glob(os.path.join("report", "moduli", "*.py"))):
+        with open(percorso, encoding="utf-8") as f:
+            for i, testo in enumerate(f, 1):
+                if testo.lstrip().startswith("#"):
+                    continue
+                for m in re.finditer(r"(?:meno del )?\d+(?:,\d+)?%%", testo):
+                    t = m.group(0)
+                    if t in COSTANTI_AMMESSE:
+                        continue
+                    if t == LIMITE_PRO:
+                        pro = valore(db, "attrito", "pro_totali")
+                        tot = valore(db, "attrito", "atleti_totali")
+                        if pro and tot and 100 * pro / tot < 3:
+                            continue
+                    trovati.append("%s:%d  %s" % (percorso.replace(os.sep, "/"), i, t))
+    for t in trovati:
+        print("  percentuale scritta a mano nella resa: %s" % t)
+        problemi.append(t)
+    if not trovati:
+        print("  nessuna percentuale scritta a mano fuori dalle costanti di disegno")
+    print()
+
+
 def incrocio(db, livello, pendenza):
     """La percentuale di professionisti nella casella (livello, pendenza)."""
     for r in tabella(db, "traiettorie", "incrocio") or []:
@@ -865,6 +911,8 @@ def main():
         with open(percorso, encoding="utf-8") as f:
             controlla(f.read(), voci, problemi)
         print()
+
+    numeri_scritti_a_mano(db, problemi)
 
     if problemi:
         print("%d cifra/e non corrispondono piu' all'analisi." % len(problemi))

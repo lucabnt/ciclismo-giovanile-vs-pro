@@ -57,10 +57,15 @@ main <- function() {
               conf$coorti_a_c[1], conf$coorti_a_c[2]))
 
   # --- 1. quanto sono frequenti i pari merito ---------------------------------
-  # Si conta su stagione e cella, che e' l'unita' dentro cui il percentile si calcola.
-  pari <- dbGetQuery(dd, "SELECT cella, COUNT(*) n, COUNT(DISTINCT punti) distinti
+  # Un atleta e' a pari merito se qualcun altro ha il suo stesso punteggio nella
+  # classifica completa della sua stagione e cella: il flag viene da
+  # 08_prepara_modelli.py, perche' qui ci sono solo gli atleti delle coorti. La quota e'
+  # la parte di atleti a pari merito. Prima era uno meno il rapporto fra punteggi
+  # distinti e atleti, calcolato sommando stagioni diverse: un'altra grandezza, che in
+  # Under 23 gonfiava il dato fino a diciassette punti.
+  pari <- dbGetQuery(dd, "SELECT cella, COUNT(*) n, SUM(pari) condivisi
                           FROM misure GROUP BY cella")
-  pari$quota <- 100 * (1 - pari$distinti / pari$n)
+  pari$quota <- 100 * pari$condivisi / pari$n
 
   # --- 2. le due misure a confronto, cella per cella --------------------------
   righe <- list()

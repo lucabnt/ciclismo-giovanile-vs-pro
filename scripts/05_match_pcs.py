@@ -184,6 +184,26 @@ def abbina(gio, pcs, soglia):
     return esiti
 
 
+def annotazioni_precedenti():
+    """Verdetti e note scritti a mano nel file di lavoro, per identificativo di origine.
+
+    Si rileggono SOLO 'verdetto' e 'nota': tutte le altre colonne vengono riscritte dai
+    database, perche' aprendo il file in Excel le date vengono riformattate nel formato
+    locale e non sono piu' attendibili come dato.
+    """
+    precedenti = {}
+    if os.path.exists(AUDIT):
+        with open(AUDIT, encoding="utf-8-sig") as f:
+            testa = f.readline()
+            f.seek(0)
+            sep = ";" if testa.count(";") > testa.count(",") else ","
+            for r in csv.DictReader(f, delimiter=sep):
+                v, n = (r.get("verdetto") or "").strip(), (r.get("nota") or "").strip()
+                if v or n:
+                    precedenti[r.get("id_src")] = (v, n)
+    return precedenti
+
+
 def main():
     ap = argparse.ArgumentParser(description="Collega gli atleti giovanili ai profili PCS.")
     ap.add_argument("--soglia", type=float, default=SOGLIA,
@@ -197,11 +217,21 @@ def main():
     dst = sqlite3.connect(DB_ANALISI)
     dst.execute("DELETE FROM match_pcs")
     righe, audit = [], []
+    # Le verifiche fatte a mano stanno nel file di lavoro: si portano anche nella tabella,
+    # cosi' chi legge match_pcs vede quali abbinamenti sono stati controllati uno per uno.
+    # Prima 'verificato' e 'nota' restavano vuoti per tutti, e la prova del lavoro manuale
+    # stava solo in un file che la tabella non citava.
+    precedenti = annotazioni_precedenti()
     for pid, e in esiti.items():
         g = e["g"]
+        verdetto, nota = precedenti.get(str(g["src"]), ("", ""))
         righe.append((g["athlete_id"], pid, e["metodo"], round(e["score"], 3),
                       next((p["anno"] for p in pcs if p["pcs_id"] == pid), None),
-                      e["ambiguo"], ",".join(e["alternativi"]) or None, 0, None))
+                      e["ambiguo"], ",".join(e["alternativi"]) or None,
+                      # nel file il giudizio sta quasi sempre nella nota, con il
+                      # verdetto vuoto: conta come verificata una riga annotata
+                      1 if (verdetto or nota) else 0,
+                      "; ".join(x for x in (verdetto, nota) if x) or None))
         audit.append({
             "athlete_id": g["athlete_id"], "id_src": g["src"], "nome_giovanile": g["nome"],
             "pcs_id": pid, "metodo": e["metodo"], "score": round(e["score"], 3),
@@ -238,20 +268,8 @@ def main():
     dice("   I non abbinati sono in gran parte atleti che non hanno mai fatto punti nelle")
     dice("   classifiche giovanili italiane: stranieri, o arrivati da altre discipline.")
 
-    # Le annotazioni gia' scritte a mano nel file non vanno perse a ogni riesecuzione.
-    # Si rileggono SOLO 'verdetto' e 'nota': tutte le altre colonne vengono riscritte dai
-    # database, perche' aprendo il file in Excel le date vengono riformattate nel formato
-    # locale e non sono piu' attendibili come dato.
-    precedenti = {}
-    if os.path.exists(AUDIT):
-        with open(AUDIT, encoding="utf-8-sig") as f:
-            testa = f.readline()
-            f.seek(0)
-            sep = ";" if testa.count(";") > testa.count(",") else ","
-            for r in csv.DictReader(f, delimiter=sep):
-                v, n = (r.get("verdetto") or "").strip(), (r.get("nota") or "").strip()
-                if v or n:
-                    precedenti[r.get("id_src")] = (v, n)
+    # Le annotazioni gia' scritte a mano nel file non vanno perse a ogni riesecuzione:
+    # 'precedenti' e' stato letto prima di scrivere la tabella.
     conservate = 0
     for r in audit:
         v, n = precedenti.get(str(r["id_src"]), ("", ""))

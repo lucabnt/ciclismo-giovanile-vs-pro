@@ -1,6 +1,6 @@
 # Ranking giovanili italiani e transizione al professionismo
 
-*Documento generato da `report/assembla.py` il 2026-09-12. Ogni numero viene da una query: non c'è nulla scritto a mano.*
+*Documento generato da `report/assembla.py` il 2026-09-18. Ogni numero viene da una query: non c'è nulla scritto a mano.*
 
 | | |
 |---|---|
@@ -112,7 +112,7 @@
 
 **Predire non è selezionare.** Selezionando il 10% migliore della classifica U19y2 si intercetta il **59% dei futuri professionisti**, ma il **52% dei selezionati non lo diventerà**. Con un esito che riguarda meno del 3% della coorte, anche un ordinamento accurato produce in maggioranza falsi positivi: è aritmetica della base, non un difetto del criterio.
 
-**Predice l'ingresso, non la profondità della carriera.** Sulla scala a quattro livelli il rendimento Under 19 moltiplica per 2,50 l'odds di salire di gradino (IC 95% 2,15-2,90). Ma scomponendo il percorso in stadi successivi, il coefficiente vale 2,47 per diventare professionista e scende a valori il cui intervallo di confidenza comprende l'uno per entrare nel top 500 fra i professionisti e nel top 100 fra i top 500: sui gradini successivi l'associazione non è distinguibile dal caso, che non è la stessa cosa che averne dimostrata l'assenza. Una parte della spiegazione è che la soglia non sia una sola: il 63% dei professionisti debutta in una squadra a maggioranza italiana, e di questi arriva nel top 500 il 33% contro il 59% di chi debutta in una squadra straniera, mentre il rendimento giovanile predice le due porte allo stesso modo.
+**Predice l'ingresso, non la profondità della carriera.** Sulla scala a quattro livelli il rendimento Under 19 moltiplica per 2,50 l'odds di salire di gradino (IC 95% 2,15-2,90). Ma scomponendo il percorso in stadi successivi, il coefficiente vale 2,47 per diventare professionista e scende a valori il cui intervallo di confidenza comprende l'uno per entrare nel top 500 fra i professionisti e nel top 100 fra i top 500: sui gradini successivi l'associazione non è distinguibile dal caso, che non è la stessa cosa che averne dimostrata l'assenza. Una parte della spiegazione è che la soglia non sia una sola: fra i professionisti presenti in classifica a diciotto anni, il 60% debutta in una squadra a maggioranza italiana, e di questi arriva nel top 500 il 33% contro il 59% di chi debutta in una squadra straniera, mentre il rendimento giovanile predice le due porte allo stesso modo.
 
 **Uscire dalla classifica non è smettere.** Il **30,6%** degli atleti salta almeno una stagione e poi ricompare, e metà dei classificati al secondo anno di Allievi non c'era al primo. Il crollo apparente al cambio di categoria — resta il 32,4% contro il 80,0% dei passaggi interni — non viene dalla scarsità dei posti ma dalla concorrenza fra annate: la classifica di arrivo è composta per il 88,2% da chi c'era già, contro il 60,7% dei passaggi interni. Il confronto con i tesserati federali conferma dall'esterno che la classifica non si restringe più in fretta della popolazione che la genera.
 
@@ -233,21 +233,21 @@ Non abbiamo il dettaglio delle singole gare, ma la conseguenza si vede lo stesso
 
 ### Ma i pari merito sono moltissimi
 
-Resta un problema diverso, e più grande di quanto sembri. La scala assegna cinque punti alla vittoria e uno al quinto posto, quindi i totali possibili sono pochi e gli atleti tanti: **fino al 95,1% dei classificati condivide il proprio punteggio con qualcun altro**. Guardando solo i punti, quegli atleti sono indistinguibili.
+Resta un problema diverso, e più grande di quanto sembri. La scala assegna cinque punti alla vittoria e uno al quinto posto, quindi i totali possibili sono pochi e gli atleti tanti: **fino al 94,7% dei classificati condivide il proprio punteggio con qualcun altro**. Guardando solo i punti, quegli atleti sono indistinguibili.
 
-Il progetto lo aveva previsto e aveva scelto di scioglierli guardando prima le vittorie, poi i secondi posti e così via fino al quinto. La scelta era stata presa **prima di guardare qualunque esito**, il che permette ora di metterla alla prova senza il sospetto di averla scelta perché funzionava.
+Il progetto lo aveva previsto e aveva scelto di scioglierli guardando prima le vittorie, poi i secondi posti e così via fino al quinto. La scelta è registrata in `docs/definizioni.md` fin dal primo commit del repository ed è stata presa **prima di guardare qualunque esito**, il che permette ora di metterla alla prova senza il sospetto di averla scelta perché funzionava. Quest'ultima parte è una dichiarazione e non una prova: del lavoro precedente al repository non resta traccia.
 
 C'è di più, ed è emerso dopo: quel criterio non è una nostra invenzione ma **la regola di spareggio che il regolamento della fonte dichiara**, nelle stesse parole e nello stesso ordine. Ricostruendo il percentile con esso non stiamo quindi imponendo un ordinamento nostro, stiamo riproducendo quello pubblicato. Il regolamento prosegue con due criteri ulteriori che qui non si applicano: a parità anche di piazzamenti vince chi ha raggiunto per primo il punteggio, e in ultimo il più giovane. Il primo chiederebbe la data di ogni gara, che non abbiamo; il secondo introdurrebbe l'età dentro la misura, che è esattamente ciò che non vogliamo. Chi resta a pari merito qui ha lo stesso identico palmares, e la tabella qui sotto mostra che spingersi oltre non servirebbe.
 
 | cella | atleti | professionisti | pari merito | AUC sui punti | AUC con il criterio esteso | differenza | p |
 |---|---|---|---|---|---|---|---|
-| U15y1 | 1678 | 59 | 93,7% | 0,737 | 0,735 | -0,002 | 0,246 |
-| U15y2 | 1786 | 63 | 95,1% | 0,786 | 0,786 | +0,000 | 0,935 |
-| U17y1 | 927 | 62 | 94,1% | 0,812 | 0,814 | +0,002 | 0,340 |
-| U17y2 | 1602 | 72 | 94,3% | 0,859 | 0,858 | -0,001 | 0,418 |
-| U19y1 | 701 | 68 | 90,4% | 0,807 | 0,806 | -0,001 | 0,796 |
-| U19y2 | 901 | 74 | 89,1% | 0,889 | 0,889 | +0,001 | 0,402 |
-| U23y1 | 137 | 51 | 77,4% | 0,711 | 0,699 | -0,011 | 0,161 |
+| U15y1 | 1678 | 59 | 92,7% | 0,737 | 0,735 | -0,002 | 0,246 |
+| U15y2 | 1786 | 63 | 94,7% | 0,786 | 0,786 | +0,000 | 0,935 |
+| U17y1 | 927 | 62 | 93,9% | 0,812 | 0,814 | +0,002 | 0,340 |
+| U17y2 | 1602 | 72 | 94,1% | 0,859 | 0,858 | -0,001 | 0,418 |
+| U19y1 | 701 | 68 | 88,9% | 0,807 | 0,806 | -0,001 | 0,796 |
+| U19y2 | 901 | 74 | 87,5% | 0,889 | 0,889 | +0,001 | 0,402 |
+| U23y1 | 137 | 51 | 65,7% | 0,711 | 0,699 | -0,011 | 0,161 |
 
 *le due misure sono calcolate sugli stessi atleti: il confronto è appaiato, e il test di DeLong ne tiene conto*
 
@@ -545,7 +545,7 @@ Un'ultima domanda, che lega questa sezione al resto del documento: quanta parte 
 
 *coorti in studio; il rapporto dice quante volte i futuri professionisti sono sovrarappresentati nei piazzamenti a punti*
 
-Già in Esordienti i futuri professionisti prendono il **7,3%** dei posti pur essendo il 3,5% dei classificati, cioè due volte la loro quota. È la stessa cosa che le sezioni sui punteggi mostrano con i percentili, vista dal lato dei posti invece che da quello degli atleti: a tredici anni il vantaggio si vede già.
+Già in Esordienti i futuri professionisti prendono il **7,3%** dei posti pur essendo il 3,5% dei classificati, cioè 2,1 volte la loro quota. È la stessa cosa che le sezioni sui punteggi mostrano con i percentili, vista dal lato dei posti invece che da quello degli atleti: a tredici anni il vantaggio si vede già.
 
 > **Un limite della stima dei posti.** Contare le gare dai piazzamenti assume che ogni gara assegni cinque posti e che tutti i piazzamenti finiscano in classifica. Per l'Under 23 il conto è un limite inferiore, perché la lista sorgente comprende anche gli Elite, che qui restano fuori dalla finestra d'età: le gare vere sono di più di quelle stimate, e i posti che i giovani non prendono vanno in parte a corridori più grandi che questo studio non conta.
 
@@ -664,19 +664,19 @@ Fra ragazzi della stessa annata, chi è nato a gennaio ha fino a dodici mesi di 
 
 Il confronto non è con il 25 per cento per trimestre. In Italia si nasce di più fra maggio e settembre, e il primo trimestre è il **più scarso** della popolazione: l'atteso è Q1 23,95%, Q2 25,24%, Q3 26,30%, Q4 24,50%. Usare l'uniforme sottostimerebbe l'effetto invece di sovrastimarlo.
 
-> **Come si misura — Rapporto fra osservato e atteso, e V di Cramer**
+> **Come si misura — Rapporto fra osservato e atteso, e w di Cohen**
 >
 > Per ogni trimestre si divide la quota di atleti nati in quel trimestre per la quota di nati nella popolazione italiana delle stesse annate. Un valore di 1,39 significa che quel trimestre è rappresentato del 39% in più di quanto la demografia giustifichi.
 >
-> La V di Cramer riassume in un solo numero quanto l'intera distribuzione si discosta dall'attesa: va da 0, distribuzione identica all'attesa, a 1. Si riporta al posto del p-value del test chi quadro perché con migliaia di osservazioni quel test risulta significativo anche per squilibri irrilevanti, mentre la V misura l'entità dello squilibrio e non la sua rilevabilità.
+> La w di Cohen riassume in un solo numero quanto l'intera distribuzione si discosta dall'attesa: vale 0 quando la distribuzione coincide con l'attesa e cresce con lo scostamento, e con quattro trimestri non può superare la radice di 3. Per convenzione 0,1, 0,3 e 0,5 indicano un effetto piccolo, medio e grande. Si riporta al posto del p-value del test chi quadro perché con migliaia di osservazioni quel test risulta significativo anche per squilibri irrilevanti, mentre w misura l'entità dello squilibrio e non la sua rilevabilità.
 >
 > L'attesa demografica viene dalle nascite mensili registrate in Italia, non da una distribuzione uniforme.
 >
-> Approfondimenti: [Bontà di adattamento](https://en.wikipedia.org/wiki/Goodness_of_fit) · [V di Cramer](https://en.wikipedia.org/wiki/Cram%C3%A9r%27s_V) · [Effetto dell'età relativa](https://en.wikipedia.org/wiki/Relative_age_effect) · [Nascite per mese, Eurostat](https://ec.europa.eu/eurostat/databrowser/view/demo_fmonth/default/table)
+> Approfondimenti: [Bontà di adattamento](https://en.wikipedia.org/wiki/Goodness_of_fit) · [w di Cohen](https://en.wikipedia.org/wiki/Effect_size#Cohen%27s_w) · [Effetto dell'età relativa](https://en.wikipedia.org/wiki/Relative_age_effect) · [Nascite per mese, Eurostat](https://ec.europa.eu/eurostat/databrowser/view/demo_fmonth/default/table)
 
 ### Chi entra nel ranking
 
-| categoria | atleti | Q1 oss/att | Q2 | Q3 | Q4 | Q1/Q4 | V di Cramer |
+| categoria | atleti | Q1 oss/att | Q2 | Q3 | Q4 | Q1/Q4 | w di Cohen |
 |---|---|---|---|---|---|---|---|
 | U15 | 2177 | 1,39 | 1,12 | 0,85 | 0,65 | 2,13 | 0,28 |
 | U17 | 1741 | 1,30 | 1,02 | 0,95 | 0,75 | 1,75 | 0,20 |
@@ -712,7 +712,7 @@ La prova più forte sta nei modelli. Aggiungendo l'età relativa, il peso del pi
 
 Il confronto ha un motivo sostanziale, oltre alla disponibilità dei dati. Le ragazze maturano prima: a tredici anni molte hanno già attraversato la pubertà, mentre fra i coetanei maschi la differenza di sviluppo fra gennaio e dicembre è al suo massimo. Se il vantaggio di essere nati a inizio anno è un vantaggio di maturazione, e non di talento, fra le atlete dovrebbe essere più debole.
 
-| categoria | sesso | atleti | coorti | Q1 oss/att | Q4 oss/att | Q1/Q4 | V di Cramer | p |
+| categoria | sesso | atleti | coorti | Q1 oss/att | Q4 oss/att | Q1/Q4 | w di Cohen | p |
 |---|---|---|---|---|---|---|---|---|
 | U15 | maschi | 5 544 | 1997-2012 | 1,37 | 0,69 | 1,98 | 0,254 | < 0,001 |
 | U15 | femmine | 874 | 1997-2012 | 1,31 | 0,87 | 1,51 | 0,188 | < 0,001 |
@@ -725,7 +725,7 @@ Il confronto ha un motivo sostanziale, oltre alla disponibilità dei dati. Le ra
 
 **A tredici anni il pattern è quello atteso, e regge a un test.** In U15 i nati nel primo trimestre sono, rispetto all'atteso, 1,98 volte quelli dell'ultimo fra i maschi e 1,51 volte fra le femmine, sulle stesse coorti e con lo stesso atteso demografico; la differenza fra i due sessi ha p = 0,007 al chi quadro sui due trimestri estremi, che sulle stesse coorti basta, perché l'atteso demografico è lo stesso per tutti e due e si semplifica. È il risultato che ci si aspetta se il vantaggio è soprattutto di maturazione, anche se da solo non lo dimostra.
 
-> **Due cautele, e sono serie.** Le atlete sono 874 in Esordienti contro 5 544 atleti, quindi gli intervalli attorno ai valori femminili sono molto più larghi. E oltre i quattordici anni i valori femminili non seguono una linea: in Allieve lo squilibrio non si distingue dall'atteso (p = 0,144 su 681 atlete), in Juniores torna a distinguersi (p = 0,001 su 370), con una V di Cramer di 0,205, più alta dello 0,188 delle Esordienti. Nessuno dei due va preso come conferma o come smentita dell'ipotesi, perché con poche centinaia di atlete per categoria non si può dire se fra Allieve e Juniores ci sia una differenza vera. Quello che si può dire con ragionevole sicurezza riguarda le età più basse, dove i numeri sono maggiori.
+> **Due cautele, e sono serie.** Le atlete sono 874 in Esordienti contro 5 544 atleti, quindi gli intervalli attorno ai valori femminili sono molto più larghi. E oltre i quattordici anni i valori femminili non seguono una linea: in Allieve lo squilibrio non si distingue dall'atteso (p = 0,144 su 681 atlete), in Juniores torna a distinguersi (p = 0,001 su 370), con una w di Cohen di 0,205, più alta dello 0,188 delle Esordienti. Nessuno dei due va preso come conferma o come smentita dell'ipotesi, perché con poche centinaia di atlete per categoria non si può dire se fra Allieve e Juniores ci sia una differenza vera. Quello che si può dire con ragionevole sicurezza riguarda le età più basse, dove i numeri sono maggiori.
 
 ![A tredici anni fra le atlete lo squilibrio c'è ma è più contenuto. Dopo, i valori femminili poggiano su poche centinaia di atlete e non seguono una linea: in Allieve non si distinguono dall'atteso, in Juniores sì.](figure/rae_sessi.png)
 
@@ -902,7 +902,7 @@ Per la sola geografia conviene allargare le coorti. La regione di partenza non e
 
 *coorti 1992-2000, più ampie del resto del documento; solo le regioni con almeno 50 atleti; la colonna dei professionisti non è mascherata perché il conteggio si ricaverebbe comunque dalla percentuale e dal numero di atleti della stessa riga*
 
-La concentrazione geografica è forte: lombardia, veneto, toscana da sole raccolgono circa il 52% degli atleti.
+La concentrazione geografica è forte: lombardia, veneto, toscana da sole raccolgono circa il 51% degli atleti.
 
 Sui tassi, invece, conviene restare prudenti anche con le coorti allargate. Fra la regione con il tasso più alto (trentino alto adige, 6,32%) e quella più bassa (campania, 0,00%) la distanza sembra enorme, ma nasce da poche decine di professionisti distribuiti su venti regioni: bastano due o tre atleti in più o in meno per riordinare la classifica. **Questa tabella si legge come una mappa della partecipazione, non come una graduatoria dei vivai.**
 
@@ -1416,7 +1416,7 @@ Il numero di professionisti cambia da una sezione all'altra di questo documento,
 | quando si diventa professionisti | 1996-2008 | 5 604 | 121 | tutte le coorti disponibili, con censura: qui si contano gli eventi, non le persone |
 | sensibilità sulle definizioni | 1996-2000 | 901 | da 26 a 151 | cambia cosa conta come professionismo, a parità di atleti |
 
-Resta un settimo numero, e sta fuori da questa tabella perché non viene da una query: `docs/definizioni.md` congela **78 eventi PRO** per le coorti 1996-2000. Quel file è stato scritto prima di guardare i dati, come impone la procedura, e prima della verifica manuale degli abbinamenti — diciotto date corrette, dieci atleti duplicati riuniti in uno solo. Il conteggio che si rigenera oggi è quello della prima riga, e ho provato a ricostruire da dove venga la differenza di uno senza riuscirci: nessuna delle correzioni manuali sposta un professionista dentro o fuori quelle coorti. La riporto così com'è invece di inventarle una causa.
+Resta un settimo numero, e sta fuori da questa tabella perché non viene da una query: `docs/definizioni.md` congela **78 eventi PRO** per le coorti 1996-2000. Quel file compare nel primo commit del repository ed è stato scritto prima di guardare i dati, come impone la procedura (lo si può dichiarare, non dimostrare: il lavoro precedente al repository non lascia traccia), e prima della verifica manuale degli abbinamenti — diciotto date corrette, dieci atleti duplicati riuniti in uno solo. Il conteggio che si rigenera oggi è quello della prima riga, e ho provato a ricostruire da dove venga la differenza di uno senza riuscirci: nessuna delle correzioni manuali sposta un professionista dentro o fuori quelle coorti. La riporto così com'è invece di inventarle una causa.
 
 *Nota sui confronti multipli.* Questo documento riporta decine di stime con il loro intervallo di confidenza e **non applica nessuna correzione** per la molteplicità dei confronti. È una scelta, e va saputa: gli intervalli vanno letti uno per uno, e un singolo p-value appena sotto la soglia convenzionale, in mezzo a tanti, non è una scoperta. I risultati su cui il documento si appoggia sono quelli che restano in piedi per ordine di grandezza, non per un decimale.
 
