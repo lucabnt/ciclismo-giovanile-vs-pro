@@ -11,6 +11,7 @@ certifi>=2024.0
 
 # Livello di produzione (report/)
 matplotlib>=3.8            # solo per le figure
+Pillow>=10.0               # conversione delle figure in WebP per i post
 scipy>=1.11                # test statistici della descrittiva
 
 # --------------------------------------------------------------------------

@@ -28,6 +28,10 @@ output/*
 # rigenera con lo stesso comando; nel repository sarebbero due megabyte di doppioni.
 output/figure_web/
 
+# Le stesse figure convertite in WebP, piu' quelle esterne: e' il formato con cui vanno
+# nei post. Doppioni anche loro, e si rifanno con `python scripts/12_figure_webp.py`.
+output/figure_webp/
+
 *.db-wal
 *.db-shm
 

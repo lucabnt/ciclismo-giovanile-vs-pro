@@ -68,6 +68,22 @@ def intestazione(lt, moduli):
     ])
 
 
+def aggiorna_webp():
+    """Riconverte in WebP le figure per il blog, che stanno fuori dal repository.
+
+    Sta qui e non a parte perche' una conversione da fare a mano, una figura per volta al
+    momento di pubblicare, prima o poi manda online una figura vecchia. Se qualcosa non va
+    lo si dice e si prosegue: il documento e' gia' scritto, e le WebP servono solo ai post.
+    """
+    try:
+        sys.path.insert(0, "scripts")
+        from importlib import import_module
+        import_module("12_figure_webp").converti(dice=dice)
+    except Exception as e:
+        dice("   WebP non aggiornate (%s). Si rifanno con: python scripts/12_figure_webp.py"
+             % e)
+
+
 def main():
     ap = argparse.ArgumentParser(description="Assembla il documento delle analisi.")
     ap.add_argument("--solo-testo", action="store_true",
@@ -139,6 +155,7 @@ def main():
         f.write(documento + "\n")
     dice("\nScritto %s (%d sezioni, %d caratteri)"
          % (USCITA, len(parti) - 1, os.path.getsize(USCITA)))
+    aggiorna_webp()
     return 1 if cadute else 0
 
 
