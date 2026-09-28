@@ -289,18 +289,19 @@ def rendi(lt):
             p.append(md.paragrafo(
                 "",
                 md.afferma(
-                    abs(pen["rapporto"] - 1) < 0.05 and liv["rapporto"] < 1.5,
-                    "l'incertezza delle traiettorie stimate allarga gli intervalli "
-                    "di poco, e quello sulla pendenza quasi per niente",
+                    1 <= liv["rapporto"] < 1.5 and 1 <= pen["rapporto"] < 1.5,
+                    "l'incertezza delle traiettorie stimate allarga i due intervalli, e "
+                    "nessuno dei due arriva a una volta e mezzo quello a uno stadio",
                     "Gli intervalli invece si muovono, e non allo stesso modo. Quello sul "
                     "livello si allarga di circa il %s%%%s. Quello sulla pendenza — il "
                     "piu' ampio fin dall'inizio, e quello su cui poggia il risultato "
-                    "principale della sezione sulle traiettorie — cambia di ampiezza "
-                    "dello %s%% e si sposta appena. L'incertezza delle stime individuali "
-                    "c'e', dunque, ma e' piccola rispetto a quella che gli intervalli "
-                    "portavano gia'."
+                    "principale della sezione sulle traiettorie — si allarga del %s%%, "
+                    "cioe' di piu': l'incertezza con cui le singole traiettorie sono "
+                    "stimate si vede proprio dove il modello ha meno da dire. Resta pero' "
+                    "una frazione dell'incertezza che quegli intervalli portavano gia', e "
+                    "la conclusione della sezione sulle traiettorie non cambia."
                     % (md.num((liv["rapporto"] - 1) * 100, 0), verso,
-                       md.num(abs(pen["rapporto"] - 1) * 100, 1)))))
+                       md.num((pen["rapporto"] - 1) * 100, 0)))))
 
         p.append(md.paragrafo(
             "",

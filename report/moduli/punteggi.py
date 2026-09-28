@@ -215,9 +215,14 @@ def disegna(curva, ar, lo, hi):
         y = [c[1] for c in curva]
         colori = [gr.COLORI[1] if c[0].startswith("U23") else gr.COLORI[0] for c in curva]
         ax.bar(x, y, color=colori, zorder=3)
-        for soglia, nome in SOGLIE_DELTA:
+        # In SOGLIE_DELTA ogni nome e' la fascia che sta SOTTO la soglia, che e' quello
+        # che serve a etichetta_delta(). Qui l'etichetta viene scritta SOPRA la linea,
+        # quindi va usato il nome della fascia che comincia sopra: prima le tre soglie
+        # portavano il nome di sotto e una quarta linea, disegnata a 0,47 come la terza e
+        # chiamata «grande», ci finiva sopra: le due scritte si sovrapponevano.
+        sopra = [nome for _, nome in SOGLIE_DELTA][1:] + ["grande"]
+        for (soglia, _), nome in zip(SOGLIE_DELTA, sopra):
             gr.linea_riferimento(ax, soglia, nome)
-        gr.linea_riferimento(ax, 0.47, "grande")
         for i, (c, dl, npro, ntot) in enumerate(curva):
             ax.annotate("%.2f" % dl, (i, dl), textcoords="offset points",
                         xytext=(0, 4), ha="center", fontsize=9)

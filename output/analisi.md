@@ -1,6 +1,6 @@
 # Ranking giovanili italiani e transizione al professionismo
 
-*Documento generato da `report/assembla.py` il 2026-09-18. Ogni numero viene da una query: non c'è nulla scritto a mano.*
+*Documento generato da `report/assembla.py` il 2026-09-28. Ogni numero viene da una query: non c'è nulla scritto a mano.*
 
 | | |
 |---|---|
@@ -14,12 +14,6 @@
 > I risultati riguardano **gruppi, non persone**. Le celle con meno di 5 atleti sono mascherate: i dati riguardano minorenni.
 
 ---
-
-> ⚠️ **Attenzione: 1 osservazione/i del testo non sono piu' sostenute dai dati.**
->
-> Il documento si rigenera dai dati, ma i commenti che li interpretano sono scritti a mano. Queste premesse valevano quando i commenti sono stati scritti e oggi non valgono piu': i paragrafi corrispondenti, segnalati nel testo, vanno riscritti.
->
-> - l'incertezza delle traiettorie stimate allarga gli intervalli di poco, e quello sulla pendenza quasi per niente
 
 ## Indice
 
@@ -1456,9 +1450,7 @@ Non è un difetto grave, e conviene dire perché. Il modello misto non vede mai 
 
 Rifacendo il conto con il modello misto **dentro** il ciclo — 500 ricampionamenti per grappoli, che estraggono atleti interi e non singole stagioni — **l'ottimismo resta dov'era**: 0,0018, contro 0,0014 del conto a uno stadio, e l'AUC corretta vale ancora 0,917. È quello che ci si doveva aspettare se il primo stadio, non vedendo mai l'esito, non ha modo di adattarvisi: adesso non è più un argomento, è un numero.
 
-> ⚠️ **Commento da riscrivere.** La frase qui sotto è stata scritta quando valeva questa premessa: *l'incertezza delle traiettorie stimate allarga gli intervalli di poco, e quello sulla pendenza quasi per niente*. Con i dati di oggi non vale più.
-
-Gli intervalli invece si muovono, e non allo stesso modo. Quello sul livello si allarga di circa il 4%, soprattutto verso l'alto. Quello sulla pendenza — il più ampio fin dall'inizio, e quello su cui poggia il risultato principale della sezione sulle traiettorie — cambia di ampiezza dello 12,5% e si sposta appena. L'incertezza delle stime individuali c'è, dunque, ma è piccola rispetto a quella che gli intervalli portavano già.
+Gli intervalli invece si muovono, e non allo stesso modo. Quello sul livello si allarga di circa il 4%, soprattutto verso l'alto. Quello sulla pendenza — il più ampio fin dall'inizio, e quello su cui poggia il risultato principale della sezione sulle traiettorie — si allarga del 13%, cioè di più: l'incertezza con cui le singole traiettorie sono stimate si vede proprio dove il modello ha meno da dire. Resta però una frazione dell'incertezza che quegli intervalli portavano già, e la conclusione della sezione sulle traiettorie non cambia.
 
 Il calcolo sta in `R/26_bootstrap_traiettorie.R`, che è il passo più lento della catena e si esegue a parte: gli altri script si rieseguono in secondi, questo ristima un modello misto a ogni ripetizione.
 

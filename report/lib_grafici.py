@@ -158,8 +158,14 @@ def _timbro(fig):
 
     Sta sotto il grafico e fuori dagli assi: `bbox_inches="tight"` allarga l'immagine per
     comprenderla, quindi non copre niente.
+
+    La quota non e' fissa. Alcuni moduli scrivono sotto l'asse una nota lunga quanto tutta
+    la figura, e una data ancorata a destra a quota fissa ci finiva sopra: si cerca quindi
+    il testo piu' in basso gia' presente e ci si mette sotto.
     """
-    return fig.text(1.0, -0.02, "elaborazione del %s" % date.today(), ha="right", va="top",
+    quote = [t.get_position()[1] for t in fig.texts if t.get_position()[1] < 0]
+    y = min(quote) - 0.035 if quote else -0.02
+    return fig.text(1.0, y, "elaborazione del %s" % date.today(), ha="right", va="top",
                     fontsize=7, color=RIFERIMENTO)
 
 
