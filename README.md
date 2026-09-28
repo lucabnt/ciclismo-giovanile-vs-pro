@@ -73,7 +73,7 @@ una versione di R non si caricano con una precedente: con `logistf` installato s
 | 9 | `python scripts/08_prepara_modelli.py` | qualche minuto | costruisce `modelli.db`, il rettangolo che legge R |
 | 10 | `Rscript R/16_univariati.R` … `R/30_misura.R` | qualche minuto in tutto | i modelli, nell'ordine elencato più avanti |
 | 11 | `python scripts/10_sensibilita.py` | qualche minuto | analisi di sensibilità |
-| 12 | `python report/assembla.py` | un minuto | genera `output/analisi.md` e le figure |
+| 12 | `python report/assembla.py` | un minuto | genera `output/analisi.md` e le figure. Esce con codice 1 se un commento interpretativo non e' piu' sostenuto dai dati: il documento viene scritto lo stesso, con l'avviso in testa, ma il paragrafo segnalato va riscritto |
 | 13 | `Rscript R/26_bootstrap_traiettorie.R` | cinque minuti | facoltativo: l'incertezza delle traiettorie stimate; poi si rilancia il 12 |
 
 **Due trappole, entrambe già costate tempo.** La prima: `01` ricostruisce `analisi.db` da

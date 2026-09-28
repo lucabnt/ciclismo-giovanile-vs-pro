@@ -720,6 +720,30 @@ COSTANTI_AMMESSE = {"10%%", "95%%"}
 LIMITE_PRO = "meno del 3%%"
 
 
+def commenti_da_riscrivere(problemi):
+    """Cerca in analisi.md i commenti che le loro premesse non sostengono piu'.
+
+    Il documento li segnala gia' da solo, con un riquadro in testa e uno accanto al
+    paragrafo: e' il meccanismo di md.afferma(). Ma un avviso dentro un documento di
+    millesettecento righe si legge solo se qualcuno lo cerca, e uno di questi e' rimasto
+    in pagina per sei giorni senza che nessuno se ne accorgesse. Qui diventa un controllo
+    che fallisce.
+    """
+    print(ANALISI.replace(os.sep, "/"))
+    if not os.path.exists(ANALISI):
+        print("  manca, salto\n")
+        return
+    with open(ANALISI, encoding="utf-8") as f:
+        testo = f.read()
+    n = testo.count("Commento da riscrivere")
+    if n:
+        print("  %d commento/i del testo non sono piu' sostenuti dalle loro premesse" % n)
+        problemi.append("commenti da riscrivere in analisi.md: %d" % n)
+    else:
+        print("  nessun commento in attesa di riscrittura")
+    print()
+
+
 def numeri_scritti_a_mano(db, problemi):
     """Cerca nella prosa dei moduli di resa percentuali scritte a mano.
 
@@ -912,6 +936,7 @@ def main():
             controlla(f.read(), voci, problemi)
         print()
 
+    commenti_da_riscrivere(problemi)
     numeri_scritti_a_mano(db, problemi)
 
     if problemi:

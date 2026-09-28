@@ -129,12 +129,18 @@ def main():
              % len(cadute))
         for c in cadute:
             dice("     - %s" % c)
+        dice("   Il documento e' stato scritto lo stesso, con l'avviso in testa e i "
+             "paragrafi segnalati,")
+        dice("   ma questo comando esce con codice 1: un commento interpretativo "
+             "invecchiato e' un errore")
+        dice("   da correggere, non una nota a schermo che scorre via.")
 
     with open(USCITA, "w", encoding="utf-8") as f:
         f.write(documento + "\n")
     dice("\nScritto %s (%d sezioni, %d caratteri)"
          % (USCITA, len(parti) - 1, os.path.getsize(USCITA)))
+    return 1 if cadute else 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
