@@ -5,6 +5,8 @@
 *Documento di lavoro — impostazione, metodi statistici spiegati da zero, piano operativo*
 *Versione 5 — società e regione disponibili come variabili tempo-varianti*
 
+> **Questo è il piano, scritto prima di guardare i risultati, e in più punti i dati l'hanno smentito.** L'effetto dell'età relativa, qui dato per non misurabile, è diventato una sezione intera dopo che le date di nascita complete sono state scaricate. I numeri che compaiono nelle frasi d'esempio (*«del tipo:»*, *«qualcosa come:»*) sono inventati per mostrare la forma della conclusione, non sono risultati. I risultati stanno tutti in [`output/analisi.md`](output/analisi.md), e dove i due documenti divergono è quello ad avere ragione.
+
 ---
 
 ## Cosa è cambiato in questa versione

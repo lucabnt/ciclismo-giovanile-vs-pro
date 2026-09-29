@@ -262,7 +262,7 @@ I dati riguardano **minorenni**. Valgono, indipendentemente dal fatto che siano 
 
 - **Anonimizzazione all'origine.** `athlete_id` = SHA-256 di `id_atleta` con un salt segreto. Tutte le tabelle di analisi usano solo `athlete_id`.
 - **Il salt sta fuori dal repository** (`data/private/salt.txt`, generato al primo avvio). Nel sorgente l'anonimizzazione sarebbe solo apparente: con 37.704 valori possibili di `id_atleta`, la mappa inversa si calcola per forza bruta in pochi secondi.
-- **Nel repository entra solo cio' che e' anonimo.** `.gitignore` nega tutto sotto `data/` e autorizza per eccezione; `scripts/00_check_privacy.py` lo verifica prima di ogni commit e cerca nomi di atleti nei file destinati a git.
+- **Nel repository entra solo ciò che è anonimo.** `.gitignore` nega tutto sotto `data/` e autorizza per eccezione; `scripts/00_check_privacy.py` lo verifica prima di ogni commit e cerca nomi di atleti nei file destinati a git.
 - **La chiave di corrispondenza** (`data/private/crosswalk_atleti.csv`) contiene nomi e cognomi, serve solo per il matching e la verifica manuale, **non va committata** e va cancellata a lavoro finito.
 - **Solo aggregati nella pubblicazione.** Nessun risultato individuale, nessun esempio nominativo, nessuna cella con meno di 5 atleti.
 - **Nessuna classifica di "promesse"**, nemmeno anonima. È esattamente l'uso improprio che i risultati dello studio sconsigliano.

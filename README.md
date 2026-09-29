@@ -4,7 +4,9 @@ Analisi predittiva sui ranking nazionali giovanili italiani (ciclismo.info, 2007
 
 Impianto metodologico: [`guida_metodologica_v5.md`](guida_metodologica_v5.md).
 
-> **In English.** A statistical study of Italian youth cycling rankings (ciclismo.info, seasons 2007-2025) and of who later races professionally (ProCyclingStats). It asks from what age race results say something about a rider's future. They already do at thirteen, more than the literature expected; the study then measures why that is still a poor basis for selection, since most of the riders any threshold would flag never turn professional. Published here are the code, the generated report (`output/analisi.md`) and the results archive (`output/risultati.db`) that every number in it is drawn from. The underlying data are not published, because they concern minors. Code is MIT, text and figures CC BY 4.0. Everything else, this file included, is in Italian.
+**I risultati raccontati per esteso:** [Ciclismo giovanile e professionismo](https://lucabontempi.com/series/ciclismo-giovanile-e-professionismo/), la serie di post che li presenta uno per volta. Ogni cifra citata lì viene da [`output/analisi.md`](output/analisi.md), che sta in questo repository insieme all'archivio da cui è generato: è il motivo per cui il repository è pubblico.
+
+> **In English.** A statistical study of Italian youth cycling rankings (ciclismo.info, seasons 2007-2025) and of who later races professionally (ProCyclingStats). It asks from what age race results say something about a rider's future. They already do at thirteen, more than the literature expected; the study then measures why that is still a poor basis for selection, since most of the riders any threshold would flag never turn professional. Published here are the code, the generated report (`output/analisi.md`) and the results archive (`output/risultati.db`) that every number in it is drawn from. The underlying data are not published, because they concern minors. Code is MIT, text and figures CC BY 4.0. The blog series that presents these results, in Italian: <https://lucabontempi.com/series/ciclismo-giovanile-e-professionismo/>. Everything else, this file included, is in Italian.
 
 ## Da dove vengono i dati
 
@@ -40,8 +42,8 @@ Servono a rispondere alla domanda che dà scala a tutto il resto: **in classific
 | [`docs/da_fare.md`](docs/da_fare.md) | Lavoro aperto: configurazione esterna, correzioni note, analisi da impostare |
 | [`docs/literature_review.md`](docs/literature_review.md) | Rassegna della letteratura, 22 studi, con appendice di revisione |
 | [`docs/tripod.md`](docs/tripod.md) | Checklist TRIPOD compilata: cosa è coperto, cosa resta un limite |
-| `docs/post/`, `docs/piano_post.md` | Le bozze dei nove post, il piano editoriale, le regole di scrittura e i titoli. **Non stanno nel repository**: sono il prodotto, non la prova, e i post finiti si leggono sul blog. Ogni loro cifra è controllata contro `output/risultati.db` da [`scripts/11_verifica_documenti.py`](scripts/11_verifica_documenti.py), che salta i file se non li trova |
-| `archive/` | Le quattro versioni precedenti della guida metodologica. **Non stanno nel repository**: sono superate dalla `v5`, e la storia di git le conserva comunque per chi voglia vedere come il disegno dello studio è cambiato |
+| `docs/post/`, `docs/piano_post.md` | Le bozze dei post, il piano editoriale, le regole di scrittura e i titoli. **Non stanno nel repository**: sono il prodotto, non la prova, e i post finiti si leggono [sul blog](https://lucabontempi.com/series/ciclismo-giovanile-e-professionismo/). Ogni loro cifra è controllata contro `output/risultati.db` da [`scripts/11_verifica_documenti.py`](scripts/11_verifica_documenti.py), che salta i file se non li trova |
+| `archive/` | Le versioni precedenti della guida metodologica e il resto della lavorazione editoriale. **Non stanno nel repository**: le guide sono superate dalla `v5`, e la storia di git le conserva comunque per chi voglia vedere come il disegno dello studio è cambiato |
 
 ## Rieseguire tutto da zero
 
@@ -73,8 +75,8 @@ una versione di R non si caricano con una precedente: con `logistf` installato s
 | 9 | `python scripts/08_prepara_modelli.py` | qualche minuto | costruisce `modelli.db`, il rettangolo che legge R |
 | 10 | `Rscript R/16_univariati.R` … `R/30_misura.R` | qualche minuto in tutto | i modelli, nell'ordine elencato più avanti |
 | 11 | `python scripts/10_sensibilita.py` | qualche minuto | analisi di sensibilità |
-| 12 | `python report/assembla.py` | un minuto | genera `output/analisi.md` e le figure. Esce con codice 1 se un commento interpretativo non e' piu' sostenuto dai dati: il documento viene scritto lo stesso, con l'avviso in testa, ma il paragrafo segnalato va riscritto |
-| 12-bis | `python scripts/12_figure_webp.py` | pochi secondi | converte in WebP, in `output/figure_webp/`, le figure per il blog e quelle esterne. Lo fa gia' da solo il passo 12: serve solo per rifarle a parte |
+| 12 | `python report/assembla.py` | un minuto | genera `output/analisi.md` e le figure. Esce con codice 1 se un commento interpretativo non è più sostenuto dai dati: il documento viene scritto lo stesso, con l'avviso in testa, ma il paragrafo segnalato va riscritto |
+| 12-bis | `python scripts/12_figure_webp.py` | pochi secondi | converte in WebP, in `output/figure_webp/`, le figure per il blog e quelle esterne. Lo fa già da solo il passo 12: serve solo per rifarle a parte |
 | 13 | `Rscript R/26_bootstrap_traiettorie.R` | cinque minuti | facoltativo: l'incertezza delle traiettorie stimate; poi si rilancia il 12 |
 
 **Due trappole, entrambe già costate tempo.** La prima: `01` ricostruisce `analisi.db` da
@@ -314,13 +316,13 @@ Se R non è installato, il documento si genera lo stesso: le sezioni modellistic
 
 ## Dati personali
 
-I dati riguardano **atleti minorenni**. Nel repository entra **solo cio' che e' anonimo**.
+I dati riguardano **atleti minorenni**. Nel repository entra **solo ciò che è anonimo**.
 
-`.gitignore` nega tutto sotto `data/` per default e autorizza per eccezione: oggi la sola eccezione e' `data/private/manual/`, che contiene le decisioni di risoluzione manuale come id numerici e motivazioni impersonali. Restano quindi fuori la sorgente ciclismo.info (nomi e cognomi in chiaro), il crosswalk, le liste di verifica e il database di analisi.
+`.gitignore` nega tutto sotto `data/` per default e autorizza per eccezione: oggi la sola eccezione è `data/private/manual/`, che contiene le decisioni di risoluzione manuale come id numerici e motivazioni impersonali. Restano quindi fuori la sorgente ciclismo.info (nomi e cognomi in chiaro), il crosswalk, le liste di verifica e il database di analisi.
 
-Il **salt di anonimizzazione** vive in `data/private/salt.txt`, generato al primo avvio e mai committato. Tenerlo nel sorgente renderebbe l'anonimizzazione solo apparente: gli `id_atleta` sono interi fra 1 e 37.704, quindi con il salt pubblico la tabella `athlete_id → id_atleta` si ricostruisce per forza bruta in pochi secondi, e da li' bastano le classifiche pubbliche per risalire ai nomi. Va trattato come una chiave: perderlo significa che tutti gli `athlete_id` cambiano al ricalcolo successivo.
+Il **salt di anonimizzazione** vive in `data/private/salt.txt`, generato al primo avvio e mai committato. Tenerlo nel sorgente renderebbe l'anonimizzazione solo apparente: gli `id_atleta` sono interi fra 1 e 37.704, quindi con il salt pubblico la tabella `athlete_id → id_atleta` si ricostruisce per forza bruta in pochi secondi, e da lì bastano le classifiche pubbliche per risalire ai nomi. Va trattato come una chiave: perderlo significa che tutti gli `athlete_id` cambiano al ricalcolo successivo.
 
-Undici documenti del progetto contengono cifre scritte a mano, perché sono prosa e non file generati: la checklist TRIPOD, il piano editoriale e le nove bozze dei post. Tutti portano in testa l'avviso che non si rigenerano. Che le loro cifre non siano diventate false lo verifica:
+I documenti scritti a mano del progetto contengono cifre copiate, perché sono prosa e non file generati: la checklist TRIPOD, il piano editoriale e le bozze dei post. Tutti portano in testa l'avviso che non si rigenerano. Che le loro cifre non siano diventate false lo verifica:
 
 ```bash
 python scripts/11_verifica_documenti.py
@@ -381,5 +383,5 @@ entra nulla che permetta di risalire a una persona, e nessuna licenza autorizza 
 - [x] Descrittiva: attrito (9), punteggi per gruppo (10), correlazioni e VIF (11), età relativa (15)
 - [x] Descrittiva: contesto e mobilità (STEP 13-14)
 - [x] Modelli in R (FASE 3 e 4) e validazione (FASE 5) — STEP 16-28 chiusi
-- [x] Bozze dei nove blog post — fuori dal repository, come il resto della lavorazione editoriale
+- [x] Bozze dei blog post — fuori dal repository, come il resto della lavorazione editoriale
 - [ ] Stesura definitiva dei post e revisione delle figure post per post

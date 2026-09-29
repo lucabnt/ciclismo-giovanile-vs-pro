@@ -15,7 +15,9 @@ Pillow>=10.0               # conversione delle figure in WebP per i post
 scipy>=1.11                # test statistici della descrittiva
 
 # --------------------------------------------------------------------------
-# I modelli girano in R, non in Python: pip non li installa. Servono R >= 4.2 e
+# I modelli girano in R, non in Python: pip non li installa. Serve R 4.6, la versione
+# con cui la catena e' collaudata: i pacchetti compilati per la 4.6 non si caricano con
+# una precedente, e un R piu' vecchio si ferma al primo modello. Poi
 #
 #   install.packages(c("RSQLite", "jsonlite", "logistf", "pROC",
 #                      "glmnet", "lme4", "randomForest"))

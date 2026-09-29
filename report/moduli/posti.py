@@ -394,7 +394,8 @@ def rendi(lt):
         "diviso cinque stima il numero di **classificazioni di gara**: non le gare "
         "davvero corse, ma quelle che hanno lasciato una traccia nella fonte. La fonte "
         "non pubblica il calendario, ma pubblica i piazzamenti." % nomi_sep,
-        [("La verifica sulla struttura delle liste", "docs/verifica_dati_giovanile.md")]))
+        [("La verifica sulla struttura delle liste",
+          "../docs/verifica_dati_giovanile.md")]))
 
     righe_d = [[r[0], md.conta(r[1]), r[2], md.conta(r[3]), md.conta(r[4]),
                 md.conta(r[5]), md.num(r[6], 2)] for r in disp["righe"]]

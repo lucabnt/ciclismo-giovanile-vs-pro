@@ -1,6 +1,6 @@
 # Ranking giovanili italiani e transizione al professionismo
 
-*Documento generato da `report/assembla.py` il 2026-09-28. Ogni numero viene da una query: non c'è nulla scritto a mano.*
+*Documento generato da `report/assembla.py` il 2026-09-29. Ogni numero viene da una query: non c'è nulla scritto a mano.*
 
 | | |
 |---|---|
@@ -434,7 +434,7 @@ Le sezioni precedenti hanno mostrato che al cambio di categoria la classifica si
 >
 > I posti si contano così: ogni gara assegna cinque piazzamenti a punti, quindi la somma dei piazzamenti nei primi cinque è il numero di posti messi in palio, e diviso cinque stima il numero di **classificazioni di gara**: non le gare davvero corse, ma quelle che hanno lasciato una traccia nella fonte. La fonte non pubblica il calendario, ma pubblica i piazzamenti.
 >
-> Approfondimenti: [La verifica sulla struttura delle liste](docs/verifica_dati_giovanile.md)
+> Approfondimenti: [La verifica sulla struttura delle liste](../docs/verifica_dati_giovanile.md)
 
 | categoria | annate | una lista per annata | classificazioni di gara per stagione | posti a punti per stagione | atleti in classifica per stagione | posti per atleta |
 |---|---|---|---|---|---|---|
