@@ -21,7 +21,7 @@ Questo repository **non** contiene dati: `data/` è escluso da git per intero (v
 
 ## Riferimenti esterni
 
-`riferimenti/` contiene i dati pubblici che servono come denominatore o come atteso, trascritti a mano da fonti che non hanno un'API. Ogni file porta in testa la propria provenienza e i propri limiti, perché un dato trascritto senza provenienza non è utilizzabile.
+`riferimenti/` contiene i dati pubblici che servono come denominatore, come atteso o come prova che un denominatore non esiste, trascritti a mano da fonti che non hanno un'API. Ogni file porta in testa la propria provenienza e i propri limiti, perché un dato trascritto senza provenienza non è utilizzabile.
 
 | file | cosa contiene | fonte |
 |---|---|---|
@@ -30,7 +30,9 @@ Questo repository **non** contiene dati: `data/` è escluso da git per intero (v
 
 Stanno qui e non sotto `data/` di proposito: `data/` è negato senza eccezioni perché contiene riferimenti a persone, e quella regola non va indebolita per dei totali nazionali.
 
-Servono a rispondere alla domanda che dà scala a tutto il resto: **in classifica compare circa un tesserato su sette**. Ogni percentuale dello studio ha quel settimo come denominatore.
+Il primo risponde alla domanda che dà scala a tutto il resto: **in classifica compare circa un tesserato su sette**, e ogni percentuale dello studio ha quel settimo come denominatore.
+
+Il secondo non entra in nessun calcolo, ed è qui apposta. Le società affiliate sono l'unico dato regionale che la federazione pubblichi: i tesserati per regione non esistono come dato pubblico, e senza quel denominatore i tassi di professionismo per regione non si possono interpretare. È la ragione per cui la regione resta la sola domanda a cui questo studio dichiara di non poter rispondere, e questo file è la ricevuta di quell'assenza.
 
 ## Documenti
 
@@ -42,8 +44,8 @@ Servono a rispondere alla domanda che dà scala a tutto il resto: **in classific
 | [`docs/da_fare.md`](docs/da_fare.md) | Lavoro aperto: configurazione esterna, correzioni note, analisi da impostare |
 | [`docs/literature_review.md`](docs/literature_review.md) | Rassegna della letteratura, 22 studi, con appendice di revisione |
 | [`docs/tripod.md`](docs/tripod.md) | Checklist TRIPOD compilata: cosa è coperto, cosa resta un limite |
-| `docs/post/`, `docs/piano_post.md` | Le bozze dei post, il piano editoriale, le regole di scrittura e i titoli. **Non stanno nel repository**: sono il prodotto, non la prova, e i post finiti si leggono [sul blog](https://lucabontempi.com/series/ciclismo-giovanile-e-professionismo/). Ogni loro cifra è controllata contro `output/risultati.db` da [`scripts/11_verifica_documenti.py`](scripts/11_verifica_documenti.py), che salta i file se non li trova |
-| `archive/` | Le versioni precedenti della guida metodologica e il resto della lavorazione editoriale. **Non stanno nel repository**: le guide sono superate dalla `v5`, e la storia di git le conserva comunque per chi voglia vedere come il disegno dello studio è cambiato |
+
+La lavorazione editoriale resta fuori: è il come si è arrivati al testo, non la prova dei numeri, e i post finiti si leggono [sul blog](https://lucabontempi.com/series/ciclismo-giovanile-e-professionismo/). È il motivo per cui [`scripts/11_verifica_documenti.py`](scripts/11_verifica_documenti.py) dice «manca, salto» su alcuni file: controlla anche quelli, quando ci sono.
 
 ## Rieseguire tutto da zero
 
@@ -322,7 +324,7 @@ I dati riguardano **atleti minorenni**. Nel repository entra **solo ciò che è 
 
 Il **salt di anonimizzazione** vive in `data/private/salt.txt`, generato al primo avvio e mai committato. Tenerlo nel sorgente renderebbe l'anonimizzazione solo apparente: gli `id_atleta` sono interi fra 1 e 37.704, quindi con il salt pubblico la tabella `athlete_id → id_atleta` si ricostruisce per forza bruta in pochi secondi, e da lì bastano le classifiche pubbliche per risalire ai nomi. Va trattato come una chiave: perderlo significa che tutti gli `athlete_id` cambiano al ricalcolo successivo.
 
-I documenti scritti a mano del progetto contengono cifre copiate, perché sono prosa e non file generati: la checklist TRIPOD, il piano editoriale e le bozze dei post. Tutti portano in testa l'avviso che non si rigenerano. Che le loro cifre non siano diventate false lo verifica:
+I documenti scritti a mano contengono cifre copiate, perché sono prosa e non file generati: qui dentro è la checklist TRIPOD, il resto sta nella lavorazione editoriale. Tutti portano in testa l'avviso che non si rigenerano. Che le loro cifre non siano diventate false lo verifica:
 
 ```bash
 python scripts/11_verifica_documenti.py
@@ -383,5 +385,5 @@ entra nulla che permetta di risalire a una persona, e nessuna licenza autorizza 
 - [x] Descrittiva: attrito (9), punteggi per gruppo (10), correlazioni e VIF (11), età relativa (15)
 - [x] Descrittiva: contesto e mobilità (STEP 13-14)
 - [x] Modelli in R (FASE 3 e 4) e validazione (FASE 5) — STEP 16-28 chiusi
-- [x] Bozze dei blog post — fuori dal repository, come il resto della lavorazione editoriale
+- [x] Bozze dei blog post
 - [ ] Stesura definitiva dei post e revisione delle figure post per post
