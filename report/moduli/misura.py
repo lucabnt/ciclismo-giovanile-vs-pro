@@ -276,8 +276,9 @@ def rendi(lt):
         "> **La parte della critica che resta in piedi.** Hasselaar solleva due problemi "
         "e qui se ne e' affrontato uno solo. Il secondo — che un ranking premia chi "
         "eccelle nelle tipologie di gara piu' frequenti in calendario — **vale anche per "
-        "i nostri dati e non e' correggibile con quello che abbiamo**: servirebbe il "
-        "dettaglio gara per gara, che la fonte non pubblica. Chi va forte in salita, in "
+        "i nostri dati e non e' correggibile con quello che abbiamo**: servirebbe "
+        "sapere com'era fatta ogni gara, e un dato del genere non esiste, perche' "
+        "nessuno classifica i percorsi delle gare giovanili italiane. Chi va forte in salita, in "
         "un calendario fatto soprattutto di percorsi veloci, ha meno occasioni di andare "
         "a punti. E' un limite dello strumento, e va tenuto presente ogni volta che si "
         "legge un percentile come se fosse una misura del valore dell'atleta."))

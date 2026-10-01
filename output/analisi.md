@@ -1,6 +1,6 @@
 # Ranking giovanili italiani e transizione al professionismo
 
-*Documento generato da `report/assembla.py` il 2026-09-29. Ogni numero viene da una query: non c'è nulla scritto a mano.*
+*Documento generato da `report/assembla.py` il 2026-10-01. Ogni numero viene da una query: non c'è nulla scritto a mano.*
 
 | | |
 |---|---|
@@ -251,7 +251,7 @@ C'è di più, ed è emerso dopo: quel criterio non è una nostra invenzione ma *
 
 > **Cosa se ne ricava per lo studio.** Il criterio esteso resta il predittore principale, perché è più fine e non fa danno; ma la sezione dice esplicitamente che i risultati sarebbero gli stessi con i soli punti. È una verifica di robustezza su una scelta metodologica presa all'inizio, con l'esito che rende la scelta irrilevante — che è il modo migliore in cui una verifica del genere possa finire.
 
-> **La parte della critica che resta in piedi.** Hasselaar solleva due problemi e qui se ne è affrontato uno solo. Il secondo — che un ranking premia chi eccelle nelle tipologie di gara più frequenti in calendario — **vale anche per i nostri dati e non è correggibile con quello che abbiamo**: servirebbe il dettaglio gara per gara, che la fonte non pubblica. Chi va forte in salita, in un calendario fatto soprattutto di percorsi veloci, ha meno occasioni di andare a punti. È un limite dello strumento, e va tenuto presente ogni volta che si legge un percentile come se fosse una misura del valore dell'atleta.
+> **La parte della critica che resta in piedi.** Hasselaar solleva due problemi e qui se ne è affrontato uno solo. Il secondo — che un ranking premia chi eccelle nelle tipologie di gara più frequenti in calendario — **vale anche per i nostri dati e non è correggibile con quello che abbiamo**: servirebbe sapere com'era fatta ogni gara, e un dato del genere non esiste, perché nessuno classifica i percorsi delle gare giovanili italiane. Chi va forte in salita, in un calendario fatto soprattutto di percorsi veloci, ha meno occasioni di andare a punti. È un limite dello strumento, e va tenuto presente ogni volta che si legge un percentile come se fosse una misura del valore dell'atleta.
 
 ## Quanti restano
 
