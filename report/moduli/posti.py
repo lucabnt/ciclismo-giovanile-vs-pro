@@ -19,7 +19,7 @@ LA STRUTTURA DELLE LISTE, CHE CAMBIA TUTTO
     conseguenze, che nessuna sezione aveva tratto.
 
 I DUE MECCANISMI, CHE VANNO SEPARATI
-    **I posti calano davvero.** Il numero di classificazioni di gara scende salendo di
+    **I posti calano davvero.** Il numero di gare scende salendo di
     categoria, e questo restringe la lista per ragioni che non riguardano i ragazzi.
 
     **Ma il crollo del primo anno non viene da li'.** Dove la lista e' unica, le gare
@@ -68,6 +68,12 @@ def liste_separate(sesso):
             if slug in CATEGORIE and CATEGORIE[slug][1] == sesso}
 
 
+def annate_per_categoria(db, sesso, cat):
+    """Quante classifiche pubblica la fonte per quella categoria: una per annata."""
+    return db.execute("""SELECT COUNT(DISTINCT cat_year) FROM tab_a
+                         WHERE sesso = ? AND category = ?""", (sesso, cat)).fetchone()[0]
+
+
 def gini(valori):
     """Quanto sono concentrati i punti: 0 tutti uguali, 1 tutti a una persona sola."""
     v = sorted(valori)
@@ -108,7 +114,10 @@ def calcola():
             annate = db.execute(
                 """SELECT COUNT(DISTINCT cat_year) FROM tab_a
                    WHERE sesso = ? AND category = ?""", (sesso, cat)).fetchone()[0]
-            gare = posti / 5 / n_stagioni
+            # Dove ogni annata ha la propria classifica la stessa giornata di gara
+            # lascia cinque piazzamenti per annata, ma un atleta ne corre una sola: il
+            # numero di gare che poteva correre e' quello diviso il numero di liste.
+            gare = posti / 5 / n_stagioni / (annate if cat in separate else 1)
             gare_cat[cat] = gare
             righe.append([NOMI[cat], annate,
                           "sì" if cat in separate else "no",
@@ -117,13 +126,15 @@ def calcola():
         ar.tabella(
             "disponibili", righe,
             colonne=["categoria", "annate", "una lista per annata",
-                     "classificazioni di gara per stagione", "posti a punti per stagione",
+                     "gare per stagione", "posti a punti per stagione",
                      "atleti in classifica per stagione", "posti per atleta"],
             titolo="Quanti posti mette in palio ogni categoria",
-            nota="i posti sono stimati dai piazzamenti nei primi cinque, cinque per gara; "
-                 "negli Esordienti, che hanno una classifica per annata, il conteggio somma "
-                 "i due calendari; per l'Under 23 sono un limite inferiore, perche' la "
-                 "lista sorgente contiene anche gli Elite, esclusi dalla finestra d'eta'")
+            nota="i posti sono stimati dai piazzamenti nei primi cinque, cinque per gara. "
+                 "Dove ogni annata ha la propria classifica la stessa gara lascia cinque "
+                 "piazzamenti per annata, quindi le gare sono la meta' delle classifiche: un "
+                 "atleta ne corre comunque una sola. Per l'Under 23 il conteggio e' un "
+                 "limite inferiore, perche' la lista sorgente contiene anche gli Elite, "
+                 "esclusi dalla finestra d'eta'")
         if gare_cat:
             ar.valore("gare_per_stagione",
                       {c: round(g) for c, g in gare_cat.items()})
@@ -205,7 +216,8 @@ def calcola():
         # fra categorie, che riguarda le eta' e non gli anni.
         righe_t, serie = [], {}
         for cat in ORDINE:
-            per_stagione = {st: n for st, n in db.execute(
+            liste = annate_per_categoria(db, sesso, cat) if cat in separate else 1
+            per_stagione = {st: n / liste for st, n in db.execute(
                 """SELECT season, SUM(top5) / 5.0 FROM tab_a
                    WHERE sesso = ? AND category = ? AND cat_year IS NOT NULL
                    GROUP BY 1""", (sesso, cat))}
@@ -344,7 +356,16 @@ def disegna(righe_q, righe_c, separate, ar, ar_serie=None):
                 ax.plot(anni, [serie[cat][str(a)] for a in anni], marker="o",
                         markersize=3, linewidth=1.8,
                         color=gr.COLORI[i % len(gr.COLORI)], label=NOMI[cat])
-            ax.set_ylabel("classificazioni di gara stimate")
+            # Le etichette dell'asse sono stagioni, quindi numeri interi: lasciate al
+            # localizzatore automatico diventavano 2007,5 e 2012,5, cioe' mezze stagioni.
+            # Si parte dall'ultima e si va indietro, perche' l'anno che si cerca e' quello.
+            tutti = sorted({int(a) for c in serie for a in serie[c]})
+            passo = max(1, -(-len(tutti) // 7))
+            ax.set_xticks(list(range(tutti[-1], tutti[0] - 1, -passo))[::-1])
+            ax.set_ylabel("gare stimate")
+            # Sono conteggi: l'asse parte da zero, altrimenti il taglio esagera le
+            # distanze fra le categorie.
+            ax.set_ylim(bottom=0)
             ax.legend(frameon=False, fontsize=9)
             ax.grid(axis="x", visible=False)
         ar.figura("andamento", gr.salva("posti_andamento"),
@@ -391,9 +412,15 @@ def rendi(lt):
         "capire cosa succeda nella seconda.\n\n"
         "I posti si contano cosi': ogni gara assegna cinque piazzamenti a punti, quindi "
         "la somma dei piazzamenti nei primi cinque e' il numero di posti messi in palio, e "
-        "diviso cinque stima il numero di **classificazioni di gara**: non le gare "
-        "davvero corse, ma quelle che hanno lasciato una traccia nella fonte. La fonte "
-        "non pubblica il calendario, ma pubblica i piazzamenti." % nomi_sep,
+        "diviso cinque stima il numero di gare: non quelle davvero corse, ma quelle che "
+        "hanno lasciato una traccia nella fonte. La fonte non pubblica il calendario, ma "
+        "pubblica i piazzamenti.\n\n"
+        "Dove ogni annata ha la propria classifica si divide ancora per il numero di "
+        "liste. La stessa giornata di gara lascia li' cinque piazzamenti per annata, ma un "
+        "atleta ne corre una sola: contarla due volte direbbe che a tredici anni si corre "
+        "il doppio di quanto si corra davvero. Che le due annate partano separate o che "
+        "corrano insieme con due classifiche distinte, dai piazzamenti non si distingue, e "
+        "per chi pedala non cambia." % nomi_sep,
         [("La verifica sulla struttura delle liste",
           "../docs/verifica_dati_giovanile.md")]))
 
@@ -407,26 +434,25 @@ def rendi(lt):
             "",
             md.afferma(
                 gare.get("U23", 0) < gare.get("U15", 1),
-                "il numero di classificazioni di gara cala salendo di categoria",
+                "il numero di gare cala salendo di categoria",
                 "**Una parte della lettura corrente e' giusta: i posti calano davvero.** "
-                "Si passa da %s classificazioni di gara per stagione in Esordienti a %s in "
+                "Si passa da %s gare per stagione in Esordienti a %s in "
                 "Under 23. Il calendario si accorcia, e con esso la lista, per ragioni che "
                 "non hanno nulla a che vedere con il valore dei ragazzi."
                 % (md.conta(gare.get("U15")), md.conta(gare.get("U23"))))))
 
     p.append(md.paragrafo(
         "",
-        "> **Un confronto da fare con una cautela.** Negli Esordienti le due annate hanno "
-        "classifiche distinte e corrono gare distinte, quindi il conteggio somma i due "
-        "calendari; nelle altre categorie la classifica e' una sola e le annate corrono "
-        "insieme. Il numero degli Esordienti e' quindi comparabile agli altri solo "
-        "accettando che a quell'eta' si corra davvero separati. Non e' piu' un'assunzione: le "
-        "Norme Attuative della federazione prevedono che le due annate corrano "
-        "separatamente, e che anche quando la gara e' unica la classifica sia distinta per "
-        "fascia d'eta' (art. 4.2.1 e 4.2.5, con l'eccezione dei meno di dieci partenti "
-        "all'art. 4.2.4). La verifica sui regolamenti sta in "
-        "`docs/verifica_dati_giovanile.md`. Chi preferisce comunque la lettura prudente "
-        "puo' dimezzare il conteggio: resta un calo anche partendo da meta'."))
+        "> **Perche' il numero degli Esordienti e' dimezzato.** La fonte pubblica due "
+        "classifiche, una per annata, quindi la stessa giornata di gara lascia dieci "
+        "piazzamenti invece di cinque. Che le due annate partano separate o che corrano "
+        "insieme con due classifiche distinte, le Norme Attuative prevedono tutti e due i "
+        "casi (art. 4.2.1 e 4.2.5, con l'eccezione dei meno di dieci partenti all'art. "
+        "4.2.4) e dai piazzamenti non si distinguono. Per chi pedala pero' non cambia: una "
+        "giornata, una gara. Il conteggio e' quindi diviso per il numero di liste, cosi' la "
+        "colonna dice quante gare un atleta poteva correre e si confronta con le altre "
+        "categorie. La verifica sui regolamenti sta in "
+        "`../docs/verifica_dati_giovanile.md`."))
 
     p.append(md.sezione("Ma il primo anno non sparisce per mancanza di posti", 3))
 
@@ -549,7 +575,7 @@ def rendi(lt):
                     "l'ultima stagione osservata",
                     "**Il calendario giovanile italiano osservabile nella fonte si e' quasi "
                     "dimezzato.** Fra il %s "
-                    "e il %s le classificazioni di gara calano in ogni categoria, fino a "
+                    "e il %s le gare stimate calano in ogni categoria, fino a "
                     "%s%% in Under 23. Non e' un effetto della pandemia: il 2020 e' un "
                     "crollo a se', e dopo di esso il calendario non e' tornato ai valori "
                     "precedenti."

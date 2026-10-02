@@ -35,7 +35,8 @@ import sys
 QUI = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(QUI, ".."))
 sys.path.insert(0, os.path.join(QUI, "..", "..", "scripts"))
-from lib_giovanile import DB_ANALISI, LISTE_DISGIUNTE          # noqa: E402
+from lib_giovanile import DB_ANALISI, LISTE_DISGIUNTE               # noqa: E402
+from lib_giovanile import CATEGORIE as CATEGORIE_FONTE             # noqa: E402
 from lib_risultati import Archivio                             # noqa: E402
 import lib_markdown as md                                      # noqa: E402
 import lib_grafici as gr                                       # noqa: E402
@@ -45,6 +46,34 @@ NOMI = {"U15": "Esordienti", "U17": "Allievi", "U19": "Juniores", "U23": "Under 
 # L'anno in cui la fonte ha separato le classifiche delle Esordienti femminili.
 ANNO_SEPARAZIONE = LISTE_DISGIUNTE.get("donne_esordienti", (2022, 2026))[0]
 MIN_ATLETI = 30
+
+
+def liste(sesso, cat, stagione):
+    """Quante classifiche pubblica la fonte: una, o una per annata.
+
+    Serve a contare le gare e non le classifiche. Dove ogni annata ha la propria lista la
+    stessa giornata di gara lascia cinque piazzamenti per annata, ma un'atleta ne corre una
+    sola, quindi il conteggio va diviso. Nelle Esordienti femminili la separazione comincia
+    nel %d, percio' il divisore cambia da una stagione all'altra.
+    """ % ANNO_SEPARAZIONE
+    for slug, (da, a) in LISTE_DISGIUNTE.items():
+        voce = CATEGORIE_FONTE.get(slug)
+        if voce and voce[0] == cat and voce[1] == sesso and da <= stagione <= a:
+            return 2
+    return 1
+
+
+def gare_per_stagione(db, sesso, cat):
+    """Media per stagione delle gare che un atleta poteva correre."""
+    somma, n = 0.0, 0
+    for st, p in db.execute(
+            """SELECT season, SUM(top5) FROM tab_a
+               WHERE sesso = ? AND category = ? AND cat_year IS NOT NULL
+                 AND flag_stagione IS NULL GROUP BY 1""", (sesso, cat)):
+        if p:
+            somma += p / 5 / liste(sesso, cat, st)
+            n += 1
+    return somma / n if n else 0
 
 
 def calcola():
@@ -66,29 +95,28 @@ def calcola():
             m = conta("M", cat)
             if not f[1] or not m[1]:
                 continue
+            gf, gm = gare_per_stagione(db, "F", cat), gare_per_stagione(db, "M", cat)
             righe.append([NOMI[cat], f[0], m[0], round(m[0] / f[0], 1),
-                          round(f[1] / 5 / f[2]), round(m[1] / 5 / m[2]),
-                          round(m[1] / m[2] / (f[1] / f[2]), 1)])
+                          round(gf), round(gm), round(gm / gf, 1) if gf else None])
         ar.tabella(
             "dimensione", righe,
             colonne=["categoria", "atlete", "atleti", "rapporto",
                      "gare per stagione, femminili", "maschili", "rapporto fra le gare"],
             titolo="Quanto e' grande il movimento femminile, in rapporto",
             nota="atlete e atleti distinti su tutte le stagioni disponibili; le gare sono "
-                 "stimate dai piazzamenti nei primi cinque, cinque per gara; in Esordienti "
-                 "il rapporto fra le gare non si confronta con le altre righe, perche' il "
-                 "conteggio maschile somma i due calendari, uno per annata, e quello "
-                 "femminile ne conta uno solo fino al %d" % (ANNO_SEPARAZIONE - 1))
+                 "stimate dai piazzamenti nei primi cinque, cinque per gara, e dove ogni "
+                 "annata ha la propria classifica si divide per il numero di liste, perche' "
+                 "un atleta corre comunque una gara sola per giornata")
         if righe:
             ar.valore("rapporto_atleti", {r[0]: r[3] for r in righe})
             ar.valore("rapporto_gare", {r[0]: r[6] for r in righe})
             # Il rapporto fra le gare regge solo dove entrambi i sessi hanno una lista
             # unica: negli Esordienti maschili il conteggio somma due calendari.
-            confrontabili = [r[6] for r in righe if r[0] != NOMI["U15"]]
-            if confrontabili:
+            tutti = [r[6] for r in righe if r[6]]
+            if tutti:
                 ar.valore("rapporto_gare_confrontabile",
-                          {"minimo": min(confrontabili), "massimo": max(confrontabili)},
-                          "solo le categorie con una lista unica per entrambi i sessi")
+                          {"minimo": min(tutti), "massimo": max(tutti)},
+                          "tutte le categorie: il conteggio divide per il numero di liste")
 
         # --- 2. l'esperimento naturale delle Esordienti ----------------------
         quote = []
@@ -152,8 +180,8 @@ def calcola():
 
         # --- 4. il calendario nel tempo, dove la struttura non e' cambiata ---
         serie = {}
-        for cat in ("U17", "U19"):
-            per_stagione = {st: n / 5 for st, n in db.execute(
+        for cat in CATEGORIE:
+            per_stagione = {st: n / 5 / liste("F", cat, st) for st, n in db.execute(
                 """SELECT season, SUM(top5) FROM tab_a
                    WHERE sesso = 'F' AND category = ? AND cat_year IS NOT NULL
                    GROUP BY 1 ORDER BY 1""", (cat,)) if n}
@@ -172,8 +200,9 @@ def calcola():
                 colonne=["categoria", "gare nel %d" % anni[0], "gare nel %d" % anni[-1],
                          "variazione"],
                 titolo="Il calendario femminile, dove la struttura delle liste non e' cambiata",
-                nota="le Esordienti restano fuori: separando le classifiche nel %d i posti "
-                     "raddoppiano per costruzione, e il confronto nel tempo non reggerebbe"
+                nota="le Esordienti ci sono: dal %d hanno due classifiche invece di una, e "
+                     "il conteggio ne tiene conto dividendo per il numero di liste, cosi' "
+                     "la serie resta confrontabile prima e dopo il cambio"
                      % ANNO_SEPARAZIONE)
             ar.valore("calendario_estremi",
                       {"prima": anni[0], "ultima": anni[-1],
@@ -290,14 +319,11 @@ def rendi(lt):
         p.append(md.paragrafo(
             "",
             "Il movimento femminile e' piu' piccolo di quello maschile di circa **%s volte** "
-            "in Esordienti. Le gare invece si confrontano solo dove la classifica e' una "
-            "lista unica per entrambi i sessi, cioe' in Allievi e Juniores, e li' sono da "
-            "**%s a %s volte** meno: le ragazze non sono semplicemente meno, corrono anche "
-            "molto meno spesso. Il rapporto degli Esordienti e' piu' alto ma non va preso "
-            "alla lettera, perche' il conteggio maschile somma da sempre due calendari, uno "
-            "per annata, e quello femminile solo dal %s."
+            "in Esordienti, e corre da **%s a %s volte** meno gare: le ragazze non sono "
+            "semplicemente meno, corrono anche molto meno spesso. Il divario fra i "
+            "calendari cresce con l'eta', ed e' piu' largo del divario fra le popolazioni."
             % (md.num(rap_a.get("Esordienti"), 1), md.num(conf_g.get("minimo"), 1),
-               md.num(conf_g.get("massimo"), 1), ANNO_SEPARAZIONE)))
+               md.num(conf_g.get("massimo"), 1))))
 
     # --- l'esperimento naturale ---------------------------------------------
     if sep:

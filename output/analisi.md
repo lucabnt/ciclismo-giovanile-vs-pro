@@ -1,6 +1,6 @@
 # Ranking giovanili italiani e transizione al professionismo
 
-*Documento generato da `report/assembla.py` il 2026-10-01. Ogni numero viene da una query: non c'è nulla scritto a mano.*
+*Documento generato da `report/assembla.py` il 2026-10-02. Ogni numero viene da una query: non c'è nulla scritto a mano.*
 
 | | |
 |---|---|
@@ -114,9 +114,9 @@
 
 **Società, mobilità e regione non aggiungono nulla di leggibile.** Il gradiente della mobilità sembra enorme — dal 0,68% al 7,32% di professionisti secondo il numero di cambi di società — ma a parità di stagioni corse quasi sparisce. E il **96,3%** cambia società passando dagli Juniores all'Under 23, contro circa il 21% dei passaggi interni a una categoria: è organizzazione dello sport, non una decisione. La società di partenza va dal 2,90% al 3,79%, la regione non mostra differenze leggibili.
 
-**Il primo anno di categoria non sparisce per mancanza di posti.** Dove ogni annata ha la propria classifica il primo anno ne vince il 49,7%, dove la lista è unica e le gare sono le stesse il 26,7%: è concorrenza, non scarsità. I posti però calano davvero salendo di categoria, da 639 classificazioni di gara per stagione in Esordienti a 146 in Under 23, e calano anche nel tempo, con una perdita del 58,3% fra la prima e l'ultima stagione osservata. La concentrazione dei punti invece non cambia mai: il decile migliore ne prende fra il 36,7% e il 43,2% a ogni età.
+**Il primo anno di categoria non sparisce per mancanza di posti.** Dove ogni annata ha la propria classifica il primo anno ne vince il 49,7%, dove la lista è unica e le gare sono le stesse il 26,7%: è concorrenza, non scarsità. I posti però calano davvero salendo di categoria, da 320 gare per stagione in Esordienti a 146 in Under 23, e calano anche nel tempo, con una perdita del 58,3% fra la prima e l'ultima stagione osservata. La concentrazione dei punti invece non cambia mai: il decile migliore ne prende fra il 36,7% e il 43,2% a ogni età.
 
-**Sul femminile si è potuto misurare ciò che non richiede un esito.** Dove il conteggio è confrontabile, il movimento corre fra 6,4 e 8,1 volte meno gare di quello maschile, e non ha una classifica Under 23. L'effetto dell'età relativa è più debole che fra i maschi a tredici anni, 1,51 contro 1,98 sulle stesse coorti, coerente con una maturazione più precoce. E un cambio di regolamento della fonte conferma il meccanismo dei posti: separando le classifiche delle Esordienti nel 2022, la quota del primo anno è passata dal 28,5% al 49,6%, nella stessa categoria e alle stesse età.
+**Sul femminile si è potuto misurare ciò che non richiede un esito.** Dove il conteggio è confrontabile, il movimento corre fra 5,2 e 8,1 volte meno gare di quello maschile, e non ha una classifica Under 23. L'effetto dell'età relativa è più debole che fra i maschi a tredici anni, 1,51 contro 1,98 sulle stesse coorti, coerente con una maturazione più precoce. E un cambio di regolamento della fonte conferma il meccanismo dei posti: separando le classifiche delle Esordienti nel 2022, la quota del primo anno è passata dal 28,5% al 49,6%, nella stessa categoria e alle stesse età.
 
 ### Quanto sono solidi questi risultati
 
@@ -432,22 +432,24 @@ Le sezioni precedenti hanno mostrato che al cambio di categoria la classifica si
 >
 > La differenza non è un dettaglio di archivio: rende le due situazioni non confrontabili, e permette di usare la prima come **caso di controllo** per capire cosa succeda nella seconda.
 >
-> I posti si contano così: ogni gara assegna cinque piazzamenti a punti, quindi la somma dei piazzamenti nei primi cinque è il numero di posti messi in palio, e diviso cinque stima il numero di **classificazioni di gara**: non le gare davvero corse, ma quelle che hanno lasciato una traccia nella fonte. La fonte non pubblica il calendario, ma pubblica i piazzamenti.
+> I posti si contano così: ogni gara assegna cinque piazzamenti a punti, quindi la somma dei piazzamenti nei primi cinque è il numero di posti messi in palio, e diviso cinque stima il numero di gare: non quelle davvero corse, ma quelle che hanno lasciato una traccia nella fonte. La fonte non pubblica il calendario, ma pubblica i piazzamenti.
+>
+> Dove ogni annata ha la propria classifica si divide ancora per il numero di liste. La stessa giornata di gara lascia lì cinque piazzamenti per annata, ma un atleta ne corre una sola: contarla due volte direbbe che a tredici anni si corre il doppio di quanto si corra davvero. Che le due annate partano separate o che corrano insieme con due classifiche distinte, dai piazzamenti non si distingue, e per chi pedala non cambia.
 >
 > Approfondimenti: [La verifica sulla struttura delle liste](../docs/verifica_dati_giovanile.md)
 
-| categoria | annate | una lista per annata | classificazioni di gara per stagione | posti a punti per stagione | atleti in classifica per stagione | posti per atleta |
+| categoria | annate | una lista per annata | gare per stagione | posti a punti per stagione | atleti in classifica per stagione | posti per atleta |
 |---|---|---|---|---|---|---|
-| Esordienti | 2 | sì | 639 | 3 197 | 588 | 5,43 |
+| Esordienti | 2 | sì | 320 | 3 197 | 588 | 5,43 |
 | Allievi | 2 | no | 414 | 2 070 | 479 | 4,32 |
 | Juniores | 2 | no | 282 | 1 410 | 331 | 4,25 |
 | Under 23 | 4 | no | 146 | 730 | 176 | 4,14 |
 
-*i posti sono stimati dai piazzamenti nei primi cinque, cinque per gara; negli Esordienti, che hanno una classifica per annata, il conteggio somma i due calendari; per l'Under 23 sono un limite inferiore, perché la lista sorgente contiene anche gli Elite, esclusi dalla finestra d'età*
+*i posti sono stimati dai piazzamenti nei primi cinque, cinque per gara. Dove ogni annata ha la propria classifica la stessa gara lascia cinque piazzamenti per annata, quindi le gare sono la metà delle classifiche: un atleta ne corre comunque una sola. Per l'Under 23 il conteggio è un limite inferiore, perché la lista sorgente contiene anche gli Elite, esclusi dalla finestra d'età*
 
-**Una parte della lettura corrente è giusta: i posti calano davvero.** Si passa da 639 classificazioni di gara per stagione in Esordienti a 146 in Under 23. Il calendario si accorcia, e con esso la lista, per ragioni che non hanno nulla a che vedere con il valore dei ragazzi.
+**Una parte della lettura corrente è giusta: i posti calano davvero.** Si passa da 320 gare per stagione in Esordienti a 146 in Under 23. Il calendario si accorcia, e con esso la lista, per ragioni che non hanno nulla a che vedere con il valore dei ragazzi.
 
-> **Un confronto da fare con una cautela.** Negli Esordienti le due annate hanno classifiche distinte e corrono gare distinte, quindi il conteggio somma i due calendari; nelle altre categorie la classifica è una sola e le annate corrono insieme. Il numero degli Esordienti è quindi comparabile agli altri solo accettando che a quell'età si corra davvero separati. Non è più un'assunzione: le Norme Attuative della federazione prevedono che le due annate corrano separatamente, e che anche quando la gara è unica la classifica sia distinta per fascia d'età (art. 4.2.1 e 4.2.5, con l'eccezione dei meno di dieci partenti all'art. 4.2.4). La verifica sui regolamenti sta in `docs/verifica_dati_giovanile.md`. Chi preferisce comunque la lettura prudente può dimezzare il conteggio: resta un calo anche partendo da metà.
+> **Perché il numero degli Esordienti è dimezzato.** La fonte pubblica due classifiche, una per annata, quindi la stessa giornata di gara lascia dieci piazzamenti invece di cinque. Che le due annate partano separate o che corrano insieme con due classifiche distinte, le Norme Attuative prevedono tutti e due i casi (art. 4.2.1 e 4.2.5, con l'eccezione dei meno di dieci partenti all'art. 4.2.4) e dai piazzamenti non si distinguono. Per chi pedala però non cambia: una giornata, una gara. Il conteggio è quindi diviso per il numero di liste, così la colonna dice quante gare un atleta poteva correre e si confronta con le altre categorie. La verifica sui regolamenti sta in `../docs/verifica_dati_giovanile.md`.
 
 ### Ma il primo anno non sparisce per mancanza di posti
 
@@ -511,14 +513,14 @@ Contati i posti, viene naturale chiedersi se siano sempre stati tanti. La rispos
 
 | categoria | gare nel 2009 | gare nel 2025 | variazione |
 |---|---|---|---|
-| Esordienti | 865 | 522 | -39,7% |
+| Esordienti | 433 | 261 | -39,7% |
 | Allievi | 562 | 309 | -44,9% |
 | Juniores | 365 | 199 | -45,5% |
 | Under 23 | 212 | 88 | -58,3% |
 
 *stime dai piazzamenti; le stagioni anomale sono escluse dagli estremi ma non dal grafico*
 
-**Il calendario giovanile italiano osservabile nella fonte si è quasi dimezzato.** Fra il 2009 e il 2025 le classificazioni di gara calano in ogni categoria, fino a -58,3% in Under 23. Non è un effetto della pandemia: il 2020 è un crollo a sé, e dopo di esso il calendario non è tornato ai valori precedenti.
+**Il calendario giovanile italiano osservabile nella fonte si è quasi dimezzato.** Fra il 2009 e il 2025 le gare stimate calano in ogni categoria, fino a -58,3% in Under 23. Non è un effetto della pandemia: il 2020 è un crollo a sé, e dopo di esso il calendario non è tornato ai valori precedenti.
 
 Prima di prenderlo per buono va considerata l'alternativa più ovvia, cioè che a calare sia la copertura della fonte e non il calendario vero. Il controllo si può fare solo dove esistono i tesserati federali, cioè dal 2018: in quella finestra i tesserati Esordienti calano di circa un decimo e le gare stimate di quasi un quinto. Il movimento si sta restringendo, e il calendario si restringe più in fretta del movimento.
 
@@ -1345,13 +1347,13 @@ Tutto il resto di questo documento riguarda i maschi, e la ragione non è una sc
 
 | categoria | atlete | atleti | rapporto | gare per stagione, femminili | maschili | rapporto fra le gare |
 |---|---|---|---|---|---|---|
-| Esordienti | 864 | 6 356 | 7,4× | 77 | 639 | 8,3× |
+| Esordienti | 864 | 6 356 | 7,4× | 61 | 320 | 5,2× |
 | Allievi | 722 | 6 195 | 8,6× | 65 | 414 | 6,4× |
 | Juniores | 389 | 4 181 | 10,7× | 35 | 282 | 8,1× |
 
-*atlete e atleti distinti su tutte le stagioni disponibili; le gare sono stimate dai piazzamenti nei primi cinque, cinque per gara; in Esordienti il rapporto fra le gare non si confronta con le altre righe, perché il conteggio maschile somma i due calendari, uno per annata, e quello femminile ne conta uno solo fino al 2021*
+*atlete e atleti distinti su tutte le stagioni disponibili; le gare sono stimate dai piazzamenti nei primi cinque, cinque per gara, e dove ogni annata ha la propria classifica si divide per il numero di liste, perché un atleta corre comunque una gara sola per giornata*
 
-Il movimento femminile è più piccolo di quello maschile di circa **7,4 volte** in Esordienti. Le gare invece si confrontano solo dove la classifica è una lista unica per entrambi i sessi, cioè in Allievi e Juniores, e lì sono da **6,4 a 8,1 volte** meno: le ragazze non sono semplicemente meno, corrono anche molto meno spesso. Il rapporto degli Esordienti è più alto ma non va preso alla lettera, perché il conteggio maschile somma da sempre due calendari, uno per annata, e quello femminile solo dal 2022.
+Il movimento femminile è più piccolo di quello maschile di circa **7,4 volte** in Esordienti, e corre da **5,2 a 8,1 volte** meno gare: le ragazze non sono semplicemente meno, corrono anche molto meno spesso. Il divario fra i calendari cresce con l'età, ed è più largo del divario fra le popolazioni.
 
 ### Un cambio di regolamento che vale un esperimento
 
@@ -1386,10 +1388,11 @@ Un'ultima differenza, e va nella direzione opposta a quella che ci si aspettereb
 
 | categoria | gare nel 2011 | gare nel 2025 | variazione |
 |---|---|---|---|
+| Esordienti | 65 | 65 | +0,8% |
 | Allievi | 76 | 67 | -11,6% |
 | Juniores | 32 | 41 | +28,8% |
 
-*le Esordienti restano fuori: separando le classifiche nel 2022 i posti raddoppiano per costruzione, e il confronto nel tempo non reggerebbe*
+*le Esordienti ci sono: dal 2022 hanno due classifiche invece di una, e il conteggio ne tiene conto dividendo per il numero di liste, così la serie resta confrontabile prima e dopo il cambio*
 
 > **Cosa manca, e cosa servirebbe.** Nel periodo studiato la fonte non pubblica una classifica Under 23 femminile, anche se la categoria esiste nel regolamento federale e corre insieme alle Elite (Norme Attuative 2027, art. 11.5), quindi il predittore più vicino all'esito, quello che nel maschile porta quasi tutta l'informazione, qui non c'è. Gli esiti di carriera sono ora scaricati — 414 squadre-stagione e 5 580 righe di rosa, con 51 atlete italiane distinte nelle squadre di prima e seconda divisione fra il 2020 e il 2025 —, ma le divisioni professionistiche femminili nascono nel 2020: prima esisteva una categoria sola, quindi «professionista» non è definibile allo stesso modo e le coorti utilizzabili sono solo le più recenti. Finché quel nodo non è sciolto, questa sezione resta descrittiva.
 

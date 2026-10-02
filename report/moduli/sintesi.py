@@ -295,7 +295,7 @@ def rendi(lt):
                 "ogni annata ha la propria classifica il primo anno ne vince il %s%%, "
                 "dove la lista e' unica e le gare sono le stesse il %s%%: e' concorrenza, "
                 "non scarsita'. I posti pero' calano davvero salendo di categoria, da %s "
-                "classificazioni di gara per stagione in Esordienti a %s in Under 23, e "
+                "gare per stagione in Esordienti a %s in Under 23, e "
                 "calano anche nel tempo, con una perdita del %s%% fra la prima e l'ultima "
                 "stagione osservata. La concentrazione dei punti invece non cambia mai: "
                 "il decile migliore ne prende fra il %s%% e il %s%% a ogni eta'."
