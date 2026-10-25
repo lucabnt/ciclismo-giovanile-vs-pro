@@ -13,6 +13,9 @@
 # ---------------------------------------------------------------------------
 data/
 
+# Allegati locali delle conversazioni Codex (screenshot, immagini e altri file).
+.codex-remote-attachments/
+
 # Prodotti rigenerabili, ma pubblicati lo stesso, e non per distrazione. Chi clona questo
 # repository non puo' rigenerarli: il database di partenza contiene dati personali e resta
 # fuori da git, quindi senza i file di output i risultati non sarebbero verificabili da
