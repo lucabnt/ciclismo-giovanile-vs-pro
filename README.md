@@ -385,5 +385,3 @@ entra nulla che permetta di risalire a una persona, e nessuna licenza autorizza 
 - [x] Descrittiva: attrito (9), punteggi per gruppo (10), correlazioni e VIF (11), età relativa (15)
 - [x] Descrittiva: contesto e mobilità (STEP 13-14)
 - [x] Modelli in R (FASE 3 e 4) e validazione (FASE 5) — STEP 16-28 chiusi
-- [x] Bozze dei blog post
-- [ ] Stesura definitiva dei post e revisione delle figure post per post
