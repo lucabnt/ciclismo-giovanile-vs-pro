@@ -1,6 +1,6 @@
 # Ranking giovanili italiani e transizione al professionismo
 
-*Documento generato da `report/assembla.py` il 2026-10-02. Ogni numero viene da una query: non c'è nulla scritto a mano.*
+*Documento generato da `report/assembla.py` il 2026-11-14. Ogni numero viene da una query: non c'è nulla scritto a mano.*
 
 | | |
 |---|---|
@@ -679,7 +679,7 @@ Il confronto non è con il 25 per cento per trimestre. In Italia si nasce di pi�
 | U19 | 1051 | 1,15 | 1,05 | 0,96 | 0,85 | 1,35 | 0,11 |
 | U23 | 336 | 0,99 | 1,04 | 1,05 | 0,91 | 1,09 | 0,06 |
 
-*valori sopra 1 = più atleti dell'atteso demografico*
+*valori sopra 1 = più atleti dell'atteso demografico; compresa la stagione 2020: conta la composizione della classifica, che una stagione corta non sposta*
 
 Il vantaggio si spegne con l'età: da **2,13 a uno** in U15 a **1,09** in U23. E questo confronto non ha bisogno di alcun dato esterno, perché riguarda le stesse coorti ai due estremi e la stagionalità demografica si cancella.
 
@@ -717,7 +717,7 @@ Il confronto ha un motivo sostanziale, oltre alla disponibilità dei dati. Le ra
 | U19 | maschi | 3 045 | 1993-2008 | 1,12 | 0,87 | 1,29 | 0,099 | < 0,001 |
 | U19 | femmine | 370 | 1993-2008 | 1,36 | 0,95 | 1,42 | 0,205 | 0,001 |
 
-*per ogni categoria si usano le coorti in cui entrambi i sessi sono osservati, e l'atteso demografico è calcolato su quelle stesse coorti; nel periodo studiato la fonte non pubblica una classifica Under 23 femminile*
+*per ogni categoria si usano le coorti in cui entrambi i sessi sono osservati, e l'atteso demografico è calcolato su quelle stesse coorti; compresa la stagione 2020, come per la composizione; nel periodo studiato la fonte non pubblica una classifica Under 23 femminile*
 
 **A tredici anni il pattern è quello atteso, e regge a un test.** In U15 i nati nel primo trimestre sono, rispetto all'atteso, 1,98 volte quelli dell'ultimo fra i maschi e 1,51 volte fra le femmine, sulle stesse coorti e con lo stesso atteso demografico; la differenza fra i due sessi ha p = 0,007 al chi quadro sui due trimestri estremi, che sulle stesse coorti basta, perché l'atteso demografico è lo stesso per tutti e due e si semplifica. È il risultato che ci si aspetta se il vantaggio è soprattutto di maturazione, anche se da solo non lo dimostra.
 
@@ -1351,7 +1351,7 @@ Tutto il resto di questo documento riguarda i maschi, e la ragione non è una sc
 | Allievi | 722 | 6 195 | 8,6× | 65 | 414 | 6,4× |
 | Juniores | 389 | 4 181 | 10,7× | 35 | 282 | 8,1× |
 
-*atlete e atleti distinti su tutte le stagioni disponibili; le gare sono stimate dai piazzamenti nei primi cinque, cinque per gara, e dove ogni annata ha la propria classifica si divide per il numero di liste, perché un atleta corre comunque una gara sola per giornata*
+*atlete e atleti distinti su tutte le stagioni disponibili tranne il 2020, dimezzata dal covid; le gare sono stimate dai piazzamenti nei primi cinque, cinque per gara, e dove ogni annata ha la propria classifica si divide per il numero di liste, perché un atleta corre comunque una gara sola per giornata*
 
 Il movimento femminile è più piccolo di quello maschile di circa **7,4 volte** in Esordienti, e corre da **5,2 a 8,1 volte** meno gare: le ragazze non sono semplicemente meno, corrono anche molto meno spesso. Il divario fra i calendari cresce con l'età, ed è più largo del divario fra le popolazioni.
 
