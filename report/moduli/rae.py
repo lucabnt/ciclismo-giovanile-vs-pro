@@ -99,6 +99,9 @@ def calcola():
                   nota="Eurostat demo_fmonth, nati vivi in Italia nelle coorti in studio")
 
         # --- composizione: chi entra nel ranking di ciascuna categoria -------
+        # Il 2020 (flag_stagione 'covid') resta dentro: la stagione dimezzata falsa i
+        # volumi, non la composizione per trimestre di nascita, e toglierlo eliminerebbe
+        # chi ha fatto punti solo quell'anno. I moduli sui volumi (posti, ragazze) lo escludono.
         righe, gradiente = [], []
         for cat in CATEGORIE:
             oss = [0] * 4
@@ -128,7 +131,9 @@ def calcola():
                    colonne=["categoria", "atleti", "Q1 oss/att", "Q2", "Q3", "Q4",
                             "Q1/Q4", "w di Cohen"],
                    titolo="Chi entra nel ranking, per trimestre di nascita",
-                   nota="valori sopra 1 = piu' atleti dell'atteso demografico")
+                   nota="valori sopra 1 = piu' atleti dell'atteso demografico; "
+                        "compresa la stagione 2020: conta la composizione della "
+                        "classifica, che una stagione corta non sposta")
         ar.valore("gradiente", [(c, round(r, 2), n) for c, r, n in gradiente])
         if gradiente:
             ar.valore("q1_su_q4_min", round(min(g[1] for g in gradiente), 2))
@@ -293,7 +298,7 @@ def confronto_sessi(db, rif, ar):
                titolo="L'effetto dell'eta' relativa, maschi e femmine a confronto",
                nota="per ogni categoria si usano le coorti in cui entrambi i sessi sono "
                     "osservati, e l'atteso demografico e' calcolato su quelle stesse "
-                    "coorti; nel periodo studiato la fonte non pubblica una classifica "
+                    "coorti; compresa la stagione 2020, come per la composizione; nel periodo studiato la fonte non pubblica una classifica "
                     "Under 23 femminile")
     ar.valore("confronto_sessi", per_sesso)
     if test_sessi:

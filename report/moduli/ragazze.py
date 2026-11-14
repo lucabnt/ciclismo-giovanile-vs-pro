@@ -103,7 +103,8 @@ def calcola():
             colonne=["categoria", "atlete", "atleti", "rapporto",
                      "gare per stagione, femminili", "maschili", "rapporto fra le gare"],
             titolo="Quanto e' grande il movimento femminile, in rapporto",
-            nota="atlete e atleti distinti su tutte le stagioni disponibili; le gare sono "
+            nota="atlete e atleti distinti su tutte le stagioni disponibili tranne il 2020, "
+                 "dimezzata dal covid; le gare sono "
                  "stimate dai piazzamenti nei primi cinque, cinque per gara, e dove ogni "
                  "annata ha la propria classifica si divide per il numero di liste, perche' "
                  "un atleta corre comunque una gara sola per giornata")
